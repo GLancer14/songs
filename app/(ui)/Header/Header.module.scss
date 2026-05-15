@@ -1,0 +1,14 @@
+.header {
+  width: 100%;
+  padding: 32px;
+  background-color: white;
+  color: black;
+
+  &__auth {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 8px;
+  }
+}

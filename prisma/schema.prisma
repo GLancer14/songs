@@ -1,0 +1,229 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model songs {
+  song_id                   Int                           @id @default(autoincrement())
+  users                     users                         @relation(fields: [user_id], references: [user_id])
+  user_id                   Int
+  title                     String
+  artists                   String
+  name                      String
+  addition_date             DateTime?
+  release_date              DateTime
+  file                      String?
+  track                     Int?
+  disk                      Int?
+  mood                      mood                          @relation(fields: [mood_id], references: [mood_id])
+  mood_id                   Int
+  rank                      String?
+  bpm                       Float?
+  bitrate_audio             BigInt?
+  track_gain                Float?
+  description               String?
+  image                     String?
+  songsAlbums               songs_albums[]
+  songsGroupes              songs_groupes[]
+  songsProducers            songs_producers[]
+  songsSingers              songs_singers[]
+  songsGenres               songs_genres[]
+  songsLyricsAuthors        songs_lyrics_authors[]
+  songsMusicAuthors         songs_music_authors[]
+  songsOriginalLanguages    songs_original_languages[]
+  songsTranslationLanguages songs_translation_languages[]
+}
+
+model mood {
+  mood_id Int     @id @default(autoincrement())
+  mood    String
+  songs   songs[]
+}
+
+model albums {
+  album_id     Int            @id @default(autoincrement())
+  title        String
+  release_date DateTime
+  album_types  album_types    @relation(fields: [album_type], references: [album_type_id])
+  album_type   Int
+  description  String?
+  songsAlbums  songs_albums[]
+}
+
+model album_types {
+  album_type_id Int      @id @default(autoincrement())
+  album_type    String
+  albums        albums[]
+}
+
+model songs_albums {
+  songs    songs  @relation(fields: [song_id], references: [song_id])
+  albums   albums @relation(fields: [album_id], references: [album_id])
+  song_id  Int
+  album_id Int
+
+  @@id([song_id, album_id])
+}
+
+model countries {
+  country_id Int         @id @default(autoincrement())
+  country    String
+  groupes    groupes[]
+  producers  producers[]
+  singers    singers[]
+}
+
+model groupes {
+  group_id           Int             @id @default(autoincrement())
+  grope_name         String
+  year_of_foundation Int?
+  countries          countries       @relation(fields: [country_id], references: [country_id])
+  country_id         Int
+  description        String?
+  songsGroupes       songs_groupes[]
+}
+
+model songs_groupes {
+  songs    songs   @relation(fields: [song_id], references: [song_id])
+  groupes  groupes @relation(fields: [group_id], references: [group_id])
+  song_id  Int
+  group_id Int
+
+  @@id([song_id, group_id])
+}
+
+model producers {
+  producer_id    Int               @id @default(autoincrement())
+  producer       String
+  begin_year     Int?
+  countries      countries         @relation(fields: [country_id], references: [country_id])
+  country_id     Int
+  biography      String?
+  songsProducers songs_producers[]
+}
+
+model songs_producers {
+  songs       songs     @relation(fields: [song_id], references: [song_id])
+  producers   producers @relation(fields: [producer_id], references: [producer_id])
+  song_id     Int
+  producer_id Int
+
+  @@id([song_id, producer_id])
+}
+
+model singers {
+  singer_id    Int             @id @default(autoincrement())
+  singer       String
+  singer_type  Int?
+  countries    countries       @relation(fields: [country], references: [country_id])
+  country      Int
+  biography    String?
+  songsSingers songs_singers[]
+}
+
+model songs_singers {
+  songs     songs   @relation(fields: [song_id], references: [song_id])
+  singers   singers @relation(fields: [singer_id], references: [singer_id])
+  song_id   Int
+  singer_id Int
+
+  @@id([song_id, singer_id])
+}
+
+model genres {
+  genre_id    Int            @id @default(autoincrement())
+  genre       String
+  songsGenres songs_genres[]
+}
+
+model songs_genres {
+  songs    songs  @relation(fields: [song_id], references: [song_id])
+  genres   genres @relation(fields: [genre_id], references: [genre_id])
+  song_id  Int
+  genre_id Int
+
+  @@id([song_id, genre_id])
+}
+
+model lyrics_authors {
+  lyrics_author_id   Int                    @id @default(autoincrement())
+  first_name         String
+  surname            String?
+  nickname           String?
+  description        String?
+  songsLyricsAuthors songs_lyrics_authors[]
+}
+
+model songs_lyrics_authors {
+  songs            songs          @relation(fields: [song_id], references: [song_id])
+  lyrics_authors   lyrics_authors @relation(fields: [lyrics_author_id], references: [lyrics_author_id])
+  song_id          Int
+  lyrics_author_id Int
+
+  @@id([song_id, lyrics_author_id])
+}
+
+model music_authors {
+  music_author_id   Int                   @id @default(autoincrement())
+  first_name        String
+  surname           String?
+  nickname          String?
+  description       String?
+  songsMusicAuthors songs_music_authors[]
+}
+
+model songs_music_authors {
+  songs           songs         @relation(fields: [song_id], references: [song_id])
+  music_authors   music_authors @relation(fields: [music_author_id], references: [music_author_id])
+  song_id         Int
+  music_author_id Int
+
+  @@id([song_id, music_author_id])
+}
+
+model languages {
+  language_id               Int                           @id @default(autoincrement())
+  lang                      String
+  songsOriginalLanguages    songs_original_languages[]
+  songsTranslationLanguages songs_translation_languages[]
+}
+
+model songs_original_languages {
+  songs       songs     @relation(fields: [song_id], references: [song_id])
+  languages   languages @relation(fields: [language_id], references: [language_id])
+  song_id     Int
+  language_id Int
+  lyrics_text String
+
+  @@id([song_id, language_id])
+}
+
+model songs_translation_languages {
+  songs       songs     @relation(fields: [song_id], references: [song_id])
+  languages   languages @relation(fields: [language_id], references: [language_id])
+  song_id     Int
+  language_id Int
+  lyrics_text String
+
+  @@id([song_id, language_id])
+}
+
+model users {
+  user_id      Int     @id @default(autoincrement())
+  email        String  @unique
+  passwordHash String
+  name         String
+  contactPhone String?
+  role         String  @default("client")
+  songs        songs[]
+}
