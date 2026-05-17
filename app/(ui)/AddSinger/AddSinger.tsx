@@ -3,13 +3,8 @@
 import userIam from "@/app/actions/userIam";
 import Header from "../Header/Header"
 import { users } from "@/src/generated/prisma/client";
-import "./AddSong";
-import Languages from "./Languages/Languages";
-import Mood from "./Mood/Mood";
 import SearchField from "../ui/SearchField/SearchField";
 import Footer from "../Footer/Footer";
-import ExternalLink from "./ExternalLink/ExternalLink";
-import Lyrics from "./Lyrics/Lyrics";
 import { useState } from "react";
 import clsx from "clsx";
 
@@ -115,7 +110,7 @@ const AddSong = ({
             </label>
           </article>
           <article className="flex flex-row justify-center gap-8">
-            {lyricsLanguages.map((lyricsLanguage, ind) => {
+            {/* {lyricsLanguages.map((lyricsLanguage, ind) => {
               const allLyricsOn = Object.values(lyricsOn).filter(lyrics => lyrics);
               return (
                 <Lyrics
@@ -131,7 +126,7 @@ const AddSong = ({
                   }
                 />
               );
-            })}
+            })} */}
             <div className=""></div>
           </article>
         </section>
@@ -153,9 +148,9 @@ const AddSong = ({
             <h3 className="text-2xl w-full">Info</h3>
             <div className="flex flex-row flex-wrap">
               <h4 className="w-full">Original language(s):</h4>
-              {languages.map((language, ind) => {
+              {/* {languages.map((language, ind) => {
                 return <Languages key={ind} language={language} />
-              })}
+              })} */}
             </div>
             {dataGroupes.map((dataGroup, ind) => {
               return (
@@ -170,9 +165,9 @@ const AddSong = ({
               <span className="text-white">Mood:</span>
               <select className="" name="mood" size={1}>
                 <option className="text-white" value="none" defaultChecked>none </option>
-                {moods.map((mood, ind) => {
+                {/* {moods.map((mood, ind) => {
                   return <Mood key={ind} mood={mood} />
-                })}
+                })} */}
               </select>
             </label>
             <label className="flex gap-2">
@@ -227,7 +222,7 @@ const AddSong = ({
             {/* <span className=""></span> */}
           </div>
         </section>
-        <ExternalLink />
+        {/* <ExternalLink /> */}
         <button className="" value="Save" id="save_songs_lyrics">Add Song</button>
       </form>
       <Footer />

@@ -191,7 +191,7 @@ export type ProducersGroupByOutputType = {
   producer_id: number
   producer: string
   begin_year: number | null
-  country_id: number
+  country_id: number | null
   biography: string | null
   _count: ProducersCountAggregateOutputType | null
   _avg: ProducersAvgAggregateOutputType | null
@@ -222,9 +222,9 @@ export type producersWhereInput = {
   producer_id?: Prisma.IntFilter<"producers"> | number
   producer?: Prisma.StringFilter<"producers"> | string
   begin_year?: Prisma.IntNullableFilter<"producers"> | number | null
-  country_id?: Prisma.IntFilter<"producers"> | number
+  country_id?: Prisma.IntNullableFilter<"producers"> | number | null
   biography?: Prisma.StringNullableFilter<"producers"> | string | null
-  countries?: Prisma.XOR<Prisma.CountriesScalarRelationFilter, Prisma.countriesWhereInput>
+  countries?: Prisma.XOR<Prisma.CountriesNullableScalarRelationFilter, Prisma.countriesWhereInput> | null
   songsProducers?: Prisma.Songs_producersListRelationFilter
 }
 
@@ -232,7 +232,7 @@ export type producersOrderByWithRelationInput = {
   producer_id?: Prisma.SortOrder
   producer?: Prisma.SortOrder
   begin_year?: Prisma.SortOrderInput | Prisma.SortOrder
-  country_id?: Prisma.SortOrder
+  country_id?: Prisma.SortOrderInput | Prisma.SortOrder
   biography?: Prisma.SortOrderInput | Prisma.SortOrder
   countries?: Prisma.countriesOrderByWithRelationInput
   songsProducers?: Prisma.songs_producersOrderByRelationAggregateInput
@@ -245,9 +245,9 @@ export type producersWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.producersWhereInput | Prisma.producersWhereInput[]
   producer?: Prisma.StringFilter<"producers"> | string
   begin_year?: Prisma.IntNullableFilter<"producers"> | number | null
-  country_id?: Prisma.IntFilter<"producers"> | number
+  country_id?: Prisma.IntNullableFilter<"producers"> | number | null
   biography?: Prisma.StringNullableFilter<"producers"> | string | null
-  countries?: Prisma.XOR<Prisma.CountriesScalarRelationFilter, Prisma.countriesWhereInput>
+  countries?: Prisma.XOR<Prisma.CountriesNullableScalarRelationFilter, Prisma.countriesWhereInput> | null
   songsProducers?: Prisma.Songs_producersListRelationFilter
 }, "producer_id">
 
@@ -255,7 +255,7 @@ export type producersOrderByWithAggregationInput = {
   producer_id?: Prisma.SortOrder
   producer?: Prisma.SortOrder
   begin_year?: Prisma.SortOrderInput | Prisma.SortOrder
-  country_id?: Prisma.SortOrder
+  country_id?: Prisma.SortOrderInput | Prisma.SortOrder
   biography?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.producersCountOrderByAggregateInput
   _avg?: Prisma.producersAvgOrderByAggregateInput
@@ -271,7 +271,7 @@ export type producersScalarWhereWithAggregatesInput = {
   producer_id?: Prisma.IntWithAggregatesFilter<"producers"> | number
   producer?: Prisma.StringWithAggregatesFilter<"producers"> | string
   begin_year?: Prisma.IntNullableWithAggregatesFilter<"producers"> | number | null
-  country_id?: Prisma.IntWithAggregatesFilter<"producers"> | number
+  country_id?: Prisma.IntNullableWithAggregatesFilter<"producers"> | number | null
   biography?: Prisma.StringNullableWithAggregatesFilter<"producers"> | string | null
 }
 
@@ -279,7 +279,7 @@ export type producersCreateInput = {
   producer: string
   begin_year?: number | null
   biography?: string | null
-  countries: Prisma.countriesCreateNestedOneWithoutProducersInput
+  countries?: Prisma.countriesCreateNestedOneWithoutProducersInput
   songsProducers?: Prisma.songs_producersCreateNestedManyWithoutProducersInput
 }
 
@@ -287,7 +287,7 @@ export type producersUncheckedCreateInput = {
   producer_id?: number
   producer: string
   begin_year?: number | null
-  country_id: number
+  country_id?: number | null
   biography?: string | null
   songsProducers?: Prisma.songs_producersUncheckedCreateNestedManyWithoutProducersInput
 }
@@ -296,7 +296,7 @@ export type producersUpdateInput = {
   producer?: Prisma.StringFieldUpdateOperationsInput | string
   begin_year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   biography?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  countries?: Prisma.countriesUpdateOneRequiredWithoutProducersNestedInput
+  countries?: Prisma.countriesUpdateOneWithoutProducersNestedInput
   songsProducers?: Prisma.songs_producersUpdateManyWithoutProducersNestedInput
 }
 
@@ -304,7 +304,7 @@ export type producersUncheckedUpdateInput = {
   producer_id?: Prisma.IntFieldUpdateOperationsInput | number
   producer?: Prisma.StringFieldUpdateOperationsInput | string
   begin_year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  country_id?: Prisma.IntFieldUpdateOperationsInput | number
+  country_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   biography?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   songsProducers?: Prisma.songs_producersUncheckedUpdateManyWithoutProducersNestedInput
 }
@@ -313,7 +313,7 @@ export type producersCreateManyInput = {
   producer_id?: number
   producer: string
   begin_year?: number | null
-  country_id: number
+  country_id?: number | null
   biography?: string | null
 }
 
@@ -327,7 +327,7 @@ export type producersUncheckedUpdateManyInput = {
   producer_id?: Prisma.IntFieldUpdateOperationsInput | number
   producer?: Prisma.StringFieldUpdateOperationsInput | string
   begin_year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  country_id?: Prisma.IntFieldUpdateOperationsInput | number
+  country_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   biography?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -486,7 +486,7 @@ export type producersScalarWhereInput = {
   producer_id?: Prisma.IntFilter<"producers"> | number
   producer?: Prisma.StringFilter<"producers"> | string
   begin_year?: Prisma.IntNullableFilter<"producers"> | number | null
-  country_id?: Prisma.IntFilter<"producers"> | number
+  country_id?: Prisma.IntNullableFilter<"producers"> | number | null
   biography?: Prisma.StringNullableFilter<"producers"> | string | null
 }
 
@@ -494,14 +494,14 @@ export type producersCreateWithoutSongsProducersInput = {
   producer: string
   begin_year?: number | null
   biography?: string | null
-  countries: Prisma.countriesCreateNestedOneWithoutProducersInput
+  countries?: Prisma.countriesCreateNestedOneWithoutProducersInput
 }
 
 export type producersUncheckedCreateWithoutSongsProducersInput = {
   producer_id?: number
   producer: string
   begin_year?: number | null
-  country_id: number
+  country_id?: number | null
   biography?: string | null
 }
 
@@ -525,14 +525,14 @@ export type producersUpdateWithoutSongsProducersInput = {
   producer?: Prisma.StringFieldUpdateOperationsInput | string
   begin_year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   biography?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  countries?: Prisma.countriesUpdateOneRequiredWithoutProducersNestedInput
+  countries?: Prisma.countriesUpdateOneWithoutProducersNestedInput
 }
 
 export type producersUncheckedUpdateWithoutSongsProducersInput = {
   producer_id?: Prisma.IntFieldUpdateOperationsInput | number
   producer?: Prisma.StringFieldUpdateOperationsInput | string
   begin_year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  country_id?: Prisma.IntFieldUpdateOperationsInput | number
+  country_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   biography?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -602,7 +602,7 @@ export type producersSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   begin_year?: boolean
   country_id?: boolean
   biography?: boolean
-  countries?: boolean | Prisma.countriesDefaultArgs<ExtArgs>
+  countries?: boolean | Prisma.producers$countriesArgs<ExtArgs>
   songsProducers?: boolean | Prisma.producers$songsProducersArgs<ExtArgs>
   _count?: boolean | Prisma.ProducersCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["producers"]>
@@ -613,7 +613,7 @@ export type producersSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   begin_year?: boolean
   country_id?: boolean
   biography?: boolean
-  countries?: boolean | Prisma.countriesDefaultArgs<ExtArgs>
+  countries?: boolean | Prisma.producers$countriesArgs<ExtArgs>
 }, ExtArgs["result"]["producers"]>
 
 export type producersSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -622,7 +622,7 @@ export type producersSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   begin_year?: boolean
   country_id?: boolean
   biography?: boolean
-  countries?: boolean | Prisma.countriesDefaultArgs<ExtArgs>
+  countries?: boolean | Prisma.producers$countriesArgs<ExtArgs>
 }, ExtArgs["result"]["producers"]>
 
 export type producersSelectScalar = {
@@ -635,28 +635,28 @@ export type producersSelectScalar = {
 
 export type producersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"producer_id" | "producer" | "begin_year" | "country_id" | "biography", ExtArgs["result"]["producers"]>
 export type producersInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  countries?: boolean | Prisma.countriesDefaultArgs<ExtArgs>
+  countries?: boolean | Prisma.producers$countriesArgs<ExtArgs>
   songsProducers?: boolean | Prisma.producers$songsProducersArgs<ExtArgs>
   _count?: boolean | Prisma.ProducersCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type producersIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  countries?: boolean | Prisma.countriesDefaultArgs<ExtArgs>
+  countries?: boolean | Prisma.producers$countriesArgs<ExtArgs>
 }
 export type producersIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  countries?: boolean | Prisma.countriesDefaultArgs<ExtArgs>
+  countries?: boolean | Prisma.producers$countriesArgs<ExtArgs>
 }
 
 export type $producersPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "producers"
   objects: {
-    countries: Prisma.$countriesPayload<ExtArgs>
+    countries: Prisma.$countriesPayload<ExtArgs> | null
     songsProducers: Prisma.$songs_producersPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     producer_id: number
     producer: string
     begin_year: number | null
-    country_id: number
+    country_id: number | null
     biography: string | null
   }, ExtArgs["result"]["producers"]>
   composites: {}
@@ -1052,7 +1052,7 @@ readonly fields: producersFieldRefs;
  */
 export interface Prisma__producersClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  countries<T extends Prisma.countriesDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.countriesDefaultArgs<ExtArgs>>): Prisma.Prisma__countriesClient<runtime.Types.Result.GetResult<Prisma.$countriesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  countries<T extends Prisma.producers$countriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.producers$countriesArgs<ExtArgs>>): Prisma.Prisma__countriesClient<runtime.Types.Result.GetResult<Prisma.$countriesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   songsProducers<T extends Prisma.producers$songsProducersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.producers$songsProducersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$songs_producersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1486,6 +1486,25 @@ export type producersDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Limit how many producers to delete.
    */
   limit?: number
+}
+
+/**
+ * producers.countries
+ */
+export type producers$countriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the countries
+   */
+  select?: Prisma.countriesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the countries
+   */
+  omit?: Prisma.countriesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.countriesInclude<ExtArgs> | null
+  where?: Prisma.countriesWhereInput
 }
 
 /**

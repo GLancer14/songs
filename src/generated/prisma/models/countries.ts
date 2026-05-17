@@ -301,9 +301,9 @@ export type countriesSumOrderByAggregateInput = {
   country_id?: Prisma.SortOrder
 }
 
-export type CountriesScalarRelationFilter = {
-  is?: Prisma.countriesWhereInput
-  isNot?: Prisma.countriesWhereInput
+export type CountriesNullableScalarRelationFilter = {
+  is?: Prisma.countriesWhereInput | null
+  isNot?: Prisma.countriesWhereInput | null
 }
 
 export type countriesCreateNestedOneWithoutGroupesInput = {
@@ -312,10 +312,12 @@ export type countriesCreateNestedOneWithoutGroupesInput = {
   connect?: Prisma.countriesWhereUniqueInput
 }
 
-export type countriesUpdateOneRequiredWithoutGroupesNestedInput = {
+export type countriesUpdateOneWithoutGroupesNestedInput = {
   create?: Prisma.XOR<Prisma.countriesCreateWithoutGroupesInput, Prisma.countriesUncheckedCreateWithoutGroupesInput>
   connectOrCreate?: Prisma.countriesCreateOrConnectWithoutGroupesInput
   upsert?: Prisma.countriesUpsertWithoutGroupesInput
+  disconnect?: Prisma.countriesWhereInput | boolean
+  delete?: Prisma.countriesWhereInput | boolean
   connect?: Prisma.countriesWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.countriesUpdateToOneWithWhereWithoutGroupesInput, Prisma.countriesUpdateWithoutGroupesInput>, Prisma.countriesUncheckedUpdateWithoutGroupesInput>
 }
@@ -326,10 +328,12 @@ export type countriesCreateNestedOneWithoutProducersInput = {
   connect?: Prisma.countriesWhereUniqueInput
 }
 
-export type countriesUpdateOneRequiredWithoutProducersNestedInput = {
+export type countriesUpdateOneWithoutProducersNestedInput = {
   create?: Prisma.XOR<Prisma.countriesCreateWithoutProducersInput, Prisma.countriesUncheckedCreateWithoutProducersInput>
   connectOrCreate?: Prisma.countriesCreateOrConnectWithoutProducersInput
   upsert?: Prisma.countriesUpsertWithoutProducersInput
+  disconnect?: Prisma.countriesWhereInput | boolean
+  delete?: Prisma.countriesWhereInput | boolean
   connect?: Prisma.countriesWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.countriesUpdateToOneWithWhereWithoutProducersInput, Prisma.countriesUpdateWithoutProducersInput>, Prisma.countriesUncheckedUpdateWithoutProducersInput>
 }
@@ -340,10 +344,12 @@ export type countriesCreateNestedOneWithoutSingersInput = {
   connect?: Prisma.countriesWhereUniqueInput
 }
 
-export type countriesUpdateOneRequiredWithoutSingersNestedInput = {
+export type countriesUpdateOneWithoutSingersNestedInput = {
   create?: Prisma.XOR<Prisma.countriesCreateWithoutSingersInput, Prisma.countriesUncheckedCreateWithoutSingersInput>
   connectOrCreate?: Prisma.countriesCreateOrConnectWithoutSingersInput
   upsert?: Prisma.countriesUpsertWithoutSingersInput
+  disconnect?: Prisma.countriesWhereInput | boolean
+  delete?: Prisma.countriesWhereInput | boolean
   connect?: Prisma.countriesWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.countriesUpdateToOneWithWhereWithoutSingersInput, Prisma.countriesUpdateWithoutSingersInput>, Prisma.countriesUncheckedUpdateWithoutSingersInput>
 }

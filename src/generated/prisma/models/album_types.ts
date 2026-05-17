@@ -264,9 +264,9 @@ export type album_typesUncheckedUpdateManyInput = {
   album_type?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type Album_typesScalarRelationFilter = {
-  is?: Prisma.album_typesWhereInput
-  isNot?: Prisma.album_typesWhereInput
+export type Album_typesNullableScalarRelationFilter = {
+  is?: Prisma.album_typesWhereInput | null
+  isNot?: Prisma.album_typesWhereInput | null
 }
 
 export type album_typesCountOrderByAggregateInput = {
@@ -298,10 +298,12 @@ export type album_typesCreateNestedOneWithoutAlbumsInput = {
   connect?: Prisma.album_typesWhereUniqueInput
 }
 
-export type album_typesUpdateOneRequiredWithoutAlbumsNestedInput = {
+export type album_typesUpdateOneWithoutAlbumsNestedInput = {
   create?: Prisma.XOR<Prisma.album_typesCreateWithoutAlbumsInput, Prisma.album_typesUncheckedCreateWithoutAlbumsInput>
   connectOrCreate?: Prisma.album_typesCreateOrConnectWithoutAlbumsInput
   upsert?: Prisma.album_typesUpsertWithoutAlbumsInput
+  disconnect?: Prisma.album_typesWhereInput | boolean
+  delete?: Prisma.album_typesWhereInput | boolean
   connect?: Prisma.album_typesWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.album_typesUpdateToOneWithWhereWithoutAlbumsInput, Prisma.album_typesUpdateWithoutAlbumsInput>, Prisma.album_typesUncheckedUpdateWithoutAlbumsInput>
 }
