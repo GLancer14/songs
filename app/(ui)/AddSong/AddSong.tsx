@@ -2,7 +2,7 @@
 
 import userIam from "@/app/actions/userIam";
 import Header from "../Header/Header"
-import { users } from "@/src/generated/prisma/client";
+import { Prisma, users } from "@/src/generated/prisma/client";
 import "./AddSong";
 import Languages from "./Languages/Languages";
 import Mood from "./Mood/Mood";
@@ -25,9 +25,21 @@ const AddSong = ({
   user: users | null | undefined;
   languages: string[];
   moods: string[];
-  creators: string[];
-  dataGroupes: string[];
-  requiredFields: string[][];
+  creators: Array<{
+    name: Prisma.ModelName;
+    title: string;
+    fields: string;
+  }>;
+  dataGroupes:  Array<{
+    name: Prisma.ModelName;
+    title: string;
+    fields: string;
+  }>;
+  requiredFields: Array<{
+    name: Prisma.ModelName;
+    title: string;
+    fields: string;
+  }>;
   lyricsLanguages: string[];
 }) => {
   const [lyricsOn, setLyricsOn] = useState<{
@@ -36,7 +48,8 @@ const AddSong = ({
   }>({
     english: true,
     russian: true,
-  })
+  });
+
 
   return (
     <>
@@ -54,9 +67,9 @@ const AddSong = ({
               return (
                 <SearchField
                   key={ind}
-                  fieldName={requiredField[0]}
+                  tableData={requiredField}
                   required={true}
-                  title={requiredField[1]}
+                  title={requiredField.title}
                   className="flex flex-col justify-start w-1/2 gap-2 mb-8"
                 />
               )
@@ -143,13 +156,13 @@ const AddSong = ({
               return (
                 <SearchField
                   key={ind}
-                  fieldName={creator}
-                  className={clsx("flex w-[calc(50%-16px)]")}
+                  tableData={creator}
+                  className="flex flex-col justify-start gap-2 mb-2 w-[calc(50%-16px)]"
                 />
               );
             })}
           </article>
-          <article className="flex flex-row flex-wrap gap-8 justify-center items-center">
+          <article className="flex flex-row flex-wrap gap-8 justify-center items-center items-start">
             <h3 className="text-2xl w-full">Info</h3>
             <div className="flex flex-row flex-wrap">
               <h4 className="w-full">Original language(s):</h4>
@@ -161,8 +174,8 @@ const AddSong = ({
               return (
                 <SearchField
                   key={ind}
-                  fieldName={dataGroup}
-                  className={dataGroup}
+                  tableData={dataGroup}
+                  className="flex flex-col justify-start gap-2 mb-2 w-[calc(50%-16px)]"
                 />
               )
             })}
