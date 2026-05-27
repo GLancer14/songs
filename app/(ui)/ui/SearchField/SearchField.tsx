@@ -32,22 +32,20 @@ const SearchField = ({
     <label
       className={clsx(
         className,
-        "flex gap-4 cursor-pointer justify-between relative")}
+        "flex gap-4 cursor-pointer justify-between relative"
+      )}
     >
-      <span className="text-xl">{tableData.name}</span>
+      <span className="text-xl">{tableData.name + ` ${tableData.fields}`}</span>
       <input
         className="p-1 rounded-sm"
         type="text"
         title={title}
         maxLength={maxLength}
-        name={tableData.name}
+        name={tableData.name + `_${tableData.fields}`}
         list={`${tableData}_options`}
         placeholder="Search"
         required={required}
         value={searchValue}
-        onBlur={() => {
-          setSearchVisible(false);
-        }}
         onFocus={() => {
           setSearchVisible(true);
         }}
@@ -68,8 +66,8 @@ const SearchField = ({
       <ul
         ref={listRef}
         className="absolute mt-20 text-white bg-gray-800 w-full"
-        id={`${tableData.fields}_options`
-      }>
+        id={`${tableData.fields}_options`}
+      >
         {searchVisible && searchResults && searchResults.length > 0 && 
           searchResults.map((searchOption, ind) => {
             return (
@@ -83,6 +81,7 @@ const SearchField = ({
                     searchOption[tableData.fields],
                   ]);
                   setSearchValue("");
+                  setSearchResults(null);
                 }}
               >
                 {searchOption[tableData.fields]}
@@ -99,7 +98,7 @@ const SearchField = ({
                 className="bg-gray-900 w-min text-white"
                 disabled={true}
                 value={selectedField}
-                name={`${tableData.fields}_${ind}`}
+                name={tableData.name + `_${tableData.fields}`}
               />
               <span onClick={() => {
                 setSelectedFields(selectedFields.filter(droppedSelectedField => {

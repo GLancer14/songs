@@ -2,8 +2,8 @@
 
 import userIam from "@/app/actions/userIam";
 import Header from "../Header/Header"
-import { Prisma, users } from "@/src/generated/prisma/client";
-import "./AddSong";
+import { mood, Prisma, users } from "@/src/generated/prisma/client";
+import "./EditSong";
 import Languages from "./Languages/Languages";
 import Mood from "./Mood/Mood";
 import SearchField from "../ui/SearchField/SearchField";
@@ -13,7 +13,7 @@ import Lyrics from "./Lyrics/Lyrics";
 import { useState } from "react";
 import clsx from "clsx";
 
-const AddSong = ({
+const EditSong = ({
   user,
   languages,
   moods,
@@ -24,7 +24,7 @@ const AddSong = ({
 }: {
   user: users | null | undefined;
   languages: string[];
-  moods: string[];
+  moods: mood[];
   creators: Array<{
     name: Prisma.ModelName;
     title: string;
@@ -49,7 +49,13 @@ const AddSong = ({
     english: true,
     russian: true,
   });
-
+  const [generalData, setGeneralData] = useState<{
+    [n: string]: string
+  }>({
+    title: "",
+    name: "",
+    artists: "",
+  });
 
   return (
     <>
@@ -62,16 +68,36 @@ const AddSong = ({
       >
         <section className="flex flex-col justify-start mb-8">
           <h2 className="text-4xl capitalize mb-4">general data</h2>
-          <article className="">
+          <article className="flex flex-col flex-wrap gap-8 justify-start items-start mb-8 w-1/2">
             {requiredFields.map((requiredField, ind) => {
               return (
-                <SearchField
+                <label
                   key={ind}
-                  tableData={requiredField}
-                  required={true}
-                  title={requiredField.title}
-                  className="flex flex-col justify-start w-1/2 gap-2 mb-8"
-                />
+                  className="flex gap-4 cursor-pointer justify-between relative w-full"
+                >
+                  <span className="text-xl">{requiredField.name + ` ${requiredField.fields}`}</span>
+                  <input
+                    className="p-1 rounded-sm w-2/3"
+                    type="text"
+                    title={requiredField.title}
+                    maxLength={128}
+                    name={requiredField.name + `_${requiredField.fields}`}
+                    list={`${requiredField}_options`}
+                    required={true}
+                    value={generalData[requiredField.fields]}
+                    onInput={(e) => {setGeneralData({
+                      ...generalData,
+                      [requiredField.fields]: e.currentTarget.value,
+                    })}}
+                  />
+                </label>
+                // <SearchField
+                //   key={ind}
+                //   tableData={requiredField}
+                //   required={true}
+                //   title={requiredField.title}
+                //   className="flex flex-col justify-start w-1/2 gap-2 mb-8"
+                // />
               )
             })}
           </article>
@@ -96,7 +122,7 @@ const AddSong = ({
               <input
                 className=""
                 type="checkbox"
-                name="lyricsLangs[]"
+                name="lyrics_translation_langs[]"
                 id="english_translation_input"
                 value="english"
                 checked={lyricsOn.english}
@@ -113,7 +139,7 @@ const AddSong = ({
               <input
                 className=""
                 type="checkbox"
-                name="lyricsLangs[]"
+                name="lyrics_translation_langs[]"
                 id="russian_translation_input"
                 value="russian"
                 checked={lyricsOn.russian}
@@ -162,7 +188,7 @@ const AddSong = ({
               );
             })}
           </article>
-          <article className="flex flex-row flex-wrap gap-8 justify-center items-center items-start">
+          <article className="flex flex-row flex-wrap gap-8 justify-center items-start">
             <h3 className="text-2xl w-full">Info</h3>
             <div className="flex flex-row flex-wrap">
               <h4 className="w-full">Original language(s):</h4>
@@ -193,8 +219,8 @@ const AddSong = ({
               <input
                 className=""
                 type="date"
-                name="releaseDate"
-                id="release-date"
+                name="release_date"
+                id="release_date"
               />
             </label>
             <label className="flex gap-2">
@@ -202,7 +228,8 @@ const AddSong = ({
               <input
                 className=""
                 type="number"
-                name="bpm" id="bpm"
+                name="bpm"
+                id="bpm"
                 max="1015"
                 min="20"
                 step="0.01"
@@ -217,7 +244,7 @@ const AddSong = ({
             <input
               className="w-3/5"
               type="file"
-              name="titleImage"
+              name="title_image"
               id="upload-title-image"
               accept="image/jpeg,image/gif,image/png"
               tabIndex={-1}
@@ -231,7 +258,7 @@ const AddSong = ({
             <input
               className="w-3/5"
               type="file"
-              name="origAudio"
+              name="orig_audio"
               id="upload-orig-audio"
               accept="audio/mp3"
               tabIndex={-1}
@@ -248,4 +275,4 @@ const AddSong = ({
   );
 }
 
-export default AddSong;
+export default EditSong;

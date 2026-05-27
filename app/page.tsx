@@ -4,13 +4,15 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "./(ui)/Header/Header";
 import Footer from "./(ui)/Footer/Footer";
-import { mood } from "@/src/generated/prisma/client";
+import { mood, songs } from "@/src/generated/prisma/client";
 import { prisma } from "./lib/prisma";
 import userIam from "./actions/userIam";
+import SongCard from "./(ui)/SongCard/SongCard";
 
 export default async function Home() {
   const user = await userIam();
   const moods: Array<mood> = await prisma.mood.findMany();
+  const songs: Array<songs> = await prisma.songs.findMany();
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <Header user={user} />
@@ -21,7 +23,17 @@ export default async function Home() {
           Welcome to my page!
         </h1>
         <section className="flex flex-col w-full">
-          <h2 className="text-xl self-center">Moods</h2>
+          <h2 className="text-xl self-center">Songs</h2>
+          <div className="songs">
+            {songs.length > 0 &&
+              songs.map((song, ind) => {
+                return (
+                  <SongCard key={ind} songData={song} />
+                )
+              })
+            }
+          </div>
+          
           {/* {moods.map((value, ind) => {
             return (
               <div

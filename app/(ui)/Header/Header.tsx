@@ -14,7 +14,7 @@ const Header = ({ user }: { user: users | null | undefined }) => {
     <header className={clsx(s.header, "flex justify-between")}>
       <h1 className="flex w-full align-middle justify-start text-5xl">
         <Link href="/">
-          My website
+          Songs
         </Link>
       </h1>
       <ul className={clsx(s.header__auth, "w-1/2 self-end")}>
@@ -34,22 +34,22 @@ const Header = ({ user }: { user: users | null | undefined }) => {
             onMouseLeave={() => {setListVisibility(false)}}
           >
             <li>
-              <Link href="/addSong">Add Song</Link>
+              <Link href="/add-song">Add Song</Link>
             </li>
             <li>
-              <Link href="/addAlbum">Add Albums</Link>
+              <Link href="/add-album">Add Albums</Link>
             </li>
             <li>
-              <Link href="/addSinger">Add Singers</Link>
+              <Link href="/add-singer">Add Singers</Link>
             </li>
             <li>
-              <Link href="/addProducer">Add Producer</Link>
+              <Link href="/add-producer">Add Producer</Link>
             </li>
             <li>
-              <Link href="/addMusicAuthors">Add Music Authors</Link>
+              <Link href="/add-music-authors">Add Music Authors</Link>
             </li>
             <li>
-              <Link href="/addLyricsAuthors">Add Lyrics Authors</Link>
+              <Link href="/add-lyrics-authors">Add Lyrics Authors</Link>
             </li>
           </ul>
         </li>

@@ -1,11 +1,10 @@
 "use server"
 
 import { Suspense } from "react"
-import AddSong from "../(ui)/AddSong/AddSong"
+import EditSong from "../(ui)/EditSong/EditSong"
 import userIam from "../actions/userIam"
 import { prisma } from "../lib/prisma"
 import Loading from "./loading"
-import findSearchFieldValue from "../actions/SearchField/searchFields"
 import { Prisma } from "@/src/generated/prisma/client"
 
 const Page = async () => {
@@ -80,11 +79,11 @@ const Page = async () => {
   const lyricsLanguages = ["original", "english", "russian"];
   const user = await userIam()
   const languages = (await prisma.languages.findMany()).map(language => language.lang);
-  const moods = (await prisma.mood.findMany()).map(mood => mood.mood);
+  const moods = await prisma.mood.findMany();
 
   return (
     <Suspense fallback={<Loading />}>
-      <AddSong
+      <EditSong
         user={user}
         languages={languages}
         moods={moods}

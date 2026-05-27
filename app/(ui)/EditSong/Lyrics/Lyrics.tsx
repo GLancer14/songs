@@ -29,7 +29,7 @@ const Lyrics = ({
       <span className="">{lyricsName}</span>
       <textarea
         className="resize-none"
-        name={`${lyricsName}Text`}
+        name={lyricsName}
         wrap="soft"
         rows={20}
         maxLength={4096}
