@@ -403,8 +403,7 @@ export const ModelName = {
   music_authors: 'music_authors',
   songs_music_authors: 'songs_music_authors',
   languages: 'languages',
-  songs_original_languages: 'songs_original_languages',
-  songs_translation_languages: 'songs_translation_languages',
+  songs_lyrics: 'songs_lyrics',
   users: 'users'
 } as const
 
@@ -421,7 +420,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "songs" | "mood" | "albums" | "album_types" | "songs_albums" | "countries" | "groupes" | "songs_groupes" | "producers" | "songs_producers" | "singers" | "songs_singers" | "genres" | "songs_genres" | "lyrics_authors" | "songs_lyrics_authors" | "music_authors" | "songs_music_authors" | "languages" | "songs_original_languages" | "songs_translation_languages" | "users"
+    modelProps: "songs" | "mood" | "albums" | "album_types" | "songs_albums" | "countries" | "groupes" | "songs_groupes" | "producers" | "songs_producers" | "singers" | "songs_singers" | "genres" | "songs_genres" | "lyrics_authors" | "songs_lyrics_authors" | "music_authors" | "songs_music_authors" | "languages" | "songs_lyrics" | "users"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1831,151 +1830,77 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    songs_original_languages: {
-      payload: Prisma.$songs_original_languagesPayload<ExtArgs>
-      fields: Prisma.songs_original_languagesFieldRefs
+    songs_lyrics: {
+      payload: Prisma.$songs_lyricsPayload<ExtArgs>
+      fields: Prisma.songs_lyricsFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.songs_original_languagesFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_original_languagesPayload> | null
+          args: Prisma.songs_lyricsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_lyricsPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.songs_original_languagesFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_original_languagesPayload>
+          args: Prisma.songs_lyricsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_lyricsPayload>
         }
         findFirst: {
-          args: Prisma.songs_original_languagesFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_original_languagesPayload> | null
+          args: Prisma.songs_lyricsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_lyricsPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.songs_original_languagesFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_original_languagesPayload>
+          args: Prisma.songs_lyricsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_lyricsPayload>
         }
         findMany: {
-          args: Prisma.songs_original_languagesFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_original_languagesPayload>[]
+          args: Prisma.songs_lyricsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_lyricsPayload>[]
         }
         create: {
-          args: Prisma.songs_original_languagesCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_original_languagesPayload>
+          args: Prisma.songs_lyricsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_lyricsPayload>
         }
         createMany: {
-          args: Prisma.songs_original_languagesCreateManyArgs<ExtArgs>
+          args: Prisma.songs_lyricsCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.songs_original_languagesCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_original_languagesPayload>[]
+          args: Prisma.songs_lyricsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_lyricsPayload>[]
         }
         delete: {
-          args: Prisma.songs_original_languagesDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_original_languagesPayload>
+          args: Prisma.songs_lyricsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_lyricsPayload>
         }
         update: {
-          args: Prisma.songs_original_languagesUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_original_languagesPayload>
+          args: Prisma.songs_lyricsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_lyricsPayload>
         }
         deleteMany: {
-          args: Prisma.songs_original_languagesDeleteManyArgs<ExtArgs>
+          args: Prisma.songs_lyricsDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.songs_original_languagesUpdateManyArgs<ExtArgs>
+          args: Prisma.songs_lyricsUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.songs_original_languagesUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_original_languagesPayload>[]
+          args: Prisma.songs_lyricsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_lyricsPayload>[]
         }
         upsert: {
-          args: Prisma.songs_original_languagesUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_original_languagesPayload>
+          args: Prisma.songs_lyricsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_lyricsPayload>
         }
         aggregate: {
-          args: Prisma.Songs_original_languagesAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateSongs_original_languages>
+          args: Prisma.Songs_lyricsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSongs_lyrics>
         }
         groupBy: {
-          args: Prisma.songs_original_languagesGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Songs_original_languagesGroupByOutputType>[]
+          args: Prisma.songs_lyricsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Songs_lyricsGroupByOutputType>[]
         }
         count: {
-          args: Prisma.songs_original_languagesCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Songs_original_languagesCountAggregateOutputType> | number
-        }
-      }
-    }
-    songs_translation_languages: {
-      payload: Prisma.$songs_translation_languagesPayload<ExtArgs>
-      fields: Prisma.songs_translation_languagesFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.songs_translation_languagesFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_translation_languagesPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.songs_translation_languagesFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_translation_languagesPayload>
-        }
-        findFirst: {
-          args: Prisma.songs_translation_languagesFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_translation_languagesPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.songs_translation_languagesFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_translation_languagesPayload>
-        }
-        findMany: {
-          args: Prisma.songs_translation_languagesFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_translation_languagesPayload>[]
-        }
-        create: {
-          args: Prisma.songs_translation_languagesCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_translation_languagesPayload>
-        }
-        createMany: {
-          args: Prisma.songs_translation_languagesCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.songs_translation_languagesCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_translation_languagesPayload>[]
-        }
-        delete: {
-          args: Prisma.songs_translation_languagesDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_translation_languagesPayload>
-        }
-        update: {
-          args: Prisma.songs_translation_languagesUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_translation_languagesPayload>
-        }
-        deleteMany: {
-          args: Prisma.songs_translation_languagesDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.songs_translation_languagesUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.songs_translation_languagesUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_translation_languagesPayload>[]
-        }
-        upsert: {
-          args: Prisma.songs_translation_languagesUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_translation_languagesPayload>
-        }
-        aggregate: {
-          args: Prisma.Songs_translation_languagesAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateSongs_translation_languages>
-        }
-        groupBy: {
-          args: Prisma.songs_translation_languagesGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Songs_translation_languagesGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.songs_translation_languagesCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Songs_translation_languagesCountAggregateOutputType> | number
+          args: Prisma.songs_lyricsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Songs_lyricsCountAggregateOutputType> | number
         }
       }
     }
@@ -2277,22 +2202,13 @@ export const LanguagesScalarFieldEnum = {
 export type LanguagesScalarFieldEnum = (typeof LanguagesScalarFieldEnum)[keyof typeof LanguagesScalarFieldEnum]
 
 
-export const Songs_original_languagesScalarFieldEnum = {
+export const Songs_lyricsScalarFieldEnum = {
   song_id: 'song_id',
   language_id: 'language_id',
   lyrics_text: 'lyrics_text'
 } as const
 
-export type Songs_original_languagesScalarFieldEnum = (typeof Songs_original_languagesScalarFieldEnum)[keyof typeof Songs_original_languagesScalarFieldEnum]
-
-
-export const Songs_translation_languagesScalarFieldEnum = {
-  song_id: 'song_id',
-  language_id: 'language_id',
-  lyrics_text: 'lyrics_text'
-} as const
-
-export type Songs_translation_languagesScalarFieldEnum = (typeof Songs_translation_languagesScalarFieldEnum)[keyof typeof Songs_translation_languagesScalarFieldEnum]
+export type Songs_lyricsScalarFieldEnum = (typeof Songs_lyricsScalarFieldEnum)[keyof typeof Songs_lyricsScalarFieldEnum]
 
 
 export const UsersScalarFieldEnum = {
@@ -2535,8 +2451,7 @@ export type GlobalOmitConfig = {
   music_authors?: Prisma.music_authorsOmit
   songs_music_authors?: Prisma.songs_music_authorsOmit
   languages?: Prisma.languagesOmit
-  songs_original_languages?: Prisma.songs_original_languagesOmit
-  songs_translation_languages?: Prisma.songs_translation_languagesOmit
+  songs_lyrics?: Prisma.songs_lyricsOmit
   users?: Prisma.usersOmit
 }
 

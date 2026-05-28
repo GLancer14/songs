@@ -14,34 +14,33 @@ datasource db {
 }
 
 model songs {
-  song_id                   Int                           @id @default(autoincrement())
-  users                     users                         @relation(fields: [user_id], references: [user_id])
-  user_id                   Int
-  title                     String
-  artists                   String
-  name                      String
-  addition_date             DateTime?
-  release_date              DateTime
-  file                      String?
-  track                     Int?
-  disk                      Int?
-  mood                      mood                          @relation(fields: [mood_id], references: [mood_id])
-  mood_id                   Int
-  rank                      String?
-  bpm                       Float?
-  bitrate_audio             BigInt?
-  track_gain                Float?
-  description               String?
-  image                     String?
-  songsAlbums               songs_albums[]
-  songsGroupes              songs_groupes[]
-  songsProducers            songs_producers[]
-  songsSingers              songs_singers[]
-  songsGenres               songs_genres[]
-  songsLyricsAuthors        songs_lyrics_authors[]
-  songsMusicAuthors         songs_music_authors[]
-  songsOriginalLanguages    songs_original_languages[]
-  songsTranslationLanguages songs_translation_languages[]
+  song_id            Int                    @id @default(autoincrement())
+  users              users                  @relation(fields: [user_id], references: [user_id])
+  user_id            Int
+  title              String
+  artists            String
+  name               String
+  addition_date      DateTime?
+  release_date       DateTime
+  file               String?
+  track              Int?
+  disk               Int?
+  mood               mood                   @relation(fields: [mood_id], references: [mood_id])
+  mood_id            Int
+  rank               String?
+  bpm                Float?
+  bitrate_audio      BigInt?
+  track_gain         Float?
+  description        String?
+  image              String?
+  songsAlbums        songs_albums[]
+  songsGroupes       songs_groupes[]
+  songsProducers     songs_producers[]
+  songsSingers       songs_singers[]
+  songsGenres        songs_genres[]
+  songsLyricsAuthors songs_lyrics_authors[]
+  songsMusicAuthors  songs_music_authors[]
+  songsLyrics        songs_lyrics[]
 }
 
 model mood {
@@ -192,23 +191,12 @@ model songs_music_authors {
 }
 
 model languages {
-  language_id               Int                           @id @default(autoincrement())
-  lang                      String
-  songsOriginalLanguages    songs_original_languages[]
-  songsTranslationLanguages songs_translation_languages[]
+  language_id Int            @id @default(autoincrement())
+  lang        String
+  songsLyrics songs_lyrics[]
 }
 
-model songs_original_languages {
-  songs       songs     @relation(fields: [song_id], references: [song_id])
-  languages   languages @relation(fields: [language_id], references: [language_id])
-  song_id     Int
-  language_id Int
-  lyrics_text String
-
-  @@id([song_id, language_id])
-}
-
-model songs_translation_languages {
+model songs_lyrics {
   songs       songs     @relation(fields: [song_id], references: [song_id])
   languages   languages @relation(fields: [language_id], references: [language_id])
   song_id     Int

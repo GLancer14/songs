@@ -70,8 +70,7 @@ export const ModelName = {
   music_authors: 'music_authors',
   songs_music_authors: 'songs_music_authors',
   languages: 'languages',
-  songs_original_languages: 'songs_original_languages',
-  songs_translation_languages: 'songs_translation_languages',
+  songs_lyrics: 'songs_lyrics',
   users: 'users'
 } as const
 
@@ -276,22 +275,13 @@ export const LanguagesScalarFieldEnum = {
 export type LanguagesScalarFieldEnum = (typeof LanguagesScalarFieldEnum)[keyof typeof LanguagesScalarFieldEnum]
 
 
-export const Songs_original_languagesScalarFieldEnum = {
+export const Songs_lyricsScalarFieldEnum = {
   song_id: 'song_id',
   language_id: 'language_id',
   lyrics_text: 'lyrics_text'
 } as const
 
-export type Songs_original_languagesScalarFieldEnum = (typeof Songs_original_languagesScalarFieldEnum)[keyof typeof Songs_original_languagesScalarFieldEnum]
-
-
-export const Songs_translation_languagesScalarFieldEnum = {
-  song_id: 'song_id',
-  language_id: 'language_id',
-  lyrics_text: 'lyrics_text'
-} as const
-
-export type Songs_translation_languagesScalarFieldEnum = (typeof Songs_translation_languagesScalarFieldEnum)[keyof typeof Songs_translation_languagesScalarFieldEnum]
+export type Songs_lyricsScalarFieldEnum = (typeof Songs_lyricsScalarFieldEnum)[keyof typeof Songs_lyricsScalarFieldEnum]
 
 
 export const UsersScalarFieldEnum = {

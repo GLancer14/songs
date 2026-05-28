@@ -14,11 +14,11 @@ export default async function Page({
   const { song_id } = await params;
 
   const userData = await userIam();
-  const songData = await prisma.songs.findUnique({
+  const songData = await prisma.songs.findFirst({
     where: {
-      song_id: song_id
-    }
-  })
+      song_id: song_id,
+    },
+  });
 
   if (!userData) return null;
 

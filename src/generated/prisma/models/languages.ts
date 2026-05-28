@@ -192,15 +192,13 @@ export type languagesWhereInput = {
   NOT?: Prisma.languagesWhereInput | Prisma.languagesWhereInput[]
   language_id?: Prisma.IntFilter<"languages"> | number
   lang?: Prisma.StringFilter<"languages"> | string
-  songsOriginalLanguages?: Prisma.Songs_original_languagesListRelationFilter
-  songsTranslationLanguages?: Prisma.Songs_translation_languagesListRelationFilter
+  songsLyrics?: Prisma.Songs_lyricsListRelationFilter
 }
 
 export type languagesOrderByWithRelationInput = {
   language_id?: Prisma.SortOrder
   lang?: Prisma.SortOrder
-  songsOriginalLanguages?: Prisma.songs_original_languagesOrderByRelationAggregateInput
-  songsTranslationLanguages?: Prisma.songs_translation_languagesOrderByRelationAggregateInput
+  songsLyrics?: Prisma.songs_lyricsOrderByRelationAggregateInput
 }
 
 export type languagesWhereUniqueInput = Prisma.AtLeast<{
@@ -209,8 +207,7 @@ export type languagesWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.languagesWhereInput[]
   NOT?: Prisma.languagesWhereInput | Prisma.languagesWhereInput[]
   lang?: Prisma.StringFilter<"languages"> | string
-  songsOriginalLanguages?: Prisma.Songs_original_languagesListRelationFilter
-  songsTranslationLanguages?: Prisma.Songs_translation_languagesListRelationFilter
+  songsLyrics?: Prisma.Songs_lyricsListRelationFilter
 }, "language_id">
 
 export type languagesOrderByWithAggregationInput = {
@@ -233,28 +230,24 @@ export type languagesScalarWhereWithAggregatesInput = {
 
 export type languagesCreateInput = {
   lang: string
-  songsOriginalLanguages?: Prisma.songs_original_languagesCreateNestedManyWithoutLanguagesInput
-  songsTranslationLanguages?: Prisma.songs_translation_languagesCreateNestedManyWithoutLanguagesInput
+  songsLyrics?: Prisma.songs_lyricsCreateNestedManyWithoutLanguagesInput
 }
 
 export type languagesUncheckedCreateInput = {
   language_id?: number
   lang: string
-  songsOriginalLanguages?: Prisma.songs_original_languagesUncheckedCreateNestedManyWithoutLanguagesInput
-  songsTranslationLanguages?: Prisma.songs_translation_languagesUncheckedCreateNestedManyWithoutLanguagesInput
+  songsLyrics?: Prisma.songs_lyricsUncheckedCreateNestedManyWithoutLanguagesInput
 }
 
 export type languagesUpdateInput = {
   lang?: Prisma.StringFieldUpdateOperationsInput | string
-  songsOriginalLanguages?: Prisma.songs_original_languagesUpdateManyWithoutLanguagesNestedInput
-  songsTranslationLanguages?: Prisma.songs_translation_languagesUpdateManyWithoutLanguagesNestedInput
+  songsLyrics?: Prisma.songs_lyricsUpdateManyWithoutLanguagesNestedInput
 }
 
 export type languagesUncheckedUpdateInput = {
   language_id?: Prisma.IntFieldUpdateOperationsInput | number
   lang?: Prisma.StringFieldUpdateOperationsInput | string
-  songsOriginalLanguages?: Prisma.songs_original_languagesUncheckedUpdateManyWithoutLanguagesNestedInput
-  songsTranslationLanguages?: Prisma.songs_translation_languagesUncheckedUpdateManyWithoutLanguagesNestedInput
+  songsLyrics?: Prisma.songs_lyricsUncheckedUpdateManyWithoutLanguagesNestedInput
 }
 
 export type languagesCreateManyInput = {
@@ -299,108 +292,52 @@ export type LanguagesScalarRelationFilter = {
   isNot?: Prisma.languagesWhereInput
 }
 
-export type languagesCreateNestedOneWithoutSongsOriginalLanguagesInput = {
-  create?: Prisma.XOR<Prisma.languagesCreateWithoutSongsOriginalLanguagesInput, Prisma.languagesUncheckedCreateWithoutSongsOriginalLanguagesInput>
-  connectOrCreate?: Prisma.languagesCreateOrConnectWithoutSongsOriginalLanguagesInput
+export type languagesCreateNestedOneWithoutSongsLyricsInput = {
+  create?: Prisma.XOR<Prisma.languagesCreateWithoutSongsLyricsInput, Prisma.languagesUncheckedCreateWithoutSongsLyricsInput>
+  connectOrCreate?: Prisma.languagesCreateOrConnectWithoutSongsLyricsInput
   connect?: Prisma.languagesWhereUniqueInput
 }
 
-export type languagesUpdateOneRequiredWithoutSongsOriginalLanguagesNestedInput = {
-  create?: Prisma.XOR<Prisma.languagesCreateWithoutSongsOriginalLanguagesInput, Prisma.languagesUncheckedCreateWithoutSongsOriginalLanguagesInput>
-  connectOrCreate?: Prisma.languagesCreateOrConnectWithoutSongsOriginalLanguagesInput
-  upsert?: Prisma.languagesUpsertWithoutSongsOriginalLanguagesInput
+export type languagesUpdateOneRequiredWithoutSongsLyricsNestedInput = {
+  create?: Prisma.XOR<Prisma.languagesCreateWithoutSongsLyricsInput, Prisma.languagesUncheckedCreateWithoutSongsLyricsInput>
+  connectOrCreate?: Prisma.languagesCreateOrConnectWithoutSongsLyricsInput
+  upsert?: Prisma.languagesUpsertWithoutSongsLyricsInput
   connect?: Prisma.languagesWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.languagesUpdateToOneWithWhereWithoutSongsOriginalLanguagesInput, Prisma.languagesUpdateWithoutSongsOriginalLanguagesInput>, Prisma.languagesUncheckedUpdateWithoutSongsOriginalLanguagesInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.languagesUpdateToOneWithWhereWithoutSongsLyricsInput, Prisma.languagesUpdateWithoutSongsLyricsInput>, Prisma.languagesUncheckedUpdateWithoutSongsLyricsInput>
 }
 
-export type languagesCreateNestedOneWithoutSongsTranslationLanguagesInput = {
-  create?: Prisma.XOR<Prisma.languagesCreateWithoutSongsTranslationLanguagesInput, Prisma.languagesUncheckedCreateWithoutSongsTranslationLanguagesInput>
-  connectOrCreate?: Prisma.languagesCreateOrConnectWithoutSongsTranslationLanguagesInput
-  connect?: Prisma.languagesWhereUniqueInput
-}
-
-export type languagesUpdateOneRequiredWithoutSongsTranslationLanguagesNestedInput = {
-  create?: Prisma.XOR<Prisma.languagesCreateWithoutSongsTranslationLanguagesInput, Prisma.languagesUncheckedCreateWithoutSongsTranslationLanguagesInput>
-  connectOrCreate?: Prisma.languagesCreateOrConnectWithoutSongsTranslationLanguagesInput
-  upsert?: Prisma.languagesUpsertWithoutSongsTranslationLanguagesInput
-  connect?: Prisma.languagesWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.languagesUpdateToOneWithWhereWithoutSongsTranslationLanguagesInput, Prisma.languagesUpdateWithoutSongsTranslationLanguagesInput>, Prisma.languagesUncheckedUpdateWithoutSongsTranslationLanguagesInput>
-}
-
-export type languagesCreateWithoutSongsOriginalLanguagesInput = {
+export type languagesCreateWithoutSongsLyricsInput = {
   lang: string
-  songsTranslationLanguages?: Prisma.songs_translation_languagesCreateNestedManyWithoutLanguagesInput
 }
 
-export type languagesUncheckedCreateWithoutSongsOriginalLanguagesInput = {
+export type languagesUncheckedCreateWithoutSongsLyricsInput = {
   language_id?: number
   lang: string
-  songsTranslationLanguages?: Prisma.songs_translation_languagesUncheckedCreateNestedManyWithoutLanguagesInput
 }
 
-export type languagesCreateOrConnectWithoutSongsOriginalLanguagesInput = {
+export type languagesCreateOrConnectWithoutSongsLyricsInput = {
   where: Prisma.languagesWhereUniqueInput
-  create: Prisma.XOR<Prisma.languagesCreateWithoutSongsOriginalLanguagesInput, Prisma.languagesUncheckedCreateWithoutSongsOriginalLanguagesInput>
+  create: Prisma.XOR<Prisma.languagesCreateWithoutSongsLyricsInput, Prisma.languagesUncheckedCreateWithoutSongsLyricsInput>
 }
 
-export type languagesUpsertWithoutSongsOriginalLanguagesInput = {
-  update: Prisma.XOR<Prisma.languagesUpdateWithoutSongsOriginalLanguagesInput, Prisma.languagesUncheckedUpdateWithoutSongsOriginalLanguagesInput>
-  create: Prisma.XOR<Prisma.languagesCreateWithoutSongsOriginalLanguagesInput, Prisma.languagesUncheckedCreateWithoutSongsOriginalLanguagesInput>
+export type languagesUpsertWithoutSongsLyricsInput = {
+  update: Prisma.XOR<Prisma.languagesUpdateWithoutSongsLyricsInput, Prisma.languagesUncheckedUpdateWithoutSongsLyricsInput>
+  create: Prisma.XOR<Prisma.languagesCreateWithoutSongsLyricsInput, Prisma.languagesUncheckedCreateWithoutSongsLyricsInput>
   where?: Prisma.languagesWhereInput
 }
 
-export type languagesUpdateToOneWithWhereWithoutSongsOriginalLanguagesInput = {
+export type languagesUpdateToOneWithWhereWithoutSongsLyricsInput = {
   where?: Prisma.languagesWhereInput
-  data: Prisma.XOR<Prisma.languagesUpdateWithoutSongsOriginalLanguagesInput, Prisma.languagesUncheckedUpdateWithoutSongsOriginalLanguagesInput>
+  data: Prisma.XOR<Prisma.languagesUpdateWithoutSongsLyricsInput, Prisma.languagesUncheckedUpdateWithoutSongsLyricsInput>
 }
 
-export type languagesUpdateWithoutSongsOriginalLanguagesInput = {
+export type languagesUpdateWithoutSongsLyricsInput = {
   lang?: Prisma.StringFieldUpdateOperationsInput | string
-  songsTranslationLanguages?: Prisma.songs_translation_languagesUpdateManyWithoutLanguagesNestedInput
 }
 
-export type languagesUncheckedUpdateWithoutSongsOriginalLanguagesInput = {
+export type languagesUncheckedUpdateWithoutSongsLyricsInput = {
   language_id?: Prisma.IntFieldUpdateOperationsInput | number
   lang?: Prisma.StringFieldUpdateOperationsInput | string
-  songsTranslationLanguages?: Prisma.songs_translation_languagesUncheckedUpdateManyWithoutLanguagesNestedInput
-}
-
-export type languagesCreateWithoutSongsTranslationLanguagesInput = {
-  lang: string
-  songsOriginalLanguages?: Prisma.songs_original_languagesCreateNestedManyWithoutLanguagesInput
-}
-
-export type languagesUncheckedCreateWithoutSongsTranslationLanguagesInput = {
-  language_id?: number
-  lang: string
-  songsOriginalLanguages?: Prisma.songs_original_languagesUncheckedCreateNestedManyWithoutLanguagesInput
-}
-
-export type languagesCreateOrConnectWithoutSongsTranslationLanguagesInput = {
-  where: Prisma.languagesWhereUniqueInput
-  create: Prisma.XOR<Prisma.languagesCreateWithoutSongsTranslationLanguagesInput, Prisma.languagesUncheckedCreateWithoutSongsTranslationLanguagesInput>
-}
-
-export type languagesUpsertWithoutSongsTranslationLanguagesInput = {
-  update: Prisma.XOR<Prisma.languagesUpdateWithoutSongsTranslationLanguagesInput, Prisma.languagesUncheckedUpdateWithoutSongsTranslationLanguagesInput>
-  create: Prisma.XOR<Prisma.languagesCreateWithoutSongsTranslationLanguagesInput, Prisma.languagesUncheckedCreateWithoutSongsTranslationLanguagesInput>
-  where?: Prisma.languagesWhereInput
-}
-
-export type languagesUpdateToOneWithWhereWithoutSongsTranslationLanguagesInput = {
-  where?: Prisma.languagesWhereInput
-  data: Prisma.XOR<Prisma.languagesUpdateWithoutSongsTranslationLanguagesInput, Prisma.languagesUncheckedUpdateWithoutSongsTranslationLanguagesInput>
-}
-
-export type languagesUpdateWithoutSongsTranslationLanguagesInput = {
-  lang?: Prisma.StringFieldUpdateOperationsInput | string
-  songsOriginalLanguages?: Prisma.songs_original_languagesUpdateManyWithoutLanguagesNestedInput
-}
-
-export type languagesUncheckedUpdateWithoutSongsTranslationLanguagesInput = {
-  language_id?: Prisma.IntFieldUpdateOperationsInput | number
-  lang?: Prisma.StringFieldUpdateOperationsInput | string
-  songsOriginalLanguages?: Prisma.songs_original_languagesUncheckedUpdateManyWithoutLanguagesNestedInput
 }
 
 
@@ -409,13 +346,11 @@ export type languagesUncheckedUpdateWithoutSongsTranslationLanguagesInput = {
  */
 
 export type LanguagesCountOutputType = {
-  songsOriginalLanguages: number
-  songsTranslationLanguages: number
+  songsLyrics: number
 }
 
 export type LanguagesCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  songsOriginalLanguages?: boolean | LanguagesCountOutputTypeCountSongsOriginalLanguagesArgs
-  songsTranslationLanguages?: boolean | LanguagesCountOutputTypeCountSongsTranslationLanguagesArgs
+  songsLyrics?: boolean | LanguagesCountOutputTypeCountSongsLyricsArgs
 }
 
 /**
@@ -431,23 +366,15 @@ export type LanguagesCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ex
 /**
  * LanguagesCountOutputType without action
  */
-export type LanguagesCountOutputTypeCountSongsOriginalLanguagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.songs_original_languagesWhereInput
-}
-
-/**
- * LanguagesCountOutputType without action
- */
-export type LanguagesCountOutputTypeCountSongsTranslationLanguagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.songs_translation_languagesWhereInput
+export type LanguagesCountOutputTypeCountSongsLyricsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.songs_lyricsWhereInput
 }
 
 
 export type languagesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   language_id?: boolean
   lang?: boolean
-  songsOriginalLanguages?: boolean | Prisma.languages$songsOriginalLanguagesArgs<ExtArgs>
-  songsTranslationLanguages?: boolean | Prisma.languages$songsTranslationLanguagesArgs<ExtArgs>
+  songsLyrics?: boolean | Prisma.languages$songsLyricsArgs<ExtArgs>
   _count?: boolean | Prisma.LanguagesCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["languages"]>
 
@@ -468,8 +395,7 @@ export type languagesSelectScalar = {
 
 export type languagesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"language_id" | "lang", ExtArgs["result"]["languages"]>
 export type languagesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  songsOriginalLanguages?: boolean | Prisma.languages$songsOriginalLanguagesArgs<ExtArgs>
-  songsTranslationLanguages?: boolean | Prisma.languages$songsTranslationLanguagesArgs<ExtArgs>
+  songsLyrics?: boolean | Prisma.languages$songsLyricsArgs<ExtArgs>
   _count?: boolean | Prisma.LanguagesCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type languagesIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -478,8 +404,7 @@ export type languagesIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
 export type $languagesPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "languages"
   objects: {
-    songsOriginalLanguages: Prisma.$songs_original_languagesPayload<ExtArgs>[]
-    songsTranslationLanguages: Prisma.$songs_translation_languagesPayload<ExtArgs>[]
+    songsLyrics: Prisma.$songs_lyricsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     language_id: number
@@ -878,8 +803,7 @@ readonly fields: languagesFieldRefs;
  */
 export interface Prisma__languagesClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  songsOriginalLanguages<T extends Prisma.languages$songsOriginalLanguagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.languages$songsOriginalLanguagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$songs_original_languagesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  songsTranslationLanguages<T extends Prisma.languages$songsTranslationLanguagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.languages$songsTranslationLanguagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$songs_translation_languagesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  songsLyrics<T extends Prisma.languages$songsLyricsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.languages$songsLyricsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$songs_lyricsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1304,51 +1228,27 @@ export type languagesDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
- * languages.songsOriginalLanguages
+ * languages.songsLyrics
  */
-export type languages$songsOriginalLanguagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type languages$songsLyricsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the songs_original_languages
+   * Select specific fields to fetch from the songs_lyrics
    */
-  select?: Prisma.songs_original_languagesSelect<ExtArgs> | null
+  select?: Prisma.songs_lyricsSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the songs_original_languages
+   * Omit specific fields from the songs_lyrics
    */
-  omit?: Prisma.songs_original_languagesOmit<ExtArgs> | null
+  omit?: Prisma.songs_lyricsOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.songs_original_languagesInclude<ExtArgs> | null
-  where?: Prisma.songs_original_languagesWhereInput
-  orderBy?: Prisma.songs_original_languagesOrderByWithRelationInput | Prisma.songs_original_languagesOrderByWithRelationInput[]
-  cursor?: Prisma.songs_original_languagesWhereUniqueInput
+  include?: Prisma.songs_lyricsInclude<ExtArgs> | null
+  where?: Prisma.songs_lyricsWhereInput
+  orderBy?: Prisma.songs_lyricsOrderByWithRelationInput | Prisma.songs_lyricsOrderByWithRelationInput[]
+  cursor?: Prisma.songs_lyricsWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.Songs_original_languagesScalarFieldEnum | Prisma.Songs_original_languagesScalarFieldEnum[]
-}
-
-/**
- * languages.songsTranslationLanguages
- */
-export type languages$songsTranslationLanguagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the songs_translation_languages
-   */
-  select?: Prisma.songs_translation_languagesSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the songs_translation_languages
-   */
-  omit?: Prisma.songs_translation_languagesOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.songs_translation_languagesInclude<ExtArgs> | null
-  where?: Prisma.songs_translation_languagesWhereInput
-  orderBy?: Prisma.songs_translation_languagesOrderByWithRelationInput | Prisma.songs_translation_languagesOrderByWithRelationInput[]
-  cursor?: Prisma.songs_translation_languagesWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.Songs_translation_languagesScalarFieldEnum | Prisma.Songs_translation_languagesScalarFieldEnum[]
+  distinct?: Prisma.Songs_lyricsScalarFieldEnum | Prisma.Songs_lyricsScalarFieldEnum[]
 }
 
 /**

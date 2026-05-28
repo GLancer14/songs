@@ -23,7 +23,7 @@ export default async function findSearchFieldValue(
     singers_singer: formData.get("singers_singer"),
     producers_producer: formData.get("producers_producer"),
     groupes_grope_name: formData.get("groupes_grope_name"),
-    original_languages: formData.get("original_languages"),
+    orig_lang: formData.get("orig_lang"),
     genres_genre: formData.get("genres_genre"),
     albums_title: formData.get("albums_title"),
     mood: formData.get("mood"),
@@ -45,7 +45,6 @@ export default async function findSearchFieldValue(
     }
   }
   const songData = validatedFields.data;
-  console.log(songData.lyrics_translation_langs)
 
   const songCreateResult = await prisma.songs.create({
     data: {
@@ -63,9 +62,46 @@ export default async function findSearchFieldValue(
     }
   });
 
-  if (songData.lyrics_translation_langs && songData.lyrics_translation_langs?.length !== 0) {
-    songData.lyrics_translation_langs.forEach(value => {
-      
+  if (
+    songData.lyrics_translation_langs &&
+    songData.lyrics_translation_langs?.length !== 0 &&
+    (songData.lyrics_translation_langs.find(value => value === "english" || value === "russian"))
+  ) {
+    const origLangId = await prisma.languages.findFirst({
+      where: {
+        lang: songData.orig_lang
+      },
+      select: {
+        language_id: true,
+      }
+    })
+
+    await prisma.songs_lyrics.create({
+      data: {
+        song_id: songCreateResult.song_id,
+        language_id: origLangId?.language_id || 1,
+        lyrics_text: songData.original,
+      }
+    })
+
+    songData.lyrics_translation_langs.forEach(async (value) => {
+      if (value === "english") {
+        await prisma.songs_lyrics.create({
+          data: {
+            song_id: songCreateResult.song_id,
+            language_id: 1,
+            lyrics_text: songData.english ?? "",
+          }
+        })
+      } else {
+        await prisma.songs_lyrics.create({
+          data: {
+            song_id: songCreateResult.song_id,
+            language_id: 11,
+            lyrics_text: songData.russian ?? "",
+          }
+        })
+      }
     })
   }
 

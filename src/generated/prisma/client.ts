@@ -135,15 +135,10 @@ export type songs_music_authors = Prisma.songs_music_authorsModel
  */
 export type languages = Prisma.languagesModel
 /**
- * Model songs_original_languages
+ * Model songs_lyrics
  * 
  */
-export type songs_original_languages = Prisma.songs_original_languagesModel
-/**
- * Model songs_translation_languages
- * 
- */
-export type songs_translation_languages = Prisma.songs_translation_languagesModel
+export type songs_lyrics = Prisma.songs_lyricsModel
 /**
  * Model users
  * 

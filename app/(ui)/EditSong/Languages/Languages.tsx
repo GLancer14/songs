@@ -3,10 +3,11 @@ const Languages = ({ language }: { language: string }) => {
     <label className="w-1/6 gap-4">
       <input
         className=""
-        type="checkbox"
+        type="radio"
         maxLength={64}
-        name="origLangs[]"
+        name="orig_lang"
         value={language}
+        defaultChecked={language === "english"}
       />
       <span className="">{language}</span>
     </label>

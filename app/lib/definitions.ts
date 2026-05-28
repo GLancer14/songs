@@ -39,7 +39,7 @@ export const AddSongSchema = z.object({
   singers_singer: z.array(z.string()).optional(),
   producers_producer: z.array(z.string()).optional(),
   groupes_grope_name: z.array(z.string()).optional(),
-  original_languages: z.array(z.string()).optional(),
+  orig_lang: z.string().optional(),
   genres_genre: z.array(z.string()).optional(),
   albums_title: z.array(z.string()).optional(),
   mood: z.string().nonempty(),
