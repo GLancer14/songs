@@ -123,7 +123,7 @@ export type MoodScalarFieldEnum = (typeof MoodScalarFieldEnum)[keyof typeof Mood
 
 export const AlbumsScalarFieldEnum = {
   album_id: 'album_id',
-  title: 'title',
+  name: 'name',
   release_date: 'release_date',
   album_type: 'album_type',
   description: 'description'
@@ -158,7 +158,7 @@ export type CountriesScalarFieldEnum = (typeof CountriesScalarFieldEnum)[keyof t
 
 export const GroupesScalarFieldEnum = {
   group_id: 'group_id',
-  grope_name: 'grope_name',
+  name: 'name',
   year_of_foundation: 'year_of_foundation',
   country_id: 'country_id',
   description: 'description'
@@ -177,7 +177,7 @@ export type Songs_groupesScalarFieldEnum = (typeof Songs_groupesScalarFieldEnum)
 
 export const ProducersScalarFieldEnum = {
   producer_id: 'producer_id',
-  producer: 'producer',
+  name: 'name',
   begin_year: 'begin_year',
   country_id: 'country_id',
   biography: 'biography'
@@ -196,7 +196,7 @@ export type Songs_producersScalarFieldEnum = (typeof Songs_producersScalarFieldE
 
 export const SingersScalarFieldEnum = {
   singer_id: 'singer_id',
-  singer: 'singer',
+  name: 'name',
   singer_type: 'singer_type',
   country: 'country',
   biography: 'biography'
@@ -231,7 +231,7 @@ export type Songs_genresScalarFieldEnum = (typeof Songs_genresScalarFieldEnum)[k
 
 export const Lyrics_authorsScalarFieldEnum = {
   lyrics_author_id: 'lyrics_author_id',
-  first_name: 'first_name',
+  name: 'name',
   surname: 'surname',
   nickname: 'nickname',
   description: 'description'
@@ -250,7 +250,7 @@ export type Songs_lyrics_authorsScalarFieldEnum = (typeof Songs_lyrics_authorsSc
 
 export const Music_authorsScalarFieldEnum = {
   music_author_id: 'music_author_id',
-  first_name: 'first_name',
+  name: 'name',
   surname: 'surname',
   nickname: 'nickname',
   description: 'description'

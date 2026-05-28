@@ -40,7 +40,7 @@ export type GroupesSumAggregateOutputType = {
 
 export type GroupesMinAggregateOutputType = {
   group_id: number | null
-  grope_name: string | null
+  name: string | null
   year_of_foundation: number | null
   country_id: number | null
   description: string | null
@@ -48,7 +48,7 @@ export type GroupesMinAggregateOutputType = {
 
 export type GroupesMaxAggregateOutputType = {
   group_id: number | null
-  grope_name: string | null
+  name: string | null
   year_of_foundation: number | null
   country_id: number | null
   description: string | null
@@ -56,7 +56,7 @@ export type GroupesMaxAggregateOutputType = {
 
 export type GroupesCountAggregateOutputType = {
   group_id: number
-  grope_name: number
+  name: number
   year_of_foundation: number
   country_id: number
   description: number
@@ -78,7 +78,7 @@ export type GroupesSumAggregateInputType = {
 
 export type GroupesMinAggregateInputType = {
   group_id?: true
-  grope_name?: true
+  name?: true
   year_of_foundation?: true
   country_id?: true
   description?: true
@@ -86,7 +86,7 @@ export type GroupesMinAggregateInputType = {
 
 export type GroupesMaxAggregateInputType = {
   group_id?: true
-  grope_name?: true
+  name?: true
   year_of_foundation?: true
   country_id?: true
   description?: true
@@ -94,7 +94,7 @@ export type GroupesMaxAggregateInputType = {
 
 export type GroupesCountAggregateInputType = {
   group_id?: true
-  grope_name?: true
+  name?: true
   year_of_foundation?: true
   country_id?: true
   description?: true
@@ -189,7 +189,7 @@ export type groupesGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type GroupesGroupByOutputType = {
   group_id: number
-  grope_name: string
+  name: string
   year_of_foundation: number | null
   country_id: number | null
   description: string | null
@@ -220,7 +220,7 @@ export type groupesWhereInput = {
   OR?: Prisma.groupesWhereInput[]
   NOT?: Prisma.groupesWhereInput | Prisma.groupesWhereInput[]
   group_id?: Prisma.IntFilter<"groupes"> | number
-  grope_name?: Prisma.StringFilter<"groupes"> | string
+  name?: Prisma.StringFilter<"groupes"> | string
   year_of_foundation?: Prisma.IntNullableFilter<"groupes"> | number | null
   country_id?: Prisma.IntNullableFilter<"groupes"> | number | null
   description?: Prisma.StringNullableFilter<"groupes"> | string | null
@@ -230,7 +230,7 @@ export type groupesWhereInput = {
 
 export type groupesOrderByWithRelationInput = {
   group_id?: Prisma.SortOrder
-  grope_name?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   year_of_foundation?: Prisma.SortOrderInput | Prisma.SortOrder
   country_id?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -243,7 +243,7 @@ export type groupesWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.groupesWhereInput | Prisma.groupesWhereInput[]
   OR?: Prisma.groupesWhereInput[]
   NOT?: Prisma.groupesWhereInput | Prisma.groupesWhereInput[]
-  grope_name?: Prisma.StringFilter<"groupes"> | string
+  name?: Prisma.StringFilter<"groupes"> | string
   year_of_foundation?: Prisma.IntNullableFilter<"groupes"> | number | null
   country_id?: Prisma.IntNullableFilter<"groupes"> | number | null
   description?: Prisma.StringNullableFilter<"groupes"> | string | null
@@ -253,7 +253,7 @@ export type groupesWhereUniqueInput = Prisma.AtLeast<{
 
 export type groupesOrderByWithAggregationInput = {
   group_id?: Prisma.SortOrder
-  grope_name?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   year_of_foundation?: Prisma.SortOrderInput | Prisma.SortOrder
   country_id?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -269,14 +269,14 @@ export type groupesScalarWhereWithAggregatesInput = {
   OR?: Prisma.groupesScalarWhereWithAggregatesInput[]
   NOT?: Prisma.groupesScalarWhereWithAggregatesInput | Prisma.groupesScalarWhereWithAggregatesInput[]
   group_id?: Prisma.IntWithAggregatesFilter<"groupes"> | number
-  grope_name?: Prisma.StringWithAggregatesFilter<"groupes"> | string
+  name?: Prisma.StringWithAggregatesFilter<"groupes"> | string
   year_of_foundation?: Prisma.IntNullableWithAggregatesFilter<"groupes"> | number | null
   country_id?: Prisma.IntNullableWithAggregatesFilter<"groupes"> | number | null
   description?: Prisma.StringNullableWithAggregatesFilter<"groupes"> | string | null
 }
 
 export type groupesCreateInput = {
-  grope_name: string
+  name: string
   year_of_foundation?: number | null
   description?: string | null
   countries?: Prisma.countriesCreateNestedOneWithoutGroupesInput
@@ -285,7 +285,7 @@ export type groupesCreateInput = {
 
 export type groupesUncheckedCreateInput = {
   group_id?: number
-  grope_name: string
+  name: string
   year_of_foundation?: number | null
   country_id?: number | null
   description?: string | null
@@ -293,7 +293,7 @@ export type groupesUncheckedCreateInput = {
 }
 
 export type groupesUpdateInput = {
-  grope_name?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countries?: Prisma.countriesUpdateOneWithoutGroupesNestedInput
@@ -302,7 +302,7 @@ export type groupesUpdateInput = {
 
 export type groupesUncheckedUpdateInput = {
   group_id?: Prisma.IntFieldUpdateOperationsInput | number
-  grope_name?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   country_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -311,21 +311,21 @@ export type groupesUncheckedUpdateInput = {
 
 export type groupesCreateManyInput = {
   group_id?: number
-  grope_name: string
+  name: string
   year_of_foundation?: number | null
   country_id?: number | null
   description?: string | null
 }
 
 export type groupesUpdateManyMutationInput = {
-  grope_name?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type groupesUncheckedUpdateManyInput = {
   group_id?: Prisma.IntFieldUpdateOperationsInput | number
-  grope_name?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   country_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -343,7 +343,7 @@ export type groupesOrderByRelationAggregateInput = {
 
 export type groupesCountOrderByAggregateInput = {
   group_id?: Prisma.SortOrder
-  grope_name?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   year_of_foundation?: Prisma.SortOrder
   country_id?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -357,7 +357,7 @@ export type groupesAvgOrderByAggregateInput = {
 
 export type groupesMaxOrderByAggregateInput = {
   group_id?: Prisma.SortOrder
-  grope_name?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   year_of_foundation?: Prisma.SortOrder
   country_id?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -365,7 +365,7 @@ export type groupesMaxOrderByAggregateInput = {
 
 export type groupesMinOrderByAggregateInput = {
   group_id?: Prisma.SortOrder
-  grope_name?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   year_of_foundation?: Prisma.SortOrder
   country_id?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -439,7 +439,7 @@ export type groupesUpdateOneRequiredWithoutSongsGroupesNestedInput = {
 }
 
 export type groupesCreateWithoutCountriesInput = {
-  grope_name: string
+  name: string
   year_of_foundation?: number | null
   description?: string | null
   songsGroupes?: Prisma.songs_groupesCreateNestedManyWithoutGroupesInput
@@ -447,7 +447,7 @@ export type groupesCreateWithoutCountriesInput = {
 
 export type groupesUncheckedCreateWithoutCountriesInput = {
   group_id?: number
-  grope_name: string
+  name: string
   year_of_foundation?: number | null
   description?: string | null
   songsGroupes?: Prisma.songs_groupesUncheckedCreateNestedManyWithoutGroupesInput
@@ -484,14 +484,14 @@ export type groupesScalarWhereInput = {
   OR?: Prisma.groupesScalarWhereInput[]
   NOT?: Prisma.groupesScalarWhereInput | Prisma.groupesScalarWhereInput[]
   group_id?: Prisma.IntFilter<"groupes"> | number
-  grope_name?: Prisma.StringFilter<"groupes"> | string
+  name?: Prisma.StringFilter<"groupes"> | string
   year_of_foundation?: Prisma.IntNullableFilter<"groupes"> | number | null
   country_id?: Prisma.IntNullableFilter<"groupes"> | number | null
   description?: Prisma.StringNullableFilter<"groupes"> | string | null
 }
 
 export type groupesCreateWithoutSongsGroupesInput = {
-  grope_name: string
+  name: string
   year_of_foundation?: number | null
   description?: string | null
   countries?: Prisma.countriesCreateNestedOneWithoutGroupesInput
@@ -499,7 +499,7 @@ export type groupesCreateWithoutSongsGroupesInput = {
 
 export type groupesUncheckedCreateWithoutSongsGroupesInput = {
   group_id?: number
-  grope_name: string
+  name: string
   year_of_foundation?: number | null
   country_id?: number | null
   description?: string | null
@@ -522,7 +522,7 @@ export type groupesUpdateToOneWithWhereWithoutSongsGroupesInput = {
 }
 
 export type groupesUpdateWithoutSongsGroupesInput = {
-  grope_name?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countries?: Prisma.countriesUpdateOneWithoutGroupesNestedInput
@@ -530,7 +530,7 @@ export type groupesUpdateWithoutSongsGroupesInput = {
 
 export type groupesUncheckedUpdateWithoutSongsGroupesInput = {
   group_id?: Prisma.IntFieldUpdateOperationsInput | number
-  grope_name?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   country_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -538,13 +538,13 @@ export type groupesUncheckedUpdateWithoutSongsGroupesInput = {
 
 export type groupesCreateManyCountriesInput = {
   group_id?: number
-  grope_name: string
+  name: string
   year_of_foundation?: number | null
   description?: string | null
 }
 
 export type groupesUpdateWithoutCountriesInput = {
-  grope_name?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   songsGroupes?: Prisma.songs_groupesUpdateManyWithoutGroupesNestedInput
@@ -552,7 +552,7 @@ export type groupesUpdateWithoutCountriesInput = {
 
 export type groupesUncheckedUpdateWithoutCountriesInput = {
   group_id?: Prisma.IntFieldUpdateOperationsInput | number
-  grope_name?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   songsGroupes?: Prisma.songs_groupesUncheckedUpdateManyWithoutGroupesNestedInput
@@ -560,7 +560,7 @@ export type groupesUncheckedUpdateWithoutCountriesInput = {
 
 export type groupesUncheckedUpdateManyWithoutCountriesInput = {
   group_id?: Prisma.IntFieldUpdateOperationsInput | number
-  grope_name?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -598,7 +598,7 @@ export type GroupesCountOutputTypeCountSongsGroupesArgs<ExtArgs extends runtime.
 
 export type groupesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   group_id?: boolean
-  grope_name?: boolean
+  name?: boolean
   year_of_foundation?: boolean
   country_id?: boolean
   description?: boolean
@@ -609,7 +609,7 @@ export type groupesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 
 export type groupesSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   group_id?: boolean
-  grope_name?: boolean
+  name?: boolean
   year_of_foundation?: boolean
   country_id?: boolean
   description?: boolean
@@ -618,7 +618,7 @@ export type groupesSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
 
 export type groupesSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   group_id?: boolean
-  grope_name?: boolean
+  name?: boolean
   year_of_foundation?: boolean
   country_id?: boolean
   description?: boolean
@@ -627,13 +627,13 @@ export type groupesSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 
 export type groupesSelectScalar = {
   group_id?: boolean
-  grope_name?: boolean
+  name?: boolean
   year_of_foundation?: boolean
   country_id?: boolean
   description?: boolean
 }
 
-export type groupesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"group_id" | "grope_name" | "year_of_foundation" | "country_id" | "description", ExtArgs["result"]["groupes"]>
+export type groupesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"group_id" | "name" | "year_of_foundation" | "country_id" | "description", ExtArgs["result"]["groupes"]>
 export type groupesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   countries?: boolean | Prisma.groupes$countriesArgs<ExtArgs>
   songsGroupes?: boolean | Prisma.groupes$songsGroupesArgs<ExtArgs>
@@ -654,7 +654,7 @@ export type $groupesPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     group_id: number
-    grope_name: string
+    name: string
     year_of_foundation: number | null
     country_id: number | null
     description: string | null
@@ -1084,7 +1084,7 @@ export interface Prisma__groupesClient<T, Null = never, ExtArgs extends runtime.
  */
 export interface groupesFieldRefs {
   readonly group_id: Prisma.FieldRef<"groupes", 'Int'>
-  readonly grope_name: Prisma.FieldRef<"groupes", 'String'>
+  readonly name: Prisma.FieldRef<"groupes", 'String'>
   readonly year_of_foundation: Prisma.FieldRef<"groupes", 'Int'>
   readonly country_id: Prisma.FieldRef<"groupes", 'Int'>
   readonly description: Prisma.FieldRef<"groupes", 'String'>

@@ -51,7 +51,7 @@ model mood {
 
 model albums {
   album_id     Int            @id @default(autoincrement())
-  title        String
+  name         String
   release_date DateTime?
   album_types  album_types?   @relation(fields: [album_type], references: [album_type_id])
   album_type   Int?
@@ -84,7 +84,7 @@ model countries {
 
 model groupes {
   group_id           Int             @id @default(autoincrement())
-  grope_name         String
+  name               String
   year_of_foundation Int?
   countries          countries?      @relation(fields: [country_id], references: [country_id])
   country_id         Int?
@@ -103,7 +103,7 @@ model songs_groupes {
 
 model producers {
   producer_id    Int               @id @default(autoincrement())
-  producer       String
+  name           String
   begin_year     Int?
   countries      countries?        @relation(fields: [country_id], references: [country_id])
   country_id     Int?
@@ -122,7 +122,7 @@ model songs_producers {
 
 model singers {
   singer_id    Int             @id @default(autoincrement())
-  singer       String
+  name         String
   singer_type  Int?
   countries    countries?      @relation(fields: [country], references: [country_id])
   country      Int?
@@ -156,7 +156,7 @@ model songs_genres {
 
 model lyrics_authors {
   lyrics_author_id   Int                    @id @default(autoincrement())
-  first_name         String
+  name               String
   surname            String?
   nickname           String?
   description        String?
@@ -174,7 +174,7 @@ model songs_lyrics_authors {
 
 model music_authors {
   music_author_id   Int                   @id @default(autoincrement())
-  first_name        String
+  name              String
   surname           String?
   nickname          String?
   description       String?
