@@ -2053,7 +2053,8 @@ export const AlbumsScalarFieldEnum = {
   name: 'name',
   release_date: 'release_date',
   album_type: 'album_type',
-  description: 'description'
+  description: 'description',
+  image: 'image'
 } as const
 
 export type AlbumsScalarFieldEnum = (typeof AlbumsScalarFieldEnum)[keyof typeof AlbumsScalarFieldEnum]
@@ -2088,7 +2089,8 @@ export const GroupesScalarFieldEnum = {
   name: 'name',
   year_of_foundation: 'year_of_foundation',
   country_id: 'country_id',
-  description: 'description'
+  description: 'description',
+  image: 'image'
 } as const
 
 export type GroupesScalarFieldEnum = (typeof GroupesScalarFieldEnum)[keyof typeof GroupesScalarFieldEnum]
@@ -2107,7 +2109,8 @@ export const ProducersScalarFieldEnum = {
   name: 'name',
   begin_year: 'begin_year',
   country_id: 'country_id',
-  biography: 'biography'
+  biography: 'biography',
+  image: 'image'
 } as const
 
 export type ProducersScalarFieldEnum = (typeof ProducersScalarFieldEnum)[keyof typeof ProducersScalarFieldEnum]
@@ -2126,7 +2129,8 @@ export const SingersScalarFieldEnum = {
   name: 'name',
   singer_type: 'singer_type',
   country: 'country',
-  biography: 'biography'
+  biography: 'biography',
+  image: 'image'
 } as const
 
 export type SingersScalarFieldEnum = (typeof SingersScalarFieldEnum)[keyof typeof SingersScalarFieldEnum]
@@ -2161,7 +2165,8 @@ export const Lyrics_authorsScalarFieldEnum = {
   name: 'name',
   surname: 'surname',
   nickname: 'nickname',
-  description: 'description'
+  description: 'description',
+  image: 'image'
 } as const
 
 export type Lyrics_authorsScalarFieldEnum = (typeof Lyrics_authorsScalarFieldEnum)[keyof typeof Lyrics_authorsScalarFieldEnum]
@@ -2180,7 +2185,8 @@ export const Music_authorsScalarFieldEnum = {
   name: 'name',
   surname: 'surname',
   nickname: 'nickname',
-  description: 'description'
+  description: 'description',
+  image: 'image'
 } as const
 
 export type Music_authorsScalarFieldEnum = (typeof Music_authorsScalarFieldEnum)[keyof typeof Music_authorsScalarFieldEnum]

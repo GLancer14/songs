@@ -10,8 +10,9 @@ import SearchField from "../ui/SearchField/SearchField";
 import Footer from "../Footer/Footer";
 import ExternalLink from "./ExternalLink/ExternalLink";
 import Lyrics from "./Lyrics/Lyrics";
-import { useState } from "react";
+import { useActionState, useState } from "react";
 import clsx from "clsx";
+import editSong from "@/app/actions/EditSong/editSong";
 
 const EditSong = ({
   user,
@@ -42,6 +43,7 @@ const EditSong = ({
   }>;
   lyricsLanguages: string[];
 }) => {
+  const [state, action, pending] = useActionState(editSong, undefined)
   const [lyricsOn, setLyricsOn] = useState<{
     english: boolean,
     russian: boolean,
@@ -62,7 +64,7 @@ const EditSong = ({
       <Header user={user} />
       <form
         className="flex flex-col justify-start p-8 bg-gray-800"
-        action="/add_song/submit"
+        action={action}
         method="post"
         encType="multipart/form-data"
       >
@@ -122,7 +124,7 @@ const EditSong = ({
               <input
                 className=""
                 type="checkbox"
-                name="lyrics_translation_langs[]"
+                name="lyrics_translation_langs"
                 id="english_translation_input"
                 value="english"
                 checked={lyricsOn.english}
@@ -139,7 +141,7 @@ const EditSong = ({
               <input
                 className=""
                 type="checkbox"
-                name="lyrics_translation_langs[]"
+                name="lyrics_translation_langs"
                 id="russian_translation_input"
                 value="russian"
                 checked={lyricsOn.russian}
@@ -193,7 +195,9 @@ const EditSong = ({
             <div className="flex flex-row flex-wrap">
               <h4 className="w-full">Original language(s):</h4>
               {languages.map((language, ind) => {
-                return <Languages key={ind} language={language} />
+                if (language !== "english") {
+                  return <Languages key={ind} language={language} />
+                }
               })}
             </div>
             {dataGroupes.map((dataGroup, ind) => {
@@ -267,8 +271,10 @@ const EditSong = ({
             {/* <span className=""></span> */}
           </div>
         </section>
-        <ExternalLink />
-        <button className="" value="Save" id="save_songs_lyrics">Add Song</button>
+        {/* <ExternalLink /> */}
+        <button className="" value="Save" id="save_songs_lyrics" onSubmit={(e) => {
+          e.preventDefault()
+        }}>Add Song</button>
       </form>
       <Footer />
     </>

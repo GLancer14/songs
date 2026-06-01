@@ -92,11 +92,13 @@ const SearchField = ({
       </ul>
       <div>
         {selectedFields.map((selectedField, ind) => {
+          console.log(tableData.name + `_${tableData.fields}`)
           return (
             <div key={ind} className="inline w-min">
               <input
                 className="bg-gray-900 w-min text-white"
-                disabled={true}
+                type="text"
+                readOnly={true}
                 value={selectedField}
                 name={tableData.name + `_${tableData.fields}`}
               />

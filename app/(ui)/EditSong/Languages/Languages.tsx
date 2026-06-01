@@ -7,7 +7,7 @@ const Languages = ({ language }: { language: string }) => {
         maxLength={64}
         name="orig_lang"
         value={language}
-        defaultChecked={language === "english"}
+        defaultChecked={language === "english_orig"}
       />
       <span className="">{language}</span>
     </label>

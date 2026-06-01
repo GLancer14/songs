@@ -56,6 +56,7 @@ model albums {
   album_types  album_types?   @relation(fields: [album_type], references: [album_type_id])
   album_type   Int?
   description  String?
+  image        String?
   songsAlbums  songs_albums[]
 }
 
@@ -89,6 +90,7 @@ model groupes {
   countries          countries?      @relation(fields: [country_id], references: [country_id])
   country_id         Int?
   description        String?
+  image              String?
   songsGroupes       songs_groupes[]
 }
 
@@ -108,6 +110,7 @@ model producers {
   countries      countries?        @relation(fields: [country_id], references: [country_id])
   country_id     Int?
   biography      String?
+  image          String?
   songsProducers songs_producers[]
 }
 
@@ -127,6 +130,7 @@ model singers {
   countries    countries?      @relation(fields: [country], references: [country_id])
   country      Int?
   biography    String?
+  image        String?
   songsSingers songs_singers[]
 }
 
@@ -160,6 +164,7 @@ model lyrics_authors {
   surname            String?
   nickname           String?
   description        String?
+  image              String?
   songsLyricsAuthors songs_lyrics_authors[]
 }
 
@@ -178,6 +183,7 @@ model music_authors {
   surname           String?
   nickname          String?
   description       String?
+  image             String?
   songsMusicAuthors songs_music_authors[]
 }
 
@@ -197,8 +203,8 @@ model languages {
 }
 
 model songs_lyrics {
-  songs       songs     @relation(fields: [song_id], references: [song_id])
-  languages   languages @relation(fields: [language_id], references: [language_id])
+  songs       songs     @relation(fields: [song_id], references: [song_id], onDelete: Cascade)
+  languages   languages @relation(fields: [language_id], references: [language_id], onDelete: Cascade)
   song_id     Int
   language_id Int
   lyrics_text String

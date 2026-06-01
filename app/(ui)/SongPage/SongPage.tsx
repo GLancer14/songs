@@ -10,7 +10,6 @@ import { useState } from "react";
 import clsx from "clsx";
 
 const SongPage = ({ songData }: { songData: songs }) => {
-
   return (
     <div className="flex flex-col">
       <div>{songData.title}</div>

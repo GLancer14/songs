@@ -3,22 +3,24 @@
 import clsx from 'clsx';
 import { signin } from '../../actions/signin';
 import { useActionState } from 'react';
-import Header from '../Header/Header';
 
- 
 export default function SignIn() {
   const [state, action, pending] = useActionState(signin, undefined)
   return (
     <div className="flex flex-1 flex-col">
-      <form action={action} className={clsx(
+      <form
+        action={action}
+        className={clsx(
           "flex",
           "flex-col",
           "bg-cyan-300",
           "text-blue-950",
           "m-8",
           "p-8"
-        )} method='POST' encType='multipart/form-data'>
-        
+        )}
+        method='POST'
+        encType='multipart/form-data'
+      >
         <div className={clsx("mb-8", "flex", "gap-8", "justify-between")}>
           <label htmlFor="email">Email</label>
           <input className="border-2" id="email" name="email" placeholder="Email" />

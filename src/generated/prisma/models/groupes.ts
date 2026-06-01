@@ -44,6 +44,7 @@ export type GroupesMinAggregateOutputType = {
   year_of_foundation: number | null
   country_id: number | null
   description: string | null
+  image: string | null
 }
 
 export type GroupesMaxAggregateOutputType = {
@@ -52,6 +53,7 @@ export type GroupesMaxAggregateOutputType = {
   year_of_foundation: number | null
   country_id: number | null
   description: string | null
+  image: string | null
 }
 
 export type GroupesCountAggregateOutputType = {
@@ -60,6 +62,7 @@ export type GroupesCountAggregateOutputType = {
   year_of_foundation: number
   country_id: number
   description: number
+  image: number
   _all: number
 }
 
@@ -82,6 +85,7 @@ export type GroupesMinAggregateInputType = {
   year_of_foundation?: true
   country_id?: true
   description?: true
+  image?: true
 }
 
 export type GroupesMaxAggregateInputType = {
@@ -90,6 +94,7 @@ export type GroupesMaxAggregateInputType = {
   year_of_foundation?: true
   country_id?: true
   description?: true
+  image?: true
 }
 
 export type GroupesCountAggregateInputType = {
@@ -98,6 +103,7 @@ export type GroupesCountAggregateInputType = {
   year_of_foundation?: true
   country_id?: true
   description?: true
+  image?: true
   _all?: true
 }
 
@@ -193,6 +199,7 @@ export type GroupesGroupByOutputType = {
   year_of_foundation: number | null
   country_id: number | null
   description: string | null
+  image: string | null
   _count: GroupesCountAggregateOutputType | null
   _avg: GroupesAvgAggregateOutputType | null
   _sum: GroupesSumAggregateOutputType | null
@@ -224,6 +231,7 @@ export type groupesWhereInput = {
   year_of_foundation?: Prisma.IntNullableFilter<"groupes"> | number | null
   country_id?: Prisma.IntNullableFilter<"groupes"> | number | null
   description?: Prisma.StringNullableFilter<"groupes"> | string | null
+  image?: Prisma.StringNullableFilter<"groupes"> | string | null
   countries?: Prisma.XOR<Prisma.CountriesNullableScalarRelationFilter, Prisma.countriesWhereInput> | null
   songsGroupes?: Prisma.Songs_groupesListRelationFilter
 }
@@ -234,6 +242,7 @@ export type groupesOrderByWithRelationInput = {
   year_of_foundation?: Prisma.SortOrderInput | Prisma.SortOrder
   country_id?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  image?: Prisma.SortOrderInput | Prisma.SortOrder
   countries?: Prisma.countriesOrderByWithRelationInput
   songsGroupes?: Prisma.songs_groupesOrderByRelationAggregateInput
 }
@@ -247,6 +256,7 @@ export type groupesWhereUniqueInput = Prisma.AtLeast<{
   year_of_foundation?: Prisma.IntNullableFilter<"groupes"> | number | null
   country_id?: Prisma.IntNullableFilter<"groupes"> | number | null
   description?: Prisma.StringNullableFilter<"groupes"> | string | null
+  image?: Prisma.StringNullableFilter<"groupes"> | string | null
   countries?: Prisma.XOR<Prisma.CountriesNullableScalarRelationFilter, Prisma.countriesWhereInput> | null
   songsGroupes?: Prisma.Songs_groupesListRelationFilter
 }, "group_id">
@@ -257,6 +267,7 @@ export type groupesOrderByWithAggregationInput = {
   year_of_foundation?: Prisma.SortOrderInput | Prisma.SortOrder
   country_id?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  image?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.groupesCountOrderByAggregateInput
   _avg?: Prisma.groupesAvgOrderByAggregateInput
   _max?: Prisma.groupesMaxOrderByAggregateInput
@@ -273,12 +284,14 @@ export type groupesScalarWhereWithAggregatesInput = {
   year_of_foundation?: Prisma.IntNullableWithAggregatesFilter<"groupes"> | number | null
   country_id?: Prisma.IntNullableWithAggregatesFilter<"groupes"> | number | null
   description?: Prisma.StringNullableWithAggregatesFilter<"groupes"> | string | null
+  image?: Prisma.StringNullableWithAggregatesFilter<"groupes"> | string | null
 }
 
 export type groupesCreateInput = {
   name: string
   year_of_foundation?: number | null
   description?: string | null
+  image?: string | null
   countries?: Prisma.countriesCreateNestedOneWithoutGroupesInput
   songsGroupes?: Prisma.songs_groupesCreateNestedManyWithoutGroupesInput
 }
@@ -289,6 +302,7 @@ export type groupesUncheckedCreateInput = {
   year_of_foundation?: number | null
   country_id?: number | null
   description?: string | null
+  image?: string | null
   songsGroupes?: Prisma.songs_groupesUncheckedCreateNestedManyWithoutGroupesInput
 }
 
@@ -296,6 +310,7 @@ export type groupesUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countries?: Prisma.countriesUpdateOneWithoutGroupesNestedInput
   songsGroupes?: Prisma.songs_groupesUpdateManyWithoutGroupesNestedInput
 }
@@ -306,6 +321,7 @@ export type groupesUncheckedUpdateInput = {
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   country_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   songsGroupes?: Prisma.songs_groupesUncheckedUpdateManyWithoutGroupesNestedInput
 }
 
@@ -315,12 +331,14 @@ export type groupesCreateManyInput = {
   year_of_foundation?: number | null
   country_id?: number | null
   description?: string | null
+  image?: string | null
 }
 
 export type groupesUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type groupesUncheckedUpdateManyInput = {
@@ -329,6 +347,7 @@ export type groupesUncheckedUpdateManyInput = {
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   country_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type GroupesListRelationFilter = {
@@ -347,6 +366,7 @@ export type groupesCountOrderByAggregateInput = {
   year_of_foundation?: Prisma.SortOrder
   country_id?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  image?: Prisma.SortOrder
 }
 
 export type groupesAvgOrderByAggregateInput = {
@@ -361,6 +381,7 @@ export type groupesMaxOrderByAggregateInput = {
   year_of_foundation?: Prisma.SortOrder
   country_id?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  image?: Prisma.SortOrder
 }
 
 export type groupesMinOrderByAggregateInput = {
@@ -369,6 +390,7 @@ export type groupesMinOrderByAggregateInput = {
   year_of_foundation?: Prisma.SortOrder
   country_id?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  image?: Prisma.SortOrder
 }
 
 export type groupesSumOrderByAggregateInput = {
@@ -442,6 +464,7 @@ export type groupesCreateWithoutCountriesInput = {
   name: string
   year_of_foundation?: number | null
   description?: string | null
+  image?: string | null
   songsGroupes?: Prisma.songs_groupesCreateNestedManyWithoutGroupesInput
 }
 
@@ -450,6 +473,7 @@ export type groupesUncheckedCreateWithoutCountriesInput = {
   name: string
   year_of_foundation?: number | null
   description?: string | null
+  image?: string | null
   songsGroupes?: Prisma.songs_groupesUncheckedCreateNestedManyWithoutGroupesInput
 }
 
@@ -488,12 +512,14 @@ export type groupesScalarWhereInput = {
   year_of_foundation?: Prisma.IntNullableFilter<"groupes"> | number | null
   country_id?: Prisma.IntNullableFilter<"groupes"> | number | null
   description?: Prisma.StringNullableFilter<"groupes"> | string | null
+  image?: Prisma.StringNullableFilter<"groupes"> | string | null
 }
 
 export type groupesCreateWithoutSongsGroupesInput = {
   name: string
   year_of_foundation?: number | null
   description?: string | null
+  image?: string | null
   countries?: Prisma.countriesCreateNestedOneWithoutGroupesInput
 }
 
@@ -503,6 +529,7 @@ export type groupesUncheckedCreateWithoutSongsGroupesInput = {
   year_of_foundation?: number | null
   country_id?: number | null
   description?: string | null
+  image?: string | null
 }
 
 export type groupesCreateOrConnectWithoutSongsGroupesInput = {
@@ -525,6 +552,7 @@ export type groupesUpdateWithoutSongsGroupesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countries?: Prisma.countriesUpdateOneWithoutGroupesNestedInput
 }
 
@@ -534,6 +562,7 @@ export type groupesUncheckedUpdateWithoutSongsGroupesInput = {
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   country_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type groupesCreateManyCountriesInput = {
@@ -541,12 +570,14 @@ export type groupesCreateManyCountriesInput = {
   name: string
   year_of_foundation?: number | null
   description?: string | null
+  image?: string | null
 }
 
 export type groupesUpdateWithoutCountriesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   songsGroupes?: Prisma.songs_groupesUpdateManyWithoutGroupesNestedInput
 }
 
@@ -555,6 +586,7 @@ export type groupesUncheckedUpdateWithoutCountriesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   songsGroupes?: Prisma.songs_groupesUncheckedUpdateManyWithoutGroupesNestedInput
 }
 
@@ -563,6 +595,7 @@ export type groupesUncheckedUpdateManyWithoutCountriesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -602,6 +635,7 @@ export type groupesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   year_of_foundation?: boolean
   country_id?: boolean
   description?: boolean
+  image?: boolean
   countries?: boolean | Prisma.groupes$countriesArgs<ExtArgs>
   songsGroupes?: boolean | Prisma.groupes$songsGroupesArgs<ExtArgs>
   _count?: boolean | Prisma.GroupesCountOutputTypeDefaultArgs<ExtArgs>
@@ -613,6 +647,7 @@ export type groupesSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   year_of_foundation?: boolean
   country_id?: boolean
   description?: boolean
+  image?: boolean
   countries?: boolean | Prisma.groupes$countriesArgs<ExtArgs>
 }, ExtArgs["result"]["groupes"]>
 
@@ -622,6 +657,7 @@ export type groupesSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   year_of_foundation?: boolean
   country_id?: boolean
   description?: boolean
+  image?: boolean
   countries?: boolean | Prisma.groupes$countriesArgs<ExtArgs>
 }, ExtArgs["result"]["groupes"]>
 
@@ -631,9 +667,10 @@ export type groupesSelectScalar = {
   year_of_foundation?: boolean
   country_id?: boolean
   description?: boolean
+  image?: boolean
 }
 
-export type groupesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"group_id" | "name" | "year_of_foundation" | "country_id" | "description", ExtArgs["result"]["groupes"]>
+export type groupesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"group_id" | "name" | "year_of_foundation" | "country_id" | "description" | "image", ExtArgs["result"]["groupes"]>
 export type groupesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   countries?: boolean | Prisma.groupes$countriesArgs<ExtArgs>
   songsGroupes?: boolean | Prisma.groupes$songsGroupesArgs<ExtArgs>
@@ -658,6 +695,7 @@ export type $groupesPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     year_of_foundation: number | null
     country_id: number | null
     description: string | null
+    image: string | null
   }, ExtArgs["result"]["groupes"]>
   composites: {}
 }
@@ -1088,6 +1126,7 @@ export interface groupesFieldRefs {
   readonly year_of_foundation: Prisma.FieldRef<"groupes", 'Int'>
   readonly country_id: Prisma.FieldRef<"groupes", 'Int'>
   readonly description: Prisma.FieldRef<"groupes", 'String'>
+  readonly image: Prisma.FieldRef<"groupes", 'String'>
 }
     
 

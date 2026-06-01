@@ -44,6 +44,7 @@ export type SingersMinAggregateOutputType = {
   singer_type: number | null
   country: number | null
   biography: string | null
+  image: string | null
 }
 
 export type SingersMaxAggregateOutputType = {
@@ -52,6 +53,7 @@ export type SingersMaxAggregateOutputType = {
   singer_type: number | null
   country: number | null
   biography: string | null
+  image: string | null
 }
 
 export type SingersCountAggregateOutputType = {
@@ -60,6 +62,7 @@ export type SingersCountAggregateOutputType = {
   singer_type: number
   country: number
   biography: number
+  image: number
   _all: number
 }
 
@@ -82,6 +85,7 @@ export type SingersMinAggregateInputType = {
   singer_type?: true
   country?: true
   biography?: true
+  image?: true
 }
 
 export type SingersMaxAggregateInputType = {
@@ -90,6 +94,7 @@ export type SingersMaxAggregateInputType = {
   singer_type?: true
   country?: true
   biography?: true
+  image?: true
 }
 
 export type SingersCountAggregateInputType = {
@@ -98,6 +103,7 @@ export type SingersCountAggregateInputType = {
   singer_type?: true
   country?: true
   biography?: true
+  image?: true
   _all?: true
 }
 
@@ -193,6 +199,7 @@ export type SingersGroupByOutputType = {
   singer_type: number | null
   country: number | null
   biography: string | null
+  image: string | null
   _count: SingersCountAggregateOutputType | null
   _avg: SingersAvgAggregateOutputType | null
   _sum: SingersSumAggregateOutputType | null
@@ -224,6 +231,7 @@ export type singersWhereInput = {
   singer_type?: Prisma.IntNullableFilter<"singers"> | number | null
   country?: Prisma.IntNullableFilter<"singers"> | number | null
   biography?: Prisma.StringNullableFilter<"singers"> | string | null
+  image?: Prisma.StringNullableFilter<"singers"> | string | null
   countries?: Prisma.XOR<Prisma.CountriesNullableScalarRelationFilter, Prisma.countriesWhereInput> | null
   songsSingers?: Prisma.Songs_singersListRelationFilter
 }
@@ -234,6 +242,7 @@ export type singersOrderByWithRelationInput = {
   singer_type?: Prisma.SortOrderInput | Prisma.SortOrder
   country?: Prisma.SortOrderInput | Prisma.SortOrder
   biography?: Prisma.SortOrderInput | Prisma.SortOrder
+  image?: Prisma.SortOrderInput | Prisma.SortOrder
   countries?: Prisma.countriesOrderByWithRelationInput
   songsSingers?: Prisma.songs_singersOrderByRelationAggregateInput
 }
@@ -247,6 +256,7 @@ export type singersWhereUniqueInput = Prisma.AtLeast<{
   singer_type?: Prisma.IntNullableFilter<"singers"> | number | null
   country?: Prisma.IntNullableFilter<"singers"> | number | null
   biography?: Prisma.StringNullableFilter<"singers"> | string | null
+  image?: Prisma.StringNullableFilter<"singers"> | string | null
   countries?: Prisma.XOR<Prisma.CountriesNullableScalarRelationFilter, Prisma.countriesWhereInput> | null
   songsSingers?: Prisma.Songs_singersListRelationFilter
 }, "singer_id">
@@ -257,6 +267,7 @@ export type singersOrderByWithAggregationInput = {
   singer_type?: Prisma.SortOrderInput | Prisma.SortOrder
   country?: Prisma.SortOrderInput | Prisma.SortOrder
   biography?: Prisma.SortOrderInput | Prisma.SortOrder
+  image?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.singersCountOrderByAggregateInput
   _avg?: Prisma.singersAvgOrderByAggregateInput
   _max?: Prisma.singersMaxOrderByAggregateInput
@@ -273,12 +284,14 @@ export type singersScalarWhereWithAggregatesInput = {
   singer_type?: Prisma.IntNullableWithAggregatesFilter<"singers"> | number | null
   country?: Prisma.IntNullableWithAggregatesFilter<"singers"> | number | null
   biography?: Prisma.StringNullableWithAggregatesFilter<"singers"> | string | null
+  image?: Prisma.StringNullableWithAggregatesFilter<"singers"> | string | null
 }
 
 export type singersCreateInput = {
   name: string
   singer_type?: number | null
   biography?: string | null
+  image?: string | null
   countries?: Prisma.countriesCreateNestedOneWithoutSingersInput
   songsSingers?: Prisma.songs_singersCreateNestedManyWithoutSingersInput
 }
@@ -289,6 +302,7 @@ export type singersUncheckedCreateInput = {
   singer_type?: number | null
   country?: number | null
   biography?: string | null
+  image?: string | null
   songsSingers?: Prisma.songs_singersUncheckedCreateNestedManyWithoutSingersInput
 }
 
@@ -296,6 +310,7 @@ export type singersUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   singer_type?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   biography?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countries?: Prisma.countriesUpdateOneWithoutSingersNestedInput
   songsSingers?: Prisma.songs_singersUpdateManyWithoutSingersNestedInput
 }
@@ -306,6 +321,7 @@ export type singersUncheckedUpdateInput = {
   singer_type?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   country?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   biography?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   songsSingers?: Prisma.songs_singersUncheckedUpdateManyWithoutSingersNestedInput
 }
 
@@ -315,12 +331,14 @@ export type singersCreateManyInput = {
   singer_type?: number | null
   country?: number | null
   biography?: string | null
+  image?: string | null
 }
 
 export type singersUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   singer_type?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   biography?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type singersUncheckedUpdateManyInput = {
@@ -329,6 +347,7 @@ export type singersUncheckedUpdateManyInput = {
   singer_type?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   country?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   biography?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SingersListRelationFilter = {
@@ -347,6 +366,7 @@ export type singersCountOrderByAggregateInput = {
   singer_type?: Prisma.SortOrder
   country?: Prisma.SortOrder
   biography?: Prisma.SortOrder
+  image?: Prisma.SortOrder
 }
 
 export type singersAvgOrderByAggregateInput = {
@@ -361,6 +381,7 @@ export type singersMaxOrderByAggregateInput = {
   singer_type?: Prisma.SortOrder
   country?: Prisma.SortOrder
   biography?: Prisma.SortOrder
+  image?: Prisma.SortOrder
 }
 
 export type singersMinOrderByAggregateInput = {
@@ -369,6 +390,7 @@ export type singersMinOrderByAggregateInput = {
   singer_type?: Prisma.SortOrder
   country?: Prisma.SortOrder
   biography?: Prisma.SortOrder
+  image?: Prisma.SortOrder
 }
 
 export type singersSumOrderByAggregateInput = {
@@ -442,6 +464,7 @@ export type singersCreateWithoutCountriesInput = {
   name: string
   singer_type?: number | null
   biography?: string | null
+  image?: string | null
   songsSingers?: Prisma.songs_singersCreateNestedManyWithoutSingersInput
 }
 
@@ -450,6 +473,7 @@ export type singersUncheckedCreateWithoutCountriesInput = {
   name: string
   singer_type?: number | null
   biography?: string | null
+  image?: string | null
   songsSingers?: Prisma.songs_singersUncheckedCreateNestedManyWithoutSingersInput
 }
 
@@ -488,12 +512,14 @@ export type singersScalarWhereInput = {
   singer_type?: Prisma.IntNullableFilter<"singers"> | number | null
   country?: Prisma.IntNullableFilter<"singers"> | number | null
   biography?: Prisma.StringNullableFilter<"singers"> | string | null
+  image?: Prisma.StringNullableFilter<"singers"> | string | null
 }
 
 export type singersCreateWithoutSongsSingersInput = {
   name: string
   singer_type?: number | null
   biography?: string | null
+  image?: string | null
   countries?: Prisma.countriesCreateNestedOneWithoutSingersInput
 }
 
@@ -503,6 +529,7 @@ export type singersUncheckedCreateWithoutSongsSingersInput = {
   singer_type?: number | null
   country?: number | null
   biography?: string | null
+  image?: string | null
 }
 
 export type singersCreateOrConnectWithoutSongsSingersInput = {
@@ -525,6 +552,7 @@ export type singersUpdateWithoutSongsSingersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   singer_type?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   biography?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countries?: Prisma.countriesUpdateOneWithoutSingersNestedInput
 }
 
@@ -534,6 +562,7 @@ export type singersUncheckedUpdateWithoutSongsSingersInput = {
   singer_type?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   country?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   biography?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type singersCreateManyCountriesInput = {
@@ -541,12 +570,14 @@ export type singersCreateManyCountriesInput = {
   name: string
   singer_type?: number | null
   biography?: string | null
+  image?: string | null
 }
 
 export type singersUpdateWithoutCountriesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   singer_type?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   biography?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   songsSingers?: Prisma.songs_singersUpdateManyWithoutSingersNestedInput
 }
 
@@ -555,6 +586,7 @@ export type singersUncheckedUpdateWithoutCountriesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   singer_type?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   biography?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   songsSingers?: Prisma.songs_singersUncheckedUpdateManyWithoutSingersNestedInput
 }
 
@@ -563,6 +595,7 @@ export type singersUncheckedUpdateManyWithoutCountriesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   singer_type?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   biography?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -602,6 +635,7 @@ export type singersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   singer_type?: boolean
   country?: boolean
   biography?: boolean
+  image?: boolean
   countries?: boolean | Prisma.singers$countriesArgs<ExtArgs>
   songsSingers?: boolean | Prisma.singers$songsSingersArgs<ExtArgs>
   _count?: boolean | Prisma.SingersCountOutputTypeDefaultArgs<ExtArgs>
@@ -613,6 +647,7 @@ export type singersSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   singer_type?: boolean
   country?: boolean
   biography?: boolean
+  image?: boolean
   countries?: boolean | Prisma.singers$countriesArgs<ExtArgs>
 }, ExtArgs["result"]["singers"]>
 
@@ -622,6 +657,7 @@ export type singersSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   singer_type?: boolean
   country?: boolean
   biography?: boolean
+  image?: boolean
   countries?: boolean | Prisma.singers$countriesArgs<ExtArgs>
 }, ExtArgs["result"]["singers"]>
 
@@ -631,9 +667,10 @@ export type singersSelectScalar = {
   singer_type?: boolean
   country?: boolean
   biography?: boolean
+  image?: boolean
 }
 
-export type singersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"singer_id" | "name" | "singer_type" | "country" | "biography", ExtArgs["result"]["singers"]>
+export type singersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"singer_id" | "name" | "singer_type" | "country" | "biography" | "image", ExtArgs["result"]["singers"]>
 export type singersInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   countries?: boolean | Prisma.singers$countriesArgs<ExtArgs>
   songsSingers?: boolean | Prisma.singers$songsSingersArgs<ExtArgs>
@@ -658,6 +695,7 @@ export type $singersPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     singer_type: number | null
     country: number | null
     biography: string | null
+    image: string | null
   }, ExtArgs["result"]["singers"]>
   composites: {}
 }
@@ -1088,6 +1126,7 @@ export interface singersFieldRefs {
   readonly singer_type: Prisma.FieldRef<"singers", 'Int'>
   readonly country: Prisma.FieldRef<"singers", 'Int'>
   readonly biography: Prisma.FieldRef<"singers", 'String'>
+  readonly image: Prisma.FieldRef<"singers", 'String'>
 }
     
 

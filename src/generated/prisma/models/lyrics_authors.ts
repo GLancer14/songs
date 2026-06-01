@@ -40,6 +40,7 @@ export type Lyrics_authorsMinAggregateOutputType = {
   surname: string | null
   nickname: string | null
   description: string | null
+  image: string | null
 }
 
 export type Lyrics_authorsMaxAggregateOutputType = {
@@ -48,6 +49,7 @@ export type Lyrics_authorsMaxAggregateOutputType = {
   surname: string | null
   nickname: string | null
   description: string | null
+  image: string | null
 }
 
 export type Lyrics_authorsCountAggregateOutputType = {
@@ -56,6 +58,7 @@ export type Lyrics_authorsCountAggregateOutputType = {
   surname: number
   nickname: number
   description: number
+  image: number
   _all: number
 }
 
@@ -74,6 +77,7 @@ export type Lyrics_authorsMinAggregateInputType = {
   surname?: true
   nickname?: true
   description?: true
+  image?: true
 }
 
 export type Lyrics_authorsMaxAggregateInputType = {
@@ -82,6 +86,7 @@ export type Lyrics_authorsMaxAggregateInputType = {
   surname?: true
   nickname?: true
   description?: true
+  image?: true
 }
 
 export type Lyrics_authorsCountAggregateInputType = {
@@ -90,6 +95,7 @@ export type Lyrics_authorsCountAggregateInputType = {
   surname?: true
   nickname?: true
   description?: true
+  image?: true
   _all?: true
 }
 
@@ -185,6 +191,7 @@ export type Lyrics_authorsGroupByOutputType = {
   surname: string | null
   nickname: string | null
   description: string | null
+  image: string | null
   _count: Lyrics_authorsCountAggregateOutputType | null
   _avg: Lyrics_authorsAvgAggregateOutputType | null
   _sum: Lyrics_authorsSumAggregateOutputType | null
@@ -216,6 +223,7 @@ export type lyrics_authorsWhereInput = {
   surname?: Prisma.StringNullableFilter<"lyrics_authors"> | string | null
   nickname?: Prisma.StringNullableFilter<"lyrics_authors"> | string | null
   description?: Prisma.StringNullableFilter<"lyrics_authors"> | string | null
+  image?: Prisma.StringNullableFilter<"lyrics_authors"> | string | null
   songsLyricsAuthors?: Prisma.Songs_lyrics_authorsListRelationFilter
 }
 
@@ -225,6 +233,7 @@ export type lyrics_authorsOrderByWithRelationInput = {
   surname?: Prisma.SortOrderInput | Prisma.SortOrder
   nickname?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  image?: Prisma.SortOrderInput | Prisma.SortOrder
   songsLyricsAuthors?: Prisma.songs_lyrics_authorsOrderByRelationAggregateInput
 }
 
@@ -237,6 +246,7 @@ export type lyrics_authorsWhereUniqueInput = Prisma.AtLeast<{
   surname?: Prisma.StringNullableFilter<"lyrics_authors"> | string | null
   nickname?: Prisma.StringNullableFilter<"lyrics_authors"> | string | null
   description?: Prisma.StringNullableFilter<"lyrics_authors"> | string | null
+  image?: Prisma.StringNullableFilter<"lyrics_authors"> | string | null
   songsLyricsAuthors?: Prisma.Songs_lyrics_authorsListRelationFilter
 }, "lyrics_author_id">
 
@@ -246,6 +256,7 @@ export type lyrics_authorsOrderByWithAggregationInput = {
   surname?: Prisma.SortOrderInput | Prisma.SortOrder
   nickname?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  image?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.lyrics_authorsCountOrderByAggregateInput
   _avg?: Prisma.lyrics_authorsAvgOrderByAggregateInput
   _max?: Prisma.lyrics_authorsMaxOrderByAggregateInput
@@ -262,6 +273,7 @@ export type lyrics_authorsScalarWhereWithAggregatesInput = {
   surname?: Prisma.StringNullableWithAggregatesFilter<"lyrics_authors"> | string | null
   nickname?: Prisma.StringNullableWithAggregatesFilter<"lyrics_authors"> | string | null
   description?: Prisma.StringNullableWithAggregatesFilter<"lyrics_authors"> | string | null
+  image?: Prisma.StringNullableWithAggregatesFilter<"lyrics_authors"> | string | null
 }
 
 export type lyrics_authorsCreateInput = {
@@ -269,6 +281,7 @@ export type lyrics_authorsCreateInput = {
   surname?: string | null
   nickname?: string | null
   description?: string | null
+  image?: string | null
   songsLyricsAuthors?: Prisma.songs_lyrics_authorsCreateNestedManyWithoutLyrics_authorsInput
 }
 
@@ -278,6 +291,7 @@ export type lyrics_authorsUncheckedCreateInput = {
   surname?: string | null
   nickname?: string | null
   description?: string | null
+  image?: string | null
   songsLyricsAuthors?: Prisma.songs_lyrics_authorsUncheckedCreateNestedManyWithoutLyrics_authorsInput
 }
 
@@ -286,6 +300,7 @@ export type lyrics_authorsUpdateInput = {
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   songsLyricsAuthors?: Prisma.songs_lyrics_authorsUpdateManyWithoutLyrics_authorsNestedInput
 }
 
@@ -295,6 +310,7 @@ export type lyrics_authorsUncheckedUpdateInput = {
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   songsLyricsAuthors?: Prisma.songs_lyrics_authorsUncheckedUpdateManyWithoutLyrics_authorsNestedInput
 }
 
@@ -304,6 +320,7 @@ export type lyrics_authorsCreateManyInput = {
   surname?: string | null
   nickname?: string | null
   description?: string | null
+  image?: string | null
 }
 
 export type lyrics_authorsUpdateManyMutationInput = {
@@ -311,6 +328,7 @@ export type lyrics_authorsUpdateManyMutationInput = {
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type lyrics_authorsUncheckedUpdateManyInput = {
@@ -319,6 +337,7 @@ export type lyrics_authorsUncheckedUpdateManyInput = {
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type lyrics_authorsCountOrderByAggregateInput = {
@@ -327,6 +346,7 @@ export type lyrics_authorsCountOrderByAggregateInput = {
   surname?: Prisma.SortOrder
   nickname?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  image?: Prisma.SortOrder
 }
 
 export type lyrics_authorsAvgOrderByAggregateInput = {
@@ -339,6 +359,7 @@ export type lyrics_authorsMaxOrderByAggregateInput = {
   surname?: Prisma.SortOrder
   nickname?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  image?: Prisma.SortOrder
 }
 
 export type lyrics_authorsMinOrderByAggregateInput = {
@@ -347,6 +368,7 @@ export type lyrics_authorsMinOrderByAggregateInput = {
   surname?: Prisma.SortOrder
   nickname?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  image?: Prisma.SortOrder
 }
 
 export type lyrics_authorsSumOrderByAggregateInput = {
@@ -377,6 +399,7 @@ export type lyrics_authorsCreateWithoutSongsLyricsAuthorsInput = {
   surname?: string | null
   nickname?: string | null
   description?: string | null
+  image?: string | null
 }
 
 export type lyrics_authorsUncheckedCreateWithoutSongsLyricsAuthorsInput = {
@@ -385,6 +408,7 @@ export type lyrics_authorsUncheckedCreateWithoutSongsLyricsAuthorsInput = {
   surname?: string | null
   nickname?: string | null
   description?: string | null
+  image?: string | null
 }
 
 export type lyrics_authorsCreateOrConnectWithoutSongsLyricsAuthorsInput = {
@@ -408,6 +432,7 @@ export type lyrics_authorsUpdateWithoutSongsLyricsAuthorsInput = {
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type lyrics_authorsUncheckedUpdateWithoutSongsLyricsAuthorsInput = {
@@ -416,6 +441,7 @@ export type lyrics_authorsUncheckedUpdateWithoutSongsLyricsAuthorsInput = {
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -455,6 +481,7 @@ export type lyrics_authorsSelect<ExtArgs extends runtime.Types.Extensions.Intern
   surname?: boolean
   nickname?: boolean
   description?: boolean
+  image?: boolean
   songsLyricsAuthors?: boolean | Prisma.lyrics_authors$songsLyricsAuthorsArgs<ExtArgs>
   _count?: boolean | Prisma.Lyrics_authorsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["lyrics_authors"]>
@@ -465,6 +492,7 @@ export type lyrics_authorsSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   surname?: boolean
   nickname?: boolean
   description?: boolean
+  image?: boolean
 }, ExtArgs["result"]["lyrics_authors"]>
 
 export type lyrics_authorsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -473,6 +501,7 @@ export type lyrics_authorsSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   surname?: boolean
   nickname?: boolean
   description?: boolean
+  image?: boolean
 }, ExtArgs["result"]["lyrics_authors"]>
 
 export type lyrics_authorsSelectScalar = {
@@ -481,9 +510,10 @@ export type lyrics_authorsSelectScalar = {
   surname?: boolean
   nickname?: boolean
   description?: boolean
+  image?: boolean
 }
 
-export type lyrics_authorsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"lyrics_author_id" | "name" | "surname" | "nickname" | "description", ExtArgs["result"]["lyrics_authors"]>
+export type lyrics_authorsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"lyrics_author_id" | "name" | "surname" | "nickname" | "description" | "image", ExtArgs["result"]["lyrics_authors"]>
 export type lyrics_authorsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   songsLyricsAuthors?: boolean | Prisma.lyrics_authors$songsLyricsAuthorsArgs<ExtArgs>
   _count?: boolean | Prisma.Lyrics_authorsCountOutputTypeDefaultArgs<ExtArgs>
@@ -502,6 +532,7 @@ export type $lyrics_authorsPayload<ExtArgs extends runtime.Types.Extensions.Inte
     surname: string | null
     nickname: string | null
     description: string | null
+    image: string | null
   }, ExtArgs["result"]["lyrics_authors"]>
   composites: {}
 }
@@ -931,6 +962,7 @@ export interface lyrics_authorsFieldRefs {
   readonly surname: Prisma.FieldRef<"lyrics_authors", 'String'>
   readonly nickname: Prisma.FieldRef<"lyrics_authors", 'String'>
   readonly description: Prisma.FieldRef<"lyrics_authors", 'String'>
+  readonly image: Prisma.FieldRef<"lyrics_authors", 'String'>
 }
     
 

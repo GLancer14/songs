@@ -8,27 +8,27 @@ export const creators: Array<{
   {
     name: "music_authors",
     title: "",
-    fields: "nickname",
+    fields: "name",
   },
   {
     name: "lyrics_authors",
     title: "",
-    fields: "nickname",
+    fields: "name",
   },
   {
     name: "singers",
     title: "",
-    fields: "singer",
+    fields: "name",
   },
   {
     name: "producers",
     title: "",
-    fields: "producer",
+    fields: "name",
   },
   {
     name: "groupes",
     title: "",
-    fields: "grope_name",
+    fields: "name",
   },
 ];
 
@@ -45,7 +45,7 @@ export const dataGroupes: Array<{
   {
     name: "albums",
     title: "",
-    fields: "title",
+    fields: "name",
   }
 ];
 
