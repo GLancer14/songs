@@ -1,0 +1,487 @@
+// @font-face {
+//   font-family: "Exo 2";
+//   src: url("../fonts/Exo2-MediumItalic.ttf");
+//   font-weight: 500;
+//   font-style: italic;
+// }
+
+// @font-face {
+//   font-family: "Exo 2";
+//   src: url("../fonts/Exo2-Light.ttf");
+//   font-weight: 300;
+//   font-style: normal;
+// }
+
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+input {
+  border: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 20px;
+  font-weight: 500;
+  font-style: italic;
+}
+
+button {
+  color: white;
+  background-color: black;
+  border: none;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  color: #00A199;
+}
+
+body {
+  margin-top: var(--header-height);
+
+  background-color: #75d8cb;
+  font-family: "Exo 2", "Arial", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 20px;
+
+  color: #ffffff;
+}
+
+.main {
+  max-width: 1200px;
+  min-width: 320px;
+  padding: 25px;
+  margin: 0 auto;
+
+  background-color: #2E3538;
+}
+
+.section {
+  margin-bottom: 25px;
+}
+
+.song-add-form_main {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4%;
+}
+
+.song-add-form_general-data {
+  width: 48%;
+}
+
+.song-add-form_description {
+  width: 48%;
+}
+
+.section-header {
+  width: 100%;
+  margin-bottom: 10px;
+
+  font-size: 1.5em;
+  text-transform: capitalize;
+
+  border-bottom: 3px solid grey;
+}
+
+.general-data_desc {
+  cursor: help;
+}
+
+.label-container {
+  display: block;
+  margin-bottom: 7px;
+
+  cursor: pointer;
+}
+
+.label-container_desc {
+  display: block;
+  width: 100%;
+  margin-bottom: 5px;
+
+  text-transform: capitalize;
+}
+
+.general-data_input-text {
+  width: 100%;
+  height: 25px;
+}
+
+.general-data_input-text:focus {
+  outline: 2px solid #D90065;
+}
+
+.description_textarea {
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100px;
+  max-height: 150px;
+}
+
+.description_textarea:focus {
+  outline: 2px solid #D90065;
+}
+
+.song-add-form_lyrics {
+  width: 100%;
+}
+
+.lyrics_trans-langs {
+  display: flex;
+  align-items: center;
+}
+
+.article-header {
+  display: block;
+  margin-right: 10px;
+  margin-bottom: 5px;
+
+  font-size: 1.2em;
+
+  border-bottom: 3px solid grey;
+}
+
+.lyrics_trans-langs_cbox-group {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+
+  cursor: pointer;
+}
+
+.lyrics {
+  display: flex;
+	flex-wrap: wrap;
+  justify-content: space-between;
+	column-gap: 6%;
+}
+
+.lyrics-block {
+  display: flex;
+  flex-direction: column;
+	flex: 1 1;
+	height: 500px;
+}
+
+.lyrics_lang {
+  margin-bottom: 5px;
+
+  text-transform: capitalize;
+}
+
+.lyrics-block_textarea {
+  max-width: 100%;
+  min-width: 100%;
+
+  font-size: 14px;
+  color: black;
+  font-weight: 300;
+  font-style: normal;
+
+	resize: none;
+}
+
+.lyrics_error {
+	width: 100%;
+}
+
+.song-add-form_add-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4%;
+}
+
+.add-meta_creators {
+  width: 48%;
+}
+
+.add-meta_info {
+  width: 48%;
+}
+
+.input-search {
+  width: calc(100% - 52px);
+  height: 25px;
+  padding: 0 5px 0 25px;
+  margin-right: 2px;
+
+  background-image: url("../images/interface/magnifier.svg");
+  background-repeat: no-repeat;
+  background-size: 15px;
+  background-position: left 5px center;
+
+  appearance: none;
+}
+
+.input-search:focus {
+  outline: 2px solid #D90065;
+}
+
+.add-button {
+  width: 50px;
+  height: 25px;
+
+  text-transform: capitalize;
+
+  cursor: pointer;
+}
+
+.add-button:focus {
+  outline: 2px solid #D90065;
+}
+
+.add-button:hover {
+  color: black;
+  background-color: rgb(209, 209, 209);
+}
+
+.orig-langs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+/* info block */
+
+.mood_label-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 7px;
+
+  cursor: pointer;
+}
+
+.mood_label-container_desc {
+  margin-right: 5px;
+}
+
+.mood_select {
+  width: 150px;
+  height: 25px;
+  padding: 0 35px 0 5px;
+
+  background-image: url("../images/interface/select-arrow.svg");
+  background-repeat: no-repeat;
+  background-size: 10px;
+  background-position: right 5px center;
+
+  appearance: none;
+}
+
+.mood_select:focus {
+  outline: 2px solid #D90065;
+}
+
+.release_label-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 7px;
+
+  cursor: pointer;
+}
+
+.release_label-container_desc {
+  margin-right: 5px;
+}
+
+.release_input-date {
+  height: 25px;
+}
+
+.bpm_label-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 7px;
+
+  cursor: pointer;
+}
+
+.bpm_label-container_desc {
+  margin-right: 5px;
+}
+
+.bpm_input-num {
+  height: 25px;
+}
+
+/*  */
+
+.song-add-form_media {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+}
+
+.media_label-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 7px;
+
+  cursor: pointer;
+}
+
+.media_label-desc {
+  margin-right: 5px;
+
+  white-space: nowrap;
+}
+
+.media_input-file {
+  width: 50px;
+  height: 25px;
+
+  cursor: pointer;
+}
+
+.media_input-file_new-btn {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 25px;
+
+  font-size: 13px;
+  font-weight: 300;
+  font-style: normal;
+
+  background-color: black;
+  color: white;
+
+  cursor: pointer;
+}
+
+.media_input-file_new-btn:hover {
+  background-color: rgb(209, 209, 209);
+  color: black;
+}
+
+.media_input-file_new-btn:focus {
+  outline: 1px solid #D90065;
+}
+
+.song-art_image-size {
+  align-self: flex-end;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 7px;
+}
+
+.media_input-file-name {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+  font-size: 16px;
+}
+
+@media (max-width: 640px) {
+  .lyrics_trans-langs {
+    flex-wrap: wrap;
+  }
+
+  .add-meta_creators {
+    width: 100%;
+  }
+
+  .add-meta_info {
+    width: 100%;
+  }
+
+  .song-add-form_general-data {
+    width: 100%;
+  }
+  
+  .song-add-form_description {
+    width: 100%;
+  }
+
+  .media_label-container {
+    align-items: flex-start;
+    flex-direction: column;
+
+    border-bottom: 1px solid grey;
+  }
+
+  .media_label-desc {
+    margin-bottom: 5px;
+  }
+
+  .song-art_image-size {
+    align-self: flex-start;
+  }
+}
+
+/* Custom checkbox */
+
+.input-chbox {
+  position: fixed;
+
+  transform: scale(0);
+}
+
+.input-chbox-label::before {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 1px 5px 1px 1px;
+  vertical-align: bottom;
+
+  content: "";
+
+  background-image: url("../images/interface/checkbox.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+  background-color: black;
+}
+
+.input-chbox:checked + .input-chbox-label::before {
+  background-image: url("../images/interface/checkbox_checked.svg");
+}
+
+.input-chbox:focus ~ .input-chbox-label::before, 
+.input-chbox:active ~ .input-chbox-label::before {
+  outline: 1px solid #D90065;
+}
+
+.song-add-form_input-text {
+  display: inline-block;
+  margin: 0 0 0 auto;
+  padding: 5px;
+  border: 2px solid black;
+  background-color: #22A3BD;
+
+  color: white;
+}
+
+.song-add-form_input-text:focus {
+  outline: #D90065 2px solid;
+}
+
+.song-add-form_submit {
+  width: 100px;
+  height: 50px;
+  margin: 0 auto;
+}
+
+.visually-hidden {
+  position: fixed;
+  transform: scale(0);
+}

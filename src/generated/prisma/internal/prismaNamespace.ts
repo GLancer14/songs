@@ -2049,8 +2049,9 @@ export type MoodScalarFieldEnum = (typeof MoodScalarFieldEnum)[keyof typeof Mood
 
 
 export const AlbumsScalarFieldEnum = {
-  album_id: 'album_id',
+  id: 'id',
   name: 'name',
+  author: 'author',
   release_date: 'release_date',
   album_type: 'album_type',
   description: 'description',
@@ -2070,7 +2071,7 @@ export type Album_typesScalarFieldEnum = (typeof Album_typesScalarFieldEnum)[key
 
 export const Songs_albumsScalarFieldEnum = {
   song_id: 'song_id',
-  album_id: 'album_id'
+  id: 'id'
 } as const
 
 export type Songs_albumsScalarFieldEnum = (typeof Songs_albumsScalarFieldEnum)[keyof typeof Songs_albumsScalarFieldEnum]
@@ -2085,7 +2086,7 @@ export type CountriesScalarFieldEnum = (typeof CountriesScalarFieldEnum)[keyof t
 
 
 export const GroupesScalarFieldEnum = {
-  group_id: 'group_id',
+  id: 'id',
   name: 'name',
   year_of_foundation: 'year_of_foundation',
   country_id: 'country_id',
@@ -2098,14 +2099,14 @@ export type GroupesScalarFieldEnum = (typeof GroupesScalarFieldEnum)[keyof typeo
 
 export const Songs_groupesScalarFieldEnum = {
   song_id: 'song_id',
-  group_id: 'group_id'
+  id: 'id'
 } as const
 
 export type Songs_groupesScalarFieldEnum = (typeof Songs_groupesScalarFieldEnum)[keyof typeof Songs_groupesScalarFieldEnum]
 
 
 export const ProducersScalarFieldEnum = {
-  producer_id: 'producer_id',
+  id: 'id',
   name: 'name',
   begin_year: 'begin_year',
   country_id: 'country_id',
@@ -2118,17 +2119,16 @@ export type ProducersScalarFieldEnum = (typeof ProducersScalarFieldEnum)[keyof t
 
 export const Songs_producersScalarFieldEnum = {
   song_id: 'song_id',
-  producer_id: 'producer_id'
+  id: 'id'
 } as const
 
 export type Songs_producersScalarFieldEnum = (typeof Songs_producersScalarFieldEnum)[keyof typeof Songs_producersScalarFieldEnum]
 
 
 export const SingersScalarFieldEnum = {
-  singer_id: 'singer_id',
+  id: 'id',
   name: 'name',
-  singer_type: 'singer_type',
-  country: 'country',
+  country_id: 'country_id',
   biography: 'biography',
   image: 'image'
 } as const
@@ -2138,15 +2138,15 @@ export type SingersScalarFieldEnum = (typeof SingersScalarFieldEnum)[keyof typeo
 
 export const Songs_singersScalarFieldEnum = {
   song_id: 'song_id',
-  singer_id: 'singer_id'
+  id: 'id'
 } as const
 
 export type Songs_singersScalarFieldEnum = (typeof Songs_singersScalarFieldEnum)[keyof typeof Songs_singersScalarFieldEnum]
 
 
 export const GenresScalarFieldEnum = {
-  genre_id: 'genre_id',
-  genre: 'genre'
+  id: 'id',
+  name: 'name'
 } as const
 
 export type GenresScalarFieldEnum = (typeof GenresScalarFieldEnum)[keyof typeof GenresScalarFieldEnum]
@@ -2154,14 +2154,14 @@ export type GenresScalarFieldEnum = (typeof GenresScalarFieldEnum)[keyof typeof 
 
 export const Songs_genresScalarFieldEnum = {
   song_id: 'song_id',
-  genre_id: 'genre_id'
+  id: 'id'
 } as const
 
 export type Songs_genresScalarFieldEnum = (typeof Songs_genresScalarFieldEnum)[keyof typeof Songs_genresScalarFieldEnum]
 
 
 export const Lyrics_authorsScalarFieldEnum = {
-  lyrics_author_id: 'lyrics_author_id',
+  id: 'id',
   name: 'name',
   surname: 'surname',
   nickname: 'nickname',
@@ -2174,14 +2174,14 @@ export type Lyrics_authorsScalarFieldEnum = (typeof Lyrics_authorsScalarFieldEnu
 
 export const Songs_lyrics_authorsScalarFieldEnum = {
   song_id: 'song_id',
-  lyrics_author_id: 'lyrics_author_id'
+  id: 'id'
 } as const
 
 export type Songs_lyrics_authorsScalarFieldEnum = (typeof Songs_lyrics_authorsScalarFieldEnum)[keyof typeof Songs_lyrics_authorsScalarFieldEnum]
 
 
 export const Music_authorsScalarFieldEnum = {
-  music_author_id: 'music_author_id',
+  id: 'id',
   name: 'name',
   surname: 'surname',
   nickname: 'nickname',
@@ -2194,7 +2194,7 @@ export type Music_authorsScalarFieldEnum = (typeof Music_authorsScalarFieldEnum)
 
 export const Songs_music_authorsScalarFieldEnum = {
   song_id: 'song_id',
-  music_author_id: 'music_author_id'
+  id: 'id'
 } as const
 
 export type Songs_music_authorsScalarFieldEnum = (typeof Songs_music_authorsScalarFieldEnum)[keyof typeof Songs_music_authorsScalarFieldEnum]

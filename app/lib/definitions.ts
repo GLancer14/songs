@@ -34,14 +34,14 @@ export const AddSongSchema = z.object({
   original: z.string().nonempty(),
   english: z.string().optional(),
   russian: z.string().optional(),
-  music_authors_name: z.array(z.string()).optional(),
-  lyrics_authors_name: z.array(z.string()).optional(),
-  singers_name: z.array(z.string()).optional(),
-  producers_name: z.array(z.string()).optional(),
-  groupes_name: z.array(z.string()).optional(),
+  music_authors: z.array(z.string()).optional(),
+  lyrics_authors: z.array(z.string()).optional(),
+  singers: z.array(z.string()).optional(),
+  producers: z.array(z.string()).optional(),
+  groupes: z.array(z.string()).optional(),
   orig_lang: z.string().optional(),
-  genres_genre: z.array(z.string()).optional(),
-  albums_name: z.array(z.string()).optional(),
+  genres: z.array(z.string()).optional(),
+  albums: z.array(z.string()).optional(),
   mood: z.string().nonempty(),
   release_date: z.string().nonoptional(),
   bpm: z.string().optional(),
@@ -50,6 +50,26 @@ export const AddSongSchema = z.object({
 })
 
 export type AddSongSchemaType = z.infer<typeof AddSongSchema>;
+
+export const AddAlbumSchema = z.object({
+  album_name: z.string().nonempty(),
+  album_author: z.string().nonempty(),
+  album_description: z.string().optional(),
+  album_type: z.string().nonoptional(),
+  release_date: z.string().nonoptional(),
+  title_image: z.file().optional(),
+})
+
+export type AddAlbumSchemaType = z.infer<typeof AddAlbumSchema>;
+
+export const AddSingerSchema = z.object({
+  singer_name: z.string().nonempty(),
+  singer_country: z.string().nonempty(),
+  biography: z.string().optional(),
+  title_image: z.file().optional(),
+})
+
+export type AddSingerSchemaType = z.infer<typeof AddSingerSchema>;
  
 export type FormState =
   {

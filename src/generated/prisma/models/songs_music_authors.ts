@@ -28,54 +28,54 @@ export type AggregateSongs_music_authors = {
 
 export type Songs_music_authorsAvgAggregateOutputType = {
   song_id: number | null
-  music_author_id: number | null
+  id: number | null
 }
 
 export type Songs_music_authorsSumAggregateOutputType = {
   song_id: number | null
-  music_author_id: number | null
+  id: number | null
 }
 
 export type Songs_music_authorsMinAggregateOutputType = {
   song_id: number | null
-  music_author_id: number | null
+  id: number | null
 }
 
 export type Songs_music_authorsMaxAggregateOutputType = {
   song_id: number | null
-  music_author_id: number | null
+  id: number | null
 }
 
 export type Songs_music_authorsCountAggregateOutputType = {
   song_id: number
-  music_author_id: number
+  id: number
   _all: number
 }
 
 
 export type Songs_music_authorsAvgAggregateInputType = {
   song_id?: true
-  music_author_id?: true
+  id?: true
 }
 
 export type Songs_music_authorsSumAggregateInputType = {
   song_id?: true
-  music_author_id?: true
+  id?: true
 }
 
 export type Songs_music_authorsMinAggregateInputType = {
   song_id?: true
-  music_author_id?: true
+  id?: true
 }
 
 export type Songs_music_authorsMaxAggregateInputType = {
   song_id?: true
-  music_author_id?: true
+  id?: true
 }
 
 export type Songs_music_authorsCountAggregateInputType = {
   song_id?: true
-  music_author_id?: true
+  id?: true
   _all?: true
 }
 
@@ -167,7 +167,7 @@ export type songs_music_authorsGroupByArgs<ExtArgs extends runtime.Types.Extensi
 
 export type Songs_music_authorsGroupByOutputType = {
   song_id: number
-  music_author_id: number
+  id: number
   _count: Songs_music_authorsCountAggregateOutputType | null
   _avg: Songs_music_authorsAvgAggregateOutputType | null
   _sum: Songs_music_authorsSumAggregateOutputType | null
@@ -195,32 +195,32 @@ export type songs_music_authorsWhereInput = {
   OR?: Prisma.songs_music_authorsWhereInput[]
   NOT?: Prisma.songs_music_authorsWhereInput | Prisma.songs_music_authorsWhereInput[]
   song_id?: Prisma.IntFilter<"songs_music_authors"> | number
-  music_author_id?: Prisma.IntFilter<"songs_music_authors"> | number
+  id?: Prisma.IntFilter<"songs_music_authors"> | number
   songs?: Prisma.XOR<Prisma.SongsScalarRelationFilter, Prisma.songsWhereInput>
   music_authors?: Prisma.XOR<Prisma.Music_authorsScalarRelationFilter, Prisma.music_authorsWhereInput>
 }
 
 export type songs_music_authorsOrderByWithRelationInput = {
   song_id?: Prisma.SortOrder
-  music_author_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   songs?: Prisma.songsOrderByWithRelationInput
   music_authors?: Prisma.music_authorsOrderByWithRelationInput
 }
 
 export type songs_music_authorsWhereUniqueInput = Prisma.AtLeast<{
-  song_id_music_author_id?: Prisma.songs_music_authorsSong_idMusic_author_idCompoundUniqueInput
+  song_id_id?: Prisma.songs_music_authorsSong_idIdCompoundUniqueInput
   AND?: Prisma.songs_music_authorsWhereInput | Prisma.songs_music_authorsWhereInput[]
   OR?: Prisma.songs_music_authorsWhereInput[]
   NOT?: Prisma.songs_music_authorsWhereInput | Prisma.songs_music_authorsWhereInput[]
   song_id?: Prisma.IntFilter<"songs_music_authors"> | number
-  music_author_id?: Prisma.IntFilter<"songs_music_authors"> | number
+  id?: Prisma.IntFilter<"songs_music_authors"> | number
   songs?: Prisma.XOR<Prisma.SongsScalarRelationFilter, Prisma.songsWhereInput>
   music_authors?: Prisma.XOR<Prisma.Music_authorsScalarRelationFilter, Prisma.music_authorsWhereInput>
-}, "song_id_music_author_id">
+}, "song_id_id">
 
 export type songs_music_authorsOrderByWithAggregationInput = {
   song_id?: Prisma.SortOrder
-  music_author_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   _count?: Prisma.songs_music_authorsCountOrderByAggregateInput
   _avg?: Prisma.songs_music_authorsAvgOrderByAggregateInput
   _max?: Prisma.songs_music_authorsMaxOrderByAggregateInput
@@ -233,7 +233,7 @@ export type songs_music_authorsScalarWhereWithAggregatesInput = {
   OR?: Prisma.songs_music_authorsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.songs_music_authorsScalarWhereWithAggregatesInput | Prisma.songs_music_authorsScalarWhereWithAggregatesInput[]
   song_id?: Prisma.IntWithAggregatesFilter<"songs_music_authors"> | number
-  music_author_id?: Prisma.IntWithAggregatesFilter<"songs_music_authors"> | number
+  id?: Prisma.IntWithAggregatesFilter<"songs_music_authors"> | number
 }
 
 export type songs_music_authorsCreateInput = {
@@ -243,7 +243,7 @@ export type songs_music_authorsCreateInput = {
 
 export type songs_music_authorsUncheckedCreateInput = {
   song_id: number
-  music_author_id: number
+  id: number
 }
 
 export type songs_music_authorsUpdateInput = {
@@ -253,12 +253,12 @@ export type songs_music_authorsUpdateInput = {
 
 export type songs_music_authorsUncheckedUpdateInput = {
   song_id?: Prisma.IntFieldUpdateOperationsInput | number
-  music_author_id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type songs_music_authorsCreateManyInput = {
   song_id: number
-  music_author_id: number
+  id: number
 }
 
 export type songs_music_authorsUpdateManyMutationInput = {
@@ -267,7 +267,7 @@ export type songs_music_authorsUpdateManyMutationInput = {
 
 export type songs_music_authorsUncheckedUpdateManyInput = {
   song_id?: Prisma.IntFieldUpdateOperationsInput | number
-  music_author_id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type Songs_music_authorsListRelationFilter = {
@@ -280,34 +280,34 @@ export type songs_music_authorsOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type songs_music_authorsSong_idMusic_author_idCompoundUniqueInput = {
+export type songs_music_authorsSong_idIdCompoundUniqueInput = {
   song_id: number
-  music_author_id: number
+  id: number
 }
 
 export type songs_music_authorsCountOrderByAggregateInput = {
   song_id?: Prisma.SortOrder
-  music_author_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
 }
 
 export type songs_music_authorsAvgOrderByAggregateInput = {
   song_id?: Prisma.SortOrder
-  music_author_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
 }
 
 export type songs_music_authorsMaxOrderByAggregateInput = {
   song_id?: Prisma.SortOrder
-  music_author_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
 }
 
 export type songs_music_authorsMinOrderByAggregateInput = {
   song_id?: Prisma.SortOrder
-  music_author_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
 }
 
 export type songs_music_authorsSumOrderByAggregateInput = {
   song_id?: Prisma.SortOrder
-  music_author_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
 }
 
 export type songs_music_authorsCreateNestedManyWithoutSongsInput = {
@@ -399,7 +399,7 @@ export type songs_music_authorsCreateWithoutSongsInput = {
 }
 
 export type songs_music_authorsUncheckedCreateWithoutSongsInput = {
-  music_author_id: number
+  id: number
 }
 
 export type songs_music_authorsCreateOrConnectWithoutSongsInput = {
@@ -433,7 +433,7 @@ export type songs_music_authorsScalarWhereInput = {
   OR?: Prisma.songs_music_authorsScalarWhereInput[]
   NOT?: Prisma.songs_music_authorsScalarWhereInput | Prisma.songs_music_authorsScalarWhereInput[]
   song_id?: Prisma.IntFilter<"songs_music_authors"> | number
-  music_author_id?: Prisma.IntFilter<"songs_music_authors"> | number
+  id?: Prisma.IntFilter<"songs_music_authors"> | number
 }
 
 export type songs_music_authorsCreateWithoutMusic_authorsInput = {
@@ -471,7 +471,7 @@ export type songs_music_authorsUpdateManyWithWhereWithoutMusic_authorsInput = {
 }
 
 export type songs_music_authorsCreateManySongsInput = {
-  music_author_id: number
+  id: number
 }
 
 export type songs_music_authorsUpdateWithoutSongsInput = {
@@ -479,11 +479,11 @@ export type songs_music_authorsUpdateWithoutSongsInput = {
 }
 
 export type songs_music_authorsUncheckedUpdateWithoutSongsInput = {
-  music_author_id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type songs_music_authorsUncheckedUpdateManyWithoutSongsInput = {
-  music_author_id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type songs_music_authorsCreateManyMusic_authorsInput = {
@@ -506,31 +506,31 @@ export type songs_music_authorsUncheckedUpdateManyWithoutMusic_authorsInput = {
 
 export type songs_music_authorsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   song_id?: boolean
-  music_author_id?: boolean
+  id?: boolean
   songs?: boolean | Prisma.songsDefaultArgs<ExtArgs>
   music_authors?: boolean | Prisma.music_authorsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["songs_music_authors"]>
 
 export type songs_music_authorsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   song_id?: boolean
-  music_author_id?: boolean
+  id?: boolean
   songs?: boolean | Prisma.songsDefaultArgs<ExtArgs>
   music_authors?: boolean | Prisma.music_authorsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["songs_music_authors"]>
 
 export type songs_music_authorsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   song_id?: boolean
-  music_author_id?: boolean
+  id?: boolean
   songs?: boolean | Prisma.songsDefaultArgs<ExtArgs>
   music_authors?: boolean | Prisma.music_authorsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["songs_music_authors"]>
 
 export type songs_music_authorsSelectScalar = {
   song_id?: boolean
-  music_author_id?: boolean
+  id?: boolean
 }
 
-export type songs_music_authorsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"song_id" | "music_author_id", ExtArgs["result"]["songs_music_authors"]>
+export type songs_music_authorsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"song_id" | "id", ExtArgs["result"]["songs_music_authors"]>
 export type songs_music_authorsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   songs?: boolean | Prisma.songsDefaultArgs<ExtArgs>
   music_authors?: boolean | Prisma.music_authorsDefaultArgs<ExtArgs>
@@ -552,7 +552,7 @@ export type $songs_music_authorsPayload<ExtArgs extends runtime.Types.Extensions
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     song_id: number
-    music_author_id: number
+    id: number
   }, ExtArgs["result"]["songs_music_authors"]>
   composites: {}
 }
@@ -979,7 +979,7 @@ export interface Prisma__songs_music_authorsClient<T, Null = never, ExtArgs exte
  */
 export interface songs_music_authorsFieldRefs {
   readonly song_id: Prisma.FieldRef<"songs_music_authors", 'Int'>
-  readonly music_author_id: Prisma.FieldRef<"songs_music_authors", 'Int'>
+  readonly id: Prisma.FieldRef<"songs_music_authors", 'Int'>
 }
     
 

@@ -7,6 +7,15 @@ import userIam from "../userIam";
 import { writeFile } from "fs";
 import path from "path";
 
+export type ArrayValues = 
+  "music_authors" |
+  "lyrics_authors" |
+  "singers" |
+  "producers" |
+  "groupes" |
+  "genres" |
+  "albums";
+
 export default async function editSong(
   state: AddSongSchemaType, formData: FormData
 ) {
@@ -20,14 +29,14 @@ export default async function editSong(
     original: formData.get("original"),
     english: formData.get("english"),
     russian: formData.get("russian"),
-    music_authors_name: formData.getAll("music_authors_name"),
-    lyrics_authors_name: formData.getAll("lyrics_authors_name"),
-    singers_name: formData.getAll("singers_name"),
-    producers_name: formData.getAll("producers_name"),
-    groupes_grope_name: formData.getAll("groupes_name"),
+    music_authors: formData.getAll("music_authors"),
+    lyrics_authors: formData.getAll("lyrics_authors"),
+    singers: formData.getAll("singers"),
+    producers: formData.getAll("producers"),
+    groupes: formData.getAll("groupes"),
     orig_lang: formData.get("orig_lang"),
-    genres_genre: formData.getAll("genres_genre"),
-    albums_name: formData.getAll("albums_name"),
+    genres: formData.getAll("genres"),
+    albums: formData.getAll("albums"),
     mood: formData.get("mood"),
     release_date: formData.get("release_date"),
     bpm: formData.get("bpm"),
@@ -118,7 +127,63 @@ export default async function editSong(
     });
   }
 
-  if (songData.title_image && songData.title_image.size !== 0) {
+  const arrays: Array<ArrayValues> = [
+    "music_authors",
+    "lyrics_authors",
+    "singers",
+    "producers",
+    "groupes",
+    "genres",
+    "albums",
+  ]
+
+  function sendSongsArray(tableName: ArrayValues) {
+    if (songData[tableName] && songData[tableName].length > 0) {
+      songData[tableName].forEach(async (author) => {
+        const existingAuthor = await prisma[tableName].findFirst({
+          where: {
+            name: author,
+          },
+          select: {
+            id: true,
+          }
+        });
+
+        if (existingAuthor) {
+          await prisma[`songs_${tableName}`].create({
+            data: {
+              song_id: songCreateResult.song_id,
+              id: existingAuthor.id,
+            }
+          });
+        } else {
+          const newMusicAuthor = await prisma[tableName].create({
+            data: {
+              name: author,
+            },
+            select: {
+              id: true,
+            }
+          });
+
+          await prisma[`songs_${tableName}`].create({
+            data: {
+              song_id: songCreateResult.song_id,
+              id: newMusicAuthor.id,
+            }
+          });
+        }
+      });
+    }
+  }
+
+  arrays.forEach(arrayData => sendSongsArray(arrayData));
+
+  if (songData.title_image) {
+    if (songData.title_image.size !== 0) {
+      return songData.title_image = undefined;
+    }
+
     const file = songData.title_image;
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
@@ -127,7 +192,11 @@ export default async function editSong(
     })
   }
 
-  if (songData.orig_audio && songData.orig_audio.size !== 0) {
+  if (songData.orig_audio) {
+    if (songData.orig_audio.size !== 0) {
+      return songData.orig_audio = undefined;
+    }
+
     const file = songData.orig_audio;
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);

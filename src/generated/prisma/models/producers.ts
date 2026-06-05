@@ -27,19 +27,19 @@ export type AggregateProducers = {
 }
 
 export type ProducersAvgAggregateOutputType = {
-  producer_id: number | null
+  id: number | null
   begin_year: number | null
   country_id: number | null
 }
 
 export type ProducersSumAggregateOutputType = {
-  producer_id: number | null
+  id: number | null
   begin_year: number | null
   country_id: number | null
 }
 
 export type ProducersMinAggregateOutputType = {
-  producer_id: number | null
+  id: number | null
   name: string | null
   begin_year: number | null
   country_id: number | null
@@ -48,7 +48,7 @@ export type ProducersMinAggregateOutputType = {
 }
 
 export type ProducersMaxAggregateOutputType = {
-  producer_id: number | null
+  id: number | null
   name: string | null
   begin_year: number | null
   country_id: number | null
@@ -57,7 +57,7 @@ export type ProducersMaxAggregateOutputType = {
 }
 
 export type ProducersCountAggregateOutputType = {
-  producer_id: number
+  id: number
   name: number
   begin_year: number
   country_id: number
@@ -68,19 +68,19 @@ export type ProducersCountAggregateOutputType = {
 
 
 export type ProducersAvgAggregateInputType = {
-  producer_id?: true
+  id?: true
   begin_year?: true
   country_id?: true
 }
 
 export type ProducersSumAggregateInputType = {
-  producer_id?: true
+  id?: true
   begin_year?: true
   country_id?: true
 }
 
 export type ProducersMinAggregateInputType = {
-  producer_id?: true
+  id?: true
   name?: true
   begin_year?: true
   country_id?: true
@@ -89,7 +89,7 @@ export type ProducersMinAggregateInputType = {
 }
 
 export type ProducersMaxAggregateInputType = {
-  producer_id?: true
+  id?: true
   name?: true
   begin_year?: true
   country_id?: true
@@ -98,7 +98,7 @@ export type ProducersMaxAggregateInputType = {
 }
 
 export type ProducersCountAggregateInputType = {
-  producer_id?: true
+  id?: true
   name?: true
   begin_year?: true
   country_id?: true
@@ -194,7 +194,7 @@ export type producersGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 export type ProducersGroupByOutputType = {
-  producer_id: number
+  id: number
   name: string
   begin_year: number | null
   country_id: number | null
@@ -226,7 +226,7 @@ export type producersWhereInput = {
   AND?: Prisma.producersWhereInput | Prisma.producersWhereInput[]
   OR?: Prisma.producersWhereInput[]
   NOT?: Prisma.producersWhereInput | Prisma.producersWhereInput[]
-  producer_id?: Prisma.IntFilter<"producers"> | number
+  id?: Prisma.IntFilter<"producers"> | number
   name?: Prisma.StringFilter<"producers"> | string
   begin_year?: Prisma.IntNullableFilter<"producers"> | number | null
   country_id?: Prisma.IntNullableFilter<"producers"> | number | null
@@ -237,7 +237,7 @@ export type producersWhereInput = {
 }
 
 export type producersOrderByWithRelationInput = {
-  producer_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   begin_year?: Prisma.SortOrderInput | Prisma.SortOrder
   country_id?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -248,7 +248,7 @@ export type producersOrderByWithRelationInput = {
 }
 
 export type producersWhereUniqueInput = Prisma.AtLeast<{
-  producer_id?: number
+  id?: number
   AND?: Prisma.producersWhereInput | Prisma.producersWhereInput[]
   OR?: Prisma.producersWhereInput[]
   NOT?: Prisma.producersWhereInput | Prisma.producersWhereInput[]
@@ -259,10 +259,10 @@ export type producersWhereUniqueInput = Prisma.AtLeast<{
   image?: Prisma.StringNullableFilter<"producers"> | string | null
   countries?: Prisma.XOR<Prisma.CountriesNullableScalarRelationFilter, Prisma.countriesWhereInput> | null
   songsProducers?: Prisma.Songs_producersListRelationFilter
-}, "producer_id">
+}, "id">
 
 export type producersOrderByWithAggregationInput = {
-  producer_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   begin_year?: Prisma.SortOrderInput | Prisma.SortOrder
   country_id?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -279,7 +279,7 @@ export type producersScalarWhereWithAggregatesInput = {
   AND?: Prisma.producersScalarWhereWithAggregatesInput | Prisma.producersScalarWhereWithAggregatesInput[]
   OR?: Prisma.producersScalarWhereWithAggregatesInput[]
   NOT?: Prisma.producersScalarWhereWithAggregatesInput | Prisma.producersScalarWhereWithAggregatesInput[]
-  producer_id?: Prisma.IntWithAggregatesFilter<"producers"> | number
+  id?: Prisma.IntWithAggregatesFilter<"producers"> | number
   name?: Prisma.StringWithAggregatesFilter<"producers"> | string
   begin_year?: Prisma.IntNullableWithAggregatesFilter<"producers"> | number | null
   country_id?: Prisma.IntNullableWithAggregatesFilter<"producers"> | number | null
@@ -297,7 +297,7 @@ export type producersCreateInput = {
 }
 
 export type producersUncheckedCreateInput = {
-  producer_id?: number
+  id?: number
   name: string
   begin_year?: number | null
   country_id?: number | null
@@ -316,7 +316,7 @@ export type producersUpdateInput = {
 }
 
 export type producersUncheckedUpdateInput = {
-  producer_id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   begin_year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   country_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -326,7 +326,7 @@ export type producersUncheckedUpdateInput = {
 }
 
 export type producersCreateManyInput = {
-  producer_id?: number
+  id?: number
   name: string
   begin_year?: number | null
   country_id?: number | null
@@ -342,7 +342,7 @@ export type producersUpdateManyMutationInput = {
 }
 
 export type producersUncheckedUpdateManyInput = {
-  producer_id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   begin_year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   country_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -361,7 +361,7 @@ export type producersOrderByRelationAggregateInput = {
 }
 
 export type producersCountOrderByAggregateInput = {
-  producer_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   begin_year?: Prisma.SortOrder
   country_id?: Prisma.SortOrder
@@ -370,13 +370,13 @@ export type producersCountOrderByAggregateInput = {
 }
 
 export type producersAvgOrderByAggregateInput = {
-  producer_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   begin_year?: Prisma.SortOrder
   country_id?: Prisma.SortOrder
 }
 
 export type producersMaxOrderByAggregateInput = {
-  producer_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   begin_year?: Prisma.SortOrder
   country_id?: Prisma.SortOrder
@@ -385,7 +385,7 @@ export type producersMaxOrderByAggregateInput = {
 }
 
 export type producersMinOrderByAggregateInput = {
-  producer_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   begin_year?: Prisma.SortOrder
   country_id?: Prisma.SortOrder
@@ -394,7 +394,7 @@ export type producersMinOrderByAggregateInput = {
 }
 
 export type producersSumOrderByAggregateInput = {
-  producer_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   begin_year?: Prisma.SortOrder
   country_id?: Prisma.SortOrder
 }
@@ -469,7 +469,7 @@ export type producersCreateWithoutCountriesInput = {
 }
 
 export type producersUncheckedCreateWithoutCountriesInput = {
-  producer_id?: number
+  id?: number
   name: string
   begin_year?: number | null
   biography?: string | null
@@ -507,7 +507,7 @@ export type producersScalarWhereInput = {
   AND?: Prisma.producersScalarWhereInput | Prisma.producersScalarWhereInput[]
   OR?: Prisma.producersScalarWhereInput[]
   NOT?: Prisma.producersScalarWhereInput | Prisma.producersScalarWhereInput[]
-  producer_id?: Prisma.IntFilter<"producers"> | number
+  id?: Prisma.IntFilter<"producers"> | number
   name?: Prisma.StringFilter<"producers"> | string
   begin_year?: Prisma.IntNullableFilter<"producers"> | number | null
   country_id?: Prisma.IntNullableFilter<"producers"> | number | null
@@ -524,7 +524,7 @@ export type producersCreateWithoutSongsProducersInput = {
 }
 
 export type producersUncheckedCreateWithoutSongsProducersInput = {
-  producer_id?: number
+  id?: number
   name: string
   begin_year?: number | null
   country_id?: number | null
@@ -557,7 +557,7 @@ export type producersUpdateWithoutSongsProducersInput = {
 }
 
 export type producersUncheckedUpdateWithoutSongsProducersInput = {
-  producer_id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   begin_year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   country_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -566,7 +566,7 @@ export type producersUncheckedUpdateWithoutSongsProducersInput = {
 }
 
 export type producersCreateManyCountriesInput = {
-  producer_id?: number
+  id?: number
   name: string
   begin_year?: number | null
   biography?: string | null
@@ -582,7 +582,7 @@ export type producersUpdateWithoutCountriesInput = {
 }
 
 export type producersUncheckedUpdateWithoutCountriesInput = {
-  producer_id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   begin_year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   biography?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -591,7 +591,7 @@ export type producersUncheckedUpdateWithoutCountriesInput = {
 }
 
 export type producersUncheckedUpdateManyWithoutCountriesInput = {
-  producer_id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   begin_year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   biography?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -630,7 +630,7 @@ export type ProducersCountOutputTypeCountSongsProducersArgs<ExtArgs extends runt
 
 
 export type producersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  producer_id?: boolean
+  id?: boolean
   name?: boolean
   begin_year?: boolean
   country_id?: boolean
@@ -642,7 +642,7 @@ export type producersSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
 }, ExtArgs["result"]["producers"]>
 
 export type producersSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  producer_id?: boolean
+  id?: boolean
   name?: boolean
   begin_year?: boolean
   country_id?: boolean
@@ -652,7 +652,7 @@ export type producersSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
 }, ExtArgs["result"]["producers"]>
 
 export type producersSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  producer_id?: boolean
+  id?: boolean
   name?: boolean
   begin_year?: boolean
   country_id?: boolean
@@ -662,7 +662,7 @@ export type producersSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
 }, ExtArgs["result"]["producers"]>
 
 export type producersSelectScalar = {
-  producer_id?: boolean
+  id?: boolean
   name?: boolean
   begin_year?: boolean
   country_id?: boolean
@@ -670,7 +670,7 @@ export type producersSelectScalar = {
   image?: boolean
 }
 
-export type producersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"producer_id" | "name" | "begin_year" | "country_id" | "biography" | "image", ExtArgs["result"]["producers"]>
+export type producersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "begin_year" | "country_id" | "biography" | "image", ExtArgs["result"]["producers"]>
 export type producersInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   countries?: boolean | Prisma.producers$countriesArgs<ExtArgs>
   songsProducers?: boolean | Prisma.producers$songsProducersArgs<ExtArgs>
@@ -690,7 +690,7 @@ export type $producersPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     songsProducers: Prisma.$songs_producersPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    producer_id: number
+    id: number
     name: string
     begin_year: number | null
     country_id: number | null
@@ -779,8 +779,8 @@ export interface producersDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * // Get first 10 Producers
    * const producers = await prisma.producers.findMany({ take: 10 })
    * 
-   * // Only select the `producer_id`
-   * const producersWithProducer_idOnly = await prisma.producers.findMany({ select: { producer_id: true } })
+   * // Only select the `id`
+   * const producersWithIdOnly = await prisma.producers.findMany({ select: { id: true } })
    * 
    */
   findMany<T extends producersFindManyArgs>(args?: Prisma.SelectSubset<T, producersFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$producersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -824,9 +824,9 @@ export interface producersDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    *   ]
    * })
    * 
-   * // Create many Producers and only return the `producer_id`
-   * const producersWithProducer_idOnly = await prisma.producers.createManyAndReturn({
-   *   select: { producer_id: true },
+   * // Create many Producers and only return the `id`
+   * const producersWithIdOnly = await prisma.producers.createManyAndReturn({
+   *   select: { id: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -915,9 +915,9 @@ export interface producersDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    *   ]
    * })
    * 
-   * // Update zero or more Producers and only return the `producer_id`
-   * const producersWithProducer_idOnly = await prisma.producers.updateManyAndReturn({
-   *   select: { producer_id: true },
+   * // Update zero or more Producers and only return the `id`
+   * const producersWithIdOnly = await prisma.producers.updateManyAndReturn({
+   *   select: { id: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1121,7 +1121,7 @@ export interface Prisma__producersClient<T, Null = never, ExtArgs extends runtim
  * Fields of the producers model
  */
 export interface producersFieldRefs {
-  readonly producer_id: Prisma.FieldRef<"producers", 'Int'>
+  readonly id: Prisma.FieldRef<"producers", 'Int'>
   readonly name: Prisma.FieldRef<"producers", 'String'>
   readonly begin_year: Prisma.FieldRef<"producers", 'Int'>
   readonly country_id: Prisma.FieldRef<"producers", 'Int'>

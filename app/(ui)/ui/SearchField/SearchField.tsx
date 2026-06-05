@@ -100,7 +100,7 @@ const SearchField = ({
                 type="text"
                 readOnly={true}
                 value={selectedField}
-                name={tableData.name + `_${tableData.fields}`}
+                name={tableData.name}
               />
               <span onClick={() => {
                 setSelectedFields(selectedFields.filter(droppedSelectedField => {

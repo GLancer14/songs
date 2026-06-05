@@ -212,7 +212,7 @@ const EditSong = ({
             <label className="flex w-full justify-center gap-2">
               <span className="text-white">Mood:</span>
               <select className="" name="mood" size={1}>
-                <option className="text-white" value="none" defaultChecked>none </option>
+                <option className="text-white" value="none" defaultChecked>none</option>
                 {moods.map((mood, ind) => {
                   return <Mood key={ind} mood={mood} />
                 })}
@@ -264,7 +264,7 @@ const EditSong = ({
               type="file"
               name="orig_audio"
               id="upload-orig-audio"
-              accept="audio/mp3"
+              accept="audio/mp3,audio/flac,audio/aac/mp3"
               tabIndex={-1}
             />
             {/* <div className="" tabIndex={0}>Add</div> */}

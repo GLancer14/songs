@@ -27,51 +27,51 @@ export type AggregateGenres = {
 }
 
 export type GenresAvgAggregateOutputType = {
-  genre_id: number | null
+  id: number | null
 }
 
 export type GenresSumAggregateOutputType = {
-  genre_id: number | null
+  id: number | null
 }
 
 export type GenresMinAggregateOutputType = {
-  genre_id: number | null
-  genre: string | null
+  id: number | null
+  name: string | null
 }
 
 export type GenresMaxAggregateOutputType = {
-  genre_id: number | null
-  genre: string | null
+  id: number | null
+  name: string | null
 }
 
 export type GenresCountAggregateOutputType = {
-  genre_id: number
-  genre: number
+  id: number
+  name: number
   _all: number
 }
 
 
 export type GenresAvgAggregateInputType = {
-  genre_id?: true
+  id?: true
 }
 
 export type GenresSumAggregateInputType = {
-  genre_id?: true
+  id?: true
 }
 
 export type GenresMinAggregateInputType = {
-  genre_id?: true
-  genre?: true
+  id?: true
+  name?: true
 }
 
 export type GenresMaxAggregateInputType = {
-  genre_id?: true
-  genre?: true
+  id?: true
+  name?: true
 }
 
 export type GenresCountAggregateInputType = {
-  genre_id?: true
-  genre?: true
+  id?: true
+  name?: true
   _all?: true
 }
 
@@ -162,8 +162,8 @@ export type genresGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 export type GenresGroupByOutputType = {
-  genre_id: number
-  genre: string
+  id: number
+  name: string
   _count: GenresCountAggregateOutputType | null
   _avg: GenresAvgAggregateOutputType | null
   _sum: GenresSumAggregateOutputType | null
@@ -190,29 +190,29 @@ export type genresWhereInput = {
   AND?: Prisma.genresWhereInput | Prisma.genresWhereInput[]
   OR?: Prisma.genresWhereInput[]
   NOT?: Prisma.genresWhereInput | Prisma.genresWhereInput[]
-  genre_id?: Prisma.IntFilter<"genres"> | number
-  genre?: Prisma.StringFilter<"genres"> | string
+  id?: Prisma.IntFilter<"genres"> | number
+  name?: Prisma.StringFilter<"genres"> | string
   songsGenres?: Prisma.Songs_genresListRelationFilter
 }
 
 export type genresOrderByWithRelationInput = {
-  genre_id?: Prisma.SortOrder
-  genre?: Prisma.SortOrder
+  id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   songsGenres?: Prisma.songs_genresOrderByRelationAggregateInput
 }
 
 export type genresWhereUniqueInput = Prisma.AtLeast<{
-  genre_id?: number
+  id?: number
   AND?: Prisma.genresWhereInput | Prisma.genresWhereInput[]
   OR?: Prisma.genresWhereInput[]
   NOT?: Prisma.genresWhereInput | Prisma.genresWhereInput[]
-  genre?: Prisma.StringFilter<"genres"> | string
+  name?: Prisma.StringFilter<"genres"> | string
   songsGenres?: Prisma.Songs_genresListRelationFilter
-}, "genre_id">
+}, "id">
 
 export type genresOrderByWithAggregationInput = {
-  genre_id?: Prisma.SortOrder
-  genre?: Prisma.SortOrder
+  id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   _count?: Prisma.genresCountOrderByAggregateInput
   _avg?: Prisma.genresAvgOrderByAggregateInput
   _max?: Prisma.genresMaxOrderByAggregateInput
@@ -224,67 +224,67 @@ export type genresScalarWhereWithAggregatesInput = {
   AND?: Prisma.genresScalarWhereWithAggregatesInput | Prisma.genresScalarWhereWithAggregatesInput[]
   OR?: Prisma.genresScalarWhereWithAggregatesInput[]
   NOT?: Prisma.genresScalarWhereWithAggregatesInput | Prisma.genresScalarWhereWithAggregatesInput[]
-  genre_id?: Prisma.IntWithAggregatesFilter<"genres"> | number
-  genre?: Prisma.StringWithAggregatesFilter<"genres"> | string
+  id?: Prisma.IntWithAggregatesFilter<"genres"> | number
+  name?: Prisma.StringWithAggregatesFilter<"genres"> | string
 }
 
 export type genresCreateInput = {
-  genre: string
+  name: string
   songsGenres?: Prisma.songs_genresCreateNestedManyWithoutGenresInput
 }
 
 export type genresUncheckedCreateInput = {
-  genre_id?: number
-  genre: string
+  id?: number
+  name: string
   songsGenres?: Prisma.songs_genresUncheckedCreateNestedManyWithoutGenresInput
 }
 
 export type genresUpdateInput = {
-  genre?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   songsGenres?: Prisma.songs_genresUpdateManyWithoutGenresNestedInput
 }
 
 export type genresUncheckedUpdateInput = {
-  genre_id?: Prisma.IntFieldUpdateOperationsInput | number
-  genre?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   songsGenres?: Prisma.songs_genresUncheckedUpdateManyWithoutGenresNestedInput
 }
 
 export type genresCreateManyInput = {
-  genre_id?: number
-  genre: string
+  id?: number
+  name: string
 }
 
 export type genresUpdateManyMutationInput = {
-  genre?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type genresUncheckedUpdateManyInput = {
-  genre_id?: Prisma.IntFieldUpdateOperationsInput | number
-  genre?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type genresCountOrderByAggregateInput = {
-  genre_id?: Prisma.SortOrder
-  genre?: Prisma.SortOrder
+  id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
 }
 
 export type genresAvgOrderByAggregateInput = {
-  genre_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
 }
 
 export type genresMaxOrderByAggregateInput = {
-  genre_id?: Prisma.SortOrder
-  genre?: Prisma.SortOrder
+  id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
 }
 
 export type genresMinOrderByAggregateInput = {
-  genre_id?: Prisma.SortOrder
-  genre?: Prisma.SortOrder
+  id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
 }
 
 export type genresSumOrderByAggregateInput = {
-  genre_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
 }
 
 export type GenresScalarRelationFilter = {
@@ -307,12 +307,12 @@ export type genresUpdateOneRequiredWithoutSongsGenresNestedInput = {
 }
 
 export type genresCreateWithoutSongsGenresInput = {
-  genre: string
+  name: string
 }
 
 export type genresUncheckedCreateWithoutSongsGenresInput = {
-  genre_id?: number
-  genre: string
+  id?: number
+  name: string
 }
 
 export type genresCreateOrConnectWithoutSongsGenresInput = {
@@ -332,12 +332,12 @@ export type genresUpdateToOneWithWhereWithoutSongsGenresInput = {
 }
 
 export type genresUpdateWithoutSongsGenresInput = {
-  genre?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type genresUncheckedUpdateWithoutSongsGenresInput = {
-  genre_id?: Prisma.IntFieldUpdateOperationsInput | number
-  genre?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -372,28 +372,28 @@ export type GenresCountOutputTypeCountSongsGenresArgs<ExtArgs extends runtime.Ty
 
 
 export type genresSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  genre_id?: boolean
-  genre?: boolean
+  id?: boolean
+  name?: boolean
   songsGenres?: boolean | Prisma.genres$songsGenresArgs<ExtArgs>
   _count?: boolean | Prisma.GenresCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["genres"]>
 
 export type genresSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  genre_id?: boolean
-  genre?: boolean
+  id?: boolean
+  name?: boolean
 }, ExtArgs["result"]["genres"]>
 
 export type genresSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  genre_id?: boolean
-  genre?: boolean
+  id?: boolean
+  name?: boolean
 }, ExtArgs["result"]["genres"]>
 
 export type genresSelectScalar = {
-  genre_id?: boolean
-  genre?: boolean
+  id?: boolean
+  name?: boolean
 }
 
-export type genresOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"genre_id" | "genre", ExtArgs["result"]["genres"]>
+export type genresOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name", ExtArgs["result"]["genres"]>
 export type genresInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   songsGenres?: boolean | Prisma.genres$songsGenresArgs<ExtArgs>
   _count?: boolean | Prisma.GenresCountOutputTypeDefaultArgs<ExtArgs>
@@ -407,8 +407,8 @@ export type $genresPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     songsGenres: Prisma.$songs_genresPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    genre_id: number
-    genre: string
+    id: number
+    name: string
   }, ExtArgs["result"]["genres"]>
   composites: {}
 }
@@ -492,8 +492,8 @@ export interface genresDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    * // Get first 10 Genres
    * const genres = await prisma.genres.findMany({ take: 10 })
    * 
-   * // Only select the `genre_id`
-   * const genresWithGenre_idOnly = await prisma.genres.findMany({ select: { genre_id: true } })
+   * // Only select the `id`
+   * const genresWithIdOnly = await prisma.genres.findMany({ select: { id: true } })
    * 
    */
   findMany<T extends genresFindManyArgs>(args?: Prisma.SelectSubset<T, genresFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$genresPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -537,9 +537,9 @@ export interface genresDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    *   ]
    * })
    * 
-   * // Create many Genres and only return the `genre_id`
-   * const genresWithGenre_idOnly = await prisma.genres.createManyAndReturn({
-   *   select: { genre_id: true },
+   * // Create many Genres and only return the `id`
+   * const genresWithIdOnly = await prisma.genres.createManyAndReturn({
+   *   select: { id: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -628,9 +628,9 @@ export interface genresDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    *   ]
    * })
    * 
-   * // Update zero or more Genres and only return the `genre_id`
-   * const genresWithGenre_idOnly = await prisma.genres.updateManyAndReturn({
-   *   select: { genre_id: true },
+   * // Update zero or more Genres and only return the `id`
+   * const genresWithIdOnly = await prisma.genres.updateManyAndReturn({
+   *   select: { id: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -833,8 +833,8 @@ export interface Prisma__genresClient<T, Null = never, ExtArgs extends runtime.T
  * Fields of the genres model
  */
 export interface genresFieldRefs {
-  readonly genre_id: Prisma.FieldRef<"genres", 'Int'>
-  readonly genre: Prisma.FieldRef<"genres", 'String'>
+  readonly id: Prisma.FieldRef<"genres", 'Int'>
+  readonly name: Prisma.FieldRef<"genres", 'String'>
 }
     
 

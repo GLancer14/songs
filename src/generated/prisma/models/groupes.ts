@@ -27,19 +27,19 @@ export type AggregateGroupes = {
 }
 
 export type GroupesAvgAggregateOutputType = {
-  group_id: number | null
+  id: number | null
   year_of_foundation: number | null
   country_id: number | null
 }
 
 export type GroupesSumAggregateOutputType = {
-  group_id: number | null
+  id: number | null
   year_of_foundation: number | null
   country_id: number | null
 }
 
 export type GroupesMinAggregateOutputType = {
-  group_id: number | null
+  id: number | null
   name: string | null
   year_of_foundation: number | null
   country_id: number | null
@@ -48,7 +48,7 @@ export type GroupesMinAggregateOutputType = {
 }
 
 export type GroupesMaxAggregateOutputType = {
-  group_id: number | null
+  id: number | null
   name: string | null
   year_of_foundation: number | null
   country_id: number | null
@@ -57,7 +57,7 @@ export type GroupesMaxAggregateOutputType = {
 }
 
 export type GroupesCountAggregateOutputType = {
-  group_id: number
+  id: number
   name: number
   year_of_foundation: number
   country_id: number
@@ -68,19 +68,19 @@ export type GroupesCountAggregateOutputType = {
 
 
 export type GroupesAvgAggregateInputType = {
-  group_id?: true
+  id?: true
   year_of_foundation?: true
   country_id?: true
 }
 
 export type GroupesSumAggregateInputType = {
-  group_id?: true
+  id?: true
   year_of_foundation?: true
   country_id?: true
 }
 
 export type GroupesMinAggregateInputType = {
-  group_id?: true
+  id?: true
   name?: true
   year_of_foundation?: true
   country_id?: true
@@ -89,7 +89,7 @@ export type GroupesMinAggregateInputType = {
 }
 
 export type GroupesMaxAggregateInputType = {
-  group_id?: true
+  id?: true
   name?: true
   year_of_foundation?: true
   country_id?: true
@@ -98,7 +98,7 @@ export type GroupesMaxAggregateInputType = {
 }
 
 export type GroupesCountAggregateInputType = {
-  group_id?: true
+  id?: true
   name?: true
   year_of_foundation?: true
   country_id?: true
@@ -194,7 +194,7 @@ export type groupesGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 export type GroupesGroupByOutputType = {
-  group_id: number
+  id: number
   name: string
   year_of_foundation: number | null
   country_id: number | null
@@ -226,7 +226,7 @@ export type groupesWhereInput = {
   AND?: Prisma.groupesWhereInput | Prisma.groupesWhereInput[]
   OR?: Prisma.groupesWhereInput[]
   NOT?: Prisma.groupesWhereInput | Prisma.groupesWhereInput[]
-  group_id?: Prisma.IntFilter<"groupes"> | number
+  id?: Prisma.IntFilter<"groupes"> | number
   name?: Prisma.StringFilter<"groupes"> | string
   year_of_foundation?: Prisma.IntNullableFilter<"groupes"> | number | null
   country_id?: Prisma.IntNullableFilter<"groupes"> | number | null
@@ -237,7 +237,7 @@ export type groupesWhereInput = {
 }
 
 export type groupesOrderByWithRelationInput = {
-  group_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   year_of_foundation?: Prisma.SortOrderInput | Prisma.SortOrder
   country_id?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -248,7 +248,7 @@ export type groupesOrderByWithRelationInput = {
 }
 
 export type groupesWhereUniqueInput = Prisma.AtLeast<{
-  group_id?: number
+  id?: number
   AND?: Prisma.groupesWhereInput | Prisma.groupesWhereInput[]
   OR?: Prisma.groupesWhereInput[]
   NOT?: Prisma.groupesWhereInput | Prisma.groupesWhereInput[]
@@ -259,10 +259,10 @@ export type groupesWhereUniqueInput = Prisma.AtLeast<{
   image?: Prisma.StringNullableFilter<"groupes"> | string | null
   countries?: Prisma.XOR<Prisma.CountriesNullableScalarRelationFilter, Prisma.countriesWhereInput> | null
   songsGroupes?: Prisma.Songs_groupesListRelationFilter
-}, "group_id">
+}, "id">
 
 export type groupesOrderByWithAggregationInput = {
-  group_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   year_of_foundation?: Prisma.SortOrderInput | Prisma.SortOrder
   country_id?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -279,7 +279,7 @@ export type groupesScalarWhereWithAggregatesInput = {
   AND?: Prisma.groupesScalarWhereWithAggregatesInput | Prisma.groupesScalarWhereWithAggregatesInput[]
   OR?: Prisma.groupesScalarWhereWithAggregatesInput[]
   NOT?: Prisma.groupesScalarWhereWithAggregatesInput | Prisma.groupesScalarWhereWithAggregatesInput[]
-  group_id?: Prisma.IntWithAggregatesFilter<"groupes"> | number
+  id?: Prisma.IntWithAggregatesFilter<"groupes"> | number
   name?: Prisma.StringWithAggregatesFilter<"groupes"> | string
   year_of_foundation?: Prisma.IntNullableWithAggregatesFilter<"groupes"> | number | null
   country_id?: Prisma.IntNullableWithAggregatesFilter<"groupes"> | number | null
@@ -297,7 +297,7 @@ export type groupesCreateInput = {
 }
 
 export type groupesUncheckedCreateInput = {
-  group_id?: number
+  id?: number
   name: string
   year_of_foundation?: number | null
   country_id?: number | null
@@ -316,7 +316,7 @@ export type groupesUpdateInput = {
 }
 
 export type groupesUncheckedUpdateInput = {
-  group_id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   country_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -326,7 +326,7 @@ export type groupesUncheckedUpdateInput = {
 }
 
 export type groupesCreateManyInput = {
-  group_id?: number
+  id?: number
   name: string
   year_of_foundation?: number | null
   country_id?: number | null
@@ -342,7 +342,7 @@ export type groupesUpdateManyMutationInput = {
 }
 
 export type groupesUncheckedUpdateManyInput = {
-  group_id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   country_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -361,7 +361,7 @@ export type groupesOrderByRelationAggregateInput = {
 }
 
 export type groupesCountOrderByAggregateInput = {
-  group_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   year_of_foundation?: Prisma.SortOrder
   country_id?: Prisma.SortOrder
@@ -370,13 +370,13 @@ export type groupesCountOrderByAggregateInput = {
 }
 
 export type groupesAvgOrderByAggregateInput = {
-  group_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   year_of_foundation?: Prisma.SortOrder
   country_id?: Prisma.SortOrder
 }
 
 export type groupesMaxOrderByAggregateInput = {
-  group_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   year_of_foundation?: Prisma.SortOrder
   country_id?: Prisma.SortOrder
@@ -385,7 +385,7 @@ export type groupesMaxOrderByAggregateInput = {
 }
 
 export type groupesMinOrderByAggregateInput = {
-  group_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   year_of_foundation?: Prisma.SortOrder
   country_id?: Prisma.SortOrder
@@ -394,7 +394,7 @@ export type groupesMinOrderByAggregateInput = {
 }
 
 export type groupesSumOrderByAggregateInput = {
-  group_id?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   year_of_foundation?: Prisma.SortOrder
   country_id?: Prisma.SortOrder
 }
@@ -469,7 +469,7 @@ export type groupesCreateWithoutCountriesInput = {
 }
 
 export type groupesUncheckedCreateWithoutCountriesInput = {
-  group_id?: number
+  id?: number
   name: string
   year_of_foundation?: number | null
   description?: string | null
@@ -507,7 +507,7 @@ export type groupesScalarWhereInput = {
   AND?: Prisma.groupesScalarWhereInput | Prisma.groupesScalarWhereInput[]
   OR?: Prisma.groupesScalarWhereInput[]
   NOT?: Prisma.groupesScalarWhereInput | Prisma.groupesScalarWhereInput[]
-  group_id?: Prisma.IntFilter<"groupes"> | number
+  id?: Prisma.IntFilter<"groupes"> | number
   name?: Prisma.StringFilter<"groupes"> | string
   year_of_foundation?: Prisma.IntNullableFilter<"groupes"> | number | null
   country_id?: Prisma.IntNullableFilter<"groupes"> | number | null
@@ -524,7 +524,7 @@ export type groupesCreateWithoutSongsGroupesInput = {
 }
 
 export type groupesUncheckedCreateWithoutSongsGroupesInput = {
-  group_id?: number
+  id?: number
   name: string
   year_of_foundation?: number | null
   country_id?: number | null
@@ -557,7 +557,7 @@ export type groupesUpdateWithoutSongsGroupesInput = {
 }
 
 export type groupesUncheckedUpdateWithoutSongsGroupesInput = {
-  group_id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   country_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -566,7 +566,7 @@ export type groupesUncheckedUpdateWithoutSongsGroupesInput = {
 }
 
 export type groupesCreateManyCountriesInput = {
-  group_id?: number
+  id?: number
   name: string
   year_of_foundation?: number | null
   description?: string | null
@@ -582,7 +582,7 @@ export type groupesUpdateWithoutCountriesInput = {
 }
 
 export type groupesUncheckedUpdateWithoutCountriesInput = {
-  group_id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -591,7 +591,7 @@ export type groupesUncheckedUpdateWithoutCountriesInput = {
 }
 
 export type groupesUncheckedUpdateManyWithoutCountriesInput = {
-  group_id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   year_of_foundation?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -630,7 +630,7 @@ export type GroupesCountOutputTypeCountSongsGroupesArgs<ExtArgs extends runtime.
 
 
 export type groupesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  group_id?: boolean
+  id?: boolean
   name?: boolean
   year_of_foundation?: boolean
   country_id?: boolean
@@ -642,7 +642,7 @@ export type groupesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 }, ExtArgs["result"]["groupes"]>
 
 export type groupesSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  group_id?: boolean
+  id?: boolean
   name?: boolean
   year_of_foundation?: boolean
   country_id?: boolean
@@ -652,7 +652,7 @@ export type groupesSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
 }, ExtArgs["result"]["groupes"]>
 
 export type groupesSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  group_id?: boolean
+  id?: boolean
   name?: boolean
   year_of_foundation?: boolean
   country_id?: boolean
@@ -662,7 +662,7 @@ export type groupesSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 }, ExtArgs["result"]["groupes"]>
 
 export type groupesSelectScalar = {
-  group_id?: boolean
+  id?: boolean
   name?: boolean
   year_of_foundation?: boolean
   country_id?: boolean
@@ -670,7 +670,7 @@ export type groupesSelectScalar = {
   image?: boolean
 }
 
-export type groupesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"group_id" | "name" | "year_of_foundation" | "country_id" | "description" | "image", ExtArgs["result"]["groupes"]>
+export type groupesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "year_of_foundation" | "country_id" | "description" | "image", ExtArgs["result"]["groupes"]>
 export type groupesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   countries?: boolean | Prisma.groupes$countriesArgs<ExtArgs>
   songsGroupes?: boolean | Prisma.groupes$songsGroupesArgs<ExtArgs>
@@ -690,7 +690,7 @@ export type $groupesPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     songsGroupes: Prisma.$songs_groupesPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    group_id: number
+    id: number
     name: string
     year_of_foundation: number | null
     country_id: number | null
@@ -779,8 +779,8 @@ export interface groupesDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * // Get first 10 Groupes
    * const groupes = await prisma.groupes.findMany({ take: 10 })
    * 
-   * // Only select the `group_id`
-   * const groupesWithGroup_idOnly = await prisma.groupes.findMany({ select: { group_id: true } })
+   * // Only select the `id`
+   * const groupesWithIdOnly = await prisma.groupes.findMany({ select: { id: true } })
    * 
    */
   findMany<T extends groupesFindManyArgs>(args?: Prisma.SelectSubset<T, groupesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$groupesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -824,9 +824,9 @@ export interface groupesDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    *   ]
    * })
    * 
-   * // Create many Groupes and only return the `group_id`
-   * const groupesWithGroup_idOnly = await prisma.groupes.createManyAndReturn({
-   *   select: { group_id: true },
+   * // Create many Groupes and only return the `id`
+   * const groupesWithIdOnly = await prisma.groupes.createManyAndReturn({
+   *   select: { id: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -915,9 +915,9 @@ export interface groupesDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    *   ]
    * })
    * 
-   * // Update zero or more Groupes and only return the `group_id`
-   * const groupesWithGroup_idOnly = await prisma.groupes.updateManyAndReturn({
-   *   select: { group_id: true },
+   * // Update zero or more Groupes and only return the `id`
+   * const groupesWithIdOnly = await prisma.groupes.updateManyAndReturn({
+   *   select: { id: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1121,7 +1121,7 @@ export interface Prisma__groupesClient<T, Null = never, ExtArgs extends runtime.
  * Fields of the groupes model
  */
 export interface groupesFieldRefs {
-  readonly group_id: Prisma.FieldRef<"groupes", 'Int'>
+  readonly id: Prisma.FieldRef<"groupes", 'Int'>
   readonly name: Prisma.FieldRef<"groupes", 'String'>
   readonly year_of_foundation: Prisma.FieldRef<"groupes", 'Int'>
   readonly country_id: Prisma.FieldRef<"groupes", 'Int'>
