@@ -70,7 +70,27 @@ export const AddSingerSchema = z.object({
 })
 
 export type AddSingerSchemaType = z.infer<typeof AddSingerSchema>;
- 
+
+export const AddProducerSchema = z.object({
+  producer_name: z.string().nonempty(),
+  producer_country: z.string().nonempty(),
+  biography: z.string().optional(),
+  year_of_start: z.number().optional(),
+  title_image: z.file().optional(),
+})
+
+export type AddProducerSchemaType = z.infer<typeof AddProducerSchema>;
+
+export const AddGroupSchema = z.object({
+  group_name: z.string().nonempty(),
+  group_country: z.string().nonempty(),
+  description: z.string().optional(),
+  year_of_foundation: z.number().optional(),
+  title_image: z.file().optional(),
+})
+
+export type AddGroupSchemaType = z.infer<typeof AddGroupSchema>;
+
 export type FormState =
   {
     errors?: {

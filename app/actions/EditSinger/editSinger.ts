@@ -55,7 +55,7 @@ export default async function editSinger(
   });
 
   if (singerData.title_image) {
-    if (singerData.title_image.size !== 0) {
+    if (singerData.title_image.size === 0) {
       return singerData.title_image = undefined;
     }
 

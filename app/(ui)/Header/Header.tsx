@@ -40,6 +40,9 @@ const Header = ({ user }: { user: users | null | undefined }) => {
               <Link href="/add-album">Add Albums</Link>
             </li>
             <li>
+              <Link href="/add-group">Add Group</Link>
+            </li>
+            <li>
               <Link href="/add-singer">Add Singers</Link>
             </li>
             <li>

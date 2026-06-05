@@ -180,8 +180,8 @@ export default async function editSong(
   arrays.forEach(arrayData => sendSongsArray(arrayData));
 
   if (songData.title_image) {
-    if (songData.title_image.size !== 0) {
-      return songData.title_image = undefined;
+    if (songData.title_image.size === 0) {
+      return songData.orig_audio = undefined;
     }
 
     const file = songData.title_image;
@@ -193,7 +193,7 @@ export default async function editSong(
   }
 
   if (songData.orig_audio) {
-    if (songData.orig_audio.size !== 0) {
+    if (songData.orig_audio.size === 0) {
       return songData.orig_audio = undefined;
     }
 

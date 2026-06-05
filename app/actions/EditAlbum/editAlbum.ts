@@ -58,7 +58,7 @@ export default async function editAlbum(
   });
 
   if (albumData.title_image) {
-    if (albumData.title_image.size !== 0) {
+    if (albumData.title_image.size === 0) {
       return albumData.title_image = undefined;
     }
 

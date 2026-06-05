@@ -8,10 +8,10 @@ import Footer from "../Footer/Footer";
 import { useActionState, useState } from "react";
 import clsx from "clsx";
 import editAlbum from "@/app/actions/EditAlbum/editAlbum";
-import editSinger from "@/app/actions/EditSinger/editSinger";
+import editProducer from "@/app/actions/EditProducer/editProducer";
 
-const EditSinger = ({ user }: { user: users | null | undefined }) => {
-  const [state, action, pending] = useActionState(editSinger, undefined)
+const EditProducer = ({ user }: { user: users | null | undefined }) => {
+  const [state, action, pending] = useActionState(editProducer, undefined)
   const [name, setName] = useState("");
   const [country, setCountry] = useState("");
 
@@ -21,10 +21,10 @@ const EditSinger = ({ user }: { user: users | null | undefined }) => {
       <form
         className="flex flex-col justify-start p-8 bg-gray-800"
         action={action}
-        method="post"
+        method="POST"
         encType="multipart/form-data"
       >
-        <h2 className="text-4xl capitalize mb-4">Add Singer</h2>
+        <h2 className="text-4xl capitalize mb-4">Add Producer</h2>
         <section className="flex flex-col justify-start mb-8">
           <article className="w-1/2">
             <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
@@ -32,9 +32,9 @@ const EditSinger = ({ user }: { user: users | null | undefined }) => {
               <input
                 className="p-1 rounded-sm w-2/3"
                 type="text"
-                title={"имя альбома"}
+                title={"имя продюссера"}
                 maxLength={128}
-                name={"singer_name"}
+                name={"producer_name"}
                 required={true}
                 value={name}
                 onInput={(e) => {
@@ -47,9 +47,9 @@ const EditSinger = ({ user }: { user: users | null | undefined }) => {
               <input
                 className="p-1 rounded-sm w-2/3"
                 type="text"
-                title={"автор альбома"}
+                title={"страна продюссера"}
                 maxLength={128}
-                name={"singer_country"}
+                name={"producer_country"}
                 required={true}
                 value={country}
                 onInput={(e) => {
@@ -66,8 +66,22 @@ const EditSinger = ({ user }: { user: users | null | undefined }) => {
                 rows={5}
                 maxLength={1024}
                 name="biography"
-                id="Biography"
+                id="biography"
               ></textarea>
+            </label>
+          </article>
+          <article className="w-1/2 mb-4">
+            <label className="flex gap-2">
+              <span className="">Year of Start:</span>
+              <input
+                className=""
+                type="number"
+                name="year_of_start"
+                id="year_of_start"
+                max="2100"
+                min="1900"
+                step="1"
+              />
             </label>
           </article>
         </section>
@@ -85,11 +99,11 @@ const EditSinger = ({ user }: { user: users | null | undefined }) => {
             />
           </div>
         </section>
-        <button className="" value="Save" id="save_songs_lyrics">Add Singer</button>
+        <button className="" value="Save" id="save_songs_lyrics">Add Producer</button>
       </form>
       <Footer />
     </>
   );
 }
 
-export default EditSinger;
+export default EditProducer;
