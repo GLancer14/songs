@@ -3,14 +3,18 @@
 import userIam from "@/app/actions/userIam";
 import Header from "../Header/Header"
 import { album_types, Prisma, users } from "@/src/generated/prisma/client";
+import SearchField from "../ui/SearchField/SearchField";
 import Footer from "../Footer/Footer";
 import { useActionState, useState } from "react";
-import editGroup from "@/app/actions/EditGroup/editGroup";
+import clsx from "clsx";
+import editAuthor from "@/app/actions/EditAuthor/editAuthor";
 
-const EditGroup = ({ user }: { user: users | null | undefined }) => {
-  const [state, action, pending] = useActionState(editGroup, undefined)
+const EditAuthor = ({ user, authorType }: { user: users | null | undefined; authorType: "music" | "lyrics" }) => {
+  const [state, action, pending] = useActionState(editAuthor, undefined)
   const [name, setName] = useState("");
-  const [country, setCountry] = useState("");
+  const [surname, setSurname] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [authorTypeVariable, setAuthorTypeVariable] = useState(authorType)
 
   return (
     <>
@@ -21,7 +25,7 @@ const EditGroup = ({ user }: { user: users | null | undefined }) => {
         method="POST"
         encType="multipart/form-data"
       >
-        <h2 className="text-4xl capitalize mb-4">Add Group</h2>
+        <h2 className="text-4xl capitalize mb-4">Add {authorType} author</h2>
         <section className="flex flex-col justify-start mb-8">
           <article className="w-1/2">
             <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
@@ -29,9 +33,9 @@ const EditGroup = ({ user }: { user: users | null | undefined }) => {
               <input
                 className="p-1 rounded-sm w-2/3"
                 type="text"
-                title={"имя группы"}
+                title={"имя автора"}
                 maxLength={128}
-                name={"group_name"}
+                name={"author_name"}
                 required={true}
                 value={name}
                 onInput={(e) => {
@@ -40,17 +44,32 @@ const EditGroup = ({ user }: { user: users | null | undefined }) => {
               />
             </label>
             <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
-              <span className="text-xl">Country</span>
+              <span className="text-xl">Surname</span>
               <input
                 className="p-1 rounded-sm w-2/3"
                 type="text"
-                title={"страна группы"}
+                title={"фамилия автора"}
                 maxLength={128}
-                name={"group_country"}
+                name={"author_surname"}
                 required={true}
-                value={country}
+                value={surname}
                 onInput={(e) => {
-                  setCountry(e.currentTarget.value);
+                  setSurname(e.currentTarget.value);
+                }}
+              />
+            </label>
+            <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
+              <span className="text-xl">Nickname</span>
+              <input
+                className="p-1 rounded-sm w-2/3"
+                type="text"
+                title={"никнейм автора"}
+                maxLength={128}
+                name={"author_nickname"}
+                required={true}
+                value={nickname}
+                onInput={(e) => {
+                  setNickname(e.currentTarget.value);
                 }}
               />
             </label>
@@ -62,23 +81,9 @@ const EditGroup = ({ user }: { user: users | null | undefined }) => {
                 className="w-full resize-none"
                 rows={5}
                 maxLength={1024}
-                name="description"
+                name="author_description"
                 id="description"
               ></textarea>
-            </label>
-          </article>
-          <article className="w-1/2 mb-4">
-            <label className="flex gap-2">
-              <span className="">Year of Foundation:</span>
-              <input
-                className=""
-                type="number"
-                name="year_of_foundation"
-                id="year_of_foundation"
-                max="2100"
-                min="1900"
-                step="1"
-              />
             </label>
           </article>
         </section>
@@ -96,11 +101,24 @@ const EditGroup = ({ user }: { user: users | null | undefined }) => {
             />
           </div>
         </section>
-        <button className="" value="Save" id="save_songs_lyrics">Add Group</button>
+        <input
+          className="h-0"
+          type="text"
+          value={authorTypeVariable}
+          name="author_type"
+          readOnly
+        />
+        <button
+          className="min-w-max px-2 capitalize"
+          value="Save"
+          id="save_songs_lyrics"
+        >
+          Add {authorType} Author
+        </button>
       </form>
       <Footer />
     </>
   );
 }
 
-export default EditGroup;
+export default EditAuthor;

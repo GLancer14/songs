@@ -65,7 +65,7 @@ const EditSong = ({
       <form
         className="flex flex-col justify-start p-8 bg-gray-800"
         action={action}
-        method="post"
+        method="POST"
         encType="multipart/form-data"
       >
         <section className="flex flex-col justify-start mb-8">

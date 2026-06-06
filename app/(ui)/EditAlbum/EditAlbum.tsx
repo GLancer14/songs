@@ -18,9 +18,9 @@ const EditAlbum = ({ user, albumTypes }: { user: users | null | undefined; album
     <>
       <Header user={user} />
       <form
-        className="flex flex-col justify-start p-8 bg-gray-800"
+        className="flex flex-col justify-start p-8 bg-gray-800 grow"
         action={action}
-        method="post"
+        method="POST"
         encType="multipart/form-data"
       >
         <h2 className="text-4xl capitalize mb-4">Add Album</h2>

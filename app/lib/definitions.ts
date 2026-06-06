@@ -91,6 +91,17 @@ export const AddGroupSchema = z.object({
 
 export type AddGroupSchemaType = z.infer<typeof AddGroupSchema>;
 
+export const AddAuthorSchema = z.object({
+  author_name: z.string().nonempty(),
+  author_surname: z.string().optional(),
+  author_nickname: z.string().optional(),
+  author_description: z.string().optional(),
+  title_image: z.file().optional(),
+  author_type: z.string(),
+})
+
+export type AddAuthorSchemaType = z.infer<typeof AddAuthorSchema>;
+
 export type FormState =
   {
     errors?: {
