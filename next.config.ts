@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   cacheComponents: false,
   experimental: {
     serverActions: {
-      bodySizeLimit: "15mb",
+      bodySizeLimit: "45mb",
     },
   },
 };

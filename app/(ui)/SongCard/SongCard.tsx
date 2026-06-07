@@ -1,30 +1,27 @@
 "use client"
 
 import { Prisma } from "@/src/generated/prisma/client";
-import Image from "next/image";
-import { useState } from "react";
+import s from "./SongCard.module.scss";
 
 const SongCard = ({ songData }: { songData: Prisma.songsModel }) => {
-  const [listVisibility, setListVisibility] = useState(false);
-  const server = process.env.SERVER_URL || "http://localhost:3000";
-  console.log(songData.image)
+  
   return (
-    <div className="w-[50%]">
-      <div className="song-banner">
-        <a href={`/songs/${songData.song_id}`} className="song-banner_anchor">
+    // <div className="w-[50%]">
+      <div>
+        <a href={`/songs/${songData.song_id}`} className={s.songBanner}>
           <img
-            className="song-banner_image"
+            className={s.songBanner_image}
             src={`/backgrounds/songs/${songData.image}`}
             alt={songData.image ?? "image"}
             loading="lazy"
             width={200}
             height={200}
           />
-          <div className="song-banner_title">{songData.title}</div>
-          <div className="song-banner_artists">{songData.artists}</div>
+          <div className={s.songBanner_title}>{songData.title}</div>
+          <div className={s.songBanner_artists}>{songData.artists}</div>
         </a>
       </div>
-    </div>
+    // </div>
   );
 };
 

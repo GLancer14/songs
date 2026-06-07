@@ -40,7 +40,7 @@ export const dataGroupes: Array<{
   {
     name: "genres",
     title: "",
-    fields: "genre",
+    fields: "name",
   },
   {
     name: "albums",
