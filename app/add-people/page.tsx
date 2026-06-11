@@ -6,15 +6,14 @@ import userIam from "../actions/userIam"
 import { prisma } from "../lib/prisma"
 import Loading from "./loading"
 import { creators, dataGroupes, requiredFields } from "../lib/searchFields"
-import EditSinger from "../(ui)/EditSinger/EditSinger"
-import EditProducer from "../(ui)/EditProducer/EditProducer"
+import EditPeople from "../(ui)/EditPeople/EditPeople"
 
 const Page = async () => {
   const user = await userIam();
 
   return (
     <Suspense fallback={<Loading />}>
-      <EditProducer
+      <EditPeople
         user={user}
       />
     </Suspense>

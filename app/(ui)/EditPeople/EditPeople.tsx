@@ -1,19 +1,18 @@
 "use client"
 
-import userIam from "@/app/actions/userIam";
 import Header from "../Header/Header"
-import { album_types, Prisma, users } from "@/src/generated/prisma/client";
-import SearchField from "../ui/SearchField/SearchField";
+import { users } from "@/src/generated/prisma/client";
 import Footer from "../Footer/Footer";
 import { useActionState, useState } from "react";
-import clsx from "clsx";
-import editAlbum from "@/app/actions/EditAlbum/editAlbum";
-import editSinger from "@/app/actions/EditSinger/editSinger";
+import editPeople from "@/app/actions/EditPeople/editPeople";
 
-const EditSinger = ({ user }: { user: users | null | undefined }) => {
-  const [state, action, pending] = useActionState(editSinger, undefined)
+const EditPeople = ({ user }: { user: users | null | undefined }) => {
+  const [state, action, pending] = useActionState(editPeople, undefined)
   const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
   const [country, setCountry] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [type, setType] = useState("");
 
   return (
     <>
@@ -32,7 +31,7 @@ const EditSinger = ({ user }: { user: users | null | undefined }) => {
               <input
                 className="p-1 rounded-sm w-2/3"
                 type="text"
-                title={"имя альбома"}
+                title={"имя человека"}
                 maxLength={128}
                 name={"singer_name"}
                 required={true}
@@ -43,13 +42,58 @@ const EditSinger = ({ user }: { user: users | null | undefined }) => {
               />
             </label>
             <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
+              <span className="text-xl">Surname</span>
+              <input
+                className="p-1 rounded-sm w-2/3"
+                type="text"
+                title={"фамилия человека"}
+                maxLength={128}
+                name={"people_surname"}
+                required={true}
+                value={surname}
+                onInput={(e) => {
+                  setSurname(e.currentTarget.value);
+                }}
+              />
+            </label>
+            <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
+              <span className="text-xl">Nickname</span>
+              <input
+                className="p-1 rounded-sm w-2/3"
+                type="text"
+                title={"ник человека"}
+                maxLength={128}
+                name={"people_nickname"}
+                required={true}
+                value={nickname}
+                onInput={(e) => {
+                  setNickname(e.currentTarget.value);
+                }}
+              />
+            </label>
+            <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
+              <span className="text-xl">Type</span>
+              <input
+                className="p-1 rounded-sm w-2/3"
+                type="text"
+                title={"тип"}
+                maxLength={128}
+                name={"people_type"}
+                required={true}
+                value={type}
+                onInput={(e) => {
+                  setType(e.currentTarget.value);
+                }}
+              />
+            </label>
+            <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
               <span className="text-xl">Country</span>
               <input
                 className="p-1 rounded-sm w-2/3"
                 type="text"
-                title={"автор альбома"}
+                title={"страна человека"}
                 maxLength={128}
-                name={"singer_country"}
+                name={"people_country"}
                 required={true}
                 value={country}
                 onInput={(e) => {
@@ -59,14 +103,14 @@ const EditSinger = ({ user }: { user: users | null | undefined }) => {
             </label>
           </article>
           <article className="w-1/2 mb-4">
-            <h2 className="mb-4 text-xl">Biography</h2>
+            <h2 className="mb-4 text-xl">Description</h2>
             <label className="">
               <textarea
                 className="w-full resize-none"
                 rows={5}
                 maxLength={1024}
-                name="biography"
-                id="Biography"
+                name="description"
+                id="description"
               ></textarea>
             </label>
           </article>
@@ -92,4 +136,4 @@ const EditSinger = ({ user }: { user: users | null | undefined }) => {
   );
 }
 
-export default EditSinger;
+export default EditPeople;

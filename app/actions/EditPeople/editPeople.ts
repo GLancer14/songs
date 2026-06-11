@@ -7,7 +7,7 @@ import userIam from "../userIam";
 import { writeFile } from "fs";
 import path from "path";
 
-export default async function editSinger(
+export default async function editPeople(
   state: AddSingerSchemaType, formData: FormData
 ) {
   const user = await userIam();

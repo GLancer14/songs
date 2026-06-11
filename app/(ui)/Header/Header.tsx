@@ -43,16 +43,7 @@ const Header = ({ user }: { user: users | null | undefined }) => {
               <Link href="/add-group">Add Group</Link>
             </li>
             <li>
-              <Link href="/add-singer">Add Singers</Link>
-            </li>
-            <li>
-              <Link href="/add-producer">Add Producer</Link>
-            </li>
-            <li>
-              <Link href="/add-music-author">Add Music Authors</Link>
-            </li>
-            <li>
-              <Link href="/add-lyrics-author">Add Lyrics Authors</Link>
+              <Link href="/add-people">Add People</Link>
             </li>
           </ul>
         </li>
