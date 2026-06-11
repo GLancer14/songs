@@ -193,16 +193,14 @@ export type countriesWhereInput = {
   country_id?: Prisma.IntFilter<"countries"> | number
   country?: Prisma.StringFilter<"countries"> | string
   groupes?: Prisma.GroupesListRelationFilter
-  producers?: Prisma.ProducersListRelationFilter
-  singers?: Prisma.SingersListRelationFilter
+  people?: Prisma.PeopleListRelationFilter
 }
 
 export type countriesOrderByWithRelationInput = {
   country_id?: Prisma.SortOrder
   country?: Prisma.SortOrder
   groupes?: Prisma.groupesOrderByRelationAggregateInput
-  producers?: Prisma.producersOrderByRelationAggregateInput
-  singers?: Prisma.singersOrderByRelationAggregateInput
+  people?: Prisma.peopleOrderByRelationAggregateInput
 }
 
 export type countriesWhereUniqueInput = Prisma.AtLeast<{
@@ -212,8 +210,7 @@ export type countriesWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.countriesWhereInput | Prisma.countriesWhereInput[]
   country?: Prisma.StringFilter<"countries"> | string
   groupes?: Prisma.GroupesListRelationFilter
-  producers?: Prisma.ProducersListRelationFilter
-  singers?: Prisma.SingersListRelationFilter
+  people?: Prisma.PeopleListRelationFilter
 }, "country_id">
 
 export type countriesOrderByWithAggregationInput = {
@@ -237,31 +234,27 @@ export type countriesScalarWhereWithAggregatesInput = {
 export type countriesCreateInput = {
   country: string
   groupes?: Prisma.groupesCreateNestedManyWithoutCountriesInput
-  producers?: Prisma.producersCreateNestedManyWithoutCountriesInput
-  singers?: Prisma.singersCreateNestedManyWithoutCountriesInput
+  people?: Prisma.peopleCreateNestedManyWithoutCountriesInput
 }
 
 export type countriesUncheckedCreateInput = {
   country_id?: number
   country: string
   groupes?: Prisma.groupesUncheckedCreateNestedManyWithoutCountriesInput
-  producers?: Prisma.producersUncheckedCreateNestedManyWithoutCountriesInput
-  singers?: Prisma.singersUncheckedCreateNestedManyWithoutCountriesInput
+  people?: Prisma.peopleUncheckedCreateNestedManyWithoutCountriesInput
 }
 
 export type countriesUpdateInput = {
   country?: Prisma.StringFieldUpdateOperationsInput | string
   groupes?: Prisma.groupesUpdateManyWithoutCountriesNestedInput
-  producers?: Prisma.producersUpdateManyWithoutCountriesNestedInput
-  singers?: Prisma.singersUpdateManyWithoutCountriesNestedInput
+  people?: Prisma.peopleUpdateManyWithoutCountriesNestedInput
 }
 
 export type countriesUncheckedUpdateInput = {
   country_id?: Prisma.IntFieldUpdateOperationsInput | number
   country?: Prisma.StringFieldUpdateOperationsInput | string
   groupes?: Prisma.groupesUncheckedUpdateManyWithoutCountriesNestedInput
-  producers?: Prisma.producersUncheckedUpdateManyWithoutCountriesNestedInput
-  singers?: Prisma.singersUncheckedUpdateManyWithoutCountriesNestedInput
+  people?: Prisma.peopleUncheckedUpdateManyWithoutCountriesNestedInput
 }
 
 export type countriesCreateManyInput = {
@@ -322,49 +315,31 @@ export type countriesUpdateOneWithoutGroupesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.countriesUpdateToOneWithWhereWithoutGroupesInput, Prisma.countriesUpdateWithoutGroupesInput>, Prisma.countriesUncheckedUpdateWithoutGroupesInput>
 }
 
-export type countriesCreateNestedOneWithoutProducersInput = {
-  create?: Prisma.XOR<Prisma.countriesCreateWithoutProducersInput, Prisma.countriesUncheckedCreateWithoutProducersInput>
-  connectOrCreate?: Prisma.countriesCreateOrConnectWithoutProducersInput
+export type countriesCreateNestedOneWithoutPeopleInput = {
+  create?: Prisma.XOR<Prisma.countriesCreateWithoutPeopleInput, Prisma.countriesUncheckedCreateWithoutPeopleInput>
+  connectOrCreate?: Prisma.countriesCreateOrConnectWithoutPeopleInput
   connect?: Prisma.countriesWhereUniqueInput
 }
 
-export type countriesUpdateOneWithoutProducersNestedInput = {
-  create?: Prisma.XOR<Prisma.countriesCreateWithoutProducersInput, Prisma.countriesUncheckedCreateWithoutProducersInput>
-  connectOrCreate?: Prisma.countriesCreateOrConnectWithoutProducersInput
-  upsert?: Prisma.countriesUpsertWithoutProducersInput
+export type countriesUpdateOneWithoutPeopleNestedInput = {
+  create?: Prisma.XOR<Prisma.countriesCreateWithoutPeopleInput, Prisma.countriesUncheckedCreateWithoutPeopleInput>
+  connectOrCreate?: Prisma.countriesCreateOrConnectWithoutPeopleInput
+  upsert?: Prisma.countriesUpsertWithoutPeopleInput
   disconnect?: Prisma.countriesWhereInput | boolean
   delete?: Prisma.countriesWhereInput | boolean
   connect?: Prisma.countriesWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.countriesUpdateToOneWithWhereWithoutProducersInput, Prisma.countriesUpdateWithoutProducersInput>, Prisma.countriesUncheckedUpdateWithoutProducersInput>
-}
-
-export type countriesCreateNestedOneWithoutSingersInput = {
-  create?: Prisma.XOR<Prisma.countriesCreateWithoutSingersInput, Prisma.countriesUncheckedCreateWithoutSingersInput>
-  connectOrCreate?: Prisma.countriesCreateOrConnectWithoutSingersInput
-  connect?: Prisma.countriesWhereUniqueInput
-}
-
-export type countriesUpdateOneWithoutSingersNestedInput = {
-  create?: Prisma.XOR<Prisma.countriesCreateWithoutSingersInput, Prisma.countriesUncheckedCreateWithoutSingersInput>
-  connectOrCreate?: Prisma.countriesCreateOrConnectWithoutSingersInput
-  upsert?: Prisma.countriesUpsertWithoutSingersInput
-  disconnect?: Prisma.countriesWhereInput | boolean
-  delete?: Prisma.countriesWhereInput | boolean
-  connect?: Prisma.countriesWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.countriesUpdateToOneWithWhereWithoutSingersInput, Prisma.countriesUpdateWithoutSingersInput>, Prisma.countriesUncheckedUpdateWithoutSingersInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.countriesUpdateToOneWithWhereWithoutPeopleInput, Prisma.countriesUpdateWithoutPeopleInput>, Prisma.countriesUncheckedUpdateWithoutPeopleInput>
 }
 
 export type countriesCreateWithoutGroupesInput = {
   country: string
-  producers?: Prisma.producersCreateNestedManyWithoutCountriesInput
-  singers?: Prisma.singersCreateNestedManyWithoutCountriesInput
+  people?: Prisma.peopleCreateNestedManyWithoutCountriesInput
 }
 
 export type countriesUncheckedCreateWithoutGroupesInput = {
   country_id?: number
   country: string
-  producers?: Prisma.producersUncheckedCreateNestedManyWithoutCountriesInput
-  singers?: Prisma.singersUncheckedCreateNestedManyWithoutCountriesInput
+  people?: Prisma.peopleUncheckedCreateNestedManyWithoutCountriesInput
 }
 
 export type countriesCreateOrConnectWithoutGroupesInput = {
@@ -385,99 +360,51 @@ export type countriesUpdateToOneWithWhereWithoutGroupesInput = {
 
 export type countriesUpdateWithoutGroupesInput = {
   country?: Prisma.StringFieldUpdateOperationsInput | string
-  producers?: Prisma.producersUpdateManyWithoutCountriesNestedInput
-  singers?: Prisma.singersUpdateManyWithoutCountriesNestedInput
+  people?: Prisma.peopleUpdateManyWithoutCountriesNestedInput
 }
 
 export type countriesUncheckedUpdateWithoutGroupesInput = {
   country_id?: Prisma.IntFieldUpdateOperationsInput | number
   country?: Prisma.StringFieldUpdateOperationsInput | string
-  producers?: Prisma.producersUncheckedUpdateManyWithoutCountriesNestedInput
-  singers?: Prisma.singersUncheckedUpdateManyWithoutCountriesNestedInput
+  people?: Prisma.peopleUncheckedUpdateManyWithoutCountriesNestedInput
 }
 
-export type countriesCreateWithoutProducersInput = {
+export type countriesCreateWithoutPeopleInput = {
   country: string
   groupes?: Prisma.groupesCreateNestedManyWithoutCountriesInput
-  singers?: Prisma.singersCreateNestedManyWithoutCountriesInput
 }
 
-export type countriesUncheckedCreateWithoutProducersInput = {
+export type countriesUncheckedCreateWithoutPeopleInput = {
   country_id?: number
   country: string
   groupes?: Prisma.groupesUncheckedCreateNestedManyWithoutCountriesInput
-  singers?: Prisma.singersUncheckedCreateNestedManyWithoutCountriesInput
 }
 
-export type countriesCreateOrConnectWithoutProducersInput = {
+export type countriesCreateOrConnectWithoutPeopleInput = {
   where: Prisma.countriesWhereUniqueInput
-  create: Prisma.XOR<Prisma.countriesCreateWithoutProducersInput, Prisma.countriesUncheckedCreateWithoutProducersInput>
+  create: Prisma.XOR<Prisma.countriesCreateWithoutPeopleInput, Prisma.countriesUncheckedCreateWithoutPeopleInput>
 }
 
-export type countriesUpsertWithoutProducersInput = {
-  update: Prisma.XOR<Prisma.countriesUpdateWithoutProducersInput, Prisma.countriesUncheckedUpdateWithoutProducersInput>
-  create: Prisma.XOR<Prisma.countriesCreateWithoutProducersInput, Prisma.countriesUncheckedCreateWithoutProducersInput>
+export type countriesUpsertWithoutPeopleInput = {
+  update: Prisma.XOR<Prisma.countriesUpdateWithoutPeopleInput, Prisma.countriesUncheckedUpdateWithoutPeopleInput>
+  create: Prisma.XOR<Prisma.countriesCreateWithoutPeopleInput, Prisma.countriesUncheckedCreateWithoutPeopleInput>
   where?: Prisma.countriesWhereInput
 }
 
-export type countriesUpdateToOneWithWhereWithoutProducersInput = {
+export type countriesUpdateToOneWithWhereWithoutPeopleInput = {
   where?: Prisma.countriesWhereInput
-  data: Prisma.XOR<Prisma.countriesUpdateWithoutProducersInput, Prisma.countriesUncheckedUpdateWithoutProducersInput>
+  data: Prisma.XOR<Prisma.countriesUpdateWithoutPeopleInput, Prisma.countriesUncheckedUpdateWithoutPeopleInput>
 }
 
-export type countriesUpdateWithoutProducersInput = {
+export type countriesUpdateWithoutPeopleInput = {
   country?: Prisma.StringFieldUpdateOperationsInput | string
   groupes?: Prisma.groupesUpdateManyWithoutCountriesNestedInput
-  singers?: Prisma.singersUpdateManyWithoutCountriesNestedInput
 }
 
-export type countriesUncheckedUpdateWithoutProducersInput = {
+export type countriesUncheckedUpdateWithoutPeopleInput = {
   country_id?: Prisma.IntFieldUpdateOperationsInput | number
   country?: Prisma.StringFieldUpdateOperationsInput | string
   groupes?: Prisma.groupesUncheckedUpdateManyWithoutCountriesNestedInput
-  singers?: Prisma.singersUncheckedUpdateManyWithoutCountriesNestedInput
-}
-
-export type countriesCreateWithoutSingersInput = {
-  country: string
-  groupes?: Prisma.groupesCreateNestedManyWithoutCountriesInput
-  producers?: Prisma.producersCreateNestedManyWithoutCountriesInput
-}
-
-export type countriesUncheckedCreateWithoutSingersInput = {
-  country_id?: number
-  country: string
-  groupes?: Prisma.groupesUncheckedCreateNestedManyWithoutCountriesInput
-  producers?: Prisma.producersUncheckedCreateNestedManyWithoutCountriesInput
-}
-
-export type countriesCreateOrConnectWithoutSingersInput = {
-  where: Prisma.countriesWhereUniqueInput
-  create: Prisma.XOR<Prisma.countriesCreateWithoutSingersInput, Prisma.countriesUncheckedCreateWithoutSingersInput>
-}
-
-export type countriesUpsertWithoutSingersInput = {
-  update: Prisma.XOR<Prisma.countriesUpdateWithoutSingersInput, Prisma.countriesUncheckedUpdateWithoutSingersInput>
-  create: Prisma.XOR<Prisma.countriesCreateWithoutSingersInput, Prisma.countriesUncheckedCreateWithoutSingersInput>
-  where?: Prisma.countriesWhereInput
-}
-
-export type countriesUpdateToOneWithWhereWithoutSingersInput = {
-  where?: Prisma.countriesWhereInput
-  data: Prisma.XOR<Prisma.countriesUpdateWithoutSingersInput, Prisma.countriesUncheckedUpdateWithoutSingersInput>
-}
-
-export type countriesUpdateWithoutSingersInput = {
-  country?: Prisma.StringFieldUpdateOperationsInput | string
-  groupes?: Prisma.groupesUpdateManyWithoutCountriesNestedInput
-  producers?: Prisma.producersUpdateManyWithoutCountriesNestedInput
-}
-
-export type countriesUncheckedUpdateWithoutSingersInput = {
-  country_id?: Prisma.IntFieldUpdateOperationsInput | number
-  country?: Prisma.StringFieldUpdateOperationsInput | string
-  groupes?: Prisma.groupesUncheckedUpdateManyWithoutCountriesNestedInput
-  producers?: Prisma.producersUncheckedUpdateManyWithoutCountriesNestedInput
 }
 
 
@@ -487,14 +414,12 @@ export type countriesUncheckedUpdateWithoutSingersInput = {
 
 export type CountriesCountOutputType = {
   groupes: number
-  producers: number
-  singers: number
+  people: number
 }
 
 export type CountriesCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   groupes?: boolean | CountriesCountOutputTypeCountGroupesArgs
-  producers?: boolean | CountriesCountOutputTypeCountProducersArgs
-  singers?: boolean | CountriesCountOutputTypeCountSingersArgs
+  people?: boolean | CountriesCountOutputTypeCountPeopleArgs
 }
 
 /**
@@ -517,15 +442,8 @@ export type CountriesCountOutputTypeCountGroupesArgs<ExtArgs extends runtime.Typ
 /**
  * CountriesCountOutputType without action
  */
-export type CountriesCountOutputTypeCountProducersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.producersWhereInput
-}
-
-/**
- * CountriesCountOutputType without action
- */
-export type CountriesCountOutputTypeCountSingersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.singersWhereInput
+export type CountriesCountOutputTypeCountPeopleArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.peopleWhereInput
 }
 
 
@@ -533,8 +451,7 @@ export type countriesSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   country_id?: boolean
   country?: boolean
   groupes?: boolean | Prisma.countries$groupesArgs<ExtArgs>
-  producers?: boolean | Prisma.countries$producersArgs<ExtArgs>
-  singers?: boolean | Prisma.countries$singersArgs<ExtArgs>
+  people?: boolean | Prisma.countries$peopleArgs<ExtArgs>
   _count?: boolean | Prisma.CountriesCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["countries"]>
 
@@ -556,8 +473,7 @@ export type countriesSelectScalar = {
 export type countriesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"country_id" | "country", ExtArgs["result"]["countries"]>
 export type countriesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   groupes?: boolean | Prisma.countries$groupesArgs<ExtArgs>
-  producers?: boolean | Prisma.countries$producersArgs<ExtArgs>
-  singers?: boolean | Prisma.countries$singersArgs<ExtArgs>
+  people?: boolean | Prisma.countries$peopleArgs<ExtArgs>
   _count?: boolean | Prisma.CountriesCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type countriesIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -567,8 +483,7 @@ export type $countriesPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   name: "countries"
   objects: {
     groupes: Prisma.$groupesPayload<ExtArgs>[]
-    producers: Prisma.$producersPayload<ExtArgs>[]
-    singers: Prisma.$singersPayload<ExtArgs>[]
+    people: Prisma.$peoplePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     country_id: number
@@ -968,8 +883,7 @@ readonly fields: countriesFieldRefs;
 export interface Prisma__countriesClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   groupes<T extends Prisma.countries$groupesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.countries$groupesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$groupesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  producers<T extends Prisma.countries$producersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.countries$producersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$producersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  singers<T extends Prisma.countries$singersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.countries$singersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$singersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  people<T extends Prisma.countries$peopleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.countries$peopleArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$peoplePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1418,51 +1332,27 @@ export type countries$groupesArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * countries.producers
+ * countries.people
  */
-export type countries$producersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type countries$peopleArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the producers
+   * Select specific fields to fetch from the people
    */
-  select?: Prisma.producersSelect<ExtArgs> | null
+  select?: Prisma.peopleSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the producers
+   * Omit specific fields from the people
    */
-  omit?: Prisma.producersOmit<ExtArgs> | null
+  omit?: Prisma.peopleOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.producersInclude<ExtArgs> | null
-  where?: Prisma.producersWhereInput
-  orderBy?: Prisma.producersOrderByWithRelationInput | Prisma.producersOrderByWithRelationInput[]
-  cursor?: Prisma.producersWhereUniqueInput
+  include?: Prisma.peopleInclude<ExtArgs> | null
+  where?: Prisma.peopleWhereInput
+  orderBy?: Prisma.peopleOrderByWithRelationInput | Prisma.peopleOrderByWithRelationInput[]
+  cursor?: Prisma.peopleWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ProducersScalarFieldEnum | Prisma.ProducersScalarFieldEnum[]
-}
-
-/**
- * countries.singers
- */
-export type countries$singersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the singers
-   */
-  select?: Prisma.singersSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the singers
-   */
-  omit?: Prisma.singersOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.singersInclude<ExtArgs> | null
-  where?: Prisma.singersWhereInput
-  orderBy?: Prisma.singersOrderByWithRelationInput | Prisma.singersOrderByWithRelationInput[]
-  cursor?: Prisma.singersWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SingersScalarFieldEnum | Prisma.SingersScalarFieldEnum[]
+  distinct?: Prisma.PeopleScalarFieldEnum | Prisma.PeopleScalarFieldEnum[]
 }
 
 /**

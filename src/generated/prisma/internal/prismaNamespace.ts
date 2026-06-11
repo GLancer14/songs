@@ -392,16 +392,10 @@ export const ModelName = {
   countries: 'countries',
   groupes: 'groupes',
   songs_groupes: 'songs_groupes',
-  producers: 'producers',
-  songs_producers: 'songs_producers',
-  singers: 'singers',
-  songs_singers: 'songs_singers',
+  people: 'people',
+  songs_people: 'songs_people',
   genres: 'genres',
   songs_genres: 'songs_genres',
-  lyrics_authors: 'lyrics_authors',
-  songs_lyrics_authors: 'songs_lyrics_authors',
-  music_authors: 'music_authors',
-  songs_music_authors: 'songs_music_authors',
   languages: 'languages',
   songs_lyrics: 'songs_lyrics',
   users: 'users'
@@ -420,7 +414,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "songs" | "mood" | "albums" | "album_types" | "songs_albums" | "countries" | "groupes" | "songs_groupes" | "producers" | "songs_producers" | "singers" | "songs_singers" | "genres" | "songs_genres" | "lyrics_authors" | "songs_lyrics_authors" | "music_authors" | "songs_music_authors" | "languages" | "songs_lyrics" | "users"
+    modelProps: "songs" | "mood" | "albums" | "album_types" | "songs_albums" | "countries" | "groupes" | "songs_groupes" | "people" | "songs_people" | "genres" | "songs_genres" | "languages" | "songs_lyrics" | "users"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1016,299 +1010,151 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    producers: {
-      payload: Prisma.$producersPayload<ExtArgs>
-      fields: Prisma.producersFieldRefs
+    people: {
+      payload: Prisma.$peoplePayload<ExtArgs>
+      fields: Prisma.peopleFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.producersFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$producersPayload> | null
+          args: Prisma.peopleFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$peoplePayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.producersFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$producersPayload>
+          args: Prisma.peopleFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$peoplePayload>
         }
         findFirst: {
-          args: Prisma.producersFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$producersPayload> | null
+          args: Prisma.peopleFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$peoplePayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.producersFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$producersPayload>
+          args: Prisma.peopleFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$peoplePayload>
         }
         findMany: {
-          args: Prisma.producersFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$producersPayload>[]
+          args: Prisma.peopleFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$peoplePayload>[]
         }
         create: {
-          args: Prisma.producersCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$producersPayload>
+          args: Prisma.peopleCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$peoplePayload>
         }
         createMany: {
-          args: Prisma.producersCreateManyArgs<ExtArgs>
+          args: Prisma.peopleCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.producersCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$producersPayload>[]
+          args: Prisma.peopleCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$peoplePayload>[]
         }
         delete: {
-          args: Prisma.producersDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$producersPayload>
+          args: Prisma.peopleDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$peoplePayload>
         }
         update: {
-          args: Prisma.producersUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$producersPayload>
+          args: Prisma.peopleUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$peoplePayload>
         }
         deleteMany: {
-          args: Prisma.producersDeleteManyArgs<ExtArgs>
+          args: Prisma.peopleDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.producersUpdateManyArgs<ExtArgs>
+          args: Prisma.peopleUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.producersUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$producersPayload>[]
+          args: Prisma.peopleUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$peoplePayload>[]
         }
         upsert: {
-          args: Prisma.producersUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$producersPayload>
+          args: Prisma.peopleUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$peoplePayload>
         }
         aggregate: {
-          args: Prisma.ProducersAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateProducers>
+          args: Prisma.PeopleAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePeople>
         }
         groupBy: {
-          args: Prisma.producersGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.ProducersGroupByOutputType>[]
+          args: Prisma.peopleGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PeopleGroupByOutputType>[]
         }
         count: {
-          args: Prisma.producersCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.ProducersCountAggregateOutputType> | number
+          args: Prisma.peopleCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PeopleCountAggregateOutputType> | number
         }
       }
     }
-    songs_producers: {
-      payload: Prisma.$songs_producersPayload<ExtArgs>
-      fields: Prisma.songs_producersFieldRefs
+    songs_people: {
+      payload: Prisma.$songs_peoplePayload<ExtArgs>
+      fields: Prisma.songs_peopleFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.songs_producersFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_producersPayload> | null
+          args: Prisma.songs_peopleFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_peoplePayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.songs_producersFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_producersPayload>
+          args: Prisma.songs_peopleFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_peoplePayload>
         }
         findFirst: {
-          args: Prisma.songs_producersFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_producersPayload> | null
+          args: Prisma.songs_peopleFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_peoplePayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.songs_producersFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_producersPayload>
+          args: Prisma.songs_peopleFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_peoplePayload>
         }
         findMany: {
-          args: Prisma.songs_producersFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_producersPayload>[]
+          args: Prisma.songs_peopleFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_peoplePayload>[]
         }
         create: {
-          args: Prisma.songs_producersCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_producersPayload>
+          args: Prisma.songs_peopleCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_peoplePayload>
         }
         createMany: {
-          args: Prisma.songs_producersCreateManyArgs<ExtArgs>
+          args: Prisma.songs_peopleCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.songs_producersCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_producersPayload>[]
+          args: Prisma.songs_peopleCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_peoplePayload>[]
         }
         delete: {
-          args: Prisma.songs_producersDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_producersPayload>
+          args: Prisma.songs_peopleDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_peoplePayload>
         }
         update: {
-          args: Prisma.songs_producersUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_producersPayload>
+          args: Prisma.songs_peopleUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_peoplePayload>
         }
         deleteMany: {
-          args: Prisma.songs_producersDeleteManyArgs<ExtArgs>
+          args: Prisma.songs_peopleDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.songs_producersUpdateManyArgs<ExtArgs>
+          args: Prisma.songs_peopleUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.songs_producersUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_producersPayload>[]
+          args: Prisma.songs_peopleUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_peoplePayload>[]
         }
         upsert: {
-          args: Prisma.songs_producersUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_producersPayload>
+          args: Prisma.songs_peopleUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_peoplePayload>
         }
         aggregate: {
-          args: Prisma.Songs_producersAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateSongs_producers>
+          args: Prisma.Songs_peopleAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSongs_people>
         }
         groupBy: {
-          args: Prisma.songs_producersGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Songs_producersGroupByOutputType>[]
+          args: Prisma.songs_peopleGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Songs_peopleGroupByOutputType>[]
         }
         count: {
-          args: Prisma.songs_producersCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Songs_producersCountAggregateOutputType> | number
-        }
-      }
-    }
-    singers: {
-      payload: Prisma.$singersPayload<ExtArgs>
-      fields: Prisma.singersFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.singersFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$singersPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.singersFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$singersPayload>
-        }
-        findFirst: {
-          args: Prisma.singersFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$singersPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.singersFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$singersPayload>
-        }
-        findMany: {
-          args: Prisma.singersFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$singersPayload>[]
-        }
-        create: {
-          args: Prisma.singersCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$singersPayload>
-        }
-        createMany: {
-          args: Prisma.singersCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.singersCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$singersPayload>[]
-        }
-        delete: {
-          args: Prisma.singersDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$singersPayload>
-        }
-        update: {
-          args: Prisma.singersUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$singersPayload>
-        }
-        deleteMany: {
-          args: Prisma.singersDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.singersUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.singersUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$singersPayload>[]
-        }
-        upsert: {
-          args: Prisma.singersUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$singersPayload>
-        }
-        aggregate: {
-          args: Prisma.SingersAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateSingers>
-        }
-        groupBy: {
-          args: Prisma.singersGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.SingersGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.singersCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.SingersCountAggregateOutputType> | number
-        }
-      }
-    }
-    songs_singers: {
-      payload: Prisma.$songs_singersPayload<ExtArgs>
-      fields: Prisma.songs_singersFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.songs_singersFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_singersPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.songs_singersFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_singersPayload>
-        }
-        findFirst: {
-          args: Prisma.songs_singersFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_singersPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.songs_singersFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_singersPayload>
-        }
-        findMany: {
-          args: Prisma.songs_singersFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_singersPayload>[]
-        }
-        create: {
-          args: Prisma.songs_singersCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_singersPayload>
-        }
-        createMany: {
-          args: Prisma.songs_singersCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.songs_singersCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_singersPayload>[]
-        }
-        delete: {
-          args: Prisma.songs_singersDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_singersPayload>
-        }
-        update: {
-          args: Prisma.songs_singersUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_singersPayload>
-        }
-        deleteMany: {
-          args: Prisma.songs_singersDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.songs_singersUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.songs_singersUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_singersPayload>[]
-        }
-        upsert: {
-          args: Prisma.songs_singersUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_singersPayload>
-        }
-        aggregate: {
-          args: Prisma.Songs_singersAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateSongs_singers>
-        }
-        groupBy: {
-          args: Prisma.songs_singersGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Songs_singersGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.songs_singersCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Songs_singersCountAggregateOutputType> | number
+          args: Prisma.songs_peopleCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Songs_peopleCountAggregateOutputType> | number
         }
       }
     }
@@ -1457,302 +1303,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.songs_genresCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.Songs_genresCountAggregateOutputType> | number
-        }
-      }
-    }
-    lyrics_authors: {
-      payload: Prisma.$lyrics_authorsPayload<ExtArgs>
-      fields: Prisma.lyrics_authorsFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.lyrics_authorsFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$lyrics_authorsPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.lyrics_authorsFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$lyrics_authorsPayload>
-        }
-        findFirst: {
-          args: Prisma.lyrics_authorsFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$lyrics_authorsPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.lyrics_authorsFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$lyrics_authorsPayload>
-        }
-        findMany: {
-          args: Prisma.lyrics_authorsFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$lyrics_authorsPayload>[]
-        }
-        create: {
-          args: Prisma.lyrics_authorsCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$lyrics_authorsPayload>
-        }
-        createMany: {
-          args: Prisma.lyrics_authorsCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.lyrics_authorsCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$lyrics_authorsPayload>[]
-        }
-        delete: {
-          args: Prisma.lyrics_authorsDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$lyrics_authorsPayload>
-        }
-        update: {
-          args: Prisma.lyrics_authorsUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$lyrics_authorsPayload>
-        }
-        deleteMany: {
-          args: Prisma.lyrics_authorsDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.lyrics_authorsUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.lyrics_authorsUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$lyrics_authorsPayload>[]
-        }
-        upsert: {
-          args: Prisma.lyrics_authorsUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$lyrics_authorsPayload>
-        }
-        aggregate: {
-          args: Prisma.Lyrics_authorsAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateLyrics_authors>
-        }
-        groupBy: {
-          args: Prisma.lyrics_authorsGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Lyrics_authorsGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.lyrics_authorsCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Lyrics_authorsCountAggregateOutputType> | number
-        }
-      }
-    }
-    songs_lyrics_authors: {
-      payload: Prisma.$songs_lyrics_authorsPayload<ExtArgs>
-      fields: Prisma.songs_lyrics_authorsFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.songs_lyrics_authorsFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_lyrics_authorsPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.songs_lyrics_authorsFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_lyrics_authorsPayload>
-        }
-        findFirst: {
-          args: Prisma.songs_lyrics_authorsFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_lyrics_authorsPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.songs_lyrics_authorsFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_lyrics_authorsPayload>
-        }
-        findMany: {
-          args: Prisma.songs_lyrics_authorsFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_lyrics_authorsPayload>[]
-        }
-        create: {
-          args: Prisma.songs_lyrics_authorsCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_lyrics_authorsPayload>
-        }
-        createMany: {
-          args: Prisma.songs_lyrics_authorsCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.songs_lyrics_authorsCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_lyrics_authorsPayload>[]
-        }
-        delete: {
-          args: Prisma.songs_lyrics_authorsDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_lyrics_authorsPayload>
-        }
-        update: {
-          args: Prisma.songs_lyrics_authorsUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_lyrics_authorsPayload>
-        }
-        deleteMany: {
-          args: Prisma.songs_lyrics_authorsDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.songs_lyrics_authorsUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.songs_lyrics_authorsUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_lyrics_authorsPayload>[]
-        }
-        upsert: {
-          args: Prisma.songs_lyrics_authorsUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_lyrics_authorsPayload>
-        }
-        aggregate: {
-          args: Prisma.Songs_lyrics_authorsAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateSongs_lyrics_authors>
-        }
-        groupBy: {
-          args: Prisma.songs_lyrics_authorsGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Songs_lyrics_authorsGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.songs_lyrics_authorsCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Songs_lyrics_authorsCountAggregateOutputType> | number
-        }
-      }
-    }
-    music_authors: {
-      payload: Prisma.$music_authorsPayload<ExtArgs>
-      fields: Prisma.music_authorsFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.music_authorsFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$music_authorsPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.music_authorsFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$music_authorsPayload>
-        }
-        findFirst: {
-          args: Prisma.music_authorsFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$music_authorsPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.music_authorsFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$music_authorsPayload>
-        }
-        findMany: {
-          args: Prisma.music_authorsFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$music_authorsPayload>[]
-        }
-        create: {
-          args: Prisma.music_authorsCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$music_authorsPayload>
-        }
-        createMany: {
-          args: Prisma.music_authorsCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.music_authorsCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$music_authorsPayload>[]
-        }
-        delete: {
-          args: Prisma.music_authorsDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$music_authorsPayload>
-        }
-        update: {
-          args: Prisma.music_authorsUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$music_authorsPayload>
-        }
-        deleteMany: {
-          args: Prisma.music_authorsDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.music_authorsUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.music_authorsUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$music_authorsPayload>[]
-        }
-        upsert: {
-          args: Prisma.music_authorsUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$music_authorsPayload>
-        }
-        aggregate: {
-          args: Prisma.Music_authorsAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateMusic_authors>
-        }
-        groupBy: {
-          args: Prisma.music_authorsGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Music_authorsGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.music_authorsCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Music_authorsCountAggregateOutputType> | number
-        }
-      }
-    }
-    songs_music_authors: {
-      payload: Prisma.$songs_music_authorsPayload<ExtArgs>
-      fields: Prisma.songs_music_authorsFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.songs_music_authorsFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_music_authorsPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.songs_music_authorsFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_music_authorsPayload>
-        }
-        findFirst: {
-          args: Prisma.songs_music_authorsFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_music_authorsPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.songs_music_authorsFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_music_authorsPayload>
-        }
-        findMany: {
-          args: Prisma.songs_music_authorsFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_music_authorsPayload>[]
-        }
-        create: {
-          args: Prisma.songs_music_authorsCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_music_authorsPayload>
-        }
-        createMany: {
-          args: Prisma.songs_music_authorsCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.songs_music_authorsCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_music_authorsPayload>[]
-        }
-        delete: {
-          args: Prisma.songs_music_authorsDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_music_authorsPayload>
-        }
-        update: {
-          args: Prisma.songs_music_authorsUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_music_authorsPayload>
-        }
-        deleteMany: {
-          args: Prisma.songs_music_authorsDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.songs_music_authorsUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.songs_music_authorsUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_music_authorsPayload>[]
-        }
-        upsert: {
-          args: Prisma.songs_music_authorsUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$songs_music_authorsPayload>
-        }
-        aggregate: {
-          args: Prisma.Songs_music_authorsAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateSongs_music_authors>
-        }
-        groupBy: {
-          args: Prisma.songs_music_authorsGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Songs_music_authorsGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.songs_music_authorsCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Songs_music_authorsCountAggregateOutputType> | number
         }
       }
     }
@@ -2105,43 +1655,26 @@ export const Songs_groupesScalarFieldEnum = {
 export type Songs_groupesScalarFieldEnum = (typeof Songs_groupesScalarFieldEnum)[keyof typeof Songs_groupesScalarFieldEnum]
 
 
-export const ProducersScalarFieldEnum = {
+export const PeopleScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  begin_year: 'begin_year',
-  country_id: 'country_id',
-  biography: 'biography',
-  image: 'image'
+  surname: 'surname',
+  nickname: 'nickname',
+  description: 'description',
+  type: 'type',
+  image: 'image',
+  country_id: 'country_id'
 } as const
 
-export type ProducersScalarFieldEnum = (typeof ProducersScalarFieldEnum)[keyof typeof ProducersScalarFieldEnum]
+export type PeopleScalarFieldEnum = (typeof PeopleScalarFieldEnum)[keyof typeof PeopleScalarFieldEnum]
 
 
-export const Songs_producersScalarFieldEnum = {
+export const Songs_peopleScalarFieldEnum = {
   song_id: 'song_id',
   id: 'id'
 } as const
 
-export type Songs_producersScalarFieldEnum = (typeof Songs_producersScalarFieldEnum)[keyof typeof Songs_producersScalarFieldEnum]
-
-
-export const SingersScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  country_id: 'country_id',
-  biography: 'biography',
-  image: 'image'
-} as const
-
-export type SingersScalarFieldEnum = (typeof SingersScalarFieldEnum)[keyof typeof SingersScalarFieldEnum]
-
-
-export const Songs_singersScalarFieldEnum = {
-  song_id: 'song_id',
-  id: 'id'
-} as const
-
-export type Songs_singersScalarFieldEnum = (typeof Songs_singersScalarFieldEnum)[keyof typeof Songs_singersScalarFieldEnum]
+export type Songs_peopleScalarFieldEnum = (typeof Songs_peopleScalarFieldEnum)[keyof typeof Songs_peopleScalarFieldEnum]
 
 
 export const GenresScalarFieldEnum = {
@@ -2158,46 +1691,6 @@ export const Songs_genresScalarFieldEnum = {
 } as const
 
 export type Songs_genresScalarFieldEnum = (typeof Songs_genresScalarFieldEnum)[keyof typeof Songs_genresScalarFieldEnum]
-
-
-export const Lyrics_authorsScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  surname: 'surname',
-  nickname: 'nickname',
-  description: 'description',
-  image: 'image'
-} as const
-
-export type Lyrics_authorsScalarFieldEnum = (typeof Lyrics_authorsScalarFieldEnum)[keyof typeof Lyrics_authorsScalarFieldEnum]
-
-
-export const Songs_lyrics_authorsScalarFieldEnum = {
-  song_id: 'song_id',
-  id: 'id'
-} as const
-
-export type Songs_lyrics_authorsScalarFieldEnum = (typeof Songs_lyrics_authorsScalarFieldEnum)[keyof typeof Songs_lyrics_authorsScalarFieldEnum]
-
-
-export const Music_authorsScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  surname: 'surname',
-  nickname: 'nickname',
-  description: 'description',
-  image: 'image'
-} as const
-
-export type Music_authorsScalarFieldEnum = (typeof Music_authorsScalarFieldEnum)[keyof typeof Music_authorsScalarFieldEnum]
-
-
-export const Songs_music_authorsScalarFieldEnum = {
-  song_id: 'song_id',
-  id: 'id'
-} as const
-
-export type Songs_music_authorsScalarFieldEnum = (typeof Songs_music_authorsScalarFieldEnum)[keyof typeof Songs_music_authorsScalarFieldEnum]
 
 
 export const LanguagesScalarFieldEnum = {
@@ -2446,16 +1939,10 @@ export type GlobalOmitConfig = {
   countries?: Prisma.countriesOmit
   groupes?: Prisma.groupesOmit
   songs_groupes?: Prisma.songs_groupesOmit
-  producers?: Prisma.producersOmit
-  songs_producers?: Prisma.songs_producersOmit
-  singers?: Prisma.singersOmit
-  songs_singers?: Prisma.songs_singersOmit
+  people?: Prisma.peopleOmit
+  songs_people?: Prisma.songs_peopleOmit
   genres?: Prisma.genresOmit
   songs_genres?: Prisma.songs_genresOmit
-  lyrics_authors?: Prisma.lyrics_authorsOmit
-  songs_lyrics_authors?: Prisma.songs_lyrics_authorsOmit
-  music_authors?: Prisma.music_authorsOmit
-  songs_music_authors?: Prisma.songs_music_authorsOmit
   languages?: Prisma.languagesOmit
   songs_lyrics?: Prisma.songs_lyricsOmit
   users?: Prisma.usersOmit

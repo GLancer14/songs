@@ -80,25 +80,15 @@ export type groupes = Prisma.groupesModel
  */
 export type songs_groupes = Prisma.songs_groupesModel
 /**
- * Model producers
+ * Model people
  * 
  */
-export type producers = Prisma.producersModel
+export type people = Prisma.peopleModel
 /**
- * Model songs_producers
+ * Model songs_people
  * 
  */
-export type songs_producers = Prisma.songs_producersModel
-/**
- * Model singers
- * 
- */
-export type singers = Prisma.singersModel
-/**
- * Model songs_singers
- * 
- */
-export type songs_singers = Prisma.songs_singersModel
+export type songs_people = Prisma.songs_peopleModel
 /**
  * Model genres
  * 
@@ -109,26 +99,6 @@ export type genres = Prisma.genresModel
  * 
  */
 export type songs_genres = Prisma.songs_genresModel
-/**
- * Model lyrics_authors
- * 
- */
-export type lyrics_authors = Prisma.lyrics_authorsModel
-/**
- * Model songs_lyrics_authors
- * 
- */
-export type songs_lyrics_authors = Prisma.songs_lyrics_authorsModel
-/**
- * Model music_authors
- * 
- */
-export type music_authors = Prisma.music_authorsModel
-/**
- * Model songs_music_authors
- * 
- */
-export type songs_music_authors = Prisma.songs_music_authorsModel
 /**
  * Model languages
  * 
