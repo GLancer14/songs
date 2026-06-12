@@ -22,7 +22,7 @@ export default async function Home() {
         </h1>
         <section className="flex flex-col w-full">
           <h2 className="text-xl self-center">Songs</h2>
-          <div className="songs">
+          <div className="songs flex flex-row flex-wrap">
             {songs.length > 0 &&
               songs.map((song, ind) => {
                 return (

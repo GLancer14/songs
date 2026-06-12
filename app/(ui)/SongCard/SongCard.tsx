@@ -7,7 +7,6 @@ const SongCard = ({ songData }: { songData: Prisma.songsModel }) => {
   
   return (
     // <div className="w-[50%]">
-      <div>
         <a href={`/songs/${songData.song_id}`} className={s.songBanner}>
           <img
             className={s.songBanner_image}
@@ -20,7 +19,6 @@ const SongCard = ({ songData }: { songData: Prisma.songsModel }) => {
           <div className={s.songBanner_title}>{songData.title}</div>
           <div className={s.songBanner_artists}>{songData.artists}</div>
         </a>
-      </div>
     // </div>
   );
 };

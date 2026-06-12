@@ -198,7 +198,7 @@ export type albumsGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 export type AlbumsGroupByOutputType = {
   id: number
   name: string
-  author: string
+  author: string | null
   release_date: Date | null
   album_type: number | null
   description: string | null
@@ -231,7 +231,7 @@ export type albumsWhereInput = {
   NOT?: Prisma.albumsWhereInput | Prisma.albumsWhereInput[]
   id?: Prisma.IntFilter<"albums"> | number
   name?: Prisma.StringFilter<"albums"> | string
-  author?: Prisma.StringFilter<"albums"> | string
+  author?: Prisma.StringNullableFilter<"albums"> | string | null
   release_date?: Prisma.DateTimeNullableFilter<"albums"> | Date | string | null
   album_type?: Prisma.IntNullableFilter<"albums"> | number | null
   description?: Prisma.StringNullableFilter<"albums"> | string | null
@@ -243,7 +243,7 @@ export type albumsWhereInput = {
 export type albumsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  author?: Prisma.SortOrder
+  author?: Prisma.SortOrderInput | Prisma.SortOrder
   release_date?: Prisma.SortOrderInput | Prisma.SortOrder
   album_type?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -258,7 +258,7 @@ export type albumsWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.albumsWhereInput[]
   NOT?: Prisma.albumsWhereInput | Prisma.albumsWhereInput[]
   name?: Prisma.StringFilter<"albums"> | string
-  author?: Prisma.StringFilter<"albums"> | string
+  author?: Prisma.StringNullableFilter<"albums"> | string | null
   release_date?: Prisma.DateTimeNullableFilter<"albums"> | Date | string | null
   album_type?: Prisma.IntNullableFilter<"albums"> | number | null
   description?: Prisma.StringNullableFilter<"albums"> | string | null
@@ -270,7 +270,7 @@ export type albumsWhereUniqueInput = Prisma.AtLeast<{
 export type albumsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  author?: Prisma.SortOrder
+  author?: Prisma.SortOrderInput | Prisma.SortOrder
   release_date?: Prisma.SortOrderInput | Prisma.SortOrder
   album_type?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -288,7 +288,7 @@ export type albumsScalarWhereWithAggregatesInput = {
   NOT?: Prisma.albumsScalarWhereWithAggregatesInput | Prisma.albumsScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"albums"> | number
   name?: Prisma.StringWithAggregatesFilter<"albums"> | string
-  author?: Prisma.StringWithAggregatesFilter<"albums"> | string
+  author?: Prisma.StringNullableWithAggregatesFilter<"albums"> | string | null
   release_date?: Prisma.DateTimeNullableWithAggregatesFilter<"albums"> | Date | string | null
   album_type?: Prisma.IntNullableWithAggregatesFilter<"albums"> | number | null
   description?: Prisma.StringNullableWithAggregatesFilter<"albums"> | string | null
@@ -297,7 +297,7 @@ export type albumsScalarWhereWithAggregatesInput = {
 
 export type albumsCreateInput = {
   name: string
-  author: string
+  author?: string | null
   release_date?: Date | string | null
   description?: string | null
   image?: string | null
@@ -308,7 +308,7 @@ export type albumsCreateInput = {
 export type albumsUncheckedCreateInput = {
   id?: number
   name: string
-  author: string
+  author?: string | null
   release_date?: Date | string | null
   album_type?: number | null
   description?: string | null
@@ -318,7 +318,7 @@ export type albumsUncheckedCreateInput = {
 
 export type albumsUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  author?: Prisma.StringFieldUpdateOperationsInput | string
+  author?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   release_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -329,7 +329,7 @@ export type albumsUpdateInput = {
 export type albumsUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  author?: Prisma.StringFieldUpdateOperationsInput | string
+  author?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   release_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   album_type?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -340,7 +340,7 @@ export type albumsUncheckedUpdateInput = {
 export type albumsCreateManyInput = {
   id?: number
   name: string
-  author: string
+  author?: string | null
   release_date?: Date | string | null
   album_type?: number | null
   description?: string | null
@@ -349,7 +349,7 @@ export type albumsCreateManyInput = {
 
 export type albumsUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  author?: Prisma.StringFieldUpdateOperationsInput | string
+  author?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   release_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -358,7 +358,7 @@ export type albumsUpdateManyMutationInput = {
 export type albumsUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  author?: Prisma.StringFieldUpdateOperationsInput | string
+  author?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   release_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   album_type?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -478,7 +478,7 @@ export type albumsUpdateOneRequiredWithoutSongsAlbumsNestedInput = {
 
 export type albumsCreateWithoutAlbum_typesInput = {
   name: string
-  author: string
+  author?: string | null
   release_date?: Date | string | null
   description?: string | null
   image?: string | null
@@ -488,7 +488,7 @@ export type albumsCreateWithoutAlbum_typesInput = {
 export type albumsUncheckedCreateWithoutAlbum_typesInput = {
   id?: number
   name: string
-  author: string
+  author?: string | null
   release_date?: Date | string | null
   description?: string | null
   image?: string | null
@@ -527,7 +527,7 @@ export type albumsScalarWhereInput = {
   NOT?: Prisma.albumsScalarWhereInput | Prisma.albumsScalarWhereInput[]
   id?: Prisma.IntFilter<"albums"> | number
   name?: Prisma.StringFilter<"albums"> | string
-  author?: Prisma.StringFilter<"albums"> | string
+  author?: Prisma.StringNullableFilter<"albums"> | string | null
   release_date?: Prisma.DateTimeNullableFilter<"albums"> | Date | string | null
   album_type?: Prisma.IntNullableFilter<"albums"> | number | null
   description?: Prisma.StringNullableFilter<"albums"> | string | null
@@ -536,7 +536,7 @@ export type albumsScalarWhereInput = {
 
 export type albumsCreateWithoutSongsAlbumsInput = {
   name: string
-  author: string
+  author?: string | null
   release_date?: Date | string | null
   description?: string | null
   image?: string | null
@@ -546,7 +546,7 @@ export type albumsCreateWithoutSongsAlbumsInput = {
 export type albumsUncheckedCreateWithoutSongsAlbumsInput = {
   id?: number
   name: string
-  author: string
+  author?: string | null
   release_date?: Date | string | null
   album_type?: number | null
   description?: string | null
@@ -571,7 +571,7 @@ export type albumsUpdateToOneWithWhereWithoutSongsAlbumsInput = {
 
 export type albumsUpdateWithoutSongsAlbumsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  author?: Prisma.StringFieldUpdateOperationsInput | string
+  author?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   release_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -581,7 +581,7 @@ export type albumsUpdateWithoutSongsAlbumsInput = {
 export type albumsUncheckedUpdateWithoutSongsAlbumsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  author?: Prisma.StringFieldUpdateOperationsInput | string
+  author?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   release_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   album_type?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -591,7 +591,7 @@ export type albumsUncheckedUpdateWithoutSongsAlbumsInput = {
 export type albumsCreateManyAlbum_typesInput = {
   id?: number
   name: string
-  author: string
+  author?: string | null
   release_date?: Date | string | null
   description?: string | null
   image?: string | null
@@ -599,7 +599,7 @@ export type albumsCreateManyAlbum_typesInput = {
 
 export type albumsUpdateWithoutAlbum_typesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  author?: Prisma.StringFieldUpdateOperationsInput | string
+  author?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   release_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -609,7 +609,7 @@ export type albumsUpdateWithoutAlbum_typesInput = {
 export type albumsUncheckedUpdateWithoutAlbum_typesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  author?: Prisma.StringFieldUpdateOperationsInput | string
+  author?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   release_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -619,7 +619,7 @@ export type albumsUncheckedUpdateWithoutAlbum_typesInput = {
 export type albumsUncheckedUpdateManyWithoutAlbum_typesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  author?: Prisma.StringFieldUpdateOperationsInput | string
+  author?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   release_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -723,7 +723,7 @@ export type $albumsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     name: string
-    author: string
+    author: string | null
     release_date: Date | null
     album_type: number | null
     description: string | null

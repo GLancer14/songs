@@ -12,12 +12,12 @@ const Header = ({ user }: { user: users | null | undefined }) => {
 
   return (
     <header className={clsx(s.header, "flex justify-between")}>
-      <h1 className="flex w-full align-middle justify-start text-5xl">
+      <h1 className="flex w-min-content align-middle justify-start text-5xl">
         <Link href="/">
           Songs
         </Link>
       </h1>
-      <ul className={clsx(s.header__auth, "w-1/2 self-end")}>
+      <ul className={clsx(s.header__auth, "w-5/6 self-end")}>
         <li className={clsx("flex items-center relative")}>
           <div
             className="hover:text-black"
@@ -27,7 +27,7 @@ const Header = ({ user }: { user: users | null | undefined }) => {
             Add content
           </div>
           <ul
-            className={clsx("hidden flex-col top-6 left-0 absolute bg-white", {
+            className={clsx("hidden flex-col top-6 left-0 absolute bg-white p-1 w-min-content text-nowrap", {
               [s.listVisibility]: listVisibility
             })}
             onMouseEnter={() => {setListVisibility(true)}}
@@ -47,6 +47,9 @@ const Header = ({ user }: { user: users | null | undefined }) => {
             </li>
           </ul>
         </li>
+        <Link className="flex items-center" href="/albums">Albums</Link>
+        <Link className="flex items-center" href="/people">People</Link>
+        <Link className="flex items-center" href="/groupes">Groupes</Link>
         {user && <li className="flex items-center">
           <Link
             className="h-min flex flex-nowrap justify-center align-middle"

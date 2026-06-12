@@ -6,22 +6,7 @@ export const creators: Array<{
   fields: string;
 }> = [
   {
-    name: "music_authors",
-    title: "",
-    fields: "name",
-  },
-  {
-    name: "lyrics_authors",
-    title: "",
-    fields: "name",
-  },
-  {
-    name: "singers",
-    title: "",
-    fields: "name",
-  },
-  {
-    name: "producers",
+    name: "people",
     title: "",
     fields: "name",
   },

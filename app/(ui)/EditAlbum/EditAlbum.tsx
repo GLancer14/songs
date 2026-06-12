@@ -63,7 +63,7 @@ const EditAlbum = ({ user, albumTypes }: { user: users | null | undefined; album
               <textarea
                 className="w-full resize-none"
                 rows={5}
-                maxLength={1024}
+                maxLength={2048}
                 name="album_description"
                 id="description"
               ></textarea>

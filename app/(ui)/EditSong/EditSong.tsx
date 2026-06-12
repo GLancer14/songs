@@ -13,6 +13,7 @@ import Lyrics from "./Lyrics/Lyrics";
 import { useActionState, useState } from "react";
 import clsx from "clsx";
 import editSong from "@/app/actions/EditSong/editSong";
+import { redirect } from "next/navigation";
 
 const EditSong = ({
   user,
@@ -273,7 +274,8 @@ const EditSong = ({
         </section>
         {/* <ExternalLink /> */}
         <button className="" value="Save" id="save_songs_lyrics" onSubmit={(e) => {
-          e.preventDefault()
+          e.preventDefault();
+          redirect(`/`)
         }}>Add Song</button>
       </form>
       <Footer />

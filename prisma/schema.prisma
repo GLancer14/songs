@@ -49,7 +49,7 @@ model mood {
 model albums {
   id           Int            @id @default(autoincrement())
   name         String
-  author       String
+  author       String?
   release_date DateTime?
   album_types  album_types?   @relation(fields: [album_type], references: [album_type_id], onDelete: Cascade)
   album_type   Int?
@@ -65,7 +65,7 @@ model album_types {
 }
 
 model songs_albums {
-  songs   songs  @relation(fields: [song_id], references: [song_id])
+  songs   songs  @relation(fields: [song_id], references: [song_id], onDelete: Cascade)
   albums  albums @relation(fields: [id], references: [id])
   song_id Int
   id      Int
@@ -92,7 +92,7 @@ model groupes {
 }
 
 model songs_groupes {
-  songs   songs   @relation(fields: [song_id], references: [song_id])
+  songs   songs   @relation(fields: [song_id], references: [song_id], onDelete: Cascade)
   groupes groupes @relation(fields: [id], references: [id])
   song_id Int
   id      Int
@@ -114,7 +114,7 @@ model people {
 }
 
 model songs_people {
-  songs   songs  @relation(fields: [song_id], references: [song_id])
+  songs   songs  @relation(fields: [song_id], references: [song_id], onDelete: Cascade)
   people  people @relation(fields: [id], references: [id])
   song_id Int
   id      Int
@@ -129,7 +129,7 @@ model genres {
 }
 
 model songs_genres {
-  songs   songs  @relation(fields: [song_id], references: [song_id])
+  songs   songs  @relation(fields: [song_id], references: [song_id], onDelete: Cascade)
   genres  genres @relation(fields: [id], references: [id])
   song_id Int
   id      Int

@@ -8,10 +8,7 @@ import { writeFile } from "fs";
 import path from "path";
 
 export type ArrayValues = 
-  "music_authors" |
-  "lyrics_authors" |
-  "singers" |
-  "producers" |
+  "people" |
   "groupes" |
   "genres" |
   "albums";
@@ -29,10 +26,7 @@ export default async function editSong(
     original: formData.get("original"),
     english: formData.get("english"),
     russian: formData.get("russian"),
-    music_authors: formData.getAll("music_authors"),
-    lyrics_authors: formData.getAll("lyrics_authors"),
-    singers: formData.getAll("singers"),
-    producers: formData.getAll("producers"),
+    people: formData.getAll("people"),
     groupes: formData.getAll("groupes"),
     orig_lang: formData.get("orig_lang"),
     genres: formData.getAll("genres"),
@@ -128,10 +122,7 @@ export default async function editSong(
   }
 
   const arrays: Array<ArrayValues> = [
-    "music_authors",
-    "lyrics_authors",
-    "singers",
-    "producers",
+    "people",
     "groupes",
     "genres",
     "albums",
