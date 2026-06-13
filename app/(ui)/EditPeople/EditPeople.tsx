@@ -23,7 +23,7 @@ const EditPeople = ({ user }: { user: users | null | undefined }) => {
         method="POST"
         encType="multipart/form-data"
       >
-        <h2 className="text-4xl capitalize mb-4">Add Singer</h2>
+        <h2 className="text-4xl capitalize mb-4">Add People</h2>
         <section className="flex flex-col justify-start mb-8">
           <article className="w-1/2">
             <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
@@ -129,7 +129,7 @@ const EditPeople = ({ user }: { user: users | null | undefined }) => {
             />
           </div>
         </section>
-        <button className="" value="Save" id="save_songs_lyrics">Add Singer</button>
+        <button className="" value="Save" id="save_songs_lyrics">Add People</button>
       </form>
       <Footer />
     </>

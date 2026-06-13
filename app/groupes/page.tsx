@@ -17,15 +17,15 @@ const Page = async () => {
   return (
     <Suspense fallback={<Loading />}>
       <Header user={user} />
-      <h2 className="flex justify-center mt-5 mb-5 self-center text-3xl">Albums</h2>
+      <h2 className="flex justify-center mt-5 mb-5 self-center text-3xl">Groupes</h2>
       <div className="songs flex flex-row flex-wrap gap-[2%] gap-y-2 py-8 px-16">
         {groupes.map(groupe => {
           return (
             <div className="flex w-[49%] flex-row">
-              <a className="flex" href={`/albums/${groupe.id}`}>
+              <a className="flex" href={`/groupes/${groupe.id}`}>
                 <img
                   className=""
-                  src={groupe.image ? `/backgrounds/albums/${groupe.image}` : ""}
+                  src={groupe.image ? `/backgrounds/groupes/${groupe.image}` : "/noimage2.svg"}
                   alt={groupe.image ?? "image"}
                   loading="lazy"
                   width={100}

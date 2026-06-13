@@ -11,24 +11,22 @@ import SongPage from "../../(ui)/SongPage/SongPage";
 export default async function Page({
   params,
 }: {
-  params: Promise<{ album: number }>
+  params: Promise<{ people: number }>
 }) {
-  const { album } = await params;
+  const { people } = await params;
 
   const userData = await userIam();
-  const albumData = await prisma.albums.findFirst({
+  const peopleData = await prisma.people.findFirst({
     where: {
-      id: +album,
+      id: +people,
     },
   });
-  const tracklist = await prisma.songs_albums.findMany({
+
+  const country = await prisma.countries.findFirst({
     where: {
-      id: +album,
+      country_id: peopleData?.country_id ? peopleData?.country_id : 0,
     },
-    select: {
-      songs: true
-    }
-  })
+  });
 
   if (!userData) return null;
 
@@ -36,37 +34,26 @@ export default async function Page({
     <>
       <Header user={userData} />
       <div className="flex flex-col flex-1">
-        {albumData && 
+        {people && 
           (<div>
             <div>
               <img
-                src={`/backgrounds/albums/${albumData.image}`}
+                src={`/backgrounds/people/${peopleData?.image}`}
                 width={100}
                 height={100}
                 alt="Обложка"
               />
             </div>
-            <div>{albumData.name}</div>
-            <div>{albumData.author}</div>
-            <div>{albumData.release_date?.toString()}</div>
-            <div>
-              <h3>Tracklist</h3>
-              {tracklist.map(track => {
-                return (
-                  <a
-                    className="block"
-                    href={`/songs/${track.songs.song_id}`}
-                  >
-                    {track.songs.name}
-                  </a>
-                );
-              })}
-            </div>
+            <div>{peopleData?.name}</div>
+            <div>{peopleData?.nickname}</div>
+            <div>{peopleData?.surname}</div>
+            <div>{peopleData?.description}</div>
+            <div>{peopleData?.type}</div>
+            <div>{country?.country}</div>
           </div>)
         }
       </div>
       <Footer />
     </>
-    
   )
 }

@@ -1,12 +1,9 @@
 "use server";
 
-import { Profile } from "../../(ui)/Profile/Profile"
 import userIam from "../../actions/userIam"
-import { Suspense } from "react";
 import Header from "../../(ui)/Header/Header";
 import Footer from "../../(ui)/Footer/Footer";
 import { prisma } from "../../lib/prisma";
-import SongPage from "../../(ui)/SongPage/SongPage";
 
 export default async function Page({
   params,
@@ -40,7 +37,7 @@ export default async function Page({
           (<div>
             <div>
               <img
-                src={`/backgrounds/albums/${albumData.image}`}
+                src={albumData.image ? `/backgrounds/albums/${albumData.image}` : "/noimage2.svg"}
                 width={100}
                 height={100}
                 alt="Обложка"
