@@ -2,19 +2,12 @@
 
 import Link from "next/link";
 import s from "./Footer.module.scss";
-import Image from "next/image";
+import clsx from "clsx";
 
 const Footer = () => {
   return (
     <footer className={s.footer}>
-      <Image
-        className={s.footer__logo}
-        src="/vercel.svg"
-        alt="Vercel logomark"
-        width={16}
-        height={16}
-      />
-      <ul className={s.footer__links}>
+      <ul className={clsx(s.footer__links, "w-1/2")}>
         <li>
           <Link href="/conditions">Условия использования</Link>
         </li>

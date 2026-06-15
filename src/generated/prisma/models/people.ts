@@ -39,6 +39,7 @@ export type PeopleSumAggregateOutputType = {
 export type PeopleMinAggregateOutputType = {
   id: number | null
   name: string | null
+  firstname: string | null
   surname: string | null
   nickname: string | null
   description: string | null
@@ -50,6 +51,7 @@ export type PeopleMinAggregateOutputType = {
 export type PeopleMaxAggregateOutputType = {
   id: number | null
   name: string | null
+  firstname: string | null
   surname: string | null
   nickname: string | null
   description: string | null
@@ -61,6 +63,7 @@ export type PeopleMaxAggregateOutputType = {
 export type PeopleCountAggregateOutputType = {
   id: number
   name: number
+  firstname: number
   surname: number
   nickname: number
   description: number
@@ -84,6 +87,7 @@ export type PeopleSumAggregateInputType = {
 export type PeopleMinAggregateInputType = {
   id?: true
   name?: true
+  firstname?: true
   surname?: true
   nickname?: true
   description?: true
@@ -95,6 +99,7 @@ export type PeopleMinAggregateInputType = {
 export type PeopleMaxAggregateInputType = {
   id?: true
   name?: true
+  firstname?: true
   surname?: true
   nickname?: true
   description?: true
@@ -106,6 +111,7 @@ export type PeopleMaxAggregateInputType = {
 export type PeopleCountAggregateInputType = {
   id?: true
   name?: true
+  firstname?: true
   surname?: true
   nickname?: true
   description?: true
@@ -204,6 +210,7 @@ export type peopleGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 export type PeopleGroupByOutputType = {
   id: number
   name: string
+  firstname: string | null
   surname: string | null
   nickname: string | null
   description: string | null
@@ -238,6 +245,7 @@ export type peopleWhereInput = {
   NOT?: Prisma.peopleWhereInput | Prisma.peopleWhereInput[]
   id?: Prisma.IntFilter<"people"> | number
   name?: Prisma.StringFilter<"people"> | string
+  firstname?: Prisma.StringNullableFilter<"people"> | string | null
   surname?: Prisma.StringNullableFilter<"people"> | string | null
   nickname?: Prisma.StringNullableFilter<"people"> | string | null
   description?: Prisma.StringNullableFilter<"people"> | string | null
@@ -251,6 +259,7 @@ export type peopleWhereInput = {
 export type peopleOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  firstname?: Prisma.SortOrderInput | Prisma.SortOrder
   surname?: Prisma.SortOrderInput | Prisma.SortOrder
   nickname?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -267,6 +276,7 @@ export type peopleWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.peopleWhereInput[]
   NOT?: Prisma.peopleWhereInput | Prisma.peopleWhereInput[]
   name?: Prisma.StringFilter<"people"> | string
+  firstname?: Prisma.StringNullableFilter<"people"> | string | null
   surname?: Prisma.StringNullableFilter<"people"> | string | null
   nickname?: Prisma.StringNullableFilter<"people"> | string | null
   description?: Prisma.StringNullableFilter<"people"> | string | null
@@ -280,6 +290,7 @@ export type peopleWhereUniqueInput = Prisma.AtLeast<{
 export type peopleOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  firstname?: Prisma.SortOrderInput | Prisma.SortOrder
   surname?: Prisma.SortOrderInput | Prisma.SortOrder
   nickname?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -299,6 +310,7 @@ export type peopleScalarWhereWithAggregatesInput = {
   NOT?: Prisma.peopleScalarWhereWithAggregatesInput | Prisma.peopleScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"people"> | number
   name?: Prisma.StringWithAggregatesFilter<"people"> | string
+  firstname?: Prisma.StringNullableWithAggregatesFilter<"people"> | string | null
   surname?: Prisma.StringNullableWithAggregatesFilter<"people"> | string | null
   nickname?: Prisma.StringNullableWithAggregatesFilter<"people"> | string | null
   description?: Prisma.StringNullableWithAggregatesFilter<"people"> | string | null
@@ -309,6 +321,7 @@ export type peopleScalarWhereWithAggregatesInput = {
 
 export type peopleCreateInput = {
   name: string
+  firstname?: string | null
   surname?: string | null
   nickname?: string | null
   description?: string | null
@@ -321,6 +334,7 @@ export type peopleCreateInput = {
 export type peopleUncheckedCreateInput = {
   id?: number
   name: string
+  firstname?: string | null
   surname?: string | null
   nickname?: string | null
   description?: string | null
@@ -332,6 +346,7 @@ export type peopleUncheckedCreateInput = {
 
 export type peopleUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  firstname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -344,6 +359,7 @@ export type peopleUpdateInput = {
 export type peopleUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  firstname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -356,6 +372,7 @@ export type peopleUncheckedUpdateInput = {
 export type peopleCreateManyInput = {
   id?: number
   name: string
+  firstname?: string | null
   surname?: string | null
   nickname?: string | null
   description?: string | null
@@ -366,6 +383,7 @@ export type peopleCreateManyInput = {
 
 export type peopleUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  firstname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -376,6 +394,7 @@ export type peopleUpdateManyMutationInput = {
 export type peopleUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  firstname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -397,6 +416,7 @@ export type peopleOrderByRelationAggregateInput = {
 export type peopleCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  firstname?: Prisma.SortOrder
   surname?: Prisma.SortOrder
   nickname?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -413,6 +433,7 @@ export type peopleAvgOrderByAggregateInput = {
 export type peopleMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  firstname?: Prisma.SortOrder
   surname?: Prisma.SortOrder
   nickname?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -424,6 +445,7 @@ export type peopleMaxOrderByAggregateInput = {
 export type peopleMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  firstname?: Prisma.SortOrder
   surname?: Prisma.SortOrder
   nickname?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -500,6 +522,7 @@ export type peopleUpdateOneRequiredWithoutSongsPeopleNestedInput = {
 
 export type peopleCreateWithoutCountriesInput = {
   name: string
+  firstname?: string | null
   surname?: string | null
   nickname?: string | null
   description?: string | null
@@ -511,6 +534,7 @@ export type peopleCreateWithoutCountriesInput = {
 export type peopleUncheckedCreateWithoutCountriesInput = {
   id?: number
   name: string
+  firstname?: string | null
   surname?: string | null
   nickname?: string | null
   description?: string | null
@@ -551,6 +575,7 @@ export type peopleScalarWhereInput = {
   NOT?: Prisma.peopleScalarWhereInput | Prisma.peopleScalarWhereInput[]
   id?: Prisma.IntFilter<"people"> | number
   name?: Prisma.StringFilter<"people"> | string
+  firstname?: Prisma.StringNullableFilter<"people"> | string | null
   surname?: Prisma.StringNullableFilter<"people"> | string | null
   nickname?: Prisma.StringNullableFilter<"people"> | string | null
   description?: Prisma.StringNullableFilter<"people"> | string | null
@@ -561,6 +586,7 @@ export type peopleScalarWhereInput = {
 
 export type peopleCreateWithoutSongsPeopleInput = {
   name: string
+  firstname?: string | null
   surname?: string | null
   nickname?: string | null
   description?: string | null
@@ -572,6 +598,7 @@ export type peopleCreateWithoutSongsPeopleInput = {
 export type peopleUncheckedCreateWithoutSongsPeopleInput = {
   id?: number
   name: string
+  firstname?: string | null
   surname?: string | null
   nickname?: string | null
   description?: string | null
@@ -598,6 +625,7 @@ export type peopleUpdateToOneWithWhereWithoutSongsPeopleInput = {
 
 export type peopleUpdateWithoutSongsPeopleInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  firstname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -609,6 +637,7 @@ export type peopleUpdateWithoutSongsPeopleInput = {
 export type peopleUncheckedUpdateWithoutSongsPeopleInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  firstname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -620,6 +649,7 @@ export type peopleUncheckedUpdateWithoutSongsPeopleInput = {
 export type peopleCreateManyCountriesInput = {
   id?: number
   name: string
+  firstname?: string | null
   surname?: string | null
   nickname?: string | null
   description?: string | null
@@ -629,6 +659,7 @@ export type peopleCreateManyCountriesInput = {
 
 export type peopleUpdateWithoutCountriesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  firstname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -640,6 +671,7 @@ export type peopleUpdateWithoutCountriesInput = {
 export type peopleUncheckedUpdateWithoutCountriesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  firstname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -651,6 +683,7 @@ export type peopleUncheckedUpdateWithoutCountriesInput = {
 export type peopleUncheckedUpdateManyWithoutCountriesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  firstname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -692,6 +725,7 @@ export type PeopleCountOutputTypeCountSongsPeopleArgs<ExtArgs extends runtime.Ty
 export type peopleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  firstname?: boolean
   surname?: boolean
   nickname?: boolean
   description?: boolean
@@ -706,6 +740,7 @@ export type peopleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 export type peopleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  firstname?: boolean
   surname?: boolean
   nickname?: boolean
   description?: boolean
@@ -718,6 +753,7 @@ export type peopleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type peopleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  firstname?: boolean
   surname?: boolean
   nickname?: boolean
   description?: boolean
@@ -730,6 +766,7 @@ export type peopleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type peopleSelectScalar = {
   id?: boolean
   name?: boolean
+  firstname?: boolean
   surname?: boolean
   nickname?: boolean
   description?: boolean
@@ -738,7 +775,7 @@ export type peopleSelectScalar = {
   country_id?: boolean
 }
 
-export type peopleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "surname" | "nickname" | "description" | "type" | "image" | "country_id", ExtArgs["result"]["people"]>
+export type peopleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "firstname" | "surname" | "nickname" | "description" | "type" | "image" | "country_id", ExtArgs["result"]["people"]>
 export type peopleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   countries?: boolean | Prisma.people$countriesArgs<ExtArgs>
   songsPeople?: boolean | Prisma.people$songsPeopleArgs<ExtArgs>
@@ -760,6 +797,7 @@ export type $peoplePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     name: string
+    firstname: string | null
     surname: string | null
     nickname: string | null
     description: string | null
@@ -1193,6 +1231,7 @@ export interface Prisma__peopleClient<T, Null = never, ExtArgs extends runtime.T
 export interface peopleFieldRefs {
   readonly id: Prisma.FieldRef<"people", 'Int'>
   readonly name: Prisma.FieldRef<"people", 'String'>
+  readonly firstname: Prisma.FieldRef<"people", 'String'>
   readonly surname: Prisma.FieldRef<"people", 'String'>
   readonly nickname: Prisma.FieldRef<"people", 'String'>
   readonly description: Prisma.FieldRef<"people", 'String'>

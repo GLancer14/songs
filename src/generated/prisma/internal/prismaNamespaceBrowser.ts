@@ -175,6 +175,7 @@ export type Songs_groupesScalarFieldEnum = (typeof Songs_groupesScalarFieldEnum)
 export const PeopleScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  firstname: 'firstname',
   surname: 'surname',
   nickname: 'nickname',
   description: 'description',

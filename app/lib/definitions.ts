@@ -59,25 +59,6 @@ export const AddAlbumSchema = z.object({
 
 export type AddAlbumSchemaType = z.infer<typeof AddAlbumSchema>;
 
-export const AddSingerSchema = z.object({
-  singer_name: z.string().nonempty(),
-  singer_country: z.string().nonempty(),
-  biography: z.string().optional(),
-  title_image: z.file().optional(),
-})
-
-export type AddSingerSchemaType = z.infer<typeof AddSingerSchema>;
-
-export const AddProducerSchema = z.object({
-  producer_name: z.string().nonempty(),
-  producer_country: z.string().nonempty(),
-  biography: z.string().optional(),
-  year_of_start: z.number().optional(),
-  title_image: z.file().optional(),
-})
-
-export type AddProducerSchemaType = z.infer<typeof AddProducerSchema>;
-
 export const AddGroupSchema = z.object({
   group_name: z.string().nonempty(),
   group_country: z.string().nonempty(),
@@ -88,16 +69,18 @@ export const AddGroupSchema = z.object({
 
 export type AddGroupSchemaType = z.infer<typeof AddGroupSchema>;
 
-export const AddAuthorSchema = z.object({
-  author_name: z.string().nonempty(),
-  author_surname: z.string().optional(),
-  author_nickname: z.string().optional(),
-  author_description: z.string().optional(),
+export const AddPeopleSchema = z.object({
+  people_name: z.string().nonempty(),
+  people_firstname: z.string().optional(),
+  people_surname: z.string().optional(),
+  people_nickname: z.string().optional(),
+  people_type: z.string().optional(),
+  people_country: z.string().optional(),
+  description: z.string().optional(),
   title_image: z.file().optional(),
-  author_type: z.string(),
 })
 
-export type AddAuthorSchemaType = z.infer<typeof AddAuthorSchema>;
+export type AddPeopleSchemaType = z.infer<typeof AddPeopleSchema>;
 
 export type FormState =
   {

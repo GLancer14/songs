@@ -12,11 +12,10 @@ const Page = async () => {
   const user = await userIam();
   const albumTypes = await prisma.album_types.findMany();
 
-
   return (
     <Suspense fallback={<Loading />}>
       <EditAlbum
-        user= {user}
+        user={user}
         albumTypes={albumTypes}
       />
     </Suspense>

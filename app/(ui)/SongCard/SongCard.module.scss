@@ -18,7 +18,7 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 100%;
-	box-shadow: 10px 10px black;
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 @media (min-width: 780px) {
@@ -71,6 +71,8 @@
 
 	font-size: 2em;
   color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .songBanner_artists {
@@ -79,4 +81,6 @@
 
 	font-size: 1.2em;
   color: white;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }

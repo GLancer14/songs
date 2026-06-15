@@ -92,7 +92,6 @@ const SearchField = ({
       </ul>
       <div>
         {selectedFields.map((selectedField, ind) => {
-          console.log(tableData.name + `_${tableData.fields}`)
           return (
             <div key={ind} className="inline w-min">
               <input

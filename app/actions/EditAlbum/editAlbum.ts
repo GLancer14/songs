@@ -7,15 +7,6 @@ import userIam from "../userIam";
 import { writeFile } from "fs";
 import path from "path";
 
-export type ArrayValues = 
-  "music_authors" |
-  "lyrics_authors" |
-  "singers" |
-  "producers" |
-  "groupes" |
-  "genres" |
-  "albums";
-
 export default async function editAlbum(
   state: AddAlbumSchemaType, formData: FormData
 ) {
@@ -29,7 +20,6 @@ export default async function editAlbum(
     title_image: formData.get("title_image"),
   });
 
-  console.log(validatedFields)
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
@@ -42,17 +32,17 @@ export default async function editAlbum(
     }
   }
   const albumData = validatedFields.data;
+  // console.log(new Date(Date.parse(albumData.release_date)));
 
   const imageName = `${Date.now()}-${albumData.title_image?.name.replace(/[^a-zA-Z0-9.]/g, '-')}`;
 
-  
   const albumCreateResult = await prisma.albums.create({
     data: {
       name: albumData.album_name,
       author: albumData.album_author,
       description: albumData.album_description,
       album_type: Number(albumData.album_type),
-      release_date: new Date(),
+      release_date: new Date(Date.parse(albumData.release_date)),
       image: imageName,
     }
   });

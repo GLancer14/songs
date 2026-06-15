@@ -1,10 +1,10 @@
 .footer {
   display: flex;
   flex-wrap: wrap;
-  padding: 32px;
+  padding: 16px 16px;
   width: 100%;
-  background-color: white;
-  color: black;
+  background-color: rgb(255, 213, 172);
+  color: rgb(29, 29, 29);
 
   &__logo {
     object-position: center;
@@ -13,7 +13,8 @@
   }
 
   &__links {
-    width: 100%;
+    margin: 0 auto;
+    width: 50%;
     display: flex;
     justify-content: space-evenly;
   }

@@ -8,11 +8,14 @@ import Footer from "../Footer/Footer";
 import { useActionState, useState } from "react";
 import clsx from "clsx";
 import editAlbum from "@/app/actions/EditAlbum/editAlbum";
+import Image from "next/image";
+import AddImage from "../ui/AddImage/AddImage";
 
 const EditAlbum = ({ user, albumTypes }: { user: users | null | undefined; albumTypes: album_types[] }) => {
   const [state, action, pending] = useActionState(editAlbum, undefined)
   const [lyrics, setLyrics] = useState("");
   const [author, setAuthor] = useState("");
+
 
   return (
     <>
@@ -41,6 +44,14 @@ const EditAlbum = ({ user, albumTypes }: { user: users | null | undefined; album
                 }}
               />
             </label>
+            <SearchField
+              tableData={{
+                name: "people",
+                fields: "name",
+                title: "Авторы альбома"
+              }}
+              className="flex flex-col justify-start gap-2 mb-2 w-[calc(50%-16px)]"
+            />
             <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
               <span className="text-xl">Author</span>
               <input
@@ -88,21 +99,10 @@ const EditAlbum = ({ user, albumTypes }: { user: users | null | undefined; album
               className=""
               type="date"
               name="release_date"
-              id="release-date"
+              id="release_date"
             />
           </label>
-          <img className="" />
-          <div className="flex justify-between mb-8">
-            <span className="">Image:</span>
-            <input
-              className="w-3/5"
-              type="file"
-              name="title_image"
-              id="upload-title-image"
-              accept="image/jpeg,image/gif,image/png"
-              tabIndex={-1}
-            />
-          </div>
+          <AddImage />
         </section>
         <button className="" value="Save" id="save_songs_lyrics">Add Album</button>
       </form>

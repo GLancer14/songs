@@ -103,6 +103,7 @@ model songs_groupes {
 model people {
   id          Int            @id @default(autoincrement())
   name        String
+  firstname   String?
   surname     String?
   nickname    String?
   description String?

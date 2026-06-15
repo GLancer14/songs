@@ -60,7 +60,7 @@ export default async function editSong(
       artists: songData.songs_artists,
       name: songData.songs_name,
       addition_date: new Date(),
-      release_date: new Date(),
+      release_date: new Date(Date.parse(songData.release_date)),
       bpm: Number(songData.bpm),
       description: songData.description,
       image: imageName,

@@ -12,16 +12,16 @@ export default async function Home() {
   const songs: Array<songs> = await prisma.songs.findMany();
 
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+    // <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans w-[1200px] mx-auto">
+    <>
       <Header user={user} />
-      <main className="flex flex-1 w-full flex-col items-center py-8 px-16 bg-white dark:bg-black sm:items-start">
-        <h1
+      <main className="flex flex-1 flex-col items-center py-8 px-16 sm:items-start w-300 mx-auto">
+        <h2
           className="flex justify-center mt-5 mb-5 self-center text-3xl"
         >
-          Welcome to my page!
-        </h1>
+          Songs
+        </h2>
         <section className="flex flex-col w-full">
-          <h2 className="text-xl self-center">Songs</h2>
           <div className="songs flex flex-row flex-wrap">
             {songs.length > 0 &&
               songs.map((song, ind) => {
@@ -34,6 +34,7 @@ export default async function Home() {
         </section>
       </main>
       <Footer />
-    </div>
+    </>
+    // </div>
   );
 }

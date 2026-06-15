@@ -3,7 +3,7 @@
 import userIam from "@/app/actions/userIam";
 import Header from "../Header/Header"
 import { mood, Prisma, users } from "@/src/generated/prisma/client";
-import "./EditSong";
+// import "./EditSong";
 import Languages from "./Languages/Languages";
 import Mood from "./Mood/Mood";
 import SearchField from "../ui/SearchField/SearchField";
@@ -64,7 +64,7 @@ const EditSong = ({
     <>
       <Header user={user} />
       <form
-        className="flex flex-col justify-start p-8 bg-gray-800"
+        className="flex flex-col justify-start p-8 max-w-300 mx-auto bg-white"
         action={action}
         method="POST"
         encType="multipart/form-data"

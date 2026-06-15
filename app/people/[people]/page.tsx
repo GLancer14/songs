@@ -46,6 +46,7 @@ export default async function Page({
             </div>
             <div>{peopleData?.name}</div>
             <div>{peopleData?.nickname}</div>
+            <div>{peopleData?.firstname}</div>
             <div>{peopleData?.surname}</div>
             <div>{peopleData?.description}</div>
             <div>{peopleData?.type}</div>

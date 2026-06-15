@@ -5,10 +5,12 @@ import { users } from "@/src/generated/prisma/client";
 import Footer from "../Footer/Footer";
 import { useActionState, useState } from "react";
 import editPeople from "@/app/actions/EditPeople/editPeople";
+import AddImage from "../ui/AddImage/AddImage";
 
 const EditPeople = ({ user }: { user: users | null | undefined }) => {
   const [state, action, pending] = useActionState(editPeople, undefined)
   const [name, setName] = useState("");
+  const [firstname, setFirstname] = useState("");
   const [surname, setSurname] = useState("");
   const [country, setCountry] = useState("");
   const [nickname, setNickname] = useState("");
@@ -18,26 +20,42 @@ const EditPeople = ({ user }: { user: users | null | undefined }) => {
     <>
       <Header user={user} />
       <form
-        className="flex flex-col justify-start p-8 bg-gray-800 grow"
+        className="flex flex-col justify-start p-8 max-w-300 mx-auto bg-white"
         action={action}
         method="POST"
         encType="multipart/form-data"
+        onSubmit={() => window.location.replace(`/people`)}
       >
         <h2 className="text-4xl capitalize mb-4">Add People</h2>
         <section className="flex flex-col justify-start mb-8">
-          <article className="w-1/2">
+          <article className="flex flex-col flex-wrap gap-8 justify-start items-start mb-8 w-1/2">
             <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
               <span className="text-xl">Name</span>
               <input
                 className="p-1 rounded-sm w-2/3"
                 type="text"
-                title={"имя человека"}
+                title={"полное имя человека"}
                 maxLength={128}
-                name={"singer_name"}
+                name={"people_name"}
                 required={true}
                 value={name}
                 onInput={(e) => {
                   setName(e.currentTarget.value);
+                }}
+              />
+            </label>
+            <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
+              <span className="text-xl">First Name</span>
+              <input
+                className="p-1 rounded-sm w-2/3"
+                type="text"
+                title={"имя человека"}
+                maxLength={128}
+                name={"people_firstname"}
+                required={true}
+                value={firstname}
+                onInput={(e) => {
+                  setFirstname(e.currentTarget.value);
                 }}
               />
             </label>
@@ -64,7 +82,6 @@ const EditPeople = ({ user }: { user: users | null | undefined }) => {
                 title={"ник человека"}
                 maxLength={128}
                 name={"people_nickname"}
-                required={true}
                 value={nickname}
                 onInput={(e) => {
                   setNickname(e.currentTarget.value);
@@ -116,18 +133,7 @@ const EditPeople = ({ user }: { user: users | null | undefined }) => {
           </article>
         </section>
         <section className="mb-4">
-          <img className="" />
-          <div className="flex justify-between mb-8">
-            <span className="">Image:</span>
-            <input
-              className="w-3/5"
-              type="file"
-              name="title_image"
-              id="upload-title-image"
-              accept="image/jpeg,image/gif,image/png"
-              tabIndex={-1}
-            />
-          </div>
+          <AddImage />
         </section>
         <button className="" value="Save" id="save_songs_lyrics">Add People</button>
       </form>
