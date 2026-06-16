@@ -26,8 +26,8 @@ const EditPeople = ({ user }: { user: users | null | undefined }) => {
         encType="multipart/form-data"
         onSubmit={() => window.location.replace(`/people`)}
       >
-        <h2 className="text-4xl capitalize mb-4">Add People</h2>
-        <section className="flex flex-col justify-start mb-8">
+        <h2 className="text-4xl capitalize mb-4 w-300">Add People</h2>
+        <section className="flex flex-col flex-1 justify-start mb-8">
           <article className="flex flex-col flex-wrap gap-8 justify-start items-start mb-8 w-1/2">
             <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
               <span className="text-xl">Name</span>

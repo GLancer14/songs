@@ -17,12 +17,12 @@ const Page = async () => {
   return (
     <Suspense fallback={<Loading />}>
       <Header user={user} />
-      <div className="max-w-300 mx-auto">
+      <div className="flex flex-col flex-1 max-w-300 mx-auto">
         <h2 className="flex justify-center mt-5 mb-5 self-center text-3xl">Albums</h2>
         <div className="songs flex flex-row flex-wrap gap-[2%] gap-y-2 py-8 px-16">
           {albums.map(album => {
             return (
-              <div className="flex w-[49%] flex-row">
+              <div className="flex w-[49%] flex-row bg-white">
                 <a className="flex" href={`/albums/${album.id}`}>
                   <img
                     className=""
