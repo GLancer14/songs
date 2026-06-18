@@ -1,13 +1,12 @@
 .header {
   width: 100%;
   padding: 8px 16px;
-  background-color: rgb(255, 213, 172);
-  color: rgb(29, 29, 29);
+  color: rgb(235, 235, 235);
 
   &__auth {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 24px;
   }
 }
 

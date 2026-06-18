@@ -6,19 +6,26 @@ import { users } from "@/src/generated/prisma/client";
 import LogoutButton from "../LogoutButton/LogoutButton";
 import clsx from "clsx";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
-const Header = ({ user }: { user: users | null | undefined }) => {
+const Header = ({ user, imageColor }: { user: users | null | undefined, imageColor?: string }) => {
   const [listVisibility, setListVisibility] = useState(false);
 
   return (
-    <header className={clsx(s.header, "flex justify-between")}>
+    <header
+      className={clsx(s.header, "flex justify-between z-100")}
+      style={{
+        backgroundColor: imageColor || "rgb(255, 255, 100)",
+        color: imageColor ? "rgb(235, 235, 235)" : "black",
+      }}
+    >
       <div className="flex flex-row items-center">
         <h1 className="flex w-min-content items-center text-2xl">
           <Link href="/">
             Songs
           </Link>
         </h1>
-        <ul className={clsx(s.header__auth, "items-center ml-2")}>
+        <ul className={clsx(s.header__auth, "items-center ml-4")}>
           <Link className="flex items-center" href="/albums">Albums</Link>
           <Link className="flex items-center" href="/people">People</Link>
           <Link className="flex items-center" href="/groupes">Groupes</Link>

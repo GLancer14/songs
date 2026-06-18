@@ -85,10 +85,20 @@ export type songs_groupes = Prisma.songs_groupesModel
  */
 export type people = Prisma.peopleModel
 /**
+ * Model type
+ * 
+ */
+export type type = Prisma.typeModel
+/**
  * Model songs_people
  * 
  */
 export type songs_people = Prisma.songs_peopleModel
+/**
+ * Model people_type
+ * 
+ */
+export type people_type = Prisma.people_typeModel
 /**
  * Model genres
  * 

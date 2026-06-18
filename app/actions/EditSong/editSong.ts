@@ -78,28 +78,27 @@ export default async function editSong(
     }
   });
 
-  if (
-    songData.lyrics_translation_langs &&
+  const origLangId = await prisma.languages.findFirst({
+    where: {
+      lang: songData.orig_lang
+    },
+    select: {
+      language_id: true,
+    }
+  });
+
+  await prisma.songs_lyrics.create({
+    data: {
+      song_id: songCreateResult.song_id,
+      language_id: origLangId?.language_id || 1,
+      lyrics_text: songData.original,
+    }
+  });
+
+  if (songData.lyrics_translation_langs &&
     songData.lyrics_translation_langs.length !== 0 &&
     (songData.lyrics_translation_langs.find(value => value === "english" || value === "russian"))
   ) {
-    const origLangId = await prisma.languages.findFirst({
-      where: {
-        lang: songData.orig_lang
-      },
-      select: {
-        language_id: true,
-      }
-    })
-
-    await prisma.songs_lyrics.create({
-      data: {
-        song_id: songCreateResult.song_id,
-        language_id: origLangId?.language_id || 1,
-        lyrics_text: songData.original,
-      }
-    })
-
     songData.lyrics_translation_langs.forEach(async (value) => {
       if (value === "english") {
         await prisma.songs_lyrics.create({
@@ -172,7 +171,7 @@ export default async function editSong(
 
   if (songData.title_image) {
     if (songData.title_image.size === 0) {
-      return songData.orig_audio = undefined;
+      return songData.title_image = undefined;
     }
 
     const file = songData.title_image;

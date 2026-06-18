@@ -107,11 +107,17 @@ model people {
   surname     String?
   nickname    String?
   description String?
-  type        String?
   image       String?
   countries   countries?     @relation(fields: [country_id], references: [country_id])
   country_id  Int?
   songsPeople songs_people[]
+  peopleType  people_type[]
+}
+
+model type {
+  type_id    Int           @id @default(autoincrement())
+  name       String
+  peopleType people_type[]
 }
 
 model songs_people {
@@ -121,6 +127,15 @@ model songs_people {
   id      Int
 
   @@id([song_id, id])
+}
+
+model people_type {
+  type    type   @relation(fields: [type_id], references: [type_id], onDelete: Cascade)
+  people  people @relation(fields: [id], references: [id])
+  type_id Int
+  id      Int
+
+  @@id([type_id, id])
 }
 
 model genres {
