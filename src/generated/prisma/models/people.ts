@@ -43,7 +43,6 @@ export type PeopleMinAggregateOutputType = {
   surname: string | null
   nickname: string | null
   description: string | null
-  type: string | null
   image: string | null
   country_id: number | null
 }
@@ -55,7 +54,6 @@ export type PeopleMaxAggregateOutputType = {
   surname: string | null
   nickname: string | null
   description: string | null
-  type: string | null
   image: string | null
   country_id: number | null
 }
@@ -67,7 +65,6 @@ export type PeopleCountAggregateOutputType = {
   surname: number
   nickname: number
   description: number
-  type: number
   image: number
   country_id: number
   _all: number
@@ -91,7 +88,6 @@ export type PeopleMinAggregateInputType = {
   surname?: true
   nickname?: true
   description?: true
-  type?: true
   image?: true
   country_id?: true
 }
@@ -103,7 +99,6 @@ export type PeopleMaxAggregateInputType = {
   surname?: true
   nickname?: true
   description?: true
-  type?: true
   image?: true
   country_id?: true
 }
@@ -115,7 +110,6 @@ export type PeopleCountAggregateInputType = {
   surname?: true
   nickname?: true
   description?: true
-  type?: true
   image?: true
   country_id?: true
   _all?: true
@@ -214,7 +208,6 @@ export type PeopleGroupByOutputType = {
   surname: string | null
   nickname: string | null
   description: string | null
-  type: string | null
   image: string | null
   country_id: number | null
   _count: PeopleCountAggregateOutputType | null
@@ -249,7 +242,6 @@ export type peopleWhereInput = {
   surname?: Prisma.StringNullableFilter<"people"> | string | null
   nickname?: Prisma.StringNullableFilter<"people"> | string | null
   description?: Prisma.StringNullableFilter<"people"> | string | null
-  type?: Prisma.StringNullableFilter<"people"> | string | null
   image?: Prisma.StringNullableFilter<"people"> | string | null
   country_id?: Prisma.IntNullableFilter<"people"> | number | null
   countries?: Prisma.XOR<Prisma.CountriesNullableScalarRelationFilter, Prisma.countriesWhereInput> | null
@@ -264,7 +256,6 @@ export type peopleOrderByWithRelationInput = {
   surname?: Prisma.SortOrderInput | Prisma.SortOrder
   nickname?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  type?: Prisma.SortOrderInput | Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
   country_id?: Prisma.SortOrderInput | Prisma.SortOrder
   countries?: Prisma.countriesOrderByWithRelationInput
@@ -282,7 +273,6 @@ export type peopleWhereUniqueInput = Prisma.AtLeast<{
   surname?: Prisma.StringNullableFilter<"people"> | string | null
   nickname?: Prisma.StringNullableFilter<"people"> | string | null
   description?: Prisma.StringNullableFilter<"people"> | string | null
-  type?: Prisma.StringNullableFilter<"people"> | string | null
   image?: Prisma.StringNullableFilter<"people"> | string | null
   country_id?: Prisma.IntNullableFilter<"people"> | number | null
   countries?: Prisma.XOR<Prisma.CountriesNullableScalarRelationFilter, Prisma.countriesWhereInput> | null
@@ -297,7 +287,6 @@ export type peopleOrderByWithAggregationInput = {
   surname?: Prisma.SortOrderInput | Prisma.SortOrder
   nickname?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  type?: Prisma.SortOrderInput | Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
   country_id?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.peopleCountOrderByAggregateInput
@@ -317,7 +306,6 @@ export type peopleScalarWhereWithAggregatesInput = {
   surname?: Prisma.StringNullableWithAggregatesFilter<"people"> | string | null
   nickname?: Prisma.StringNullableWithAggregatesFilter<"people"> | string | null
   description?: Prisma.StringNullableWithAggregatesFilter<"people"> | string | null
-  type?: Prisma.StringNullableWithAggregatesFilter<"people"> | string | null
   image?: Prisma.StringNullableWithAggregatesFilter<"people"> | string | null
   country_id?: Prisma.IntNullableWithAggregatesFilter<"people"> | number | null
 }
@@ -328,7 +316,6 @@ export type peopleCreateInput = {
   surname?: string | null
   nickname?: string | null
   description?: string | null
-  type?: string | null
   image?: string | null
   countries?: Prisma.countriesCreateNestedOneWithoutPeopleInput
   songsPeople?: Prisma.songs_peopleCreateNestedManyWithoutPeopleInput
@@ -342,7 +329,6 @@ export type peopleUncheckedCreateInput = {
   surname?: string | null
   nickname?: string | null
   description?: string | null
-  type?: string | null
   image?: string | null
   country_id?: number | null
   songsPeople?: Prisma.songs_peopleUncheckedCreateNestedManyWithoutPeopleInput
@@ -355,7 +341,6 @@ export type peopleUpdateInput = {
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countries?: Prisma.countriesUpdateOneWithoutPeopleNestedInput
   songsPeople?: Prisma.songs_peopleUpdateManyWithoutPeopleNestedInput
@@ -369,7 +354,6 @@ export type peopleUncheckedUpdateInput = {
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   country_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   songsPeople?: Prisma.songs_peopleUncheckedUpdateManyWithoutPeopleNestedInput
@@ -383,7 +367,6 @@ export type peopleCreateManyInput = {
   surname?: string | null
   nickname?: string | null
   description?: string | null
-  type?: string | null
   image?: string | null
   country_id?: number | null
 }
@@ -394,7 +377,6 @@ export type peopleUpdateManyMutationInput = {
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -405,7 +387,6 @@ export type peopleUncheckedUpdateManyInput = {
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   country_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
@@ -427,7 +408,6 @@ export type peopleCountOrderByAggregateInput = {
   surname?: Prisma.SortOrder
   nickname?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   image?: Prisma.SortOrder
   country_id?: Prisma.SortOrder
 }
@@ -444,7 +424,6 @@ export type peopleMaxOrderByAggregateInput = {
   surname?: Prisma.SortOrder
   nickname?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   image?: Prisma.SortOrder
   country_id?: Prisma.SortOrder
 }
@@ -456,7 +435,6 @@ export type peopleMinOrderByAggregateInput = {
   surname?: Prisma.SortOrder
   nickname?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   image?: Prisma.SortOrder
   country_id?: Prisma.SortOrder
 }
@@ -547,7 +525,6 @@ export type peopleCreateWithoutCountriesInput = {
   surname?: string | null
   nickname?: string | null
   description?: string | null
-  type?: string | null
   image?: string | null
   songsPeople?: Prisma.songs_peopleCreateNestedManyWithoutPeopleInput
   peopleType?: Prisma.people_typeCreateNestedManyWithoutPeopleInput
@@ -560,7 +537,6 @@ export type peopleUncheckedCreateWithoutCountriesInput = {
   surname?: string | null
   nickname?: string | null
   description?: string | null
-  type?: string | null
   image?: string | null
   songsPeople?: Prisma.songs_peopleUncheckedCreateNestedManyWithoutPeopleInput
   peopleType?: Prisma.people_typeUncheckedCreateNestedManyWithoutPeopleInput
@@ -602,7 +578,6 @@ export type peopleScalarWhereInput = {
   surname?: Prisma.StringNullableFilter<"people"> | string | null
   nickname?: Prisma.StringNullableFilter<"people"> | string | null
   description?: Prisma.StringNullableFilter<"people"> | string | null
-  type?: Prisma.StringNullableFilter<"people"> | string | null
   image?: Prisma.StringNullableFilter<"people"> | string | null
   country_id?: Prisma.IntNullableFilter<"people"> | number | null
 }
@@ -613,7 +588,6 @@ export type peopleCreateWithoutSongsPeopleInput = {
   surname?: string | null
   nickname?: string | null
   description?: string | null
-  type?: string | null
   image?: string | null
   countries?: Prisma.countriesCreateNestedOneWithoutPeopleInput
   peopleType?: Prisma.people_typeCreateNestedManyWithoutPeopleInput
@@ -626,7 +600,6 @@ export type peopleUncheckedCreateWithoutSongsPeopleInput = {
   surname?: string | null
   nickname?: string | null
   description?: string | null
-  type?: string | null
   image?: string | null
   country_id?: number | null
   peopleType?: Prisma.people_typeUncheckedCreateNestedManyWithoutPeopleInput
@@ -654,7 +627,6 @@ export type peopleUpdateWithoutSongsPeopleInput = {
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countries?: Prisma.countriesUpdateOneWithoutPeopleNestedInput
   peopleType?: Prisma.people_typeUpdateManyWithoutPeopleNestedInput
@@ -667,7 +639,6 @@ export type peopleUncheckedUpdateWithoutSongsPeopleInput = {
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   country_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   peopleType?: Prisma.people_typeUncheckedUpdateManyWithoutPeopleNestedInput
@@ -679,7 +650,6 @@ export type peopleCreateWithoutPeopleTypeInput = {
   surname?: string | null
   nickname?: string | null
   description?: string | null
-  type?: string | null
   image?: string | null
   countries?: Prisma.countriesCreateNestedOneWithoutPeopleInput
   songsPeople?: Prisma.songs_peopleCreateNestedManyWithoutPeopleInput
@@ -692,7 +662,6 @@ export type peopleUncheckedCreateWithoutPeopleTypeInput = {
   surname?: string | null
   nickname?: string | null
   description?: string | null
-  type?: string | null
   image?: string | null
   country_id?: number | null
   songsPeople?: Prisma.songs_peopleUncheckedCreateNestedManyWithoutPeopleInput
@@ -720,7 +689,6 @@ export type peopleUpdateWithoutPeopleTypeInput = {
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countries?: Prisma.countriesUpdateOneWithoutPeopleNestedInput
   songsPeople?: Prisma.songs_peopleUpdateManyWithoutPeopleNestedInput
@@ -733,7 +701,6 @@ export type peopleUncheckedUpdateWithoutPeopleTypeInput = {
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   country_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   songsPeople?: Prisma.songs_peopleUncheckedUpdateManyWithoutPeopleNestedInput
@@ -746,7 +713,6 @@ export type peopleCreateManyCountriesInput = {
   surname?: string | null
   nickname?: string | null
   description?: string | null
-  type?: string | null
   image?: string | null
 }
 
@@ -756,7 +722,6 @@ export type peopleUpdateWithoutCountriesInput = {
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   songsPeople?: Prisma.songs_peopleUpdateManyWithoutPeopleNestedInput
   peopleType?: Prisma.people_typeUpdateManyWithoutPeopleNestedInput
@@ -769,7 +734,6 @@ export type peopleUncheckedUpdateWithoutCountriesInput = {
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   songsPeople?: Prisma.songs_peopleUncheckedUpdateManyWithoutPeopleNestedInput
   peopleType?: Prisma.people_typeUncheckedUpdateManyWithoutPeopleNestedInput
@@ -782,7 +746,6 @@ export type peopleUncheckedUpdateManyWithoutCountriesInput = {
   surname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nickname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -833,7 +796,6 @@ export type peopleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   surname?: boolean
   nickname?: boolean
   description?: boolean
-  type?: boolean
   image?: boolean
   country_id?: boolean
   countries?: boolean | Prisma.people$countriesArgs<ExtArgs>
@@ -849,7 +811,6 @@ export type peopleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   surname?: boolean
   nickname?: boolean
   description?: boolean
-  type?: boolean
   image?: boolean
   country_id?: boolean
   countries?: boolean | Prisma.people$countriesArgs<ExtArgs>
@@ -862,7 +823,6 @@ export type peopleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   surname?: boolean
   nickname?: boolean
   description?: boolean
-  type?: boolean
   image?: boolean
   country_id?: boolean
   countries?: boolean | Prisma.people$countriesArgs<ExtArgs>
@@ -875,12 +835,11 @@ export type peopleSelectScalar = {
   surname?: boolean
   nickname?: boolean
   description?: boolean
-  type?: boolean
   image?: boolean
   country_id?: boolean
 }
 
-export type peopleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "firstname" | "surname" | "nickname" | "description" | "type" | "image" | "country_id", ExtArgs["result"]["people"]>
+export type peopleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "firstname" | "surname" | "nickname" | "description" | "image" | "country_id", ExtArgs["result"]["people"]>
 export type peopleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   countries?: boolean | Prisma.people$countriesArgs<ExtArgs>
   songsPeople?: boolean | Prisma.people$songsPeopleArgs<ExtArgs>
@@ -908,7 +867,6 @@ export type $peoplePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     surname: string | null
     nickname: string | null
     description: string | null
-    type: string | null
     image: string | null
     country_id: number | null
   }, ExtArgs["result"]["people"]>
@@ -1343,7 +1301,6 @@ export interface peopleFieldRefs {
   readonly surname: Prisma.FieldRef<"people", 'String'>
   readonly nickname: Prisma.FieldRef<"people", 'String'>
   readonly description: Prisma.FieldRef<"people", 'String'>
-  readonly type: Prisma.FieldRef<"people", 'String'>
   readonly image: Prisma.FieldRef<"people", 'String'>
   readonly country_id: Prisma.FieldRef<"people", 'Int'>
 }

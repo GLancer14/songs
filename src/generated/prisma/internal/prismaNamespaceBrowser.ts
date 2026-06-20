@@ -181,7 +181,6 @@ export const PeopleScalarFieldEnum = {
   surname: 'surname',
   nickname: 'nickname',
   description: 'description',
-  type: 'type',
   image: 'image',
   country_id: 'country_id'
 } as const
