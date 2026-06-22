@@ -43,7 +43,7 @@ const SongPage: React.FC<SongPageProps> = ({
   return (
     <div className="flex flex-col">
       <header className="flex items-center relative h-[330px]">
-        <div className="relative flex flex-row w-[1376px] mx-auto py-4">
+        <div className="relative flex flex-row max-w-[1376px] w-full mx-auto py-4">
           {songData.image &&
             <Image
               className="relative top-4 self-start mr-11 shadow-[rgba(0,0,0,0.18)_0px_0px_12px_0px]"
@@ -95,7 +95,7 @@ const SongPage: React.FC<SongPageProps> = ({
           background: `linear-gradient(${imageColor}, ${imageColorMinusValue})`,
         }}
       >
-        <div className="w-[1200px] mx-auto text-white">
+        <div className="max-w-[1200px] w-full mx-auto text-white">
           <h2 className="capitalize text-[90px] max-w-[720px] text-center">about</h2>
           <div className="max-w-[720px]">
             {songData.description}
