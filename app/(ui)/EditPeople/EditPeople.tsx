@@ -6,8 +6,10 @@ import Footer from "../Footer/Footer";
 import { useActionState, useState } from "react";
 import editPeople from "@/app/actions/EditPeople/editPeople";
 import AddImage from "../ui/AddImage/AddImage";
+import { useRouter } from "next/navigation";
 
 const EditPeople = ({ user }: { user: users | null | undefined }) => {
+  const router = useRouter()
   const [state, action, pending] = useActionState(editPeople, undefined)
   const [name, setName] = useState("");
   const [firstname, setFirstname] = useState("");
@@ -24,7 +26,7 @@ const EditPeople = ({ user }: { user: users | null | undefined }) => {
         action={action}
         method="POST"
         encType="multipart/form-data"
-        onSubmit={() => window.location.replace(`/people`)}
+        onSubmit={() => router.push(`/people`)}
       >
         <h2 className="text-4xl capitalize mb-4 w-300">Add People</h2>
         <section className="flex flex-col flex-1 justify-start mb-8">

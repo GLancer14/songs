@@ -22,7 +22,7 @@ export default async function Home() {
           Songs
         </h2>
         <section className="flex flex-col w-full">
-          <div className="songs flex flex-row flex-wrap">
+          <div className="songs flex flex-row flex-wrap gap-[2%]">
             {songs.length > 0 &&
               songs.map((song, ind) => {
                 return (

@@ -16,7 +16,7 @@ const EditGroup = ({ user }: { user: users | null | undefined }) => {
     <>
       <Header user={user} />
       <form
-        className="flex flex-col justify-start p-8 bg-gray-800 grow"
+        className="flex flex-col flex-1 justify-start p-8 w-300 min-w-[768px] mx-auto bg-white"
         action={action}
         method="POST"
         encType="multipart/form-data"

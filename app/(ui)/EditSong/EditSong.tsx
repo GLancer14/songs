@@ -14,6 +14,7 @@ import { useActionState, useState } from "react";
 import clsx from "clsx";
 import editSong from "@/app/actions/EditSong/editSong";
 import { redirect } from "next/navigation";
+import { fieldsNames } from "../lib/fieldsNames";
 
 const EditSong = ({
   user,
@@ -64,7 +65,7 @@ const EditSong = ({
     <>
       <Header user={user} />
       <form
-        className="flex flex-col justify-start p-8 max-w-300 mx-auto bg-white"
+        className="flex flex-col flex-1 justify-start p-8 max-w-300 mx-auto bg-white"
         action={action}
         method="POST"
         encType="multipart/form-data"
@@ -185,6 +186,7 @@ const EditSong = ({
               return (
                 <SearchField
                   key={ind}
+                  fieldName={fieldsNames[creator.name]}
                   tableData={creator}
                   className="flex flex-col justify-start gap-2 mb-2 w-[calc(50%-16px)]"
                 />
@@ -205,6 +207,7 @@ const EditSong = ({
               return (
                 <SearchField
                   key={ind}
+                  fieldName={fieldsNames[dataGroup.name]}
                   tableData={dataGroup}
                   className="flex flex-col justify-start gap-2 mb-2 w-[calc(50%-16px)]"
                 />

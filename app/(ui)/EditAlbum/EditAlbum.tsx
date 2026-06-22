@@ -21,7 +21,7 @@ const EditAlbum = ({ user, albumTypes }: { user: users | null | undefined; album
     <>
       <Header user={user} />
       <form
-        className="flex flex-col justify-start p-8 bg-gray-800 grow"
+        className="flex flex-col flex-1 justify-start p-8 w-300 min-w-[768px] mx-auto bg-white"
         action={action}
         method="POST"
         encType="multipart/form-data"
@@ -44,14 +44,6 @@ const EditAlbum = ({ user, albumTypes }: { user: users | null | undefined; album
                 }}
               />
             </label>
-            <SearchField
-              tableData={{
-                name: "people",
-                fields: "name",
-                title: "Авторы альбома"
-              }}
-              className="flex flex-col justify-start gap-2 mb-2 w-[calc(50%-16px)]"
-            />
             <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
               <span className="text-xl">Author</span>
               <input
@@ -91,6 +83,17 @@ const EditAlbum = ({ user, albumTypes }: { user: users | null | undefined; album
               })}
             </select>
           </label>
+        </section>
+        <section className="flex flex-row gap-4 w-full mb-4">
+          <SearchField
+            tableData={{
+              name: "people",
+              fields: "name",
+              title: "Авторы альбома"
+            }}
+            fieldName="Люди"
+            className="flex flex-col justify-start gap-2 mb-2 w-[calc(50%-16px)]"
+          />
         </section>
         <section className="mb-4">
           <label className="flex gap-2 mb-4">

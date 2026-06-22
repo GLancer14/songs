@@ -7,6 +7,7 @@ import { debounce } from "@/app/lib/decorators";
 
 const SearchField = ({
   tableData,
+  fieldName,
   required,
   title,
   maxLength = 128,
@@ -17,6 +18,7 @@ const SearchField = ({
     fields: string;
     title: string;
   };
+  fieldName: string;
   required?: boolean;
   title?: string;
   maxLength?: number;
@@ -35,7 +37,7 @@ const SearchField = ({
         "flex gap-4 cursor-pointer justify-between relative"
       )}
     >
-      <span className="text-xl">{tableData.name + ` ${tableData.fields}`}</span>
+      <span className="text-xl">{fieldName}</span>
       <input
         className="p-1 rounded-sm"
         type="text"
@@ -111,7 +113,7 @@ const SearchField = ({
         })}
       </div>
       <button
-        className=""
+        className="border-black border-1"
         type="button"
         onClick={() => {
           if (searchValue !== "") {
