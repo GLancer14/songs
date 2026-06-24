@@ -1726,8 +1726,6 @@ export const SongsScalarFieldEnum = {
   addition_date: 'addition_date',
   release_date: 'release_date',
   file: 'file',
-  track: 'track',
-  disk: 'disk',
   mood_id: 'mood_id',
   rank: 'rank',
   bpm: 'bpm',
@@ -1771,7 +1769,9 @@ export type Album_typesScalarFieldEnum = (typeof Album_typesScalarFieldEnum)[key
 
 export const Songs_albumsScalarFieldEnum = {
   song_id: 'song_id',
-  id: 'id'
+  id: 'id',
+  track: 'track',
+  disk: 'disk'
 } as const
 
 export type Songs_albumsScalarFieldEnum = (typeof Songs_albumsScalarFieldEnum)[keyof typeof Songs_albumsScalarFieldEnum]

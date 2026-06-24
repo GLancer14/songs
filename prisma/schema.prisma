@@ -23,8 +23,6 @@ model songs {
   addition_date DateTime?
   release_date  DateTime
   file          String?
-  track         Int?
-  disk          Int?
   mood          mood            @relation(fields: [mood_id], references: [mood_id])
   mood_id       Int
   rank          String?
@@ -69,6 +67,8 @@ model songs_albums {
   albums  albums @relation(fields: [id], references: [id])
   song_id Int
   id      Int
+  track   Int?
+  disk    Int?
 
   @@id([song_id, id])
 }

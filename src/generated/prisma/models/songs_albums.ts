@@ -29,26 +29,36 @@ export type AggregateSongs_albums = {
 export type Songs_albumsAvgAggregateOutputType = {
   song_id: number | null
   id: number | null
+  track: number | null
+  disk: number | null
 }
 
 export type Songs_albumsSumAggregateOutputType = {
   song_id: number | null
   id: number | null
+  track: number | null
+  disk: number | null
 }
 
 export type Songs_albumsMinAggregateOutputType = {
   song_id: number | null
   id: number | null
+  track: number | null
+  disk: number | null
 }
 
 export type Songs_albumsMaxAggregateOutputType = {
   song_id: number | null
   id: number | null
+  track: number | null
+  disk: number | null
 }
 
 export type Songs_albumsCountAggregateOutputType = {
   song_id: number
   id: number
+  track: number
+  disk: number
   _all: number
 }
 
@@ -56,26 +66,36 @@ export type Songs_albumsCountAggregateOutputType = {
 export type Songs_albumsAvgAggregateInputType = {
   song_id?: true
   id?: true
+  track?: true
+  disk?: true
 }
 
 export type Songs_albumsSumAggregateInputType = {
   song_id?: true
   id?: true
+  track?: true
+  disk?: true
 }
 
 export type Songs_albumsMinAggregateInputType = {
   song_id?: true
   id?: true
+  track?: true
+  disk?: true
 }
 
 export type Songs_albumsMaxAggregateInputType = {
   song_id?: true
   id?: true
+  track?: true
+  disk?: true
 }
 
 export type Songs_albumsCountAggregateInputType = {
   song_id?: true
   id?: true
+  track?: true
+  disk?: true
   _all?: true
 }
 
@@ -168,6 +188,8 @@ export type songs_albumsGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 export type Songs_albumsGroupByOutputType = {
   song_id: number
   id: number
+  track: number | null
+  disk: number | null
   _count: Songs_albumsCountAggregateOutputType | null
   _avg: Songs_albumsAvgAggregateOutputType | null
   _sum: Songs_albumsSumAggregateOutputType | null
@@ -196,6 +218,8 @@ export type songs_albumsWhereInput = {
   NOT?: Prisma.songs_albumsWhereInput | Prisma.songs_albumsWhereInput[]
   song_id?: Prisma.IntFilter<"songs_albums"> | number
   id?: Prisma.IntFilter<"songs_albums"> | number
+  track?: Prisma.IntNullableFilter<"songs_albums"> | number | null
+  disk?: Prisma.IntNullableFilter<"songs_albums"> | number | null
   songs?: Prisma.XOR<Prisma.SongsScalarRelationFilter, Prisma.songsWhereInput>
   albums?: Prisma.XOR<Prisma.AlbumsScalarRelationFilter, Prisma.albumsWhereInput>
 }
@@ -203,6 +227,8 @@ export type songs_albumsWhereInput = {
 export type songs_albumsOrderByWithRelationInput = {
   song_id?: Prisma.SortOrder
   id?: Prisma.SortOrder
+  track?: Prisma.SortOrderInput | Prisma.SortOrder
+  disk?: Prisma.SortOrderInput | Prisma.SortOrder
   songs?: Prisma.songsOrderByWithRelationInput
   albums?: Prisma.albumsOrderByWithRelationInput
 }
@@ -214,6 +240,8 @@ export type songs_albumsWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.songs_albumsWhereInput | Prisma.songs_albumsWhereInput[]
   song_id?: Prisma.IntFilter<"songs_albums"> | number
   id?: Prisma.IntFilter<"songs_albums"> | number
+  track?: Prisma.IntNullableFilter<"songs_albums"> | number | null
+  disk?: Prisma.IntNullableFilter<"songs_albums"> | number | null
   songs?: Prisma.XOR<Prisma.SongsScalarRelationFilter, Prisma.songsWhereInput>
   albums?: Prisma.XOR<Prisma.AlbumsScalarRelationFilter, Prisma.albumsWhereInput>
 }, "song_id_id">
@@ -221,6 +249,8 @@ export type songs_albumsWhereUniqueInput = Prisma.AtLeast<{
 export type songs_albumsOrderByWithAggregationInput = {
   song_id?: Prisma.SortOrder
   id?: Prisma.SortOrder
+  track?: Prisma.SortOrderInput | Prisma.SortOrder
+  disk?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.songs_albumsCountOrderByAggregateInput
   _avg?: Prisma.songs_albumsAvgOrderByAggregateInput
   _max?: Prisma.songs_albumsMaxOrderByAggregateInput
@@ -234,9 +264,13 @@ export type songs_albumsScalarWhereWithAggregatesInput = {
   NOT?: Prisma.songs_albumsScalarWhereWithAggregatesInput | Prisma.songs_albumsScalarWhereWithAggregatesInput[]
   song_id?: Prisma.IntWithAggregatesFilter<"songs_albums"> | number
   id?: Prisma.IntWithAggregatesFilter<"songs_albums"> | number
+  track?: Prisma.IntNullableWithAggregatesFilter<"songs_albums"> | number | null
+  disk?: Prisma.IntNullableWithAggregatesFilter<"songs_albums"> | number | null
 }
 
 export type songs_albumsCreateInput = {
+  track?: number | null
+  disk?: number | null
   songs: Prisma.songsCreateNestedOneWithoutSongsAlbumsInput
   albums: Prisma.albumsCreateNestedOneWithoutSongsAlbumsInput
 }
@@ -244,9 +278,13 @@ export type songs_albumsCreateInput = {
 export type songs_albumsUncheckedCreateInput = {
   song_id: number
   id: number
+  track?: number | null
+  disk?: number | null
 }
 
 export type songs_albumsUpdateInput = {
+  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   songs?: Prisma.songsUpdateOneRequiredWithoutSongsAlbumsNestedInput
   albums?: Prisma.albumsUpdateOneRequiredWithoutSongsAlbumsNestedInput
 }
@@ -254,20 +292,27 @@ export type songs_albumsUpdateInput = {
 export type songs_albumsUncheckedUpdateInput = {
   song_id?: Prisma.IntFieldUpdateOperationsInput | number
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type songs_albumsCreateManyInput = {
   song_id: number
   id: number
+  track?: number | null
+  disk?: number | null
 }
 
 export type songs_albumsUpdateManyMutationInput = {
-
+  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type songs_albumsUncheckedUpdateManyInput = {
   song_id?: Prisma.IntFieldUpdateOperationsInput | number
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type Songs_albumsListRelationFilter = {
@@ -288,26 +333,36 @@ export type songs_albumsSong_idIdCompoundUniqueInput = {
 export type songs_albumsCountOrderByAggregateInput = {
   song_id?: Prisma.SortOrder
   id?: Prisma.SortOrder
+  track?: Prisma.SortOrder
+  disk?: Prisma.SortOrder
 }
 
 export type songs_albumsAvgOrderByAggregateInput = {
   song_id?: Prisma.SortOrder
   id?: Prisma.SortOrder
+  track?: Prisma.SortOrder
+  disk?: Prisma.SortOrder
 }
 
 export type songs_albumsMaxOrderByAggregateInput = {
   song_id?: Prisma.SortOrder
   id?: Prisma.SortOrder
+  track?: Prisma.SortOrder
+  disk?: Prisma.SortOrder
 }
 
 export type songs_albumsMinOrderByAggregateInput = {
   song_id?: Prisma.SortOrder
   id?: Prisma.SortOrder
+  track?: Prisma.SortOrder
+  disk?: Prisma.SortOrder
 }
 
 export type songs_albumsSumOrderByAggregateInput = {
   song_id?: Prisma.SortOrder
   id?: Prisma.SortOrder
+  track?: Prisma.SortOrder
+  disk?: Prisma.SortOrder
 }
 
 export type songs_albumsCreateNestedManyWithoutSongsInput = {
@@ -395,11 +450,15 @@ export type songs_albumsUncheckedUpdateManyWithoutAlbumsNestedInput = {
 }
 
 export type songs_albumsCreateWithoutSongsInput = {
+  track?: number | null
+  disk?: number | null
   albums: Prisma.albumsCreateNestedOneWithoutSongsAlbumsInput
 }
 
 export type songs_albumsUncheckedCreateWithoutSongsInput = {
   id: number
+  track?: number | null
+  disk?: number | null
 }
 
 export type songs_albumsCreateOrConnectWithoutSongsInput = {
@@ -434,14 +493,20 @@ export type songs_albumsScalarWhereInput = {
   NOT?: Prisma.songs_albumsScalarWhereInput | Prisma.songs_albumsScalarWhereInput[]
   song_id?: Prisma.IntFilter<"songs_albums"> | number
   id?: Prisma.IntFilter<"songs_albums"> | number
+  track?: Prisma.IntNullableFilter<"songs_albums"> | number | null
+  disk?: Prisma.IntNullableFilter<"songs_albums"> | number | null
 }
 
 export type songs_albumsCreateWithoutAlbumsInput = {
+  track?: number | null
+  disk?: number | null
   songs: Prisma.songsCreateNestedOneWithoutSongsAlbumsInput
 }
 
 export type songs_albumsUncheckedCreateWithoutAlbumsInput = {
   song_id: number
+  track?: number | null
+  disk?: number | null
 }
 
 export type songs_albumsCreateOrConnectWithoutAlbumsInput = {
@@ -472,34 +537,50 @@ export type songs_albumsUpdateManyWithWhereWithoutAlbumsInput = {
 
 export type songs_albumsCreateManySongsInput = {
   id: number
+  track?: number | null
+  disk?: number | null
 }
 
 export type songs_albumsUpdateWithoutSongsInput = {
+  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   albums?: Prisma.albumsUpdateOneRequiredWithoutSongsAlbumsNestedInput
 }
 
 export type songs_albumsUncheckedUpdateWithoutSongsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type songs_albumsUncheckedUpdateManyWithoutSongsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type songs_albumsCreateManyAlbumsInput = {
   song_id: number
+  track?: number | null
+  disk?: number | null
 }
 
 export type songs_albumsUpdateWithoutAlbumsInput = {
+  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   songs?: Prisma.songsUpdateOneRequiredWithoutSongsAlbumsNestedInput
 }
 
 export type songs_albumsUncheckedUpdateWithoutAlbumsInput = {
   song_id?: Prisma.IntFieldUpdateOperationsInput | number
+  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type songs_albumsUncheckedUpdateManyWithoutAlbumsInput = {
   song_id?: Prisma.IntFieldUpdateOperationsInput | number
+  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -507,6 +588,8 @@ export type songs_albumsUncheckedUpdateManyWithoutAlbumsInput = {
 export type songs_albumsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   song_id?: boolean
   id?: boolean
+  track?: boolean
+  disk?: boolean
   songs?: boolean | Prisma.songsDefaultArgs<ExtArgs>
   albums?: boolean | Prisma.albumsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["songs_albums"]>
@@ -514,6 +597,8 @@ export type songs_albumsSelect<ExtArgs extends runtime.Types.Extensions.Internal
 export type songs_albumsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   song_id?: boolean
   id?: boolean
+  track?: boolean
+  disk?: boolean
   songs?: boolean | Prisma.songsDefaultArgs<ExtArgs>
   albums?: boolean | Prisma.albumsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["songs_albums"]>
@@ -521,6 +606,8 @@ export type songs_albumsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
 export type songs_albumsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   song_id?: boolean
   id?: boolean
+  track?: boolean
+  disk?: boolean
   songs?: boolean | Prisma.songsDefaultArgs<ExtArgs>
   albums?: boolean | Prisma.albumsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["songs_albums"]>
@@ -528,9 +615,11 @@ export type songs_albumsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
 export type songs_albumsSelectScalar = {
   song_id?: boolean
   id?: boolean
+  track?: boolean
+  disk?: boolean
 }
 
-export type songs_albumsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"song_id" | "id", ExtArgs["result"]["songs_albums"]>
+export type songs_albumsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"song_id" | "id" | "track" | "disk", ExtArgs["result"]["songs_albums"]>
 export type songs_albumsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   songs?: boolean | Prisma.songsDefaultArgs<ExtArgs>
   albums?: boolean | Prisma.albumsDefaultArgs<ExtArgs>
@@ -553,6 +642,8 @@ export type $songs_albumsPayload<ExtArgs extends runtime.Types.Extensions.Intern
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     song_id: number
     id: number
+    track: number | null
+    disk: number | null
   }, ExtArgs["result"]["songs_albums"]>
   composites: {}
 }
@@ -980,6 +1071,8 @@ export interface Prisma__songs_albumsClient<T, Null = never, ExtArgs extends run
 export interface songs_albumsFieldRefs {
   readonly song_id: Prisma.FieldRef<"songs_albums", 'Int'>
   readonly id: Prisma.FieldRef<"songs_albums", 'Int'>
+  readonly track: Prisma.FieldRef<"songs_albums", 'Int'>
+  readonly disk: Prisma.FieldRef<"songs_albums", 'Int'>
 }
     
 

@@ -29,8 +29,6 @@ export type AggregateSongs = {
 export type SongsAvgAggregateOutputType = {
   song_id: number | null
   user_id: number | null
-  track: number | null
-  disk: number | null
   mood_id: number | null
   bpm: number | null
   bitrate_audio: number | null
@@ -40,8 +38,6 @@ export type SongsAvgAggregateOutputType = {
 export type SongsSumAggregateOutputType = {
   song_id: number | null
   user_id: number | null
-  track: number | null
-  disk: number | null
   mood_id: number | null
   bpm: number | null
   bitrate_audio: bigint | null
@@ -57,8 +53,6 @@ export type SongsMinAggregateOutputType = {
   addition_date: Date | null
   release_date: Date | null
   file: string | null
-  track: number | null
-  disk: number | null
   mood_id: number | null
   rank: string | null
   bpm: number | null
@@ -77,8 +71,6 @@ export type SongsMaxAggregateOutputType = {
   addition_date: Date | null
   release_date: Date | null
   file: string | null
-  track: number | null
-  disk: number | null
   mood_id: number | null
   rank: string | null
   bpm: number | null
@@ -97,8 +89,6 @@ export type SongsCountAggregateOutputType = {
   addition_date: number
   release_date: number
   file: number
-  track: number
-  disk: number
   mood_id: number
   rank: number
   bpm: number
@@ -113,8 +103,6 @@ export type SongsCountAggregateOutputType = {
 export type SongsAvgAggregateInputType = {
   song_id?: true
   user_id?: true
-  track?: true
-  disk?: true
   mood_id?: true
   bpm?: true
   bitrate_audio?: true
@@ -124,8 +112,6 @@ export type SongsAvgAggregateInputType = {
 export type SongsSumAggregateInputType = {
   song_id?: true
   user_id?: true
-  track?: true
-  disk?: true
   mood_id?: true
   bpm?: true
   bitrate_audio?: true
@@ -141,8 +127,6 @@ export type SongsMinAggregateInputType = {
   addition_date?: true
   release_date?: true
   file?: true
-  track?: true
-  disk?: true
   mood_id?: true
   rank?: true
   bpm?: true
@@ -161,8 +145,6 @@ export type SongsMaxAggregateInputType = {
   addition_date?: true
   release_date?: true
   file?: true
-  track?: true
-  disk?: true
   mood_id?: true
   rank?: true
   bpm?: true
@@ -181,8 +163,6 @@ export type SongsCountAggregateInputType = {
   addition_date?: true
   release_date?: true
   file?: true
-  track?: true
-  disk?: true
   mood_id?: true
   rank?: true
   bpm?: true
@@ -288,8 +268,6 @@ export type SongsGroupByOutputType = {
   addition_date: Date | null
   release_date: Date
   file: string | null
-  track: number | null
-  disk: number | null
   mood_id: number
   rank: string | null
   bpm: number | null
@@ -331,8 +309,6 @@ export type songsWhereInput = {
   addition_date?: Prisma.DateTimeNullableFilter<"songs"> | Date | string | null
   release_date?: Prisma.DateTimeFilter<"songs"> | Date | string
   file?: Prisma.StringNullableFilter<"songs"> | string | null
-  track?: Prisma.IntNullableFilter<"songs"> | number | null
-  disk?: Prisma.IntNullableFilter<"songs"> | number | null
   mood_id?: Prisma.IntFilter<"songs"> | number
   rank?: Prisma.StringNullableFilter<"songs"> | string | null
   bpm?: Prisma.FloatNullableFilter<"songs"> | number | null
@@ -358,8 +334,6 @@ export type songsOrderByWithRelationInput = {
   addition_date?: Prisma.SortOrderInput | Prisma.SortOrder
   release_date?: Prisma.SortOrder
   file?: Prisma.SortOrderInput | Prisma.SortOrder
-  track?: Prisma.SortOrderInput | Prisma.SortOrder
-  disk?: Prisma.SortOrderInput | Prisma.SortOrder
   mood_id?: Prisma.SortOrder
   rank?: Prisma.SortOrderInput | Prisma.SortOrder
   bpm?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -388,8 +362,6 @@ export type songsWhereUniqueInput = Prisma.AtLeast<{
   addition_date?: Prisma.DateTimeNullableFilter<"songs"> | Date | string | null
   release_date?: Prisma.DateTimeFilter<"songs"> | Date | string
   file?: Prisma.StringNullableFilter<"songs"> | string | null
-  track?: Prisma.IntNullableFilter<"songs"> | number | null
-  disk?: Prisma.IntNullableFilter<"songs"> | number | null
   mood_id?: Prisma.IntFilter<"songs"> | number
   rank?: Prisma.StringNullableFilter<"songs"> | string | null
   bpm?: Prisma.FloatNullableFilter<"songs"> | number | null
@@ -415,8 +387,6 @@ export type songsOrderByWithAggregationInput = {
   addition_date?: Prisma.SortOrderInput | Prisma.SortOrder
   release_date?: Prisma.SortOrder
   file?: Prisma.SortOrderInput | Prisma.SortOrder
-  track?: Prisma.SortOrderInput | Prisma.SortOrder
-  disk?: Prisma.SortOrderInput | Prisma.SortOrder
   mood_id?: Prisma.SortOrder
   rank?: Prisma.SortOrderInput | Prisma.SortOrder
   bpm?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -443,8 +413,6 @@ export type songsScalarWhereWithAggregatesInput = {
   addition_date?: Prisma.DateTimeNullableWithAggregatesFilter<"songs"> | Date | string | null
   release_date?: Prisma.DateTimeWithAggregatesFilter<"songs"> | Date | string
   file?: Prisma.StringNullableWithAggregatesFilter<"songs"> | string | null
-  track?: Prisma.IntNullableWithAggregatesFilter<"songs"> | number | null
-  disk?: Prisma.IntNullableWithAggregatesFilter<"songs"> | number | null
   mood_id?: Prisma.IntWithAggregatesFilter<"songs"> | number
   rank?: Prisma.StringNullableWithAggregatesFilter<"songs"> | string | null
   bpm?: Prisma.FloatNullableWithAggregatesFilter<"songs"> | number | null
@@ -461,8 +429,6 @@ export type songsCreateInput = {
   addition_date?: Date | string | null
   release_date: Date | string
   file?: string | null
-  track?: number | null
-  disk?: number | null
   rank?: string | null
   bpm?: number | null
   bitrate_audio?: bigint | number | null
@@ -487,8 +453,6 @@ export type songsUncheckedCreateInput = {
   addition_date?: Date | string | null
   release_date: Date | string
   file?: string | null
-  track?: number | null
-  disk?: number | null
   mood_id: number
   rank?: string | null
   bpm?: number | null
@@ -510,8 +474,6 @@ export type songsUpdateInput = {
   addition_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   release_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   rank?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bpm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   bitrate_audio?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -536,8 +498,6 @@ export type songsUncheckedUpdateInput = {
   addition_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   release_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mood_id?: Prisma.IntFieldUpdateOperationsInput | number
   rank?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bpm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -561,8 +521,6 @@ export type songsCreateManyInput = {
   addition_date?: Date | string | null
   release_date: Date | string
   file?: string | null
-  track?: number | null
-  disk?: number | null
   mood_id: number
   rank?: string | null
   bpm?: number | null
@@ -579,8 +537,6 @@ export type songsUpdateManyMutationInput = {
   addition_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   release_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   rank?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bpm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   bitrate_audio?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -598,8 +554,6 @@ export type songsUncheckedUpdateManyInput = {
   addition_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   release_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mood_id?: Prisma.IntFieldUpdateOperationsInput | number
   rank?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bpm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -618,8 +572,6 @@ export type songsCountOrderByAggregateInput = {
   addition_date?: Prisma.SortOrder
   release_date?: Prisma.SortOrder
   file?: Prisma.SortOrder
-  track?: Prisma.SortOrder
-  disk?: Prisma.SortOrder
   mood_id?: Prisma.SortOrder
   rank?: Prisma.SortOrder
   bpm?: Prisma.SortOrder
@@ -632,8 +584,6 @@ export type songsCountOrderByAggregateInput = {
 export type songsAvgOrderByAggregateInput = {
   song_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
-  track?: Prisma.SortOrder
-  disk?: Prisma.SortOrder
   mood_id?: Prisma.SortOrder
   bpm?: Prisma.SortOrder
   bitrate_audio?: Prisma.SortOrder
@@ -649,8 +599,6 @@ export type songsMaxOrderByAggregateInput = {
   addition_date?: Prisma.SortOrder
   release_date?: Prisma.SortOrder
   file?: Prisma.SortOrder
-  track?: Prisma.SortOrder
-  disk?: Prisma.SortOrder
   mood_id?: Prisma.SortOrder
   rank?: Prisma.SortOrder
   bpm?: Prisma.SortOrder
@@ -669,8 +617,6 @@ export type songsMinOrderByAggregateInput = {
   addition_date?: Prisma.SortOrder
   release_date?: Prisma.SortOrder
   file?: Prisma.SortOrder
-  track?: Prisma.SortOrder
-  disk?: Prisma.SortOrder
   mood_id?: Prisma.SortOrder
   rank?: Prisma.SortOrder
   bpm?: Prisma.SortOrder
@@ -683,8 +629,6 @@ export type songsMinOrderByAggregateInput = {
 export type songsSumOrderByAggregateInput = {
   song_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
-  track?: Prisma.SortOrder
-  disk?: Prisma.SortOrder
   mood_id?: Prisma.SortOrder
   bpm?: Prisma.SortOrder
   bitrate_audio?: Prisma.SortOrder
@@ -720,14 +664,6 @@ export type DateTimeFieldUpdateOperationsInput = {
 
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
-}
-
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
 }
 
 export type NullableFloatFieldUpdateOperationsInput = {
@@ -915,8 +851,6 @@ export type songsCreateWithoutMoodInput = {
   addition_date?: Date | string | null
   release_date: Date | string
   file?: string | null
-  track?: number | null
-  disk?: number | null
   rank?: string | null
   bpm?: number | null
   bitrate_audio?: bigint | number | null
@@ -940,8 +874,6 @@ export type songsUncheckedCreateWithoutMoodInput = {
   addition_date?: Date | string | null
   release_date: Date | string
   file?: string | null
-  track?: number | null
-  disk?: number | null
   rank?: string | null
   bpm?: number | null
   bitrate_audio?: bigint | number | null
@@ -993,8 +925,6 @@ export type songsScalarWhereInput = {
   addition_date?: Prisma.DateTimeNullableFilter<"songs"> | Date | string | null
   release_date?: Prisma.DateTimeFilter<"songs"> | Date | string
   file?: Prisma.StringNullableFilter<"songs"> | string | null
-  track?: Prisma.IntNullableFilter<"songs"> | number | null
-  disk?: Prisma.IntNullableFilter<"songs"> | number | null
   mood_id?: Prisma.IntFilter<"songs"> | number
   rank?: Prisma.StringNullableFilter<"songs"> | string | null
   bpm?: Prisma.FloatNullableFilter<"songs"> | number | null
@@ -1011,8 +941,6 @@ export type songsCreateWithoutSongsAlbumsInput = {
   addition_date?: Date | string | null
   release_date: Date | string
   file?: string | null
-  track?: number | null
-  disk?: number | null
   rank?: string | null
   bpm?: number | null
   bitrate_audio?: bigint | number | null
@@ -1036,8 +964,6 @@ export type songsUncheckedCreateWithoutSongsAlbumsInput = {
   addition_date?: Date | string | null
   release_date: Date | string
   file?: string | null
-  track?: number | null
-  disk?: number | null
   mood_id: number
   rank?: string | null
   bpm?: number | null
@@ -1074,8 +1000,6 @@ export type songsUpdateWithoutSongsAlbumsInput = {
   addition_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   release_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   rank?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bpm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   bitrate_audio?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -1099,8 +1023,6 @@ export type songsUncheckedUpdateWithoutSongsAlbumsInput = {
   addition_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   release_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mood_id?: Prisma.IntFieldUpdateOperationsInput | number
   rank?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bpm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -1121,8 +1043,6 @@ export type songsCreateWithoutSongsGroupesInput = {
   addition_date?: Date | string | null
   release_date: Date | string
   file?: string | null
-  track?: number | null
-  disk?: number | null
   rank?: string | null
   bpm?: number | null
   bitrate_audio?: bigint | number | null
@@ -1146,8 +1066,6 @@ export type songsUncheckedCreateWithoutSongsGroupesInput = {
   addition_date?: Date | string | null
   release_date: Date | string
   file?: string | null
-  track?: number | null
-  disk?: number | null
   mood_id: number
   rank?: string | null
   bpm?: number | null
@@ -1184,8 +1102,6 @@ export type songsUpdateWithoutSongsGroupesInput = {
   addition_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   release_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   rank?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bpm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   bitrate_audio?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -1209,8 +1125,6 @@ export type songsUncheckedUpdateWithoutSongsGroupesInput = {
   addition_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   release_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mood_id?: Prisma.IntFieldUpdateOperationsInput | number
   rank?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bpm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -1231,8 +1145,6 @@ export type songsCreateWithoutSongsPeopleInput = {
   addition_date?: Date | string | null
   release_date: Date | string
   file?: string | null
-  track?: number | null
-  disk?: number | null
   rank?: string | null
   bpm?: number | null
   bitrate_audio?: bigint | number | null
@@ -1256,8 +1168,6 @@ export type songsUncheckedCreateWithoutSongsPeopleInput = {
   addition_date?: Date | string | null
   release_date: Date | string
   file?: string | null
-  track?: number | null
-  disk?: number | null
   mood_id: number
   rank?: string | null
   bpm?: number | null
@@ -1294,8 +1204,6 @@ export type songsUpdateWithoutSongsPeopleInput = {
   addition_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   release_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   rank?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bpm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   bitrate_audio?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -1319,8 +1227,6 @@ export type songsUncheckedUpdateWithoutSongsPeopleInput = {
   addition_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   release_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mood_id?: Prisma.IntFieldUpdateOperationsInput | number
   rank?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bpm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -1341,8 +1247,6 @@ export type songsCreateWithoutSongsGenresInput = {
   addition_date?: Date | string | null
   release_date: Date | string
   file?: string | null
-  track?: number | null
-  disk?: number | null
   rank?: string | null
   bpm?: number | null
   bitrate_audio?: bigint | number | null
@@ -1366,8 +1270,6 @@ export type songsUncheckedCreateWithoutSongsGenresInput = {
   addition_date?: Date | string | null
   release_date: Date | string
   file?: string | null
-  track?: number | null
-  disk?: number | null
   mood_id: number
   rank?: string | null
   bpm?: number | null
@@ -1404,8 +1306,6 @@ export type songsUpdateWithoutSongsGenresInput = {
   addition_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   release_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   rank?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bpm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   bitrate_audio?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -1429,8 +1329,6 @@ export type songsUncheckedUpdateWithoutSongsGenresInput = {
   addition_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   release_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mood_id?: Prisma.IntFieldUpdateOperationsInput | number
   rank?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bpm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -1451,8 +1349,6 @@ export type songsCreateWithoutSongsLyricsInput = {
   addition_date?: Date | string | null
   release_date: Date | string
   file?: string | null
-  track?: number | null
-  disk?: number | null
   rank?: string | null
   bpm?: number | null
   bitrate_audio?: bigint | number | null
@@ -1476,8 +1372,6 @@ export type songsUncheckedCreateWithoutSongsLyricsInput = {
   addition_date?: Date | string | null
   release_date: Date | string
   file?: string | null
-  track?: number | null
-  disk?: number | null
   mood_id: number
   rank?: string | null
   bpm?: number | null
@@ -1514,8 +1408,6 @@ export type songsUpdateWithoutSongsLyricsInput = {
   addition_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   release_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   rank?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bpm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   bitrate_audio?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -1539,8 +1431,6 @@ export type songsUncheckedUpdateWithoutSongsLyricsInput = {
   addition_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   release_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mood_id?: Prisma.IntFieldUpdateOperationsInput | number
   rank?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bpm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -1561,8 +1451,6 @@ export type songsCreateWithoutUsersInput = {
   addition_date?: Date | string | null
   release_date: Date | string
   file?: string | null
-  track?: number | null
-  disk?: number | null
   rank?: string | null
   bpm?: number | null
   bitrate_audio?: bigint | number | null
@@ -1585,8 +1473,6 @@ export type songsUncheckedCreateWithoutUsersInput = {
   addition_date?: Date | string | null
   release_date: Date | string
   file?: string | null
-  track?: number | null
-  disk?: number | null
   mood_id: number
   rank?: string | null
   bpm?: number | null
@@ -1636,8 +1522,6 @@ export type songsCreateManyMoodInput = {
   addition_date?: Date | string | null
   release_date: Date | string
   file?: string | null
-  track?: number | null
-  disk?: number | null
   rank?: string | null
   bpm?: number | null
   bitrate_audio?: bigint | number | null
@@ -1653,8 +1537,6 @@ export type songsUpdateWithoutMoodInput = {
   addition_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   release_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   rank?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bpm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   bitrate_audio?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -1678,8 +1560,6 @@ export type songsUncheckedUpdateWithoutMoodInput = {
   addition_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   release_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   rank?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bpm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   bitrate_audio?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -1702,8 +1582,6 @@ export type songsUncheckedUpdateManyWithoutMoodInput = {
   addition_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   release_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   rank?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bpm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   bitrate_audio?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -1720,8 +1598,6 @@ export type songsCreateManyUsersInput = {
   addition_date?: Date | string | null
   release_date: Date | string
   file?: string | null
-  track?: number | null
-  disk?: number | null
   mood_id: number
   rank?: string | null
   bpm?: number | null
@@ -1738,8 +1614,6 @@ export type songsUpdateWithoutUsersInput = {
   addition_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   release_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   rank?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bpm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   bitrate_audio?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -1762,8 +1636,6 @@ export type songsUncheckedUpdateWithoutUsersInput = {
   addition_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   release_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mood_id?: Prisma.IntFieldUpdateOperationsInput | number
   rank?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bpm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -1786,8 +1658,6 @@ export type songsUncheckedUpdateManyWithoutUsersInput = {
   addition_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   release_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  track?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  disk?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mood_id?: Prisma.IntFieldUpdateOperationsInput | number
   rank?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bpm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -1873,8 +1743,6 @@ export type songsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   addition_date?: boolean
   release_date?: boolean
   file?: boolean
-  track?: boolean
-  disk?: boolean
   mood_id?: boolean
   rank?: boolean
   bpm?: boolean
@@ -1901,8 +1769,6 @@ export type songsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   addition_date?: boolean
   release_date?: boolean
   file?: boolean
-  track?: boolean
-  disk?: boolean
   mood_id?: boolean
   rank?: boolean
   bpm?: boolean
@@ -1923,8 +1789,6 @@ export type songsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   addition_date?: boolean
   release_date?: boolean
   file?: boolean
-  track?: boolean
-  disk?: boolean
   mood_id?: boolean
   rank?: boolean
   bpm?: boolean
@@ -1945,8 +1809,6 @@ export type songsSelectScalar = {
   addition_date?: boolean
   release_date?: boolean
   file?: boolean
-  track?: boolean
-  disk?: boolean
   mood_id?: boolean
   rank?: boolean
   bpm?: boolean
@@ -1956,7 +1818,7 @@ export type songsSelectScalar = {
   image?: boolean
 }
 
-export type songsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"song_id" | "user_id" | "title" | "artists" | "name" | "addition_date" | "release_date" | "file" | "track" | "disk" | "mood_id" | "rank" | "bpm" | "bitrate_audio" | "track_gain" | "description" | "image", ExtArgs["result"]["songs"]>
+export type songsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"song_id" | "user_id" | "title" | "artists" | "name" | "addition_date" | "release_date" | "file" | "mood_id" | "rank" | "bpm" | "bitrate_audio" | "track_gain" | "description" | "image", ExtArgs["result"]["songs"]>
 export type songsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   users?: boolean | Prisma.usersDefaultArgs<ExtArgs>
   mood?: boolean | Prisma.moodDefaultArgs<ExtArgs>
@@ -1996,8 +1858,6 @@ export type $songsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     addition_date: Date | null
     release_date: Date
     file: string | null
-    track: number | null
-    disk: number | null
     mood_id: number
     rank: string | null
     bpm: number | null
@@ -2443,8 +2303,6 @@ export interface songsFieldRefs {
   readonly addition_date: Prisma.FieldRef<"songs", 'DateTime'>
   readonly release_date: Prisma.FieldRef<"songs", 'DateTime'>
   readonly file: Prisma.FieldRef<"songs", 'String'>
-  readonly track: Prisma.FieldRef<"songs", 'Int'>
-  readonly disk: Prisma.FieldRef<"songs", 'Int'>
   readonly mood_id: Prisma.FieldRef<"songs", 'Int'>
   readonly rank: Prisma.FieldRef<"songs", 'String'>
   readonly bpm: Prisma.FieldRef<"songs", 'Float'>

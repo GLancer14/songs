@@ -420,6 +420,14 @@ export type AlbumsScalarRelationFilter = {
   isNot?: Prisma.albumsWhereInput
 }
 
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type albumsCreateNestedManyWithoutAlbum_typesInput = {
   create?: Prisma.XOR<Prisma.albumsCreateWithoutAlbum_typesInput, Prisma.albumsUncheckedCreateWithoutAlbum_typesInput> | Prisma.albumsCreateWithoutAlbum_typesInput[] | Prisma.albumsUncheckedCreateWithoutAlbum_typesInput[]
   connectOrCreate?: Prisma.albumsCreateOrConnectWithoutAlbum_typesInput | Prisma.albumsCreateOrConnectWithoutAlbum_typesInput[]

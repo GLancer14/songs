@@ -34,6 +34,7 @@ export default async function editSong(
     mood: formData.get("mood"),
     release_date: formData.get("release_date"),
     bpm: formData.get("bpm"),
+    track: formData.get("track"),
     title_image: formData.get("title_image"),
     orig_audio: formData.get("orig_audio"),
   });
@@ -139,12 +140,25 @@ export default async function editSong(
           }
         });
 
+        let sendDataAlbums;
+        
+
         if (existingAuthor) {
-          await prisma[`songs_${tableName}`].create({
-            data: {
+          if (tableName === "albums") {
+            sendDataAlbums = {
+              song_id: songCreateResult.song_id,
+              id: existingAuthor.id,
+              track: Number(songData.track),
+            }
+          } else {
+            sendDataAlbums = {
               song_id: songCreateResult.song_id,
               id: existingAuthor.id,
             }
+          }
+
+          await prisma[`songs_${tableName}`].create({
+            data: sendDataAlbums,
           });
         } else {
           const newMusicAuthor = await prisma[tableName].create({
@@ -156,11 +170,21 @@ export default async function editSong(
             }
           });
 
-          await prisma[`songs_${tableName}`].create({
-            data: {
+          if (tableName === "albums") {
+            sendDataAlbums = {
               song_id: songCreateResult.song_id,
-              id: newMusicAuthor.id,
+              id: existingAuthor.id,
+              track: Number(songData.track),
             }
+          } else {
+            sendDataAlbums = {
+              song_id: songCreateResult.song_id,
+              id: existingAuthor.id,
+            }
+          }
+
+          await prisma[`songs_${tableName}`].create({
+            data: sendDataAlbums,
           });
         }
       });

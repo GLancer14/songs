@@ -243,6 +243,16 @@ const EditSong = ({
                 step="0.01"
               />
             </label>
+            <label className="flex gap-2">
+              <span className="">Track №:</span>
+              <input
+                className=""
+                type="number"
+                name="track"
+                id="track"
+                min="1"
+              />
+            </label>
           </article>
         </section>
         <section className="flex flex-col mb-8 w-1/2 gap-2">

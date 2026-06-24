@@ -42,6 +42,7 @@ export const AddSongSchema = z.object({
   mood: z.string().nonempty(),
   release_date: z.string().nonoptional(),
   bpm: z.string().optional(),
+  track: z.string().optional(),
   title_image: z.file().optional(),
   orig_audio: z.file().optional(),
 })
