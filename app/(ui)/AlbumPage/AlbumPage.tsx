@@ -1,13 +1,12 @@
 "use client"
 
-import { Prisma, songs, users } from "@/src/generated/prisma/client";
 import "./AlbumPage";
 import s from "./AlbumPage.module.scss";
 import Image from "next/image";
 import clsx from "clsx";
-import { FastAverageColor } from "fast-average-color";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import formatDate from "../utils/formatDate";
+import ShowButton from "../ui/ShowButton/ShowButton";
 
 export interface SongPageProps {
   albumType: {
@@ -54,7 +53,8 @@ const AlbumPage: React.FC<SongPageProps> = ({
   imageColor,
   imageValue,
 }) => {
-  const imgRef = useRef(null);
+  const [showAbout, setShowAbout] = useState(true);
+  const [showAlbumInfo, setShowAlbumInfo] = useState(true);
   let imageColorMinus;
   let imageColorMinusValue;
 
@@ -68,8 +68,8 @@ const AlbumPage: React.FC<SongPageProps> = ({
 
   return (
     <>
-      <header className="flex items-center relative h-[330px]">
-        <div className="relative flex flex-row max-w-[1376px] w-full mx-auto py-4 px-[42px]">
+      <header className="flex items-center relative h-82.5 w-full justify-center">
+        <div className="relative flex flex-row max-w-344 w-344 py-4 px-10.5">
           {albumData.image &&
             <Image
               className="relative top-4 self-start mr-11 shadow-[rgba(0,0,0,0.18)_0px_0px_12px_0px]"
@@ -105,9 +105,9 @@ const AlbumPage: React.FC<SongPageProps> = ({
           }}
         ></div>
       </header>
-      <div className="flex flex-row flex-wrap max-w-[1200px] mx-auto">
+      <div className="flex flex-row flex-wrap max-w-300 w-300">
         {albumData && 
-          (<div className="my-12 ml-8 pr-8 w-[60%]">
+          (<div className="my-12 ml-8 pr-8 max-w-180 w-180">
             <h3 className="text-[14px] mb-2 uppercase">{albumData.name} songs</h3>
             <div className="mb-2">
               {tracklist.sort((a, b) => {
@@ -135,43 +135,58 @@ const AlbumPage: React.FC<SongPageProps> = ({
             </div>
           </div>)
         }
-        <div className="w-[33%] my-12 pt-6 border-l-2 border-gray-300">
+        <div className="w-100 my-12 pt-6 border-l-2 border-gray-300">
           <div className="flex flex-row items-baseline justify-between">
-            <span className="pl-8">About</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18" width="14px" height="14px">
-              <path d="M0 0h18v18H0V0Z"></path>
-              <path d="M3.857 8.143h10.286v1.714H3.857V8.143Z" fill="white"></path>
-            </svg>
-            {/* <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18" width="14px" height="14px">
-              <path d="M0 0h18v18H0V0Z"></path>
-              <path d="M14.143 8.143H9.857V3.857H8.143v4.286H3.857v1.714h4.286v4.286h1.714V9.857h4.286V8.143Z" fill="white"></path>
-            </svg> */}
+            <span className="text-[16px] pl-8">About</span>
+            <ShowButton
+              show={showAbout}
+              setShow={setShowAbout}
+            />
           </div>
-          <div className="text-[14px] mt-4 pl-8 pb-4 border-b-2 border-gray-300">{albumData.description}</div>
-          <div className="my-8">
-            <span className="pl-8">Album Info</span>
-            <div className="flex flex-row gap-4 pl-8 mb-4 flex-nowrap text-[14px]">
-              <span>Released on</span>
-              <span>{formatDate(albumData.release_date)}</span>
+          <div
+            className={clsx("text-[14px] mt-4 pl-8 pb-4 border-b-2 border-gray-300", {
+              ["block"]: showAbout,
+              ["hidden"]: !showAbout,
+            })}
+          >
+            {albumData.description}
+          </div>
+          <div className="mt-8">
+            <div className="flex flex-row items-baseline justify-between">
+              <div className="text-[16px] pl-8">Album Info</div>
+              <ShowButton
+                show={showAlbumInfo}
+                setShow={setShowAlbumInfo}
+              />
             </div>
-            <div className="flex flex-row gap-4 pl-8 mb-4 flex-nowrap text-[14px]">
-              <span>Type</span>
-              <span>{albumType?.album_type}</span>
+            <div className={clsx("text-[14px] mt-4 pl-8 pb-4", {
+              ["block"]: showAlbumInfo,
+              ["hidden"]: !showAlbumInfo,
+            })}>
+              <div className="flex flex-row gap-4 mb-4 flex-nowrap text-[14px]">
+                <span>Released on</span>
+                <span>{formatDate(albumData.release_date)}</span>
+              </div>
+              <div className="flex flex-row gap-4 mb-4 flex-nowrap text-[14px]">
+                <span>Type</span>
+                <span>{albumType?.album_type}</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div
+      className="w-full"
         style={{
           background: `linear-gradient(${imageColor}, ${imageColorMinusValue})`,
         }}
       >
-        <div className="max-w-[1200px] w-full mx-auto text-white">
-          <h2 className="capitalize text-[90px] max-w-[720px] text-center">about</h2>
-          <div className="max-w-[720px]">
+        <div className="max-w-300 w-full mx-auto text-white">
+          <h2 className="capitalize text-[90px] max-w-180 text-center">about</h2>
+          <div className="max-w-180">
             {albumData.description}
           </div>
-          <hr className="max-w-[720px] my-16" />
+          <hr className="max-w-180 my-16" />
         </div>
       </div>
     </>

@@ -4,11 +4,7 @@ import userIam from "../../actions/userIam"
 import Header from "../../(ui)/Header/Header";
 import Footer from "../../(ui)/Footer/Footer";
 import { prisma } from "../../lib/prisma";
-import Image from "next/image";
-import formatDate from "@/app/(ui)/utils/formatDate";
-import clsx from "clsx";
 import { getAverageColor } from "fast-average-color-node";
-import s from "./page.module.scss";
 import AlbumPage from "@/app/(ui)/AlbumPage/AlbumPage";
 
 export default async function Page({
@@ -65,7 +61,7 @@ export default async function Page({
   return (
     <>
       <Header user={userData} imageColor={imageColor} />
-      <div className="flex flex-col flex-1">
+      <div className="flex flex-col flex-1 items-center">
         <AlbumPage
           albumType={albumType}
           albumData={albumData}

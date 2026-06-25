@@ -13,13 +13,13 @@ const Header = ({ user, imageColor }: { user: users | null | undefined, imageCol
 
   return (
     <header
-      className={clsx(s.header, "flex justify-between z-100")}
+      className={clsx(s.header, "flex justify-between items-baseline z-100")}
       style={{
         backgroundColor: imageColor || "rgb(255, 255, 100)",
         color: imageColor ? "rgb(235, 235, 235)" : "black",
       }}
     >
-      <div className="flex flex-row items-center">
+      <div className="flex flex-row items-baseline">
         <h1 className="flex w-min-content items-center text-2xl">
           <Link href="/">
             Songs

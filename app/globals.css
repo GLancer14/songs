@@ -49,22 +49,22 @@ input, textarea {
   border: 1px solid black;
 }
 
-button {
+/* button {
   width: 100px;
   height: 30px;
   background-color: white;
   border-radius: .25rem;
   color: black;
   cursor: pointer;
-}
+} */
 
 textarea {
   border-radius: .25rem;
 }
 
-button:hover {
+/* button:hover {
   background-color: gray;
-}
+} */
 
 .shop-link, .create-book {
   display: block;
