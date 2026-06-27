@@ -7,6 +7,7 @@ import clsx from "clsx";
 import { useRef, useState } from "react";
 import formatDate from "../utils/formatDate";
 import ShowButton from "../ui/ShowButton/ShowButton";
+import Credits from "./Credits/Credits";
 
 export interface SongPageProps {
   albumType: {
@@ -42,6 +43,19 @@ export interface SongPageProps {
     };
     track: number | null;
   }[];
+  songsPeople: Promise<{
+    song_id: number;
+    people: {
+        id: number;
+        name: string;
+        description: string | null;
+        image: string | null;
+        firstname: string | null;
+        surname: string | null;
+        nickname: string | null;
+        country_id: number | null;
+    };
+  }[][]>;
   imageColor: string | undefined;
   imageValue: number[] | undefined;
 }
@@ -52,6 +66,7 @@ const AlbumPage: React.FC<SongPageProps> = ({
   tracklist,
   imageColor,
   imageValue,
+  songsPeople,
 }) => {
   const [showAbout, setShowAbout] = useState(true);
   const [showAlbumInfo, setShowAlbumInfo] = useState(true);
@@ -69,7 +84,7 @@ const AlbumPage: React.FC<SongPageProps> = ({
   return (
     <>
       <header className="flex items-center relative h-82.5 w-full justify-center">
-        <div className="relative flex flex-row max-w-344 w-344 py-4 px-10.5">
+        <div className="relative colum flex flex-row max-w-344 w-344 py-4 px-10.5">
           {albumData.image &&
             <Image
               className="relative top-4 self-start mr-11 shadow-[rgba(0,0,0,0.18)_0px_0px_12px_0px]"
@@ -135,6 +150,14 @@ const AlbumPage: React.FC<SongPageProps> = ({
             </div>
           </div>)
         }
+        <div className="order-3 max-w-180 w-180">
+          <h2 className="text-[90px] text-center">Credits</h2>
+          <Credits
+            albumData={albumData}
+            songs={tracklist}
+            songsPeople={songsPeople}
+          />
+        </div>
         <div className="w-100 my-12 pt-6 border-l-2 border-gray-300">
           <div className="flex flex-row items-baseline justify-between">
             <span className="text-[16px] pl-8">About</span>
@@ -176,7 +199,7 @@ const AlbumPage: React.FC<SongPageProps> = ({
         </div>
       </div>
       <div
-      className="w-full"
+        className="w-full"
         style={{
           background: `linear-gradient(${imageColor}, ${imageColorMinusValue})`,
         }}

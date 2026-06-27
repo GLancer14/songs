@@ -36,6 +36,20 @@ export default async function Page({
     }
   });
 
+  const songsPeople = Promise.all(tracklist.map(async (song) => {
+    const foundPeople = await prisma.songs_people.findMany({
+      where: {
+        song_id: song.songs.song_id,
+      },
+      select: {
+        song_id: true,
+        people: true,
+      }
+    });
+
+    return foundPeople;
+  }));
+
   let imageColor: string | undefined;
   let imageValue: number[] | undefined;
   if (albumData?.image) {
@@ -68,6 +82,7 @@ export default async function Page({
           tracklist={tracklist}
           imageColor={imageColor}
           imageValue={imageValue}
+          songsPeople={songsPeople}
         />
       </div>
       <Footer />

@@ -38,9 +38,25 @@ const Header = ({ user, imageColor }: { user: users | null | undefined, imageCol
               Add content
             </div>
             <ul
-              className={clsx("hidden flex-col text-black top-6 left-0 absolute bg-white w-min-content text-nowrap", {
-                [s.listVisibility]: listVisibility
-              })}
+              className={clsx(`
+                hidden
+                flex-col
+                text-black
+                top-6
+                left-0
+                absolute
+                bg-white
+                w-min-content
+                text-nowrap
+                p-4`,
+                {
+                  [s.listVisibility]: listVisibility
+                })
+              }
+              style={{
+                backgroundColor: imageColor || "rgb(255, 255, 100)",
+                color: imageColor ? "rgb(235, 235, 235)" : "black",
+              }}
               onMouseEnter={() => {setListVisibility(true)}}
               onMouseLeave={() => {setListVisibility(false)}}
             >
