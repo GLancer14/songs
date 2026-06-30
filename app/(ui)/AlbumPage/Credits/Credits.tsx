@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ShowButton from "../../ui/ShowButton/ShowButton";
 import clsx from "clsx";
+import formatDate from "../../utils/formatDate";
 
 interface CreditsProps {
   albumData: {
@@ -32,19 +33,31 @@ interface CreditsProps {
     };
     track: number | null;
   }[];
-  songsPeople: Promise<{
-    song_id: number;
+  songsPeople: ({
     people: {
-      id: number;
-      name: string;
-      description: string | null;
-      image: string | null;
-      firstname: string | null;
-      surname: string | null;
-      nickname: string | null;
-      country_id: number | null;
+        peopleType: ({
+            type: {
+                name: string;
+                type_id: number;
+            };
+        } & {
+            id: number;
+            type_id: number;
+        })[];
+    } & {
+        name: string;
+        id: number;
+        description: string | null;
+        image: string | null;
+        firstname: string | null;
+        surname: string | null;
+        nickname: string | null;
+        country_id: number | null;
     };
-  }[][]>
+} & {
+    id: number;
+    song_id: number;
+})[][];
 }
 
 const Credits: React.FC<CreditsProps> = ({
@@ -52,19 +65,27 @@ const Credits: React.FC<CreditsProps> = ({
   songs,
   songsPeople,
 }) => {
-  const songsShowing = songs.map(song => {
-    return {
-      song_id: song.songs.song_id,
-      isShowing: false,
-    }
-  })
+  const [showSongCreadits, setShowSongCredits] = useState<Array<{
+    song_id: number;
+    isShowing: boolean;
+  }>>([]);
   const [showTitle, setShowTitle] = useState(false);
-  const [showSongs, setShowSongs] = useState(songsShowing);
+
+  useEffect(() => {
+    setShowSongCredits(() => {
+      return songs.map(song => {
+        return {
+          song_id: song.songs.song_id,
+          isShowing: false,
+        }
+      })
+    })
+  }, [songs])
 
   return (
-    <div className="grid">
+    <div className="border">
       {albumData &&
-        (<div>
+        (<div className="border-b">
           <span></span>
           <span>{albumData.name}</span>
           <ShowButton
@@ -88,22 +109,41 @@ const Credits: React.FC<CreditsProps> = ({
             
             return -1;
           }).map((song, ind, array) => {
+            const people = songsPeople.flat(2).filter(value => value.song_id === song.songs.song_id);
+            console.log(people)
+
             return (
-              <div key={song.songs.song_id} className={clsx("flex flex-row -ml-8 text-[18px]")}>
-                <span className="w-[16] flex text-center py-3.5">{song.track}.</span>
-                <a
-                  key={song.songs.song_id}
-                  className={clsx("block ml-4 flex-1 py-3.5", {
-                    ["border-2 border-gray-300"]: ind !== array.length - 1,
+              <div className={clsx({
+                ["border-b"]: ind !== array.length - 1,
+              })}>
+                <div key={song.songs.song_id} className={clsx("flex flex-row text-[18px]", )}>
+                  <span className="w-[16] ml-4 flex text-center py-3.5">{song.track}.</span>
+                  <span
+                    key={song.songs.song_id}
+                    className={clsx("block ml-4 flex-1 py-3.5", )}
+                  >
+                    {song.songs.name}
+                  </span>
+                  <button>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"></path>
+                    </svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24">
+                      <path d="M0 10h24v4h-24z"></path>
+                    </svg>
+                  </button>
+                </div>
+                <div className="flex flex-row">
+                  <div className="w-1/2">
+                    <div>Released on</div>
+                    <div>{formatDate(song.songs.release_date)}</div>
+                  </div>
+                  {people.map(peopleType => {
+                    return (<div>
+                      {peopleType.people.name}
+                    </div>)
                   })}
-                  href={`/songs/${song.songs.song_id}`}
-                >
-                  {song.songs.name}
-                </a>
-                <ShowButton
-                  show={showSongs.find(songShow => songShow.song_id === song.songs.song_id)?.isShowing || null}
-                  setShow={setShowSongs}
-                />
+                </div>
               </div>
             );
           })}

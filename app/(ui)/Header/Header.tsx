@@ -13,7 +13,7 @@ const Header = ({ user, imageColor }: { user: users | null | undefined, imageCol
 
   return (
     <header
-      className={clsx(s.header, "flex justify-between items-baseline z-100")}
+      className={clsx(s.header, "sticky flex justify-between items-baseline z-100")}
       style={{
         backgroundColor: imageColor || "rgb(255, 255, 100)",
         color: imageColor ? "rgb(235, 235, 235)" : "black",

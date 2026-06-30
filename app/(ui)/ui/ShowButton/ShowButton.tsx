@@ -3,10 +3,7 @@ import { boolean } from "zod";
 
 interface ShowButtonProps {
   show: boolean | null;
-  setShow: (value: SetStateAction<boolean | {
-    song_id: number;
-    isShowing: boolean;
-  }>) => void;
+  setShow: (value: SetStateAction<boolean>) => void;
 }
 
 const ShowButton: React.FC<ShowButtonProps> = ({ show, setShow }) => {
@@ -14,13 +11,7 @@ const ShowButton: React.FC<ShowButtonProps> = ({ show, setShow }) => {
     <button
       className="cursor-pointer"
       type="button"
-      onClick={() => setShow(prev => {
-        if (typeof prev === "boolean") {
-          return !prev;
-        } else {
-          return !prev.isShowing;
-        }
-      })}
+      onClick={() => setShow(prev => !prev)}
     >
       {show
         ? <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18" width="14px" height="14px">

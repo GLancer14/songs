@@ -36,19 +36,24 @@ export default async function Page({
     }
   });
 
-  const songsPeople = Promise.all(tracklist.map(async (song) => {
-    const foundPeople = await prisma.songs_people.findMany({
+  const songsPeople = await (Promise.all(tracklist.map(async (song) => {
+    return prisma.songs_people.findMany({
       where: {
         song_id: song.songs.song_id,
       },
-      select: {
-        song_id: true,
-        people: true,
+      include: {
+        people: {
+          include: {
+            peopleType: {
+              include: {
+                type: true,
+              }
+            }
+          }
+        },
       }
-    });
-
-    return foundPeople;
-  }));
+    })
+  })));
 
   let imageColor: string | undefined;
   let imageValue: number[] | undefined;

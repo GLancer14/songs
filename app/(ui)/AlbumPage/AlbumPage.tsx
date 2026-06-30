@@ -43,11 +43,20 @@ export interface SongPageProps {
     };
     track: number | null;
   }[];
-  songsPeople: Promise<{
-    song_id: number;
+  songsPeople: ({
     people: {
-        id: number;
+        peopleType: ({
+            type: {
+                name: string;
+                type_id: number;
+            };
+        } & {
+            id: number;
+            type_id: number;
+        })[];
+    } & {
         name: string;
+        id: number;
         description: string | null;
         image: string | null;
         firstname: string | null;
@@ -55,7 +64,10 @@ export interface SongPageProps {
         nickname: string | null;
         country_id: number | null;
     };
-  }[][]>;
+} & {
+    id: number;
+    song_id: number;
+})[][];
   imageColor: string | undefined;
   imageValue: number[] | undefined;
 }
