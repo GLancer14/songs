@@ -146,7 +146,7 @@ const AlbumPage: React.FC<SongPageProps> = ({
               }).map((track, ind, array) => {
                 return (
                   <div key={track.songs.song_id} className={clsx("flex flex-row -ml-8 text-[18px]")}>
-                    <span className="w-[16] flex text-center py-3.5">{track.track}.</span>
+                    <span className="w-[16] flex text-center py-3.5">{track.track}</span>
                     <a
                       key={track.songs.song_id}
                       className={clsx("block ml-4 flex-1 py-3.5", {

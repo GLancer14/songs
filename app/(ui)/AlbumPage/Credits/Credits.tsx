@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ShowButton from "../../ui/ShowButton/ShowButton";
+import s from "./Credits.module.scss";
 import clsx from "clsx";
 import formatDate from "../../utils/formatDate";
 
@@ -65,34 +66,55 @@ const Credits: React.FC<CreditsProps> = ({
   songs,
   songsPeople,
 }) => {
-  const [showSongCreadits, setShowSongCredits] = useState<Array<{
+  const [showSongCredits, setShowSongCredits] = useState<Array<{
     song_id: number;
     isShowing: boolean;
-  }>>([]);
+  }>>(() => {
+    return songs.map(song => {
+      return {
+        song_id: song.songs.song_id,
+        isShowing: false,
+      }
+    })
+  });
   const [showTitle, setShowTitle] = useState(false);
 
-  useEffect(() => {
-    setShowSongCredits(() => {
-      return songs.map(song => {
-        return {
-          song_id: song.songs.song_id,
-          isShowing: false,
-        }
-      })
-    })
-  }, [songs])
-
   return (
-    <div className="border">
+    <div className="border mb-16">
       {albumData &&
-        (<div className="border-b">
-          <span></span>
-          <span>{albumData.name}</span>
-          <ShowButton
-            show={showTitle}
-            setShow={setShowTitle}
-          />
-          <div className={clsx({
+        (<div
+          className="border-b"
+        >
+          <div
+            className={clsx("flex w-full text-[18px] cursor-pointer px-[13.5] py-2.25", {
+              [s.pressedString]: showTitle,
+            })}
+            onClick={() => setShowTitle(prev => !prev)}
+          >
+            <span className={clsx("flex-1")}>{albumData.name}</span>
+            <button type="button">
+              {showTitle ? 
+                <svg
+                  className="w-[13.5px] h-[13.5px] text-white"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M0 10h24v4h-24z"></path>
+                </svg> : 
+                <svg
+                  className="w-[13.5px] h-[13.5px]"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"></path>
+                </svg>
+              }
+            </button>
+          </div>
+          <div className={clsx("flex flex-row flex-wrap gap-y-4 p-6.75", {
             ["block"]: showTitle,
             ["hidden"]: !showTitle,
           })}>
@@ -110,38 +132,82 @@ const Credits: React.FC<CreditsProps> = ({
             return -1;
           }).map((song, ind, array) => {
             const people = songsPeople.flat(2).filter(value => value.song_id === song.songs.song_id);
-            console.log(people)
 
             return (
-              <div className={clsx({
-                ["border-b"]: ind !== array.length - 1,
-              })}>
-                <div key={song.songs.song_id} className={clsx("flex flex-row text-[18px]", )}>
-                  <span className="w-[16] ml-4 flex text-center py-3.5">{song.track}.</span>
+              <div
+                className={clsx("", {
+                  ["border-b"]: ind !== array.length - 1,
+                })}
+                key={song.songs.song_id}
+              >
+                <div
+                  onClick={() => {
+                    setShowSongCredits((prev) => {
+                      const songString = showSongCredits.find(songData => songData.song_id === song.songs.song_id);
+                      const newSongsString = showSongCredits.filter(songData => songData.song_id !== song.songs.song_id);
+
+                      if (!songString) return { ...prev };
+
+                      return [
+                        ...newSongsString,
+                        {
+                          song_id: songString?.song_id,
+                          isShowing: !songString?.isShowing,
+                        },
+                      ]
+                    })
+                  }}
+                  
+                  className={clsx("flex flex-row text-[18px] cursor-pointer px-[13.5] py-2.25", {
+                    [s.pressedString]: showSongCredits.find(songData => songData.song_id === song.songs.song_id)?.isShowing,
+                  })}
+                >
+                  <span className={clsx("w-[16] flex items-center justify-center min-w-6.75 min-h-6.75", {
+                    "text-black": showSongCredits.find(songData => songData.song_id === song.songs.song_id)?.isShowing,
+                    "bg-white": showSongCredits.find(songData => songData.song_id === song.songs.song_id)?.isShowing,
+                  })}>{song.track}</span>
                   <span
                     key={song.songs.song_id}
-                    className={clsx("block ml-4 flex-1 py-3.5", )}
+                    className={clsx("block ml-4 flex-1", )}
                   >
                     {song.songs.name}
                   </span>
-                  <button>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"></path>
-                    </svg>
-                    <svg width="24" height="24" viewBox="0 0 24 24">
-                      <path d="M0 10h24v4h-24z"></path>
-                    </svg>
+                  <button type="button">
+                    {showSongCredits.find(songData => songData.song_id === song.songs.song_id)?.isShowing ?
+                      <svg
+                        className="w-[13.5px] h-[13.5px] text-white"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M0 10h24v4h-24z"></path>
+                      </svg> : 
+                      <svg
+                        className="w-[13.5px] h-[13.5px]"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"></path>
+                      </svg>
+                    }
                   </button>
                 </div>
-                <div className="flex flex-row">
+                <div className={clsx("flex flex-row flex-wrap gap-y-4 p-6.75", {
+                  ["hidden"]: !showSongCredits.find(songData => songData.song_id == song.songs.song_id)?.isShowing,
+                  ["flex"]: showSongCredits.find(songData => songData.song_id == song.songs.song_id)?.isShowing,
+                })}>
                   <div className="w-1/2">
                     <div>Released on</div>
                     <div>{formatDate(song.songs.release_date)}</div>
                   </div>
                   {people.map(peopleType => {
-                    return (<div>
-                      {peopleType.people.name}
-                    </div>)
+                    return (
+                      <div className="w-1/2" key={peopleType.id}>
+                        {peopleType.people.name}
+                      </div>
+                    );
                   })}
                 </div>
               </div>

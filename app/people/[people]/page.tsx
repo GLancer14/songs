@@ -49,7 +49,6 @@ export default async function Page({
             <div>{peopleData?.firstname}</div>
             <div>{peopleData?.surname}</div>
             <div>{peopleData?.description}</div>
-            <div>{peopleData?.type}</div>
             <div>{country?.country}</div>
           </div>)
         }
