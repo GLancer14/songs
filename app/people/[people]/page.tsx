@@ -9,6 +9,7 @@ import { prisma } from "../../lib/prisma";
 import SongPage from "../../(ui)/SongPage/SongPage";
 import Image from "next/image";
 import clsx from "clsx";
+import formatDate from "@/app/(ui)/utils/formatDate";
 
 export default async function Page({
   params,
@@ -39,13 +40,10 @@ export default async function Page({
     }
   });
 
-  const albums = await prisma.songs_albums.findMany({
+  const albums = await prisma.albums.findMany({
     where: {
-      id: +people,
+      author: peopleData && peopleData.name,
     },
-    include: {
-      albums: true,
-    }
   });
 
   const country = await prisma.countries.findFirst({
@@ -106,6 +104,7 @@ export default async function Page({
                   {songs.map(song => {
                     return (
                       <a
+                        key={song.song_id}
                         className="flex flex-row flex-wrap w-[calc(100%/2-16px)]"
                         href={`/songs/${song.song_id}`}
                       >
@@ -130,6 +129,37 @@ export default async function Page({
                   </button>
                 </div>
               </div>
+              {albums.length > 0 && <div>
+                <h3 className="mt-9 text-[22.5px] font-medium">Albums</h3>
+                <div className="flex flex-row flex-wrap gap-4 border-gray-300 border-2 p-7">
+                  {albums.map(album => {
+                    return (
+                      <a
+                        className="flex flex-column flex-wrap w-[calc(100%/3-11px)]"
+                        href={`/albums/${album.id}`}
+                      >
+                        <Image
+                          className="w-full"
+                          src={album.image ? `/backgrounds/albums/${album.image}` : "/noimage2.svg"}
+                          alt={"обложка песни"}
+                          width={300}
+                          height={300}
+                        />
+                        <div className="w-full my-2 text-center">
+                          <div>{album.name}</div>
+                          <div className="text-[12px]">{formatDate(album.release_date)}</div>
+                        </div>
+                      </a>
+                    )
+                  })}
+                  <button
+                    className="w-full h-10 border border-black rounded-[20px] text-[18px] cursor-pointer"
+                    type="button"
+                  >
+                    All albums by {peopleData.name}
+                  </button>
+                </div>
+              </div>}
             </div>
           </div>
         </div>
