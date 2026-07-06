@@ -1,3 +1,5 @@
+"use client"
+
 import clsx from "clsx";
 import {
   MouseEventHandler,
@@ -47,30 +49,31 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, className, children }) =
     };
   }, [isOpen]);
 
-  useEffect(() => {
-    const handleTabKey = (e: KeyboardEvent) => {
-      if (show) {
-        if (e.key !== 'Tab') {
-          if (e.key === 'Escape') {
-            onClose?.();
-          }
-        }
+  // useEffect(() => {
+  //   const handleTabKey = (e: KeyboardEvent) => {
+  //     if (show) {
+  //       if (e.key !== 'Tab') {
+  //         if (e.key === 'Escape') {
+  //           onClose?.();
+  //         }
+  //       }
 
-        e.preventDefault();
-        modalRef.current?.focus();
-      }
-    };
+  //       e.preventDefault();
+  //       modalRef.current?.focus();
+  //     }
+  //   };
 
-    document.addEventListener('keydown', handleTabKey);
-    return () => {
-      document.removeEventListener('keydown', handleTabKey);
-    };
-  }, [show]);
+  //   document.addEventListener('keydown', handleTabKey);
+  //   return () => {
+  //     document.removeEventListener('keydown', handleTabKey);
+  //   };
+  // }, [show]);
 
   const handleClick: MouseEventHandler<HTMLDivElement> = (event): void => {
     if (event.target === event.currentTarget) {
       document.body.style.overflow = 'auto';
       setShow(false);
+      onClose?.();
     }
   };
 
@@ -91,7 +94,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, className, children }) =
   return createPortal(
     <div
       ref={modalRef}
-      onClick={handleClick}
+      onMouseDown={handleClick}
       tabIndex={-1}
       onTransitionEnd={handleTransitionEnd}
       className={clsx(s.modal, { [s.modal_open]: show }, className)}>

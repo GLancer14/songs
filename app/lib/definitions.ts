@@ -83,6 +83,13 @@ export const AddPeopleSchema = z.object({
 
 export type AddPeopleSchemaType = z.infer<typeof AddPeopleSchema>;
 
+export const SearchSongsSchema = z.object({
+  searchString: z.string().optional(),
+  artists: z.string().optional(),
+});
+
+export type SearchSongsSchemaType = z.infer<typeof SearchSongsSchema>;
+
 export type FormState =
   {
     errors?: {

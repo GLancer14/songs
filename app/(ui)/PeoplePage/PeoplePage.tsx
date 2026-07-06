@@ -4,7 +4,9 @@ import Image from "next/image";
 import clsx from "clsx";
 import formatDate from "../utils/formatDate";
 import Modal from "../ui/Modal/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import MiniSongCard from "../SongCard/MiniSongCard/MiniSongCard";
+import searchSongs from "@/app/actions/searchSongs/searchSongs";
 
 export interface PeoplePageProps {
   albums: {
@@ -60,8 +62,38 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
   songs,
   country,
 }) => {
+  const [modalVisibility, setModalVisibility] = useState(false);
+  const [search, setSearch] = useState("");
+  const [songsSearchResults, setSongsSearchResults] = useState<{
+    image: string | null;
+    name: string;
+    description: string | null;
+    file: string | null;
+    title: string;
+    song_id: number;
+    user_id: number;
+    artists: string;
+    addition_date: Date | null;
+    release_date: Date;
+    mood_id: number;
+    rank: string | null;
+    bpm: number | null;
+    bitrate_audio: bigint | null;
+    track_gain: number | null;
+  }[]>([]);
 
-  const [modalVisibility, setModalVisibility] = useState(false)
+  useEffect(() => {
+    const foundSongs = async () => {
+      if (!search) {
+        return setSongsSearchResults([]);
+      }
+
+      const foundedSongs = await searchSongs(search, peopleData?.name);
+      setSongsSearchResults(foundedSongs);
+    };
+
+    foundSongs();
+  }, [search])
   return (
     <div className="flex flex-col flex-1 items-center">
       <header
@@ -108,38 +140,57 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
             <div className="flex flex-row flex-wrap gap-4 border-gray-300 border-2 p-7">
               {songs.map(song => {
                 return (
-                  <a
+                  <MiniSongCard
                     key={song.song_id}
-                    className="flex flex-row flex-wrap w-[calc(100%/2-16px)]"
-                    href={`/songs/${song.song_id}`}
-                  >
-                    <Image
-                      src={song.songs.image ? `/backgrounds/songs/${song.songs.image}` : "/noimage2.svg"}
-                      alt={"обложка песни"}
-                      width={90}
-                      height={90}
-                    />
-                    <div className="my-2 ml-4">
-                      <div>{song.songs.name}</div>
-                      <div>{peopleData?.name}</div>
-                    </div>
-                  </a>
+                    song={{
+                      song_id: song.song_id,
+                      name: song.songs.name,
+                      image: song.songs.image,
+                    }}
+                    peopleData={peopleData}
+                  />
                 )
               })}
               <button
                 className="w-full h-10 border border-black rounded-[20px] text-[18px] cursor-pointer"
                 type="button"
-                onClick={() => {
-                  setModalVisibility(true)
-                }}
+                onClick={() => setModalVisibility(true)}
               >
                 All songs by {peopleData?.name}
               </button>
               <Modal
+                className="flex felx-row items-center justify-center h-full"
                 isOpen={modalVisibility}
                 onClose={() => setModalVisibility(false)}
               >
-                <div>Modal</div>
+                <div className="w-160 bg-white min-h-[calc(100vh-32px)] h-[calc(100vh-32px)] p-9">
+                  <h2 className="text-[32px]">{peopleData?.name} Songs</h2>
+                  <input
+                    className="w-full px-3 py-2 mt-2"
+                    type="text"
+                    value={search}
+                    placeholder={`Search ${peopleData?.name} songs`}
+                    onInput={(e) => {
+                      setSearch(e.currentTarget.value);
+                    }}
+                  />
+                  <div className="flex flex-row flex-wrap gap-4 mt-4 overflow-auto">
+                    {songsSearchResults.map(song => {
+                      return (
+                        <MiniSongCard
+                          className="w-full overflow-auto"
+                          key={song.song_id}
+                          song={{
+                            song_id: song.song_id,
+                            name: song.name,
+                            image: song.image,
+                          }}
+                          peopleData={peopleData}
+                        />
+                      )
+                    })}
+                  </div>
+                </div>
               </Modal>
             </div>
           </div>
