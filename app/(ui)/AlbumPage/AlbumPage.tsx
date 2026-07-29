@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import "./AlbumPage";
 import s from "./AlbumPage.module.scss";
@@ -22,52 +22,52 @@ export interface SongPageProps {
     release_date: Date | null;
     album_type: number | null;
     description: string | null;
-  }
+  };
   tracklist: {
     songs: {
-        image: string | null;
-        title: string;
-        user_id: number;
-        name: string;
-        release_date: Date;
-        description: string | null;
-        song_id: number;
-        artists: string;
-        addition_date: Date | null;
-        file: string | null;
-        mood_id: number;
-        rank: string | null;
-        bpm: number | null;
-        bitrate_audio: bigint | null;
-        track_gain: number | null;
+      image: string | null;
+      title: string;
+      user_id: number;
+      name: string;
+      release_date: Date;
+      description: string | null;
+      song_id: number;
+      artists: string;
+      addition_date: Date | null;
+      file: string | null;
+      mood_id: number;
+      rank: string | null;
+      bpm: number | null;
+      bitrate_audio: bigint | null;
+      track_gain: number | null;
     };
     track: number | null;
   }[];
   songsPeople: ({
     people: {
-        peopleType: ({
-            type: {
-                name: string;
-                type_id: number;
-            };
-        } & {
-            id: number;
-            type_id: number;
-        })[];
-    } & {
-        name: string;
+      peopleType: ({
+        type: {
+          name: string;
+          type_id: number;
+        };
+      } & {
         id: number;
-        description: string | null;
-        image: string | null;
-        firstname: string | null;
-        surname: string | null;
-        nickname: string | null;
-        country_id: number | null;
+        type_id: number;
+      })[];
+    } & {
+      name: string;
+      id: number;
+      description: string | null;
+      image: string | null;
+      firstname: string | null;
+      surname: string | null;
+      nickname: string | null;
+      country_id: number | null;
     };
-} & {
+  } & {
     id: number;
     song_id: number;
-})[][];
+  })[][];
   imageColor: string | undefined;
   imageValue: number[] | undefined;
 }
@@ -80,13 +80,15 @@ const AlbumPage: React.FC<SongPageProps> = ({
   imageValue,
   songsPeople,
 }) => {
-  const [showAbout, setShowAbout] = useState(true);
-  const [showAlbumInfo, setShowAlbumInfo] = useState(true);
+  const [showBio, setShowBio] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
+  const [showAlbumInfo, setShowAlbumInfo] = useState(false);
+
   let imageColorMinus;
   let imageColorMinusValue;
 
   if (imageValue) {
-    imageColorMinus = imageValue.map(value => {
+    imageColorMinus = imageValue.map((value) => {
       return Math.round(value * 0.7);
     });
 
@@ -97,27 +99,35 @@ const AlbumPage: React.FC<SongPageProps> = ({
     <>
       <header className="flex items-center relative h-82.5 w-full justify-center">
         <div className="relative colum flex flex-row max-w-344 w-344 py-4 px-10.5">
-          {albumData.image &&
+          {albumData.image && (
             <Image
               className="relative top-4 self-start mr-11 shadow-[rgba(0,0,0,0.18)_0px_0px_12px_0px]"
-              src={albumData.image ? `/backgrounds/albums/${albumData.image}` : "/noimage2"}
+              src={
+                albumData.image
+                  ? `/backgrounds/albums/${albumData.image}`
+                  : "/noimage2"
+              }
               alt={"обложка"}
               width={340}
               height={340}
               style={{
                 boxShadow: "rgba(0,0,0,0.18) 0px 0px 12px 0px",
               }}
-            />}
-            <div className="relative top-4 flex flex-col flex-1 text-white">
-              <div className="text-yellow-200">Album</div>
-              <div className="text-5xl mb-2">{albumData.name}</div>
-              <div className="text-4 underline">{albumData.author}</div>
-              <div className="text-xs mt-6">Producer</div>
-              <div className="text-xs mt-6 justify-self-end-safe">{formatDate(albumData.release_date)}</div>
+            />
+          )}
+          <div className="relative top-4 flex flex-col flex-1 text-white">
+            <div className="text-yellow-200">Album</div>
+            <div className="text-5xl mb-2">{albumData.name}</div>
+            <div className="text-4 underline">{albumData.author}</div>
+            <div className="text-xs mt-6">Producer</div>
+            <div className="text-xs mt-6 justify-self-end-safe">
+              {formatDate(albumData.release_date)}
             </div>
+          </div>
         </div>
         <div
-          className={clsx(`
+          className={clsx(
+            `
             absolute
             w-full
             h-full
@@ -126,42 +136,55 @@ const AlbumPage: React.FC<SongPageProps> = ({
             bg-cover
             bg-no-repeat bg-center
             z-[-1]
-          `, s.header)}
+          `,
+            s.header
+          )}
           style={{
             background: `linear-gradient(${imageColor}, ${imageColorMinusValue})`,
           }}
         ></div>
       </header>
+
       <div className="flex flex-row flex-wrap max-w-300 w-300">
-        {albumData && 
-          (<div className="my-12 ml-8 pr-8 max-w-180 w-180">
-            <h3 className="text-[14px] mb-2 uppercase">{albumData.name} songs</h3>
+        {albumData && (
+          <div className="my-12 ml-8 pr-8 max-w-180 w-180">
+            <h3 className="text-[14px] mb-2 uppercase">
+              {albumData.name} songs
+            </h3>
             <div className="mb-2">
-              {tracklist.sort((a, b) => {
-                if (typeof(a.track) === "number" && typeof(b.track) === "number") {
-                  return a.track - b.track;
-                }
-                
-                return -1;
-              }).map((track, ind, array) => {
-                return (
-                  <div key={track.songs.song_id} className={clsx("flex flex-row -ml-8 text-[18px]")}>
-                    <span className="w-[16] flex text-center py-3.5">{track.track}</span>
-                    <a
+              {tracklist
+                .sort((a, b) => {
+                  if (typeof a.track === "number" && typeof b.track === "number") {
+                    return a.track - b.track;
+                  }
+                  return -1;
+                })
+                .map((track, ind, array) => {
+                  return (
+                    <div
                       key={track.songs.song_id}
-                      className={clsx("block ml-4 flex-1 py-3.5", {
-                        ["border-b-2 border-gray-300"]: ind !== array.length - 1,
-                      })}
-                      href={`/songs/${track.songs.song_id}`}
+                      className={clsx("flex flex-row -ml-8 text-[18px]")}
                     >
-                      {track.songs.name}
-                    </a>
-                  </div>
-                );
-              })}
+                      <span className="w-[16] flex text-center py-3.5">
+                        {track.track}
+                      </span>
+                      <a
+                        key={track.songs.song_id}
+                        className={clsx("block ml-4 flex-1 py-3.5", {
+                          ["border-b-2 border-gray-300"]:
+                            ind !== array.length - 1,
+                        })}
+                        href={`/songs/${track.songs.song_id}`}
+                      >
+                        {track.songs.name}
+                      </a>
+                    </div>
+                  );
+                })}
             </div>
-          </div>)
-        }
+          </div>
+        )}
+
         <div className="order-3 max-w-180 w-180">
           <h2 className="text-[90px] text-center">Credits</h2>
           <Credits
@@ -170,34 +193,69 @@ const AlbumPage: React.FC<SongPageProps> = ({
             songsPeople={songsPeople}
           />
         </div>
+
         <div className="w-100 my-12 pt-6 border-l-2 border-gray-300">
-          <div className="flex flex-row items-baseline justify-between">
-            <span className="text-[16px] pl-8">About</span>
-            <ShowButton
-              show={showAbout}
-              setShow={setShowAbout}
-            />
+          <div className="flex flex-column flex-wrap items-baseline justify-between border-b-2 border-gray-300">
+            <div className="flex flex-row justify-between text-[16px] pl-8 pb-4 w-full">
+              About
+              <ShowButton show={showAbout} setShow={setShowAbout} />
+            </div>
+            <div
+              className={clsx(s.aboutContainer, {
+                [s.isOpen]: showAbout,
+              })}
+            >
+              <div className={s.aboutInner}>
+                <div className="font-bold mb-2 text-[12px]">Albums Bio</div>
+                <div>{albumData.description}</div>
+
+                {!showBio && (
+                  <button
+                    className="
+                      absolute
+                      top-[24px]
+                      left-[calc(50%-48px)]
+                      flex
+                      flex-row
+                      items-center
+                      justify-center
+                      mx-auto
+                      mt-6
+                      h-8
+                      w-24
+                      bg-transparent
+                      px-4
+                      py-2
+                      rounded-2xl
+                      border
+                      border-black
+                      cursor-pointer
+                      hover:bg-black/5
+                      transition-colors
+                    "
+                    type="button"
+                    onClick={() => {
+                      setShowBio(true);
+                    }}
+                  >
+                    Expand
+                  </button>
+                )}
+              </div>
+            </div>
           </div>
-          <div
-            className={clsx("text-[14px] mt-4 pl-8 pb-4 border-b-2 border-gray-300", {
-              ["block"]: showAbout,
-              ["hidden"]: !showAbout,
-            })}
-          >
-            {albumData.description}
-          </div>
+
           <div className="mt-8">
             <div className="flex flex-row items-baseline justify-between">
               <div className="text-[16px] pl-8">Album Info</div>
-              <ShowButton
-                show={showAlbumInfo}
-                setShow={setShowAlbumInfo}
-              />
+              <ShowButton show={showAlbumInfo} setShow={setShowAlbumInfo} />
             </div>
-            <div className={clsx("text-[14px] mt-4 pl-8 pb-4", {
-              ["block"]: showAlbumInfo,
-              ["hidden"]: !showAlbumInfo,
-            })}>
+            <div
+              className={clsx("text-[14px] mt-4 pl-8 pb-4", {
+                ["block"]: showAlbumInfo,
+                ["hidden"]: !showAlbumInfo,
+              })}
+            >
               <div className="flex flex-row gap-4 mb-4 flex-nowrap text-[14px]">
                 <span>Released on</span>
                 <span>{formatDate(albumData.release_date)}</span>
@@ -210,6 +268,7 @@ const AlbumPage: React.FC<SongPageProps> = ({
           </div>
         </div>
       </div>
+
       <div
         className="w-full"
         style={{
@@ -218,14 +277,12 @@ const AlbumPage: React.FC<SongPageProps> = ({
       >
         <div className="max-w-300 w-full mx-auto text-white">
           <h2 className="capitalize text-[90px] max-w-180 text-center">about</h2>
-          <div className="max-w-180">
-            {albumData.description}
-          </div>
+          <div className="max-w-180">{albumData.description}</div>
           <hr className="max-w-180 my-16" />
         </div>
       </div>
     </>
   );
-}
+};
 
 export default AlbumPage;

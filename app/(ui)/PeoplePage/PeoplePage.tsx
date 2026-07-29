@@ -89,7 +89,9 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
       }
 
       const foundedSongs = await searchSongs(search, peopleData?.name);
-      setSongsSearchResults(foundedSongs);
+      if (Array.isArray(foundedSongs)) {
+        setSongsSearchResults(foundedSongs);
+      }
     };
 
     foundSongs();
@@ -159,7 +161,7 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
                 All songs by {peopleData?.name}
               </button>
               <Modal
-                className="flex felx-row items-center justify-center h-full"
+                className="flex flex-row items-center justify-center h-full"
                 isOpen={modalVisibility}
                 onClose={() => setModalVisibility(false)}
               >

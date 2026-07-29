@@ -25,34 +25,39 @@ export default async function searchSongs(
     bpm: number | null;
     bitrate_audio: bigint | null;
     track_gain: number | null;
-}[])> {
+}[]) | { errors: string[] } | { errors: {
+    searchString?: string[] | undefined;
+    artists?: string[] | undefined;
+}}> {
   const user = await userIam();
   const validatedFields = SearchSongsSchema.safeParse({
-    searchValue,
+    searchString: searchValue,
     artists,
   });
 
-  // if (!validatedFields.success) {
-  //   return {
-  //     errors: validatedFields.error.flatten().fieldErrors,
-  //   }
-  // }
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+    }
+  }
 
-  // if (!user) {
-  //   return {
-  //     errors: ["You are logged out"],
-  //   }
-  // }
+  if (!user) {
+    return {
+      errors: ["You are logged out"],
+    }
+  }
   const searchStringData = validatedFields.data;
 
   const songs = await prisma.songs.findMany({
     where: {
+      artists: searchStringData?.artists,
       title: {
         contains: searchStringData?.searchString,
         mode: "insensitive",
       },
     },
   })
+  console.log(searchStringData?.searchString)
 
   return JSON.parse(JSON.stringify(songs));
 }
