@@ -4,6 +4,7 @@ import findSearchFieldValue from "@/app/actions/SearchField/searchFields";
 import { Prisma } from "@/src/generated/prisma/client";
 import React, { useRef, useState } from "react";
 import { debounce } from "@/app/lib/decorators";
+import SearchType from "../SearchType/SearchType";
 
 const SearchField = ({
   tableData,
@@ -69,6 +70,9 @@ const SearchField = ({
         ref={listRef}
         className="absolute mt-20 text-white bg-gray-800 w-full"
         id={`${tableData.fields}_options`}
+        onBlur={() => {
+          setSearchVisible(false);
+        }}
       >
         {searchVisible && searchResults && searchResults.length > 0 && 
           searchResults.map((searchOption, ind) => {
@@ -92,10 +96,10 @@ const SearchField = ({
           })
         }
       </ul>
-      <div>
+      <div className="flex flex-column flex-wrap gap-2">
         {selectedFields.map((selectedField, ind) => {
           return (
-            <div key={ind} className="inline w-min">
+            <div key={ind} className="flex flex-row flex-nowrap gap-4 justify-between">
               <input
                 className="bg-gray-900 w-min text-white"
                 type="text"
@@ -103,6 +107,9 @@ const SearchField = ({
                 value={selectedField}
                 name={tableData.name}
               />
+              {(fieldName.toLowerCase() === "люди" || fieldName.toLowerCase() === "группа") &&
+                <SearchType tableData={tableData} maxLength={maxLength} />
+              }
               <span onClick={() => {
                 setSelectedFields(selectedFields.filter(droppedSelectedField => {
                   return selectedField !== droppedSelectedField;
@@ -113,7 +120,7 @@ const SearchField = ({
         })}
       </div>
       <button
-        className="border-black border-1"
+        className="border-black border"
         type="button"
         onClick={() => {
           if (searchValue !== "") {

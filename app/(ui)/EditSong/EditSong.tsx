@@ -180,7 +180,7 @@ const EditSong = ({
         </section>
         <section className="mb-8">
           <h2 className="text-4xl w-full mb-4">additional meta data</h2>
-          <article className="flex flex-row flex-wrap gap-8 justify-start items-center mb-8">
+          <article className="flex flex-row flex-wrap gap-8 justify-start items-start mb-8">
             <h3 className="text-2xl w-full">Creators</h3>
             {creators.map((creator, ind) => {
               return (
@@ -214,7 +214,7 @@ const EditSong = ({
               )
             })}
             <label className="flex w-full justify-center gap-2">
-              <span className="text-white">Mood:</span>
+              <span className="text-black">Mood:</span>
               <select className="" name="mood" size={1}>
                 <option className="text-white" value="none" defaultChecked>none</option>
                 {moods.map((mood, ind) => {

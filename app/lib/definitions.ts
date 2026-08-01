@@ -88,6 +88,13 @@ export const SearchSongsSchema = z.object({
   artists: z.string().optional(),
 });
 
+export type SearchAlbumsSchemaType = z.infer<typeof SearchAlbumsSchema>;
+
+export const SearchAlbumsSchema = z.object({
+  searchString: z.string().optional(),
+  artists: z.string().optional(),
+});
+
 export type SearchSongsSchemaType = z.infer<typeof SearchSongsSchema>;
 
 export type FormState =

@@ -11,11 +11,12 @@ interface MiniSongCardProps {
     image: string | null;
     id: number;
     name: string;
-    firstname: string | null;
-    surname: string | null;
-    nickname: string | null;
+    firstname?: string | null;
+    surname?: string | null;
+    nickname?: string | null;
     description: string | null;
     country_id: number | null;
+    year_of_foundation?: number | null;
   } | null;
   className?: string;
 }

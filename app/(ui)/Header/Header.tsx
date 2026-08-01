@@ -3,7 +3,7 @@
 import Link from "next/link";
 import s from "./Header.module.scss";
 import { users } from "@/src/generated/prisma/client";
-import LogoutButton from "../LogoutButton/LogoutButton";
+import LogoutButton from "../ui/LogoutButton/LogoutButton";
 import clsx from "clsx";
 import { useState } from "react";
 import { usePathname } from "next/navigation";

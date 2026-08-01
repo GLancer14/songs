@@ -65,6 +65,7 @@ export default async function Page({
           songs={songs}
           albums={albums}
           country={country}
+          type="people"
         />
       <Footer />
     </>

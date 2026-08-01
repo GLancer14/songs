@@ -7,6 +7,8 @@ import Modal from "../ui/Modal/Modal";
 import { useEffect, useState } from "react";
 import MiniSongCard from "../SongCard/MiniSongCard/MiniSongCard";
 import searchSongs from "@/app/actions/searchSongs/searchSongs";
+import searchAlbums from "@/app/actions/searchAlbums/searchAlbums";
+import MiniAlbumCard from "../AlbumCard/MiniAlbumCard/MiniAlbumCard";
 
 export interface PeoplePageProps {
   albums: {
@@ -22,11 +24,12 @@ export interface PeoplePageProps {
     image: string | null;
     id: number;
     name: string;
-    firstname: string | null;
-    surname: string | null;
-    nickname: string | null;
+    firstname?: string | null;
+    surname?: string | null;
+    nickname?: string | null;
     description: string | null;
     country_id: number | null;
+    year_of_foundation?: number | null;
   } | null;
   songs: ({
     songs: {
@@ -54,6 +57,7 @@ export interface PeoplePageProps {
     country_id: number;
     country: string;
   } | null;
+  type: "people" | "group";
 }
 
 const PeoplePage: React.FC<PeoplePageProps> = ({
@@ -61,9 +65,13 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
   peopleData,
   songs,
   country,
+  type,
 }) => {
-  const [modalVisibility, setModalVisibility] = useState(false);
+  const [songsModalVisibility, setSongsModalVisibility] = useState(false);
+  const [albumsModalVisibility, setAlbumsModalVisibility] = useState(false);
   const [search, setSearch] = useState("");
+  const [searchAlbumsString, setSearchAlbumsString] = useState("");
+  const [imageURL, setImageURL] = useState("");
   const [songsSearchResults, setSongsSearchResults] = useState<{
     image: string | null;
     name: string;
@@ -82,20 +90,64 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
     track_gain: number | null;
   }[]>([]);
 
+  const [albumsSearchResults, setAlbumsSearchResults] = useState<{
+    name: string;
+    id: number;
+    author: string | null;
+    release_date: Date | null;
+    album_type: number | null;
+    description: string | null;
+    image: string | null;
+  }[]>([]);
+
   useEffect(() => {
     const foundSongs = async () => {
       if (!search) {
         return setSongsSearchResults([]);
       }
 
-      const foundedSongs = await searchSongs(search, peopleData?.name);
+      const foundedSongs = await searchSongs(search, peopleData?.name, {
+        page: 1,
+        sort: "release_date",
+        order: "asc"
+      });
       if (Array.isArray(foundedSongs)) {
         setSongsSearchResults(foundedSongs);
       }
     };
 
     foundSongs();
-  }, [search])
+  }, [search]);
+
+  useEffect(() => {
+    const foundSongs = async () => {
+      if (!searchAlbumsString) {
+        return setAlbumsSearchResults([]);
+      }
+
+      const foundedAlbums = await searchAlbums(searchAlbumsString, peopleData?.name, {
+        page: 1,
+        sort: "release_date",
+        order: "asc"
+      });
+      if (Array.isArray(foundedAlbums)) {
+        setAlbumsSearchResults(foundedAlbums);
+      }
+    };
+
+    foundSongs();
+  }, [searchAlbumsString]);
+
+  useEffect(() => {
+    if (peopleData?.image) {
+      if (type === "people") {
+        setImageURL(`/backgrounds/people/${peopleData.image}`);
+      } else {
+        setImageURL(`/backgrounds/groupes/${peopleData.image}`);
+      }
+    }
+  }, []);
+
   return (
     <div className="flex flex-col flex-1 items-center">
       <header
@@ -108,7 +160,10 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
           {peopleData && peopleData.image &&
             <Image
               className="relative top-12 self-start mr-11 border-4 border-white rounded-[50%] object-cover object-center w-85 h-85"
-              src={peopleData.image ? `/backgrounds/people/${peopleData.image}` : "/noimage2.svg"}
+              src={peopleData.image && imageURL
+                ? imageURL
+                : "/noimage2.svg"
+              }
               alt={"обложка"}
               width={340}
               height={340}
@@ -131,7 +186,7 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
           `)}
         ></div>
       </header>
-      <div className="relative top-16 flex flex-row gap-17 w-300 max-w-300">
+      <div className="relative top-16 flex flex-row gap-17 w-300 max-w-300 mb-8">
         <div className="w-130 max-w-130">
           <h3 className="text-center text-[40px]">About</h3>
           {peopleData?.description}
@@ -156,14 +211,14 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
               <button
                 className="w-full h-10 border border-black rounded-[20px] text-[18px] cursor-pointer"
                 type="button"
-                onClick={() => setModalVisibility(true)}
+                onClick={() => setSongsModalVisibility(true)}
               >
                 All songs by {peopleData?.name}
               </button>
               <Modal
                 className="flex flex-row items-center justify-center h-full"
-                isOpen={modalVisibility}
-                onClose={() => setModalVisibility(false)}
+                isOpen={songsModalVisibility}
+                onClose={() => setSongsModalVisibility(false)}
               >
                 <div className="w-160 bg-white min-h-[calc(100vh-32px)] h-[calc(100vh-32px)] p-9">
                   <h2 className="text-[32px]">{peopleData?.name} Songs</h2>
@@ -223,9 +278,44 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
               <button
                 className="w-full h-10 border border-black rounded-[20px] text-[18px] cursor-pointer"
                 type="button"
+                onClick={() => setAlbumsModalVisibility(true)}
               >
                 All albums by {peopleData?.name}
               </button>
+              <Modal
+                className="flex flex-row items-center justify-center h-full"
+                isOpen={albumsModalVisibility}
+                onClose={() => setAlbumsModalVisibility(false)}
+              >
+                <div className="w-160 bg-white min-h-[calc(100vh-32px)] h-[calc(100vh-32px)] p-9">
+                  <h2 className="text-[32px]">{peopleData?.name} Albums</h2>
+                  <input
+                    className="w-full px-3 py-2 mt-2"
+                    type="text"
+                    value={searchAlbumsString}
+                    placeholder={`Search ${peopleData?.name} albums`}
+                    onInput={(e) => {
+                      setSearchAlbumsString(e.currentTarget.value);
+                    }}
+                  />
+                  <div className="flex flex-row flex-wrap gap-4 mt-4 overflow-auto">
+                    {albumsSearchResults.map(album => {
+                      return (
+                        <MiniAlbumCard
+                          className="w-full overflow-auto"
+                          key={album.id}
+                          album={{
+                            id: album.id,
+                            name: album.name,
+                            image: album.image,
+                            release: album.release_date,
+                          }}
+                        />
+                      )
+                    })}
+                  </div>
+                </div>
+              </Modal>
             </div>
           </div>}
         </div>
