@@ -14,7 +14,7 @@ import { useActionState, useState } from "react";
 import clsx from "clsx";
 import editSong from "@/app/actions/EditSong/editSong";
 import { redirect } from "next/navigation";
-import { fieldsNames } from "../lib/fieldsNames";
+import { fieldsNames, TableNames } from "../lib/fieldsNames";
 
 const EditSong = ({
   user,
@@ -29,12 +29,12 @@ const EditSong = ({
   languages: string[];
   moods: mood[];
   creators: Array<{
-    name: Prisma.ModelName;
+    name: TableNames;
     title: string;
     fields: string;
   }>;
   dataGroupes:  Array<{
-    name: Prisma.ModelName;
+    name: TableNames;
     title: string;
     fields: string;
   }>;

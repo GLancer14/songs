@@ -56,7 +56,7 @@ export default async function editPeople(
       surname: peopleData.people_surname,
       nickname: peopleData.people_nickname,
       description: peopleData.description,
-      type: peopleData.people_type,
+      // type: peopleData.people_type,
       country_id: singerCountry?.country_id ?? null,
       image: imageName,
     }

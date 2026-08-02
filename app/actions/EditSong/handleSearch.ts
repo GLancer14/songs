@@ -1,13 +1,14 @@
 "use server"
 
 import { prisma } from "../../lib/prisma";
-import { PrismaClient } from "@prisma/client/extension";
 
 export default async function handleSearch(
   tableData: { name: string; fields: string; idFieldName: string; songId: number; },
   searchData: string,
 ) {
-  const existingAuthor = await prisma[tableData.name as PrismaClient].findFirst({
+  const model = prisma[tableData.name as keyof typeof prisma] as any;
+  
+  const existingAuthor = await model.findFirst({
     where: {
       [tableData.fields]: searchData,
     }
@@ -24,16 +25,23 @@ export default async function handleSearch(
       searchId = Number(searchingArray[1]);
     }
   } else {
-    const newRecord = await prisma[tableData.name as PrismaClient].create({
+    const newRecord = await model.create({
       data: {
         name: searchData,
       }
     });
 
-    searchId = newRecord.music_author_id;
+    const searchingValue = Object.entries(newRecord);
+    const searchingArray = searchingValue.find(value => {
+      return value[0].endsWith("_id");
+    });
+    if (searchingArray) {
+      searchId = Number(searchingArray[1]);
+    }
   }
 
-  await prisma[`songs_${tableData.name}` as PrismaClient].create({
+  const songsTable = prisma[`songs_${tableData.name}` as keyof typeof prisma] as any;
+  await songsTable.create({
     data: {
       [tableData.idFieldName]: searchId,
       song_id: tableData.songId

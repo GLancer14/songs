@@ -1,15 +1,16 @@
 "use server"
 
-import { Prisma } from "@/src/generated/prisma/client";
 import { prisma } from "../../lib/prisma";
 
 export default async function findSearchFieldValue(
   searchString: string, 
   fieldName: string,
-  tableName: Prisma.ModelName,
+  tableName: string,
 ): Promise<Array<any> | undefined> {
   if (searchString !== "") {
-    const searchResult = await prisma[tableName].findMany({
+    const model = prisma[tableName as keyof typeof prisma] as any;
+    
+    const searchResult = await model.findMany({
       where: {
         [fieldName]: {
           contains: searchString,

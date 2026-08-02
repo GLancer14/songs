@@ -1,7 +1,8 @@
 import { Prisma } from "@/src/generated/prisma/client";
+import { TableNames } from "../(ui)/lib/fieldsNames";
 
 export const creators: Array<{
-  name: Prisma.ModelName;
+  name: TableNames;
   title: string;
   fields: string;
 }> = [
@@ -18,7 +19,7 @@ export const creators: Array<{
 ];
 
 export const dataGroupes: Array<{
-  name: Prisma.ModelName;
+  name: TableNames;
   title: string;
   fields: string;
 }> = [

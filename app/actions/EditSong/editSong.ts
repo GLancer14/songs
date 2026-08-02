@@ -13,6 +13,8 @@ export type ArrayValues =
   "genres" |
   "albums";
 
+type ValidModelKeys = Extract<keyof typeof prisma, ArrayValues>;
+
 export default async function editSong(
   state: AddSongSchemaType, formData: FormData
 ) {
@@ -100,7 +102,7 @@ export default async function editSong(
     songData.lyrics_translation_langs.length !== 0 &&
     (songData.lyrics_translation_langs.find(value => value === "english" || value === "russian"))
   ) {
-    songData.lyrics_translation_langs.forEach(async (value) => {
+    for (const value of songData.lyrics_translation_langs) {
       if (value === "english") {
         await prisma.songs_lyrics.create({
           data: {
@@ -109,7 +111,7 @@ export default async function editSong(
             lyrics_text: songData.english ?? "",
           }
         })
-      } else {
+      } else if (value === "russian") {
         await prisma.songs_lyrics.create({
           data: {
             song_id: songCreateResult.song_id,
@@ -118,7 +120,7 @@ export default async function editSong(
           }
         })
       }
-    });
+    }
   }
 
   const arrays: Array<ArrayValues> = [
@@ -128,10 +130,12 @@ export default async function editSong(
     "albums",
   ]
 
-  function sendSongsArray(tableName: ArrayValues) {
+  async function sendSongsArray(tableName: ArrayValues) {
     if (songData[tableName] && songData[tableName].length > 0) {
-      songData[tableName].forEach(async (author) => {
-        const existingAuthor = await prisma[tableName].findFirst({
+      const model = prisma[tableName as ValidModelKeys] as any;
+      
+      for (const author of songData[tableName]) {
+        const existingAuthor = await model.findFirst({
           where: {
             name: author,
           },
@@ -140,8 +144,7 @@ export default async function editSong(
           }
         });
 
-        let sendDataAlbums;
-        
+        let sendDataAlbums: any;
 
         if (existingAuthor) {
           if (tableName === "albums") {
@@ -157,11 +160,12 @@ export default async function editSong(
             }
           }
 
-          await prisma[`songs_${tableName}`].create({
+          const songsTable = prisma[`songs_${tableName}` as keyof typeof prisma] as any;
+          await songsTable.create({
             data: sendDataAlbums,
           });
         } else {
-          const newMusicAuthor = await prisma[tableName].create({
+          const newMusicAuthor = await model.create({
             data: {
               name: author,
             },
@@ -173,50 +177,53 @@ export default async function editSong(
           if (tableName === "albums") {
             sendDataAlbums = {
               song_id: songCreateResult.song_id,
-              id: existingAuthor.id,
+              id: newMusicAuthor.id,
               track: Number(songData.track),
             }
           } else {
             sendDataAlbums = {
               song_id: songCreateResult.song_id,
-              id: existingAuthor.id,
+              id: newMusicAuthor.id,
             }
           }
 
-          await prisma[`songs_${tableName}`].create({
+          const songsTable = prisma[`songs_${tableName}` as keyof typeof prisma] as any;
+          await songsTable.create({
             data: sendDataAlbums,
           });
         }
-      });
+      }
     }
   }
 
-  arrays.forEach(arrayData => sendSongsArray(arrayData));
+  for (const arrayData of arrays) {
+    await sendSongsArray(arrayData);
+  }
 
   if (songData.title_image) {
     if (songData.title_image.size === 0) {
-      return songData.title_image = undefined;
+      songData.title_image = undefined;
+    } else {
+      const file = songData.title_image;
+      const bytes = await file.arrayBuffer();
+      const buffer = Buffer.from(bytes);
+      await writeFile(path.join(process.cwd(), 'public/backgrounds/songs', imageName), buffer, (e) => {
+        console.log(e)
+      })
     }
-
-    const file = songData.title_image;
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-    await writeFile(path.join(process.cwd(), 'public/backgrounds/songs', imageName), buffer, (e) => {
-      console.log(e)
-    })
   }
 
   if (songData.orig_audio) {
     if (songData.orig_audio.size === 0) {
-      return songData.orig_audio = undefined;
+      songData.orig_audio = undefined;
+    } else {
+      const file = songData.orig_audio;
+      const bytes = await file.arrayBuffer();
+      const buffer = Buffer.from(bytes);
+      await writeFile(path.join(process.cwd(), 'public/songs', audioName), buffer, (e) => {
+        console.log(e);
+      })
     }
-
-    const file = songData.orig_audio;
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-    await writeFile(path.join(process.cwd(), 'public/songs', audioName), buffer, (e) => {
-      console.log(e);
-    })
   }
 
   return JSON.parse(JSON.stringify(songCreateResult));
