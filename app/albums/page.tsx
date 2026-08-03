@@ -26,7 +26,7 @@ const Page = async () => {
             return (
               <div className="flex w-[49%] flex-row bg-white">
                 <a className="flex" href={`/albums/${album.id}`}>
-                  <img
+                  <Image
                     className=""
                     src={album.image ? `${staticURL}/backgrounds/albums/${album.image}` : "/noimage2.svg"}
                     alt={album.image ?? "image"}
