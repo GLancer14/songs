@@ -61,7 +61,7 @@ export default async function editAlbum(
         console.log(e)
       });
     } else {
-      const savePath = `https://f2jy8p54ujxoxk8h.public.blob.vercel-storage.com/public/backgrounds/albums/${imageName}`;
+      const savePath = `public/backgrounds/albums/${imageName}`;
       await put(savePath, buffer, {
         access: 'public',
       });
