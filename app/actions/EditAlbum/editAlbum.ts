@@ -6,6 +6,7 @@ import { AddAlbumSchema, AddAlbumSchemaType, AddSongSchema, AddSongSchemaType } 
 import userIam from "../userIam";
 import { writeFile } from "fs";
 import path from "path";
+import { put } from "@vercel/blob";
 
 export default async function editAlbum(
   state: AddAlbumSchemaType, formData: FormData
@@ -55,9 +56,16 @@ export default async function editAlbum(
     const file = albumData.title_image;
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
-    await writeFile(path.join(process.cwd(), 'public/backgrounds/albums', imageName), buffer, (e) => {
-      console.log(e)
-    })
+    if (!process.env.BLOB_STORE_ID) {
+      await writeFile(path.join(process.cwd(), 'public/backgrounds/albums', imageName), buffer, (e) => {
+        console.log(e)
+      });
+    } else {
+      const savePath = `https://f2jy8p54ujxoxk8h.public.blob.vercel-storage.com/public/backgrounds/albums/${imageName}`;
+      await put(savePath, buffer, {
+        access: 'public',
+      });
+    }
   }
 
   return JSON.parse(JSON.stringify(albumCreateResult));
