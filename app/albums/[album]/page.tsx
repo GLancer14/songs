@@ -6,6 +6,7 @@ import Footer from "../../(ui)/Footer/Footer";
 import { prisma } from "../../lib/prisma";
 import { getAverageColor } from "fast-average-color-node";
 import AlbumPage from "@/app/(ui)/AlbumPage/AlbumPage";
+import { FastAverageColorResult } from "fast-average-color";
 
 export default async function Page({
   params,
@@ -58,7 +59,13 @@ export default async function Page({
   let imageColor: string | undefined;
   let imageValue: number[] | undefined;
   if (albumData?.image) {
-    const color = (await getAverageColor(`./public/backgrounds/albums/${albumData.image}`));
+    let color: FastAverageColorResult;
+    if (!process.env.BLOB_STORE_ID) {
+      color = (await getAverageColor(`./public/backgrounds/albums/${albumData.image}`));
+    } else {
+      color = (await getAverageColor(`${process.env.STATIC_URL}/backgrounds/albums/${albumData.image}`));
+    }
+
     imageColor = color.rgb;
     imageValue = color.value;
   }

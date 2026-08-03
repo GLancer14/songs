@@ -9,10 +9,12 @@ import { creators, dataGroupes, requiredFields } from "../lib/searchFields"
 import EditAlbum from "../(ui)/EditAlbum/EditAlbum"
 import Header from "../(ui)/Header/Header"
 import Footer from "../(ui)/Footer/Footer"
+import Image from "next/image"
 
 const Page = async () => {
   const user = await userIam();
   const albums = await prisma.albums.findMany();
+  const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.STATIC_URL;
 
   return (
     <Suspense fallback={<Loading />}>
@@ -24,9 +26,9 @@ const Page = async () => {
             return (
               <div className="flex w-[49%] flex-row bg-white">
                 <a className="flex" href={`/albums/${album.id}`}>
-                  <img
+                  <Image
                     className=""
-                    src={album.image ? `/backgrounds/albums/${album.image}` : "/noimage2.svg"}
+                    src={album.image ? `${staticURL}/backgrounds/albums/${album.image}` : "/noimage2.svg"}
                     alt={album.image ?? "image"}
                     loading="lazy"
                     width={100}
