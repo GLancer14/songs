@@ -61,7 +61,7 @@ export default async function editAlbum(
         console.log(e)
       });
     } else {
-      const savePath = `public/backgrounds/albums/${imageName}`;
+      const savePath = `backgrounds/albums/${imageName}`;
       await put(savePath, buffer, {
         access: 'public',
       });
