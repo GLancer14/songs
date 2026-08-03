@@ -83,6 +83,7 @@ const AlbumPage: React.FC<SongPageProps> = ({
   const [showBio, setShowBio] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
   const [showAlbumInfo, setShowAlbumInfo] = useState(false);
+  const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.STATIC_URL;
 
   let imageColorMinus;
   let imageColorMinusValue;
@@ -104,7 +105,7 @@ const AlbumPage: React.FC<SongPageProps> = ({
               className="relative top-4 self-start mr-11 shadow-[rgba(0,0,0,0.18)_0px_0px_12px_0px]"
               src={
                 albumData.image
-                  ? `/backgrounds/albums/${albumData.image}`
+                  ? `${staticURL}/backgrounds/albums/${albumData.image}`
                   : "/noimage2"
               }
               alt={"обложка"}
