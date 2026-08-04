@@ -28,6 +28,9 @@ const SearchType: FC<SearchTypeProps> = ({ tableData, maxLength }) => {
         list={`${tableData}_options`}
         placeholder="Search"
         value={searchTypeValue}
+        onBlur={() => {
+          setSearchTypeVisible(false);
+        }}
         onFocus={() => {
           setSearchTypeVisible(true);
         }}
@@ -45,7 +48,7 @@ const SearchType: FC<SearchTypeProps> = ({ tableData, maxLength }) => {
         }}
       />
       <ul
-        className="absolute text-white bg-gray-800 w-full"
+        className="absolute text-white bg-gray-800 w-full z-50"
         id={`${tableData.fields}_options`}
         onBlur={() => {
           setSearchTypeVisible(false);

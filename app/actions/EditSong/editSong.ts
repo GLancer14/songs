@@ -6,6 +6,7 @@ import { AddSongSchema, AddSongSchemaType } from "@/app/lib/definitions";
 import userIam from "../userIam";
 import { writeFile } from "fs";
 import path from "path";
+import { put } from "@vercel/blob";
 
 export type ArrayValues = 
   "people" |
@@ -207,9 +208,16 @@ export default async function editSong(
       const file = songData.title_image;
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
-      await writeFile(path.join(process.cwd(), 'public/backgrounds/songs', imageName), buffer, (e) => {
-        console.log(e)
-      })
+      if (!process.env.BLOB_STORE_ID) {
+        await writeFile(path.join(process.cwd(), 'public/backgrounds/songs', imageName), buffer, (e) => {
+          console.log(e)
+        });
+      } else {
+        const savePath = `backgrounds/songs/${imageName}`;
+        await put(savePath, buffer, {
+          access: 'public',
+        });
+      }
     }
   }
 
@@ -220,9 +228,16 @@ export default async function editSong(
       const file = songData.orig_audio;
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
-      await writeFile(path.join(process.cwd(), 'public/songs', audioName), buffer, (e) => {
-        console.log(e);
-      })
+      if (!process.env.BLOB_STORE_ID) {
+        await writeFile(path.join(process.cwd(), 'public/songs', audioName), buffer, (e) => {
+          console.log(e)
+        });
+      } else {
+        const savePath = `songs/${audioName}`;
+        await put(savePath, buffer, {
+          access: 'public',
+        });
+      }
     }
   }
 

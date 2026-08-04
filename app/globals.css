@@ -22,7 +22,7 @@
 
 * {
   box-sizing: border-box;
-  transition: all 1s ease-in-out;
+  /* transition: all 1s ease-in-out; */
   /* transition: all 0.3s; */
 }
 
@@ -80,9 +80,9 @@ textarea {
   background-color: gray;
 }
 
-body * {
+/* body * {
   animation: myAnimation 0.3s ease-out;
-}
+} */
 
 @keyframes myAnimation {
     from {

@@ -1,0 +1,72 @@
+.header::after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+  // background: linear-gradient(rgb(127, 127, 127), rgb(66, 66, 66));
+}
+
+.aboutContainer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  position: relative;
+}
+
+.aboutContainer.isOpen {
+  grid-template-rows: 1fr;
+}
+
+.aboutInner {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  padding-left: 32px; // pl-8
+  padding-bottom: 16px; // pb-4
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease 0.1s;
+}
+
+.aboutContainer.isOpen .aboutInner {
+  
+  opacity: 1;
+}
+
+.aboutText {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+    content: "1";
+  }
+}
+
+.isShowing {
+  height: auto;
+}
+
+@supports not (grid-template-rows: 0fr) {
+  .aboutContainer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  
+  .aboutContainer.isOpen {
+    max-height: 1000px; // Достаточно большое значение
+  }
+  
+  .aboutContainer.isOpen .aboutInner {
+    opacity: 1;
+  }
+}

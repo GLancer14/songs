@@ -68,7 +68,7 @@ const SearchField = ({
       />
       <ul
         ref={listRef}
-        className="absolute mt-20 text-white bg-gray-800 w-full"
+        className="absolute mt-20 text-white bg-gray-800 w-full z-50"
         id={`${tableData.fields}_options`}
         onBlur={() => {
           setSearchVisible(false);

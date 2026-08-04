@@ -159,7 +159,7 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
         <div className="relative colum flex flex-row max-w-344 w-344 py-4 px-10.5">
           {peopleData && peopleData.image &&
             <Image
-              className="relative top-12 self-start mr-11 border-4 border-white rounded-[50%] object-cover object-center w-85 h-85"
+              className="relative top-12 self-start mr-11 ml-15 border-4 border-white rounded-[50%] object-cover object-center w-85 h-85"
               src={peopleData.image && imageURL
                 ? imageURL
                 : "/noimage2.svg"
@@ -220,7 +220,7 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
                 isOpen={songsModalVisibility}
                 onClose={() => setSongsModalVisibility(false)}
               >
-                <div className="w-160 bg-white min-h-[calc(100vh-32px)] h-[calc(100vh-32px)] p-9">
+                <div className="w-160 bg-white min-h-[calc(100vh-32px)] h-[calc(100vh-32px)] p-9 overflow-auto">
                   <h2 className="text-[32px]">{peopleData?.name} Songs</h2>
                   <input
                     className="w-full px-3 py-2 mt-2"
@@ -231,11 +231,11 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
                       setSearch(e.currentTarget.value);
                     }}
                   />
-                  <div className="flex flex-row flex-wrap gap-4 mt-4 overflow-auto">
+                  <div className="flex flex-column flex-wrap gap-4 mt-4 overflow-auto">
                     {songsSearchResults.map(song => {
                       return (
                         <MiniSongCard
-                          className="w-full overflow-auto"
+                          className="w-full"
                           key={song.song_id}
                           song={{
                             song_id: song.song_id,

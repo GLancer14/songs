@@ -8,6 +8,7 @@ import { useRef, useState } from "react";
 import formatDate from "../utils/formatDate";
 import ShowButton from "../ui/ShowButton/ShowButton";
 import Credits from "./Credits/Credits";
+import About from "../ui/About/About";
 
 export interface SongPageProps {
   albumType: {
@@ -80,8 +81,7 @@ const AlbumPage: React.FC<SongPageProps> = ({
   imageValue,
   songsPeople,
 }) => {
-  const [showBio, setShowBio] = useState(false);
-  const [showAbout, setShowAbout] = useState(false);
+  const [showAbout, setShowAbout] = useState(true);
   const [showAlbumInfo, setShowAlbumInfo] = useState(false);
   const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.STATIC_URL;
 
@@ -201,49 +201,11 @@ const AlbumPage: React.FC<SongPageProps> = ({
               About
               <ShowButton show={showAbout} setShow={setShowAbout} />
             </div>
-            <div
-              className={clsx(s.aboutContainer, {
-                [s.isOpen]: showAbout,
-              })}
-            >
-              <div className={s.aboutInner}>
-                <div className="font-bold mb-2 text-[12px]">Albums Bio</div>
-                <div>{albumData.description}</div>
-
-                {!showBio && (
-                  <button
-                    className="
-                      absolute
-                      top-[24px]
-                      left-[calc(50%-48px)]
-                      flex
-                      flex-row
-                      items-center
-                      justify-center
-                      mx-auto
-                      mt-6
-                      h-8
-                      w-24
-                      bg-transparent
-                      px-4
-                      py-2
-                      rounded-2xl
-                      border
-                      border-black
-                      cursor-pointer
-                      hover:bg-black/5
-                      transition-colors
-                    "
-                    type="button"
-                    onClick={() => {
-                      setShowBio(true);
-                    }}
-                  >
-                    Expand
-                  </button>
-                )}
-              </div>
-            </div>
+            <About
+              type="Albums"
+              showAbout={showAbout}
+              aboutText={albumData.description}
+            />
           </div>
 
           <div className="mt-8">
