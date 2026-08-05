@@ -34,6 +34,24 @@ export default async function Page({
     }
   });
 
+  const album = await prisma.songs_albums.findFirst({
+    where: {
+      song_id: songData?.song_id,
+    },
+    select: {
+      albums: true,
+    }
+  });
+
+  const albumSongs = await prisma.songs_albums.findMany({
+    where: {
+      id: album?.albums.id,
+    },
+    include: {
+      songs: true,
+    }
+  })
+
   let imageColor: string | undefined;
   let imageValue: number[] | undefined;
   if (songData?.image) {
@@ -53,6 +71,8 @@ export default async function Page({
           imageColor={imageColor}
           imageValue={imageValue}
           lyrics={lyrics}
+          album={album}
+          albumSongs={albumSongs}
         />
       </div>
       <Footer />

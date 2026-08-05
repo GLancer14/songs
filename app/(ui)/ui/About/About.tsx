@@ -21,10 +21,10 @@ const About: FC<AboutProps> = ({ showAbout, aboutText, type }) => {
     >
       <div className={s.aboutInner}>
         <div className="font-bold mb-2 text-[12px]">{type} Bio</div>
-        <div className={clsx("aboutText h-30 overflow-hidden", {
+        <div className={clsx("aboutText h-30 overflow-hidden w-full", {
           [s.isShowing]: showText,
         })}>
-          {aboutText}
+          {aboutText || "About is missing"}
         </div>
         {!showText && (
           <button

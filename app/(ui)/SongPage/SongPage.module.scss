@@ -8,3 +8,12 @@
   height: 100%;
   // background: linear-gradient(rgb(127, 127, 127), rgb(66, 66, 66));
 }
+
+.albumSong {
+  &::after {
+    position: absolute;
+    inset: 0px 0.25rem;
+    border: 1px solid white;
+    content: "";
+  }
+}
