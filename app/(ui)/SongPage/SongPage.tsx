@@ -54,11 +54,39 @@ export interface SongPageProps {
       image: string | null;
     };
   } & {
-      song_id: number;
-      id: number;
-      track: number | null;
-      disk: number | null;
+    song_id: number;
+    id: number;
+    track: number | null;
+    disk: number | null;
   })[];
+  group: {
+    groupes: {
+      id: number;
+      name: string;
+      description: string | null;
+      image: string | null;
+      groupesType: {
+        type: {
+          name: string;
+          type_id: number;
+        };
+      }[];
+    };
+  }[];
+  people: {
+    people: {
+      id: number;
+      description: string | null;
+      image: string | null;
+      nickname: string | null;
+      peopleType: {
+        type: {
+          name: string;
+          type_id: number;
+        };
+      }[];
+    };
+  }[]
 }
 
 const SongPage: React.FC<SongPageProps> = ({
@@ -68,10 +96,41 @@ const SongPage: React.FC<SongPageProps> = ({
   lyrics,
   album,
   albumSongs,
+  group,
+  people,
 }) => {
   const [showAbout, setShowAbout] = useState(true);
-  const [showAlbumInfo, setShowAlbumInfo] = useState(false);
+  const [showAlbumInfo, setShowAlbumInfo] = useState(true);
   const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.STATIC_URL;
+
+  const peopleProducers = people.filter(people => {
+    return people.people.peopleType.find(peopleType => {
+      return peopleType.type.name.toLowerCase() === "producer";
+    });
+  });
+
+  const groupesProducers = group.filter(group => {
+    return group.groupes.groupesType.find(groupType => {
+      return groupType.type.name.toLowerCase() === "producer";
+    });
+  });
+
+  const peopleWriters = people.filter(people => {
+    return people.people.peopleType.find(peopleType => {
+      return peopleType.type.name.toLowerCase() === "writer";
+    });
+  });
+
+  const groupesWriters = group.filter(group => {
+    return group.groupes.groupesType.find(groupType => {
+      return groupType.type.name.toLowerCase() === "writer";
+    });
+  });
+  
+  const songsGroup = group.find(group => {
+    return songData.artists.includes(group.groupes.name);
+  });
+
   const imgRef = useRef(null);
   let imageColorMinus;
   let imageColorMinusValue;
@@ -102,16 +161,47 @@ const SongPage: React.FC<SongPageProps> = ({
                 boxShadow: "rgba(0,0,0,0.18) 0px 0px 12px 0px",
               }}
             />}
-            <div className="relative top-4 flex flex-col flex-1 text-white">
+            <div className="relative top-4 flex flex-col flex-1 pb-12 text-white">
               <div className="text-3xl mb-2">{songData.name}</div>
-              <div className="text-4 underline">{songData.artists}</div>
-              <div className="text-xs mt-6">Producer</div>
-              <div className="flex items-center gap-2 text-xs mt-6 justify-self-end-safe">
-                <svg width={10} height={10} xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-                  <path d="M15.923 1.385h-2.77V0H11.77v1.385H6.231V0H4.846v1.385h-2.77c-.76 0-1.384.623-1.384 1.384v13.846c0 .762.623 1.385 1.385 1.385h13.846c.762 0 1.385-.623 1.385-1.385V2.77c0-.761-.623-1.384-1.385-1.384Zm0 15.23H2.077V6.923h13.846v9.692Zm0-11.077H2.077V2.77h2.77v1.385H6.23V2.769h5.538v1.385h1.385V2.769h2.77v2.77Z">
-                  </path>
-                </svg>
-                {formatDate(songData.release_date)}
+              <Link href={`/groupes/${songsGroup?.groupes.id}`} className="text-4 underline">{songsGroup?.groupes.name}</Link>
+              {(peopleProducers.length > 0 || groupesProducers.length > 0) &&
+                <div className="mt-6">
+                  <div className="text-[rgba(255,255,255,0.6)] text-[14px]">Producer</div>
+                  <div className="text-4 underline">
+                    {peopleProducers.length > 0 && peopleProducers.map(producer => {
+                      return (
+                        <Link href={`/people/${producer.people.id}`} key={producer.people.id}>{producer.people.nickname}</Link>
+                      );
+                    })}
+                    {groupesProducers.length > 0 && groupesProducers.map(group => {
+                      return (
+                        <Link href={`/groupes/${group.groupes.id}`} key={group.groupes.id}>{group.groupes.name}</Link>
+                      );
+                    })}
+                  </div>
+                </div>}
+              <div className="mt-auto">
+                <div className="text-[rgba(255,255,255,0.6)] text-[14px]">Track {
+                  (() => {
+                    const foundTrack = albumSongs.find(albumSong => {
+                      return albumSong.songs.song_id === songData.song_id
+                    })
+                    return foundTrack?.track || null;
+                  })()
+                } on</div>
+                <a href="#album" className="flex underline">
+                  {album?.albums.name}
+                  <svg className="underline" width={10} height={20} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6.6 16" fill="white">
+                    <path d="M1.6 8.8l.6-.6 1 1 .5.7V6H0v-.8h4.5v4.6l.5-.6 1-1 .6.5L4 11.3 1.6 8.8z"></path>
+                  </svg>
+                </a>
+                <div className="flex items-center gap-2 text-xs mt-4">
+                  <svg width={10} height={10} xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+                    <path d="M15.923 1.385h-2.77V0H11.77v1.385H6.231V0H4.846v1.385h-2.77c-.76 0-1.384.623-1.384 1.384v13.846c0 .762.623 1.385 1.385 1.385h13.846c.762 0 1.385-.623 1.385-1.385V2.77c0-.761-.623-1.384-1.385-1.384Zm0 15.23H2.077V6.923h13.846v9.692Zm0-11.077H2.077V2.77h2.77v1.385H6.23V2.769h5.538v1.385h1.385V2.769h2.77v2.77Z">
+                    </path>
+                  </svg>
+                  {formatDate(songData.release_date)}
+                </div>
               </div>
             </div>
         </div>
@@ -145,42 +235,128 @@ const SongPage: React.FC<SongPageProps> = ({
             })}
           </div>
         </div>
-          <div className="w-100 my-12 pt-6 border-l-2 border-gray-300">
-            <div className="flex flex-column flex-wrap items-baseline justify-between border-b-2 border-gray-300">
-              <div className="flex flex-row justify-between text-[16px] pl-8 pb-4 w-full">
-                About
-                <ShowButton show={showAbout} setShow={setShowAbout} />
-              </div>
-              <About
-                type="Songs"
-                showAbout={showAbout}
-                aboutText={songData.description}
-              />
+        <div className="h-fit w-100 my-12 pt-6 border-l-2 border-gray-300">
+          <div className="flex flex-column flex-wrap items-baseline justify-between border-b-2 border-gray-300">
+            <div className="flex flex-row justify-between text-[16px] pl-8 pb-4 w-full">
+              About
+              <ShowButton show={showAbout} setShow={setShowAbout} />
             </div>
-      
-            <div className="mt-8">
-              <div className="flex flex-row items-baseline justify-between">
-                <div className="text-[16px] pl-8">Song Info</div>
-                <ShowButton show={showAlbumInfo} setShow={setShowAlbumInfo} />
+            <About
+              type="Songs"
+              showAbout={showAbout}
+              aboutText={songData.description}
+            />
+          </div>
+
+          <div className="mt-8">
+            <div className="flex flex-row items-baseline justify-between">
+              <div className="text-[16px] pl-8">Song Info</div>
+              <ShowButton show={showAlbumInfo} setShow={setShowAlbumInfo} />
+            </div>
+            <div
+              className={clsx(s.songInfo, "relative grid text-[14px] mt-4 pl-8 pb-4", {
+                ["grid-rows-[1fr] opacity-100"]: showAlbumInfo,
+                ["grid-rows-[0fr] opacity-0"]: !showAlbumInfo,
+              })}
+            >
+              <div className="flex flex-row gap-14 mb-4 flex-nowrap text-[14px]">
+                <span>Released on</span>
+                <span>{formatDate(songData.release_date)}</span>
               </div>
-              <div
-                className={clsx("text-[14px] mt-4 pl-8 pb-4", {
-                  ["block"]: showAlbumInfo,
-                  ["hidden"]: !showAlbumInfo,
-                })}
-              >
-                <div className="flex flex-row gap-4 mb-4 flex-nowrap text-[14px]">
-                  <span>Released on</span>
-                  <span>{formatDate(songData.release_date)}</span>
+              {album && <div className="w-100 mx-auto text-black">
+                <div
+                  key={album.albums.id}
+                  className={clsx("flex flex-row flex-wrap max-w-180 gap-4 items-center mb-4")}
+                >
+                  <Image
+                    className="shadow-[rgba(0,0,0,0.18)0px0px0.75rem0px]"
+                    src={album.albums.image || album.albums.image ? `/backgrounds/albums/${album.albums.image}` : "/noimage2.svg"}
+                    alt={"обложка песни"}
+                    width={67}
+                    height={67}
+                  />
+                  <div>
+                    <Link
+                      className="text-[18px]"
+                      href={`/albums/${album.albums.id}`}
+                    >
+                      {album?.albums.name}
+                    </Link>
+                    <div
+                      className="text-[14px] underline"
+                    >
+                      {album.albums.author}
+                    </div>
+                  </div>
                 </div>
-                <div className="flex flex-row gap-4 mb-4 flex-nowrap text-[14px]">
-                  <span>Mood</span>
-                  <span>{songData?.mood_id}</span>
                 </div>
-              </div>
+              }
+              {albumSongs && (() => {
+                const sortedAlbums = albumSongs.sort((a, b) => {
+                  if (a.track && b.track) {
+                    return a.track - b.track
+                  } else {
+                    return 0;
+                  }
+                });
+              
+                const half = Math.ceil(sortedAlbums.length / 2);
+                const firstColumn = sortedAlbums.slice(0, half);
+                const secondColumn = sortedAlbums.slice(half);
+              
+                return (
+                  <div className="w-100 mx-auto text-black text-[14px]">
+                    <div className={clsx("grid grid-cols-2 mt-4 max-w-180")}>
+                      <div className="flex flex-col gap-y-2">
+                        {firstColumn.map((albumSong) => (
+                          <div
+                            className={clsx("relative flex flex-row overflow-hidden w-fit pl-1 pr-4 py-1", {
+                              [s.miniAlbumSong]: songData.song_id === albumSong.songs.song_id,
+                            })}
+                            key={albumSong.songs.song_id}
+                          >
+                            <span className="min-w-5">{albumSong.track}.</span>
+                            {songData.song_id !== albumSong.songs.song_id
+                              ? <Link
+                                href={`/songs/${albumSong.songs.song_id}`}
+                                className="truncate underline "
+                              >
+                                {albumSong.songs.name}
+                              </Link>
+                              : <span className="truncate ">{albumSong.songs.name}</span>
+                            }
+                          </div>
+                        ))}
+                      </div>
+                      
+                      <div className="flex flex-col gap-y-2">
+                        {secondColumn.map((albumSong) => (
+                          <div className={clsx("relative flex flex-row overflow-hidden w-fit pl-1 pr-4 py-1", {
+                              [s.miniAlbumSong]: songData.song_id === albumSong.songs.song_id,
+                            })}
+                            key={albumSong.songs.song_id}
+                          >
+                            <span className="min-w-5">{albumSong.track}.</span>
+                            {songData.song_id !== albumSong.songs.song_id
+                              ? <Link
+                                href={`/songs/${albumSong.songs.song_id}`}
+                                className="truncate underline "
+                              >
+                                {albumSong.songs.name}
+                              </Link>
+                              : <span className="truncate ">{albumSong.songs.name}</span>
+                            }
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )
+              })()}
             </div>
           </div>
         </div>
+      </div>
 
       <div
         style={{
@@ -198,6 +374,7 @@ const SongPage: React.FC<SongPageProps> = ({
           <div
             key={album.albums.id}
             className={clsx("flex flex-row flex-wrap max-w-180 gap-14 items-center mb-11 ml-14")}
+            id="album"
           >
             <Image
               className="shadow-[rgba(0,0,0,0.18)0px0px0.75rem0px]"
@@ -244,7 +421,7 @@ const SongPage: React.FC<SongPageProps> = ({
                       className={clsx("relative flex flex-row overflow-hidden w-fit px-4 py-2", {
                         [s.albumSong]: songData.song_id === albumSong.songs.song_id,
                       })}
-                      key={albumSong.id}
+                      key={albumSong.songs.song_id}
                     >
                       <span className="mr-2 min-w-5">{albumSong.track}.</span>
                       {songData.song_id !== albumSong.songs.song_id
@@ -265,7 +442,7 @@ const SongPage: React.FC<SongPageProps> = ({
                     <div className={clsx("relative flex flex-row overflow-hidden w-fit px-4 py-2", {
                         [s.albumSong]: songData.song_id === albumSong.songs.song_id,
                       })}
-                      key={albumSong.id}
+                      key={albumSong.songs.song_id}
                     >
                       <span className="mr-2 min-w-5">{albumSong.track}.</span>
                       {songData.song_id !== albumSong.songs.song_id
@@ -285,6 +462,46 @@ const SongPage: React.FC<SongPageProps> = ({
             </div>
           )
         })()}
+        <div className="max-w-300 w-full mx-auto text-white">
+          <h2 className="capitalize text-[90px] max-w-180 text-center">credits</h2>
+          <div className="grid grid-cols-[1fr_1fr] max-w-180 px-6 gap-y-4">
+            <div>
+              <div className="text-[rgba(255,255,255,0.6)] text-[14px]">Released on</div>
+              <div>{formatDate(songData.release_date)}</div>
+            </div>
+            {(peopleProducers.length > 0 || groupesProducers.length > 0) && <div>
+              <div className="text-[rgba(255,255,255,0.6)] text-[14px]">Producer</div>
+              <div className="text-4 underline">
+                {peopleProducers.length > 0 && peopleProducers.map(producer => {
+                  return (
+                    <Link href={`/people/${producer.people.id}`} key={producer.people.id}>{producer.people.nickname}</Link>
+                  );
+                })}
+                {groupesProducers.length > 0 && groupesProducers.map(group => {
+                  return (
+                    <Link href={`/groupes/${group.groupes.id}`} key={group.groupes.id}>{group.groupes.name}</Link>
+                  );
+                })}
+              </div>
+            </div>}
+            {(peopleWriters.length > 0 || groupesWriters.length > 0) && <div>
+              <div className="text-[rgba(255,255,255,0.6)] text-[14px]">Writer</div>
+              <div className="text-4 underline">
+                {peopleWriters.length > 0 && peopleWriters.map(producer => {
+                  return (
+                    <Link href={`/people/${producer.people.id}`} key={producer.people.id}>{producer.people.nickname}</Link>
+                  );
+                })}
+                {groupesWriters.length > 0 && groupesWriters.map(group => {
+                  return (
+                    <Link href={`/groupes/${group.groupes.id}`} key={group.groupes.id}>{group.groupes.name}</Link>
+                  );
+                })}
+              </div>
+            </div>}
+          </div>
+          <hr className="max-w-180 my-16" />
+        </div>
       </div>
     </div>
   );

@@ -52,6 +52,48 @@ export default async function Page({
     }
   })
 
+  const group = await prisma.songs_groupes.findMany({
+    where: {
+      song_id: +song
+    },
+    select: {
+      groupes: {
+        select: {
+          id: true,
+          name: true,
+          description: true,
+          image: true,
+          groupesType: {
+            select: {
+              type: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  const people = await prisma.songs_people.findMany({
+    where: {
+      song_id: +song
+    },
+    select: {
+      people: {
+        select: {
+          id: true,
+          nickname: true,
+          description: true,
+          image: true,
+          peopleType: {
+            select: {
+              type: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
   let imageColor: string | undefined;
   let imageValue: number[] | undefined;
   if (songData?.image) {
@@ -73,6 +115,8 @@ export default async function Page({
           lyrics={lyrics}
           album={album}
           albumSongs={albumSongs}
+          group={group}
+          people={people}
         />
       </div>
       <Footer />

@@ -193,12 +193,14 @@ export type typeWhereInput = {
   type_id?: Prisma.IntFilter<"type"> | number
   name?: Prisma.StringFilter<"type"> | string
   peopleType?: Prisma.People_typeListRelationFilter
+  groupesType?: Prisma.Groupes_typeListRelationFilter
 }
 
 export type typeOrderByWithRelationInput = {
   type_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   peopleType?: Prisma.people_typeOrderByRelationAggregateInput
+  groupesType?: Prisma.groupes_typeOrderByRelationAggregateInput
 }
 
 export type typeWhereUniqueInput = Prisma.AtLeast<{
@@ -208,6 +210,7 @@ export type typeWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.typeWhereInput | Prisma.typeWhereInput[]
   name?: Prisma.StringFilter<"type"> | string
   peopleType?: Prisma.People_typeListRelationFilter
+  groupesType?: Prisma.Groupes_typeListRelationFilter
 }, "type_id">
 
 export type typeOrderByWithAggregationInput = {
@@ -231,23 +234,27 @@ export type typeScalarWhereWithAggregatesInput = {
 export type typeCreateInput = {
   name: string
   peopleType?: Prisma.people_typeCreateNestedManyWithoutTypeInput
+  groupesType?: Prisma.groupes_typeCreateNestedManyWithoutTypeInput
 }
 
 export type typeUncheckedCreateInput = {
   type_id?: number
   name: string
   peopleType?: Prisma.people_typeUncheckedCreateNestedManyWithoutTypeInput
+  groupesType?: Prisma.groupes_typeUncheckedCreateNestedManyWithoutTypeInput
 }
 
 export type typeUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   peopleType?: Prisma.people_typeUpdateManyWithoutTypeNestedInput
+  groupesType?: Prisma.groupes_typeUpdateManyWithoutTypeNestedInput
 }
 
 export type typeUncheckedUpdateInput = {
   type_id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   peopleType?: Prisma.people_typeUncheckedUpdateManyWithoutTypeNestedInput
+  groupesType?: Prisma.groupes_typeUncheckedUpdateManyWithoutTypeNestedInput
 }
 
 export type typeCreateManyInput = {
@@ -306,13 +313,29 @@ export type typeUpdateOneRequiredWithoutPeopleTypeNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.typeUpdateToOneWithWhereWithoutPeopleTypeInput, Prisma.typeUpdateWithoutPeopleTypeInput>, Prisma.typeUncheckedUpdateWithoutPeopleTypeInput>
 }
 
+export type typeCreateNestedOneWithoutGroupesTypeInput = {
+  create?: Prisma.XOR<Prisma.typeCreateWithoutGroupesTypeInput, Prisma.typeUncheckedCreateWithoutGroupesTypeInput>
+  connectOrCreate?: Prisma.typeCreateOrConnectWithoutGroupesTypeInput
+  connect?: Prisma.typeWhereUniqueInput
+}
+
+export type typeUpdateOneRequiredWithoutGroupesTypeNestedInput = {
+  create?: Prisma.XOR<Prisma.typeCreateWithoutGroupesTypeInput, Prisma.typeUncheckedCreateWithoutGroupesTypeInput>
+  connectOrCreate?: Prisma.typeCreateOrConnectWithoutGroupesTypeInput
+  upsert?: Prisma.typeUpsertWithoutGroupesTypeInput
+  connect?: Prisma.typeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.typeUpdateToOneWithWhereWithoutGroupesTypeInput, Prisma.typeUpdateWithoutGroupesTypeInput>, Prisma.typeUncheckedUpdateWithoutGroupesTypeInput>
+}
+
 export type typeCreateWithoutPeopleTypeInput = {
   name: string
+  groupesType?: Prisma.groupes_typeCreateNestedManyWithoutTypeInput
 }
 
 export type typeUncheckedCreateWithoutPeopleTypeInput = {
   type_id?: number
   name: string
+  groupesType?: Prisma.groupes_typeUncheckedCreateNestedManyWithoutTypeInput
 }
 
 export type typeCreateOrConnectWithoutPeopleTypeInput = {
@@ -333,11 +356,51 @@ export type typeUpdateToOneWithWhereWithoutPeopleTypeInput = {
 
 export type typeUpdateWithoutPeopleTypeInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  groupesType?: Prisma.groupes_typeUpdateManyWithoutTypeNestedInput
 }
 
 export type typeUncheckedUpdateWithoutPeopleTypeInput = {
   type_id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  groupesType?: Prisma.groupes_typeUncheckedUpdateManyWithoutTypeNestedInput
+}
+
+export type typeCreateWithoutGroupesTypeInput = {
+  name: string
+  peopleType?: Prisma.people_typeCreateNestedManyWithoutTypeInput
+}
+
+export type typeUncheckedCreateWithoutGroupesTypeInput = {
+  type_id?: number
+  name: string
+  peopleType?: Prisma.people_typeUncheckedCreateNestedManyWithoutTypeInput
+}
+
+export type typeCreateOrConnectWithoutGroupesTypeInput = {
+  where: Prisma.typeWhereUniqueInput
+  create: Prisma.XOR<Prisma.typeCreateWithoutGroupesTypeInput, Prisma.typeUncheckedCreateWithoutGroupesTypeInput>
+}
+
+export type typeUpsertWithoutGroupesTypeInput = {
+  update: Prisma.XOR<Prisma.typeUpdateWithoutGroupesTypeInput, Prisma.typeUncheckedUpdateWithoutGroupesTypeInput>
+  create: Prisma.XOR<Prisma.typeCreateWithoutGroupesTypeInput, Prisma.typeUncheckedCreateWithoutGroupesTypeInput>
+  where?: Prisma.typeWhereInput
+}
+
+export type typeUpdateToOneWithWhereWithoutGroupesTypeInput = {
+  where?: Prisma.typeWhereInput
+  data: Prisma.XOR<Prisma.typeUpdateWithoutGroupesTypeInput, Prisma.typeUncheckedUpdateWithoutGroupesTypeInput>
+}
+
+export type typeUpdateWithoutGroupesTypeInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  peopleType?: Prisma.people_typeUpdateManyWithoutTypeNestedInput
+}
+
+export type typeUncheckedUpdateWithoutGroupesTypeInput = {
+  type_id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  peopleType?: Prisma.people_typeUncheckedUpdateManyWithoutTypeNestedInput
 }
 
 
@@ -347,10 +410,12 @@ export type typeUncheckedUpdateWithoutPeopleTypeInput = {
 
 export type TypeCountOutputType = {
   peopleType: number
+  groupesType: number
 }
 
 export type TypeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   peopleType?: boolean | TypeCountOutputTypeCountPeopleTypeArgs
+  groupesType?: boolean | TypeCountOutputTypeCountGroupesTypeArgs
 }
 
 /**
@@ -370,11 +435,19 @@ export type TypeCountOutputTypeCountPeopleTypeArgs<ExtArgs extends runtime.Types
   where?: Prisma.people_typeWhereInput
 }
 
+/**
+ * TypeCountOutputType without action
+ */
+export type TypeCountOutputTypeCountGroupesTypeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.groupes_typeWhereInput
+}
+
 
 export type typeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   type_id?: boolean
   name?: boolean
   peopleType?: boolean | Prisma.type$peopleTypeArgs<ExtArgs>
+  groupesType?: boolean | Prisma.type$groupesTypeArgs<ExtArgs>
   _count?: boolean | Prisma.TypeCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["type"]>
 
@@ -396,6 +469,7 @@ export type typeSelectScalar = {
 export type typeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"type_id" | "name", ExtArgs["result"]["type"]>
 export type typeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   peopleType?: boolean | Prisma.type$peopleTypeArgs<ExtArgs>
+  groupesType?: boolean | Prisma.type$groupesTypeArgs<ExtArgs>
   _count?: boolean | Prisma.TypeCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type typeIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -405,6 +479,7 @@ export type $typePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "type"
   objects: {
     peopleType: Prisma.$people_typePayload<ExtArgs>[]
+    groupesType: Prisma.$groupes_typePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     type_id: number
@@ -804,6 +879,7 @@ readonly fields: typeFieldRefs;
 export interface Prisma__typeClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   peopleType<T extends Prisma.type$peopleTypeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.type$peopleTypeArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$people_typePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  groupesType<T extends Prisma.type$groupesTypeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.type$groupesTypeArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$groupes_typePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1249,6 +1325,30 @@ export type type$peopleTypeArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.People_typeScalarFieldEnum | Prisma.People_typeScalarFieldEnum[]
+}
+
+/**
+ * type.groupesType
+ */
+export type type$groupesTypeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the groupes_type
+   */
+  select?: Prisma.groupes_typeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the groupes_type
+   */
+  omit?: Prisma.groupes_typeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.groupes_typeInclude<ExtArgs> | null
+  where?: Prisma.groupes_typeWhereInput
+  orderBy?: Prisma.groupes_typeOrderByWithRelationInput | Prisma.groupes_typeOrderByWithRelationInput[]
+  cursor?: Prisma.groupes_typeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Groupes_typeScalarFieldEnum | Prisma.Groupes_typeScalarFieldEnum[]
 }
 
 /**

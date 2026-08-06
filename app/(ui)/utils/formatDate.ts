@@ -3,7 +3,7 @@ function formatDate(date: Date | null) {
 
   return date.toLocaleString("en-EN", {
     year: "numeric",
-    month: "2-digit",
+    month: "short",
     day: "2-digit",
   });
 }

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import clsx from "clsx";
+import s from "./PeoplePage.module.scss";
 import formatDate from "../utils/formatDate";
 import Modal from "../ui/Modal/Modal";
 import { useEffect, useState } from "react";
@@ -9,6 +10,7 @@ import MiniSongCard from "../SongCard/MiniSongCard/MiniSongCard";
 import searchSongs from "@/app/actions/searchSongs/searchSongs";
 import searchAlbums from "@/app/actions/searchAlbums/searchAlbums";
 import MiniAlbumCard from "../AlbumCard/MiniAlbumCard/MiniAlbumCard";
+import About from "../ui/About/About";
 
 export interface PeoplePageProps {
   albums: {
@@ -189,7 +191,12 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
       <div className="relative top-16 flex flex-row gap-17 w-300 max-w-300 mb-8">
         <div className="w-130 max-w-130">
           <h3 className="text-center text-[40px]">About</h3>
-          {peopleData?.description}
+          <About
+            className={s.about}
+            showAbout={true}
+            aboutText={peopleData?.description || null}
+            type="Artist"
+          />
         </div>
         <div className="w-263 max-w-263">
           <div>

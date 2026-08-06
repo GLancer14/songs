@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.8.0
- * Query Engine version: 3c6e192761c0362d496ed980de936e2f3cebcd3a
+ * Prisma Client JS version: 7.9.1
+ * Query Engine version: e922089b7d7502aff4249d5da3420f6fa55fc6ad
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.8.0",
-  engine: "3c6e192761c0362d496ed980de936e2f3cebcd3a"
+  client: "7.9.1",
+  engine: "e922089b7d7502aff4249d5da3420f6fa55fc6ad"
 }
 
 /**
@@ -156,6 +156,19 @@ export type Subset<T, U> = {
 };
 
 /**
+ * Resolved type of the argument passed to the `PrismaClient` constructor.
+ *
+ * When called without a narrower options type (the common case), this resolves
+ * to `PrismaClientOptions` directly, which produces a clear TypeScript error
+ * message (`not assignable to parameter of type 'PrismaClientOptions'`) when
+ * the argument is missing or incomplete. When the user supplies a narrower
+ * options type (e.g. via a literal), it falls back to `Subset` to keep
+ * filtering out unknown properties.
+ */
+export type PrismaClientConstructorArgs<Options extends PrismaClientOptions> =
+  [PrismaClientOptions] extends [Options] ? PrismaClientOptions : Subset<Options, PrismaClientOptions>;
+
+/**
  * SelectSubset
  * @desc From `T` pick properties that exist in `U`. Simple version of Intersection.
  * Additionally, it validates, if both select and include are present. If the case, it errors.
@@ -187,7 +200,7 @@ type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
 export type XOR<T, U> =
   T extends object ?
   U extends object ?
-    (Without<T, U> & U) | (Without<U, T> & T)
+    ((Without<T, U> & U) | (Without<U, T> & T)) & object
   : U : T
 
 
@@ -396,6 +409,7 @@ export const ModelName = {
   type: 'type',
   songs_people: 'songs_people',
   people_type: 'people_type',
+  groupes_type: 'groupes_type',
   genres: 'genres',
   songs_genres: 'songs_genres',
   languages: 'languages',
@@ -416,7 +430,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "songs" | "mood" | "albums" | "album_types" | "songs_albums" | "countries" | "groupes" | "songs_groupes" | "people" | "type" | "songs_people" | "people_type" | "genres" | "songs_genres" | "languages" | "songs_lyrics" | "users"
+    modelProps: "songs" | "mood" | "albums" | "album_types" | "songs_albums" | "countries" | "groupes" | "songs_groupes" | "people" | "type" | "songs_people" | "people_type" | "groupes_type" | "genres" | "songs_genres" | "languages" | "songs_lyrics" | "users"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1308,6 +1322,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    groupes_type: {
+      payload: Prisma.$groupes_typePayload<ExtArgs>
+      fields: Prisma.groupes_typeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.groupes_typeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$groupes_typePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.groupes_typeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$groupes_typePayload>
+        }
+        findFirst: {
+          args: Prisma.groupes_typeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$groupes_typePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.groupes_typeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$groupes_typePayload>
+        }
+        findMany: {
+          args: Prisma.groupes_typeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$groupes_typePayload>[]
+        }
+        create: {
+          args: Prisma.groupes_typeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$groupes_typePayload>
+        }
+        createMany: {
+          args: Prisma.groupes_typeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.groupes_typeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$groupes_typePayload>[]
+        }
+        delete: {
+          args: Prisma.groupes_typeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$groupes_typePayload>
+        }
+        update: {
+          args: Prisma.groupes_typeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$groupes_typePayload>
+        }
+        deleteMany: {
+          args: Prisma.groupes_typeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.groupes_typeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.groupes_typeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$groupes_typePayload>[]
+        }
+        upsert: {
+          args: Prisma.groupes_typeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$groupes_typePayload>
+        }
+        aggregate: {
+          args: Prisma.Groupes_typeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGroupes_type>
+        }
+        groupBy: {
+          args: Prisma.groupes_typeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Groupes_typeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.groupes_typeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Groupes_typeCountAggregateOutputType> | number
+        }
+      }
+    }
     genres: {
       payload: Prisma.$genresPayload<ExtArgs>
       fields: Prisma.genresFieldRefs
@@ -1843,6 +1931,14 @@ export const People_typeScalarFieldEnum = {
 export type People_typeScalarFieldEnum = (typeof People_typeScalarFieldEnum)[keyof typeof People_typeScalarFieldEnum]
 
 
+export const Groupes_typeScalarFieldEnum = {
+  type_id: 'type_id',
+  id: 'id'
+} as const
+
+export type Groupes_typeScalarFieldEnum = (typeof Groupes_typeScalarFieldEnum)[keyof typeof Groupes_typeScalarFieldEnum]
+
+
 export const GenresScalarFieldEnum = {
   id: 'id',
   name: 'name'
@@ -1997,19 +2093,10 @@ export type BatchPayload = {
 export const defineExtension = runtime.Extensions.defineExtension as unknown as runtime.Types.Extensions.ExtendsHook<"define", TypeMapCb, runtime.Types.Extensions.DefaultArgs>
 export type DefaultPrismaClient = PrismaClient
 export type ErrorFormat = 'pretty' | 'colorless' | 'minimal'
-export type PrismaClientOptions = ({
-  /**
-   * Instance of a Driver Adapter, e.g., like one provided by `@prisma/adapter-pg`.
-   */
-  adapter: runtime.SqlDriverAdapterFactory
-  accelerateUrl?: never
-} | {
-  /**
-   * Prisma Accelerate URL allowing the client to connect through Accelerate instead of a direct database.
-   */
-  accelerateUrl: string
-  adapter?: never
-}) & {
+/**
+ * Options common to all variants of `PrismaClientOptions`, regardless of whether you connect to your database through a driver adapter or through Prisma Accelerate.
+ */
+export interface PrismaClientBaseOptions {
   /**
    * @default "colorless"
    */
@@ -2096,6 +2183,56 @@ export type PrismaClientOptions = ({
    */
   queryPlanCacheMaxSize?: number
 }
+
+/**
+ * `PrismaClient` options for connecting to your database through Prisma Accelerate instead of a driver adapter.
+ * 
+ * Learn more: https://pris.ly/d/accelerate
+ */
+export interface PrismaClientOptionsWithAccelerateUrl extends PrismaClientBaseOptions {
+  /**
+   * The Prisma Accelerate connection URL. Use this option to connect to your database through Prisma Accelerate instead of using a driver adapter to connect directly.
+   * 
+   * Learn more: https://pris.ly/d/accelerate
+   */
+  accelerateUrl: string
+  adapter?: never
+}
+
+/**
+ * `PrismaClient` options for connecting to your database through a driver adapter. This is the common case in Prisma 7.
+ * 
+ * Learn more: https://pris.ly/d/driver-adapters
+ */
+export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions {
+  /**
+   * A driver adapter that PrismaClient uses to connect to your database, such as the ones provided by `@prisma/adapter-pg`, `@prisma/adapter-libsql`, `@prisma/adapter-planetscale`, etc.
+   * 
+   * A driver adapter is **required** unless you connect to your database through Prisma Accelerate (in which case use `accelerateUrl` instead).
+   * 
+   * Learn more: https://pris.ly/d/driver-adapters
+   * 
+   * @example
+   * ```ts
+   * import { PrismaPg } from '@prisma/adapter-pg'
+   * import { PrismaClient } from './generated/prisma/client'
+   * 
+   * const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL })
+   * const prisma = new PrismaClient({ adapter })
+   * ```
+   */
+  adapter: runtime.SqlDriverAdapterFactory
+  accelerateUrl?: never
+}
+
+/**
+ * Options passed to the `PrismaClient` constructor.
+ * 
+ * A driver adapter (or, alternatively, a Prisma Accelerate URL) is **required**. See {@link PrismaClientOptionsWithAdapter} and {@link PrismaClientOptionsWithAccelerateUrl} for the two variants. All other properties live in {@link PrismaClientBaseOptions} and are optional.
+ * 
+ * Learn more about driver adapters: https://pris.ly/d/driver-adapters
+ */
+export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter
 export type GlobalOmitConfig = {
   songs?: Prisma.songsOmit
   mood?: Prisma.moodOmit
@@ -2109,6 +2246,7 @@ export type GlobalOmitConfig = {
   type?: Prisma.typeOmit
   songs_people?: Prisma.songs_peopleOmit
   people_type?: Prisma.people_typeOmit
+  groupes_type?: Prisma.groupes_typeOmit
   genres?: Prisma.genresOmit
   songs_genres?: Prisma.songs_genresOmit
   languages?: Prisma.languagesOmit

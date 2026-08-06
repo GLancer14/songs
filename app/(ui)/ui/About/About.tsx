@@ -7,10 +7,11 @@ import { FC, useState } from "react";
 interface AboutProps {
   showAbout: boolean;
   aboutText: string | null;
-  type: "people" | "Albums" | "Songs"
+  type: "Artist" | "Albums" | "Songs";
+  className?: string;
 }
 
-const About: FC<AboutProps> = ({ showAbout, aboutText, type }) => {
+const About: FC<AboutProps> = ({ showAbout, aboutText, type, className }) => {
   const [showText, setShowText] = useState(false);
 
   return (
@@ -19,7 +20,7 @@ const About: FC<AboutProps> = ({ showAbout, aboutText, type }) => {
         [s.isOpen]: showAbout,
       })}
     >
-      <div className={s.aboutInner}>
+      <div className={clsx(s.aboutInner, className)}>
         <div className="font-bold mb-2 text-[12px]">{type} Bio</div>
         <div className={clsx("aboutText h-30 overflow-hidden w-full", {
           [s.isShowing]: showText,

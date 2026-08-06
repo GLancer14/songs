@@ -89,6 +89,7 @@ model groupes {
   description        String?
   image              String?
   songsGroupes       songs_groupes[]
+  groupesType        groupes_type[]
 }
 
 model songs_groupes {
@@ -115,9 +116,10 @@ model people {
 }
 
 model type {
-  type_id    Int           @id @default(autoincrement())
-  name       String
-  peopleType people_type[]
+  type_id     Int            @id @default(autoincrement())
+  name        String
+  peopleType  people_type[]
+  groupesType groupes_type[]
 }
 
 model songs_people {
@@ -132,6 +134,15 @@ model songs_people {
 model people_type {
   type    type   @relation(fields: [type_id], references: [type_id], onDelete: Cascade)
   people  people @relation(fields: [id], references: [id])
+  type_id Int
+  id      Int
+
+  @@id([type_id, id])
+}
+
+model groupes_type {
+  type    type    @relation(fields: [type_id], references: [type_id], onDelete: Cascade)
+  groupes groupes @relation(fields: [id], references: [id])
   type_id Int
   id      Int
 
