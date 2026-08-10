@@ -1,16 +1,14 @@
 "use client"
 
-import { Prisma, songs, users } from "@/src/generated/prisma/client";
+import { songs } from "@/src/generated/prisma/client";
 import "./SongPage";
 import s from "./SongPage.module.scss";
 import Image from "next/image";
 import clsx from "clsx";
-import { FastAverageColor } from "fast-average-color";
 import { useRef, useState } from "react";
 import formatDate from "../utils/formatDate";
 import ShowButton from "../ui/ShowButton/ShowButton";
 import About from "../ui/About/About";
-import MiniAlbumCard from "../AlbumCard/MiniAlbumCard/MiniAlbumCard";
 import Link from "next/link";
 
 export interface SongPageProps {
@@ -102,7 +100,6 @@ const SongPage: React.FC<SongPageProps> = ({
   const [showAbout, setShowAbout] = useState(true);
   const [showAlbumInfo, setShowAlbumInfo] = useState(true);
   const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.STATIC_URL;
-  console.log(staticURL)
 
   const peopleProducers = people.filter(people => {
     return people.people.peopleType.find(peopleType => {
@@ -151,9 +148,11 @@ const SongPage: React.FC<SongPageProps> = ({
           {songData.image &&
             <Image
               className="relative top-4 self-start mr-11 shadow-[rgba(0,0,0,0.18)_0px_0px_12px_0px]"
-              src={songData.image
+              src={
+                songData.image
                 ? `${staticURL}/backgrounds/songs/${songData.image}`
-                : "/noimage2"}
+                : "/noimage2"
+              }
               alt={"обложка"}
               width={340}
               height={340}
@@ -271,7 +270,10 @@ const SongPage: React.FC<SongPageProps> = ({
                 >
                   <Image
                     className="shadow-[rgba(0,0,0,0.18)0px0px0.75rem0px]"
-                    src={album.albums.image || album.albums.image ? `/backgrounds/albums/${album.albums.image}` : "/noimage2.svg"}
+                    src={album.albums.image
+                      ? `${staticURL}/backgrounds/albums/${album.albums.image}`
+                      : "/noimage2"
+                    }
                     alt={"обложка песни"}
                     width={67}
                     height={67}
