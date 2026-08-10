@@ -10,6 +10,7 @@ import EditAlbum from "../(ui)/EditAlbum/EditAlbum"
 import Header from "../(ui)/Header/Header"
 import Footer from "../(ui)/Footer/Footer"
 import Image from "next/image"
+import Link from "next/link"
 
 const Page = async () => {
   const user = await userIam();
@@ -25,7 +26,7 @@ const Page = async () => {
           {albums.map(album => {
             return (
               <div className="flex w-[49%] flex-row bg-white">
-                <a className="flex" href={`/albums/${album.id}`}>
+                <Link className="flex" href={`/albums/${album.id}`}>
                   <Image
                     className=""
                     src={album.image ? `${staticURL}/backgrounds/albums/${album.image}` : "/noimage2.svg"}
@@ -38,7 +39,7 @@ const Page = async () => {
                     <div className="m-2">{album.name}</div>
                     <div className="m-2">{album.author}</div>
                   </div>
-                </a>
+                </Link>
               </div>
             )
           })}

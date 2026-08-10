@@ -6,6 +6,7 @@ import { AddPeopleSchema, AddPeopleSchemaType } from "@/app/lib/definitions";
 import userIam from "../userIam";
 import { writeFile } from "fs";
 import path from "path";
+import { put } from "@vercel/blob";
 
 export default async function editPeople(
   state: AddPeopleSchemaType, formData: FormData
@@ -70,9 +71,17 @@ export default async function editPeople(
     const file = peopleData.title_image;
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
-    await writeFile(path.join(process.cwd(), 'public/backgrounds/people', imageName), buffer, (e) => {
-      console.log(e)
-    })
+    
+    if (!process.env.BLOB_STORE_ID) {
+      await writeFile(path.join(process.cwd(), 'public/backgrounds/people', imageName), buffer, (e) => {
+        console.log(e)
+      })
+    } else {
+      const savePath = `backgrounds/people/${imageName}`;
+      await put(savePath, buffer, {
+        access: 'public',
+      });
+    }
   }
 
   return JSON.parse(JSON.stringify(albumCreateResult));
