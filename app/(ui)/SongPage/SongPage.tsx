@@ -101,7 +101,8 @@ const SongPage: React.FC<SongPageProps> = ({
 }) => {
   const [showAbout, setShowAbout] = useState(true);
   const [showAlbumInfo, setShowAlbumInfo] = useState(true);
-  const staticURL = process.env.STATIC_URL;
+  const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.STATIC_URL;
+  console.log(staticURL)
 
   const peopleProducers = people.filter(people => {
     return people.people.peopleType.find(peopleType => {
@@ -270,7 +271,7 @@ const SongPage: React.FC<SongPageProps> = ({
                 >
                   <Image
                     className="shadow-[rgba(0,0,0,0.18)0px0px0.75rem0px]"
-                    src={album.albums.image ? `/backgrounds/albums/${album.albums.image}` : "/noimage2.svg"}
+                    src={album.albums.image || album.albums.image ? `/backgrounds/albums/${album.albums.image}` : "/noimage2.svg"}
                     alt={"обложка песни"}
                     width={67}
                     height={67}
