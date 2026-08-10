@@ -83,7 +83,7 @@ const AlbumPage: React.FC<SongPageProps> = ({
 }) => {
   const [showAbout, setShowAbout] = useState(true);
   const [showAlbumInfo, setShowAlbumInfo] = useState(false);
-  const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.STATIC_URL;
+  const staticURL = process.env.STATIC_URL;
 
   let imageColorMinus;
   let imageColorMinusValue;
