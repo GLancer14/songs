@@ -145,10 +145,11 @@ const SongPage: React.FC<SongPageProps> = ({
     <div className="flex flex-col">
       <header className="flex items-center relative h-82.5">
         <div className="relative flex flex-row max-w-344 w-full mx-auto py-4">
+          {songData.image &&
             <Image
               className="relative top-4 self-start mr-11 shadow-[rgba(0,0,0,0.18)_0px_0px_12px_0px]"
               src={
-                songData.image && staticURL
+                songData.image
                 ? `${staticURL}/backgrounds/songs/${songData.image}`
                 : "/noimage2"
               }
@@ -159,7 +160,7 @@ const SongPage: React.FC<SongPageProps> = ({
               style={{
                 boxShadow: "rgba(0,0,0,0.18) 0px 0px 12px 0px",
               }}
-            />
+            />}
             <div className="relative top-4 flex flex-col flex-1 pb-12 text-white">
               <div className="text-3xl mb-2">{songData.name}</div>
               <Link href={`/groupes/${songsGroup?.groupes.id}`} className="text-4 underline">{songsGroup?.groupes.name}</Link>
@@ -267,16 +268,16 @@ const SongPage: React.FC<SongPageProps> = ({
                   key={album.albums.id}
                   className={clsx("flex flex-row flex-wrap max-w-180 gap-4 items-center mb-4")}
                 >
-                  <Image
+                  {album.albums.image && <Image
                     className="shadow-[rgba(0,0,0,0.18)0px0px0.75rem0px]"
-                    src={album.albums.image && staticURL
+                    src={album.albums.image
                       ? `${staticURL}/backgrounds/albums/${album.albums.image}`
                       : "/noimage2"
                     }
                     alt={"обложка песни"}
                     width={67}
                     height={67}
-                  />
+                  />}
                   <div>
                     <Link
                       className="text-[18px]"
@@ -378,13 +379,13 @@ const SongPage: React.FC<SongPageProps> = ({
             className={clsx("flex flex-row flex-wrap max-w-180 gap-14 items-center mb-11 ml-14")}
             id="album"
           >
-            <Image
+            {album.albums.image && <Image
               className="shadow-[rgba(0,0,0,0.18)0px0px0.75rem0px]"
-              src={album.albums.image || album.albums.image ? `/backgrounds/albums/${album.albums.image}` : "/noimage2.svg"}
+              src={album.albums.image || album.albums.image ? `${staticURL}/backgrounds/albums/${album.albums.image}` : "/noimage2.svg"}
               alt={"обложка песни"}
               width={250}
               height={250}
-            />
+            />}
             <div>
               <Link
                 className="text-[18px]"
