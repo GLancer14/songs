@@ -3,12 +3,13 @@
 import { Prisma } from "@/src/generated/prisma/client";
 import s from "./SongCard.module.scss";
 import Image from "next/image";
+import Link from "next/link";
 
 const SongCard = ({ songData }: { songData: Prisma.songsModel }) => {
   const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.STATIC_URL;
   
   return (
-    <a href={`/songs/${songData.song_id}`} className={s.songBanner}>
+    <Link href={`/songs/${songData.song_id}`} className={s.songBanner}>
       <Image
         className={s.songBanner_image}
         src={songData.image
@@ -21,7 +22,7 @@ const SongCard = ({ songData }: { songData: Prisma.songsModel }) => {
       />
       <div className={s.songBanner_title}>{songData.title}</div>
       <div className={s.songBanner_artists}>{songData.artists}</div>
-    </a>
+    </Link>
   );
 };
 

@@ -145,11 +145,10 @@ const SongPage: React.FC<SongPageProps> = ({
     <div className="flex flex-col">
       <header className="flex items-center relative h-82.5">
         <div className="relative flex flex-row max-w-344 w-full mx-auto py-4">
-          {songData.image &&
             <Image
               className="relative top-4 self-start mr-11 shadow-[rgba(0,0,0,0.18)_0px_0px_12px_0px]"
               src={
-                songData.image
+                songData.image && staticURL
                 ? `${staticURL}/backgrounds/songs/${songData.image}`
                 : "/noimage2"
               }
@@ -160,7 +159,7 @@ const SongPage: React.FC<SongPageProps> = ({
               style={{
                 boxShadow: "rgba(0,0,0,0.18) 0px 0px 12px 0px",
               }}
-            />}
+            />
             <div className="relative top-4 flex flex-col flex-1 pb-12 text-white">
               <div className="text-3xl mb-2">{songData.name}</div>
               <Link href={`/groupes/${songsGroup?.groupes.id}`} className="text-4 underline">{songsGroup?.groupes.name}</Link>
@@ -270,7 +269,7 @@ const SongPage: React.FC<SongPageProps> = ({
                 >
                   <Image
                     className="shadow-[rgba(0,0,0,0.18)0px0px0.75rem0px]"
-                    src={album.albums.image
+                    src={album.albums.image && staticURL
                       ? `${staticURL}/backgrounds/albums/${album.albums.image}`
                       : "/noimage2"
                     }
