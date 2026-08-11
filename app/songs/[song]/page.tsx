@@ -98,30 +98,30 @@ export default async function Page({
   let imageColor: string | undefined;
   let imageValue: number[] | undefined;
 
-  // if (songData?.image) {
-  //   let color: FastAverageColorResult;
-  //   if (!process.env.BLOB_STORE_ID) {
-  //     color = (await getAverageColor(`./public/backgrounds/albums/${songData.image}`));
-  //   } else {
-  //     color = (await getAverageColor(`${process.env.STATIC_URL}/backgrounds/albums/${songData.image}`));
-  //   }
-
-  //   imageColor = color.rgb;
-  //   imageValue = color.value;
-  // }
   if (songData?.image) {
-    try {
-      const imagePath = path.join(process.cwd(), 'public', 'backgrounds', 'songs', songData.image);
-      const color = await getAverageColor(imagePath);
-      imageColor = color.rgb;
-      imageValue = color.value;
-    } catch (error) {
-      console.error('Failed to get average color for image:', songData.image, error);
-
-      imageColor = 'rgb(128, 128, 128)'; // серый по умолчанию
-      imageValue = [128, 128, 128];
+    let color: FastAverageColorResult;
+    if (!process.env.BLOB_STORE_ID) {
+      color = (await getAverageColor(`./public/backgrounds/songs/${songData.image}`));
+    } else {
+      color = (await getAverageColor(`${process.env.STATIC_URL}/backgrounds/songs/${songData.image}`));
     }
+
+    imageColor = color.rgb;
+    imageValue = color.value;
   }
+  // if (songData?.image) {
+  //   try {
+  //     const imagePath = path.join(process.cwd(), 'public', 'backgrounds', 'songs', songData.image);
+  //     const color = await getAverageColor(imagePath);
+  //     imageColor = color.rgb;
+  //     imageValue = color.value;
+  //   } catch (error) {
+  //     console.error('Failed to get average color for image:', songData.image, error);
+
+  //     imageColor = 'rgb(128, 128, 128)'; // серый по умолчанию
+  //     imageValue = [128, 128, 128];
+  //   }
+  // }
 
   if (!userData) return null;
 
