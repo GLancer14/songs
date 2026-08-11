@@ -15,6 +15,7 @@ import Image from "next/image"
 const Page = async () => {
   const user = await userIam();
   const groupes = await prisma.groupes.findMany();
+  const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.STATIC_URL;
 
   return (
     <Suspense fallback={<Loading />}>
@@ -31,7 +32,9 @@ const Page = async () => {
                 <Link className="flex" href={`/groupes/${group.id}`}>
                   <Image
                     className=""
-                    src={group.image ? `/backgrounds/groupes/${group.image}` : "/noimage2.svg"}
+                    src={group.image
+                      ? `${staticURL}/backgrounds/groupes/${group.image}`
+                      : `${staticURL}/noimage2.svg`}
                     alt={group.image ?? "image"}
                     loading="lazy"
                     width={100}

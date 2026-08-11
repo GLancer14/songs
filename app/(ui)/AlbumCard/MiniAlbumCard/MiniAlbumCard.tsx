@@ -13,6 +13,7 @@ interface MiniAlbumCardProps {
 }
 
 const MiniAlbumCard: React.FC<MiniAlbumCardProps> = ({ album, className }) => {
+  const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.STATIC_URL;
   if (!album) return null
 
   return (
@@ -22,7 +23,7 @@ const MiniAlbumCard: React.FC<MiniAlbumCardProps> = ({ album, className }) => {
       href={`/albums/${album.id}`}
     >
       <Image
-        src={album.image || album.image ? `/backgrounds/albums/${album.image}` : "/noimage2.svg"}
+        src={album.image || album.image ? `${staticURL}/backgrounds/albums/${album.image}` : `${staticURL}/noimage2.svg`}
         alt={"обложка песни"}
         width={90}
         height={90}

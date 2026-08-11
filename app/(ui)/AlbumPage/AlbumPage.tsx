@@ -106,7 +106,7 @@ const AlbumPage: React.FC<SongPageProps> = ({
               src={
                 albumData.image
                   ? `${staticURL}/backgrounds/albums/${albumData.image}`
-                  : "/noimage2"
+                  : `${staticURL}/noimage2`
               }
               alt={"обложка"}
               width={340}

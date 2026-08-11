@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import Image from "next/image"
+import Link from "next/link";
 
 interface MiniSongCardProps {
   song: {
@@ -22,16 +23,19 @@ interface MiniSongCardProps {
 }
 
 const MiniSongCard: React.FC<MiniSongCardProps> = ({ song, peopleData, className }) => {
+  const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.STATIC_URL;
   if (!song) return null
 
   return (
-    <a
+    <Link
       key={song.song_id}
       className={clsx("flex flex-row flex-wrap w-[calc(100%/2-16px)]", className)}
       href={`/songs/${song.song_id}`}
     >
       <Image
-        src={song.image || song.image ? `/backgrounds/songs/${song.image}` : "/noimage2.svg"}
+        src={song.image || song.image
+          ? `${staticURL}/backgrounds/songs/${song.image}`
+          : `${staticURL}/noimage2.svg`}
         alt={"обложка песни"}
         width={90}
         height={90}
@@ -40,7 +44,7 @@ const MiniSongCard: React.FC<MiniSongCardProps> = ({ song, peopleData, className
         <div>{song?.name}</div>
         <div>{peopleData?.name}</div>
       </div>
-    </a>
+    </Link>
   );
 }
 

@@ -25,11 +25,16 @@ const Page = async () => {
         <div className="songs flex flex-row flex-wrap gap-[2%] gap-y-2 py-8 px-16">
           {albums.map(album => {
             return (
-              <div className="flex w-[49%] flex-row bg-white">
+              <div
+                className="flex w-[49%] flex-row bg-white"
+                key={album.id}
+              >
                 <Link className="flex" href={`/albums/${album.id}`}>
                   <Image
                     className=""
-                    src={album.image ? `${staticURL}/backgrounds/albums/${album.image}` : "/noimage2.svg"}
+                    src={album.image
+                      ? `${staticURL}/backgrounds/albums/${album.image}`
+                      : `${staticURL}/noimage2.svg`}
                     alt={album.image ?? "image"}
                     loading="lazy"
                     width={100}

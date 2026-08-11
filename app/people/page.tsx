@@ -9,24 +9,28 @@ import { creators, dataGroupes, requiredFields } from "../lib/searchFields"
 import EditAlbum from "../(ui)/EditAlbum/EditAlbum"
 import Header from "../(ui)/Header/Header"
 import Footer from "../(ui)/Footer/Footer"
+import Image from "next/image"
 
 const Page = async () => {
   const user = await userIam();
   const people = await prisma.people.findMany();
+  const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.STATIC_URL;
 
   return (
     <Suspense fallback={<Loading />}>
       <Header user={user} />
-      <div className="flex flex-col flex-1 max-w-300 w-[1200px] mx-auto">
+      <div className="flex flex-col flex-1 max-w-300 w-300 mx-auto">
         <h2 className="flex justify-center mt-5 mb-5 self-center text-3xl">People</h2>
         <div className="flex flex-row flex-wrap gap-[2%] gap-y-2 py-4 px-4 justify-between">
           {people.map(people => {
             return (
               <div className="flex w-[32%] flex-row bg-white">
                 <a className="flex" href={`/people/${people.id}`}>
-                  <img
+                  <Image
                     className="contain"
-                    src={people.image ? `/backgrounds/people/${people.image}` : "/noimage2.svg"}
+                    src={people.image
+                      ? `${staticURL}/backgrounds/people/${people.image}`
+                      : `${staticURL}/noimage2.svg`}
                     alt={people.image ?? "image"}
                     loading="lazy"
                     width={100}

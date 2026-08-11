@@ -102,6 +102,8 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
     image: string | null;
   }[]>([]);
 
+  const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.STATIC_URL;
+
   useEffect(() => {
     const foundSongs = async () => {
       if (!search) {
@@ -143,9 +145,9 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
   useEffect(() => {
     if (peopleData?.image) {
       if (type === "people") {
-        setImageURL(`/backgrounds/people/${peopleData.image}`);
+        setImageURL(`${staticURL}/backgrounds/people/${peopleData.image}`);
       } else {
-        setImageURL(`/backgrounds/groupes/${peopleData.image}`);
+        setImageURL(`${staticURL}/backgrounds/groupes/${peopleData.image}`);
       }
     }
   }, []);
@@ -155,7 +157,7 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
       <header
         className={`flex items-center relative h-82.5 w-full justify-center bg-no-repeat bg-cover bg-center`}
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%), url(/backgrounds/people/${peopleData?.image})`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%), url(${imageURL})`,
         }}
       >
         <div className="relative colum flex flex-row max-w-344 w-344 py-4 px-10.5">
@@ -164,7 +166,7 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
               className="relative top-12 self-start mr-11 ml-15 border-4 border-white rounded-[50%] object-cover object-center w-85 h-85"
               src={peopleData.image && imageURL
                 ? imageURL
-                : "/noimage2.svg"
+                : `${staticURL}/noimage2.svg`
               }
               alt={"обложка"}
               width={340}
@@ -270,7 +272,9 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
                   >
                     <Image
                       className="w-full"
-                      src={album.image ? `/backgrounds/albums/${album.image}` : "/noimage2.svg"}
+                      src={album.image
+                        ? `${staticURL}/backgrounds/albums/${album.image}`
+                        : `${staticURL}/noimage2.svg`}
                       alt={"обложка песни"}
                       width={300}
                       height={300}

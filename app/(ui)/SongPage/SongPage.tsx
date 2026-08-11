@@ -151,7 +151,7 @@ const SongPage: React.FC<SongPageProps> = ({
               src={
                 songData.image
                 ? `${staticURL}/backgrounds/songs/${songData.image}`
-                : "/noimage2"
+                : `${staticURL}/noimage2.svg`
               }
               alt={"обложка"}
               width={340}
@@ -272,7 +272,7 @@ const SongPage: React.FC<SongPageProps> = ({
                     className="shadow-[rgba(0,0,0,0.18)0px0px0.75rem0px]"
                     src={album.albums.image
                       ? `${staticURL}/backgrounds/albums/${album.albums.image}`
-                      : "/noimage2"
+                      : `${staticURL}/noimage2.svg`
                     }
                     alt={"обложка песни"}
                     width={67}
@@ -379,13 +379,16 @@ const SongPage: React.FC<SongPageProps> = ({
             className={clsx("flex flex-row flex-wrap max-w-180 gap-14 items-center mb-11 ml-14")}
             id="album"
           >
-            {album.albums.image && <Image
-              className="shadow-[rgba(0,0,0,0.18)0px0px0.75rem0px]"
-              src={album.albums.image || album.albums.image ? `${staticURL}/backgrounds/albums/${album.albums.image}` : "/noimage2.svg"}
-              alt={"обложка песни"}
-              width={250}
-              height={250}
-            />}
+            {album.albums.image &&
+              <Image
+                className="shadow-[rgba(0,0,0,0.18)0px0px0.75rem0px]"
+                src={album.albums.image || album.albums.image
+                  ? `${staticURL}/backgrounds/albums/${album.albums.image}`
+                  : `${staticURL}/noimage2.svg`}
+                alt={"обложка песни"}
+                width={250}
+                height={250}
+              />}
             <div>
               <Link
                 className="text-[18px]"

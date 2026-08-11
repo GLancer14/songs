@@ -14,7 +14,7 @@ const SongCard = ({ songData }: { songData: Prisma.songsModel }) => {
         className={s.songBanner_image}
         src={songData.image
             ? `${staticURL}/backgrounds/songs/${songData.image}`
-            : "/noimage2"}
+            : `${staticURL}/noimage2`}
         alt={songData.image ?? "image"}
         loading="lazy"
         width={200}
