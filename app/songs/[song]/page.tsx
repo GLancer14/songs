@@ -97,10 +97,18 @@ export default async function Page({
   let imageColor: string | undefined;
   let imageValue: number[] | undefined;
   if (songData?.image) {
-    const color = (await getAverageColor(`./public/backgrounds/songs/${songData.image}`));
+  try {
+    const imagePath = path.join(process.cwd(), 'public', 'backgrounds', 'songs', songData.image);
+    const color = await getAverageColor(imagePath);
     imageColor = color.rgb;
     imageValue = color.value;
+  } catch (error) {
+    console.error('Failed to get average color for image:', songData.image, error);
+    // Используем fallback цвета
+    imageColor = 'rgb(128, 128, 128)'; // серый по умолчанию
+    imageValue = [128, 128, 128];
   }
+}
 
   if (!userData) return null;
 
