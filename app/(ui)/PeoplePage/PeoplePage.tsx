@@ -102,7 +102,7 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
     image: string | null;
   }[]>([]);
 
-  const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.STATIC_URL;
+  const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.NEXT_PUBLIC_STATIC_URL;
 
   useEffect(() => {
     const foundSongs = async () => {

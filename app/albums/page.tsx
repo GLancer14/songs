@@ -15,7 +15,7 @@ import Link from "next/link"
 const Page = async () => {
   const user = await userIam();
   const albums = await prisma.albums.findMany();
-  const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.STATIC_URL;
+  const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.NEXT_PUBLIC_STATIC_URL;
 
   return (
     <Suspense fallback={<Loading />}>

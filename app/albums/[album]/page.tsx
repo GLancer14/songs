@@ -63,7 +63,7 @@ export default async function Page({
     if (!process.env.BLOB_STORE_ID) {
       color = (await getAverageColor(`./public/backgrounds/albums/${albumData.image}`));
     } else {
-      color = (await getAverageColor(`${process.env.STATIC_URL}/backgrounds/albums/${albumData.image}`));
+      color = (await getAverageColor(`${process.env.NEXT_PUBLIC_STATIC_URL}/backgrounds/albums/${albumData.image}`));
     }
 
     imageColor = color.rgb;

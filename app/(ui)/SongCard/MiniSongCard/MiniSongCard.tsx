@@ -23,7 +23,7 @@ interface MiniSongCardProps {
 }
 
 const MiniSongCard: React.FC<MiniSongCardProps> = ({ song, peopleData, className }) => {
-  const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.STATIC_URL;
+  const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.NEXT_PUBLIC_STATIC_URL;
   if (!song) return null
 
   return (
