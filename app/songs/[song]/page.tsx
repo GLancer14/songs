@@ -100,7 +100,7 @@ export default async function Page({
 
   if (songData?.image) {
     let color: FastAverageColorResult;
-    if (!process.env.BLOB_STORE_ID) {
+    if (!process.env.NEXT_PUBLIC_BLOB_STORE_ID) {
       color = (await getAverageColor(`./public/backgrounds/songs/${songData.image}`));
     } else {
       color = (await getAverageColor(`${process.env.NEXT_PUBLIC_STATIC_URL}/backgrounds/songs/${songData.image}`));

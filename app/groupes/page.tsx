@@ -15,7 +15,7 @@ import Image from "next/image"
 const Page = async () => {
   const user = await userIam();
   const groupes = await prisma.groupes.findMany();
-  const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.NEXT_PUBLIC_STATIC_URL;
+  const staticURL = !process.env.NEXT_PUBLIC_BLOB_STORE_ID ? "" : process.env.NEXT_PUBLIC_STATIC_URL;
 
   return (
     <Suspense fallback={<Loading />}>

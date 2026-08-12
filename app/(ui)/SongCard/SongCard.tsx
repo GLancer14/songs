@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const SongCard = ({ songData }: { songData: Prisma.songsModel }) => {
-  const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.NEXT_PUBLIC_STATIC_URL;
+  const staticURL = !process.env.NEXT_PUBLIC_BLOB_STORE_ID ? "" : process.env.NEXT_PUBLIC_STATIC_URL;
   
   return (
     <Link href={`/songs/${songData.song_id}`} className={s.songBanner}>

@@ -60,7 +60,7 @@ export default async function Page({
   let imageValue: number[] | undefined;
   if (albumData?.image) {
     let color: FastAverageColorResult;
-    if (!process.env.BLOB_STORE_ID) {
+    if (!process.env.NEXT_PUBLIC_BLOB_STORE_ID) {
       color = (await getAverageColor(`./public/backgrounds/albums/${albumData.image}`));
     } else {
       color = (await getAverageColor(`${process.env.NEXT_PUBLIC_STATIC_URL}/backgrounds/albums/${albumData.image}`));

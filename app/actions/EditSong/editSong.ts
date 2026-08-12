@@ -208,7 +208,7 @@ export default async function editSong(
       const file = songData.title_image;
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
-      if (!process.env.BLOB_STORE_ID) {
+      if (!process.env.NEXT_PUBLIC_BLOB_STORE_ID) {
         await writeFile(path.join(process.cwd(), 'public/backgrounds/songs', imageName), buffer, (e) => {
           console.log(e)
         });
@@ -228,7 +228,7 @@ export default async function editSong(
       const file = songData.orig_audio;
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
-      if (!process.env.BLOB_STORE_ID) {
+      if (!process.env.NEXT_PUBLIC_BLOB_STORE_ID) {
         await writeFile(path.join(process.cwd(), 'public/songs', audioName), buffer, (e) => {
           console.log(e)
         });

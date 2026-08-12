@@ -72,7 +72,7 @@ export default async function editPeople(
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
     
-    if (!process.env.BLOB_STORE_ID) {
+    if (!process.env.NEXT_PUBLIC_BLOB_STORE_ID) {
       await writeFile(path.join(process.cwd(), 'public/backgrounds/people', imageName), buffer, (e) => {
         console.log(e)
       })

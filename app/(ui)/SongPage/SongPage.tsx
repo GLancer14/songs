@@ -99,7 +99,7 @@ const SongPage: React.FC<SongPageProps> = ({
 }) => {
   const [showAbout, setShowAbout] = useState(true);
   const [showAlbumInfo, setShowAlbumInfo] = useState(true);
-  const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.NEXT_PUBLIC_STATIC_URL;
+  const staticURL = !process.env.NEXT_PUBLIC_BLOB_STORE_ID ? "" : process.env.NEXT_PUBLIC_STATIC_URL;
 
   const peopleProducers = people.filter(people => {
     return people.people.peopleType.find(peopleType => {

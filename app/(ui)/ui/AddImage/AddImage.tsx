@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const AddImage = () => {
   const [image, setImage] = useState("");
-  const staticURL = !process.env.BLOB_STORE_ID ? "" : process.env.NEXT_PUBLIC_STATIC_URL;
+  const staticURL = !process.env.NEXT_PUBLIC_BLOB_STORE_ID ? "" : process.env.NEXT_PUBLIC_STATIC_URL;
   
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
