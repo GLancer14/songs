@@ -181,20 +181,24 @@ const SongPage: React.FC<SongPageProps> = ({
                   </div>
                 </div>}
               <div className="mt-auto">
-                <div className="text-[rgba(255,255,255,0.6)] text-[14px]">Track {
-                  (() => {
-                    const foundTrack = albumSongs.find(albumSong => {
-                      return albumSong.songs.song_id === songData.song_id
-                    })
-                    return foundTrack?.track || null;
-                  })()
-                } on</div>
-                <a href="#album" className="flex underline">
-                  {album?.albums.name}
-                  <svg className="underline" width={10} height={20} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6.6 16" fill="white">
-                    <path d="M1.6 8.8l.6-.6 1 1 .5.7V6H0v-.8h4.5v4.6l.5-.6 1-1 .6.5L4 11.3 1.6 8.8z"></path>
-                  </svg>
-                </a>
+                {album?.albums &&
+                  <div>
+                    <div className="text-[rgba(255,255,255,0.6)] text-[14px]">Track {
+                      (() => {
+                        const foundTrack = albumSongs.find(albumSong => {
+                          return albumSong.songs.song_id === songData.song_id
+                        })
+                        return foundTrack?.track || null;
+                      })()
+                    } on</div>
+                    <a href="#album" className="flex underline">
+                      {album?.albums.name}
+                      <svg className="underline" width={10} height={20} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6.6 16" fill="white">
+                        <path d="M1.6 8.8l.6-.6 1 1 .5.7V6H0v-.8h4.5v4.6l.5-.6 1-1 .6.5L4 11.3 1.6 8.8z"></path>
+                      </svg>
+                    </a>
+                  </div>
+                }
                 <div className="flex items-center gap-2 text-xs mt-4">
                   <svg width={10} height={10} xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                     <path d="M15.923 1.385h-2.77V0H11.77v1.385H6.231V0H4.846v1.385h-2.77c-.76 0-1.384.623-1.384 1.384v13.846c0 .762.623 1.385 1.385 1.385h13.846c.762 0 1.385-.623 1.385-1.385V2.77c0-.761-.623-1.384-1.385-1.384Zm0 15.23H2.077V6.923h13.846v9.692Zm0-11.077H2.077V2.77h2.77v1.385H6.23V2.769h5.538v1.385h1.385V2.769h2.77v2.77Z">
@@ -223,7 +227,7 @@ const SongPage: React.FC<SongPageProps> = ({
       </header>
       
 
-      <div className="flex flex-row flex-wrap max-w-300 w-300 self-center">
+      <div className="relative flex flex-row flex-wrap max-w-300 w-300 self-center">
         <div className="w-180 mx-auto">
           <div>
             {lyrics && lyrics.map((lyric, ind, array) => {
@@ -359,6 +363,12 @@ const SongPage: React.FC<SongPageProps> = ({
             </div>
           </div>
         </div>
+        {songData.file &&
+          <audio
+            className="fixed max-w-300 w-300 h-16 bottom-4 z-150 radius-0"
+            src={`${staticURL}/songs/${songData.file}`}
+            controls
+          ></audio>}
       </div>
 
       <div

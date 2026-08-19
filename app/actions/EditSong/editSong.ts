@@ -236,6 +236,7 @@ export default async function editSong(
         const savePath = `songs/${audioName}`;
         await put(savePath, buffer, {
           access: 'public',
+          multipart: true,
         });
       }
     }
