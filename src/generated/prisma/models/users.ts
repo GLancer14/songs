@@ -41,6 +41,9 @@ export type UsersMinAggregateOutputType = {
   name: string | null
   contactPhone: string | null
   role: string | null
+  avatar: string | null
+  coverart: string | null
+  bio: string | null
 }
 
 export type UsersMaxAggregateOutputType = {
@@ -50,6 +53,9 @@ export type UsersMaxAggregateOutputType = {
   name: string | null
   contactPhone: string | null
   role: string | null
+  avatar: string | null
+  coverart: string | null
+  bio: string | null
 }
 
 export type UsersCountAggregateOutputType = {
@@ -59,6 +65,9 @@ export type UsersCountAggregateOutputType = {
   name: number
   contactPhone: number
   role: number
+  avatar: number
+  coverart: number
+  bio: number
   _all: number
 }
 
@@ -78,6 +87,9 @@ export type UsersMinAggregateInputType = {
   name?: true
   contactPhone?: true
   role?: true
+  avatar?: true
+  coverart?: true
+  bio?: true
 }
 
 export type UsersMaxAggregateInputType = {
@@ -87,6 +99,9 @@ export type UsersMaxAggregateInputType = {
   name?: true
   contactPhone?: true
   role?: true
+  avatar?: true
+  coverart?: true
+  bio?: true
 }
 
 export type UsersCountAggregateInputType = {
@@ -96,6 +111,9 @@ export type UsersCountAggregateInputType = {
   name?: true
   contactPhone?: true
   role?: true
+  avatar?: true
+  coverart?: true
+  bio?: true
   _all?: true
 }
 
@@ -192,6 +210,9 @@ export type UsersGroupByOutputType = {
   name: string
   contactPhone: string | null
   role: string
+  avatar: string | null
+  coverart: string | null
+  bio: string | null
   _count: UsersCountAggregateOutputType | null
   _avg: UsersAvgAggregateOutputType | null
   _sum: UsersSumAggregateOutputType | null
@@ -224,6 +245,9 @@ export type usersWhereInput = {
   name?: Prisma.StringFilter<"users"> | string
   contactPhone?: Prisma.StringNullableFilter<"users"> | string | null
   role?: Prisma.StringFilter<"users"> | string
+  avatar?: Prisma.StringNullableFilter<"users"> | string | null
+  coverart?: Prisma.StringNullableFilter<"users"> | string | null
+  bio?: Prisma.StringNullableFilter<"users"> | string | null
   songs?: Prisma.SongsListRelationFilter
 }
 
@@ -234,6 +258,9 @@ export type usersOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   contactPhone?: Prisma.SortOrderInput | Prisma.SortOrder
   role?: Prisma.SortOrder
+  avatar?: Prisma.SortOrderInput | Prisma.SortOrder
+  coverart?: Prisma.SortOrderInput | Prisma.SortOrder
+  bio?: Prisma.SortOrderInput | Prisma.SortOrder
   songs?: Prisma.songsOrderByRelationAggregateInput
 }
 
@@ -247,6 +274,9 @@ export type usersWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"users"> | string
   contactPhone?: Prisma.StringNullableFilter<"users"> | string | null
   role?: Prisma.StringFilter<"users"> | string
+  avatar?: Prisma.StringNullableFilter<"users"> | string | null
+  coverart?: Prisma.StringNullableFilter<"users"> | string | null
+  bio?: Prisma.StringNullableFilter<"users"> | string | null
   songs?: Prisma.SongsListRelationFilter
 }, "user_id" | "email">
 
@@ -257,6 +287,9 @@ export type usersOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   contactPhone?: Prisma.SortOrderInput | Prisma.SortOrder
   role?: Prisma.SortOrder
+  avatar?: Prisma.SortOrderInput | Prisma.SortOrder
+  coverart?: Prisma.SortOrderInput | Prisma.SortOrder
+  bio?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.usersCountOrderByAggregateInput
   _avg?: Prisma.usersAvgOrderByAggregateInput
   _max?: Prisma.usersMaxOrderByAggregateInput
@@ -274,6 +307,9 @@ export type usersScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"users"> | string
   contactPhone?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
   role?: Prisma.StringWithAggregatesFilter<"users"> | string
+  avatar?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
+  coverart?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
+  bio?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
 }
 
 export type usersCreateInput = {
@@ -282,6 +318,9 @@ export type usersCreateInput = {
   name: string
   contactPhone?: string | null
   role?: string
+  avatar?: string | null
+  coverart?: string | null
+  bio?: string | null
   songs?: Prisma.songsCreateNestedManyWithoutUsersInput
 }
 
@@ -292,6 +331,9 @@ export type usersUncheckedCreateInput = {
   name: string
   contactPhone?: string | null
   role?: string
+  avatar?: string | null
+  coverart?: string | null
+  bio?: string | null
   songs?: Prisma.songsUncheckedCreateNestedManyWithoutUsersInput
 }
 
@@ -301,6 +343,9 @@ export type usersUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   contactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverart?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   songs?: Prisma.songsUpdateManyWithoutUsersNestedInput
 }
 
@@ -311,6 +356,9 @@ export type usersUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   contactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverart?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   songs?: Prisma.songsUncheckedUpdateManyWithoutUsersNestedInput
 }
 
@@ -321,6 +369,9 @@ export type usersCreateManyInput = {
   name: string
   contactPhone?: string | null
   role?: string
+  avatar?: string | null
+  coverart?: string | null
+  bio?: string | null
 }
 
 export type usersUpdateManyMutationInput = {
@@ -329,6 +380,9 @@ export type usersUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   contactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverart?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type usersUncheckedUpdateManyInput = {
@@ -338,6 +392,9 @@ export type usersUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   contactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverart?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UsersScalarRelationFilter = {
@@ -352,6 +409,9 @@ export type usersCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   contactPhone?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  avatar?: Prisma.SortOrder
+  coverart?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
 }
 
 export type usersAvgOrderByAggregateInput = {
@@ -365,6 +425,9 @@ export type usersMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   contactPhone?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  avatar?: Prisma.SortOrder
+  coverart?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
 }
 
 export type usersMinOrderByAggregateInput = {
@@ -374,6 +437,9 @@ export type usersMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   contactPhone?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  avatar?: Prisma.SortOrder
+  coverart?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
 }
 
 export type usersSumOrderByAggregateInput = {
@@ -400,6 +466,9 @@ export type usersCreateWithoutSongsInput = {
   name: string
   contactPhone?: string | null
   role?: string
+  avatar?: string | null
+  coverart?: string | null
+  bio?: string | null
 }
 
 export type usersUncheckedCreateWithoutSongsInput = {
@@ -409,6 +478,9 @@ export type usersUncheckedCreateWithoutSongsInput = {
   name: string
   contactPhone?: string | null
   role?: string
+  avatar?: string | null
+  coverart?: string | null
+  bio?: string | null
 }
 
 export type usersCreateOrConnectWithoutSongsInput = {
@@ -433,6 +505,9 @@ export type usersUpdateWithoutSongsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   contactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverart?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type usersUncheckedUpdateWithoutSongsInput = {
@@ -442,6 +517,9 @@ export type usersUncheckedUpdateWithoutSongsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   contactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverart?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -482,6 +560,9 @@ export type usersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   name?: boolean
   contactPhone?: boolean
   role?: boolean
+  avatar?: boolean
+  coverart?: boolean
+  bio?: boolean
   songs?: boolean | Prisma.users$songsArgs<ExtArgs>
   _count?: boolean | Prisma.UsersCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["users"]>
@@ -493,6 +574,9 @@ export type usersSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   name?: boolean
   contactPhone?: boolean
   role?: boolean
+  avatar?: boolean
+  coverart?: boolean
+  bio?: boolean
 }, ExtArgs["result"]["users"]>
 
 export type usersSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -502,6 +586,9 @@ export type usersSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   name?: boolean
   contactPhone?: boolean
   role?: boolean
+  avatar?: boolean
+  coverart?: boolean
+  bio?: boolean
 }, ExtArgs["result"]["users"]>
 
 export type usersSelectScalar = {
@@ -511,9 +598,12 @@ export type usersSelectScalar = {
   name?: boolean
   contactPhone?: boolean
   role?: boolean
+  avatar?: boolean
+  coverart?: boolean
+  bio?: boolean
 }
 
-export type usersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"user_id" | "email" | "passwordHash" | "name" | "contactPhone" | "role", ExtArgs["result"]["users"]>
+export type usersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"user_id" | "email" | "passwordHash" | "name" | "contactPhone" | "role" | "avatar" | "coverart" | "bio", ExtArgs["result"]["users"]>
 export type usersInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   songs?: boolean | Prisma.users$songsArgs<ExtArgs>
   _count?: boolean | Prisma.UsersCountOutputTypeDefaultArgs<ExtArgs>
@@ -533,6 +623,9 @@ export type $usersPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     name: string
     contactPhone: string | null
     role: string
+    avatar: string | null
+    coverart: string | null
+    bio: string | null
   }, ExtArgs["result"]["users"]>
   composites: {}
 }
@@ -963,6 +1056,9 @@ export interface usersFieldRefs {
   readonly name: Prisma.FieldRef<"users", 'String'>
   readonly contactPhone: Prisma.FieldRef<"users", 'String'>
   readonly role: Prisma.FieldRef<"users", 'String'>
+  readonly avatar: Prisma.FieldRef<"users", 'String'>
+  readonly coverart: Prisma.FieldRef<"users", 'String'>
+  readonly bio: Prisma.FieldRef<"users", 'String'>
 }
     
 

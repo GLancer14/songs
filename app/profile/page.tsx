@@ -14,12 +14,20 @@ export default async function Page({
   
   if (!userData) return null;
 
+  const clearProfile = {
+    email: userData.email,
+    name: userData?.name,
+    avatar: userData?.avatar,
+    coverart: userData?.coverart,
+    bio: userData?.bio,
+  };
+
   return (
     <>
       <Header user={userData} />
       <div className="flex flex-col flex-1">
         <Suspense fallback={<Loading />}>
-          <Profile profileData={userData}/>
+          <Profile profileData={clearProfile}/>
         </Suspense>
       </div>
       <Footer />

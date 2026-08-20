@@ -187,5 +187,8 @@ model users {
   name         String
   contactPhone String?
   role         String  @default("client")
+  avatar       String?
+  coverart     String?
+  bio          String?
   songs        songs[]
 }

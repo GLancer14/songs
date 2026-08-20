@@ -278,7 +278,7 @@ const EditSong = ({
               type="file"
               name="orig_audio"
               id="upload-orig-audio"
-              accept="audio/mp3,audio/flac,audio/aac/mp3"
+              accept="audio/mp3,audio/flac,audio/aac"
               tabIndex={-1}
             />
             {/* <div className="" tabIndex={0}>Add</div> */}
