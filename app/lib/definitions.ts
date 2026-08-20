@@ -90,12 +90,29 @@ export const SearchSongsSchema = z.object({
 
 export type SearchAlbumsSchemaType = z.infer<typeof SearchAlbumsSchema>;
 
+export const SearchArtistSchema = z.object({
+  id: z.number(),
+  type: z.string(),
+});
+
+export type SearchArtistSchemaType = z.infer<typeof SearchArtistSchema>;
+
 export const SearchAlbumsSchema = z.object({
   searchString: z.string().optional(),
   artists: z.string().optional(),
 });
 
 export type SearchSongsSchemaType = z.infer<typeof SearchSongsSchema>;
+
+export const EditUserSchema = z.object({
+  name: z.string().optional(),
+  email: z.string().optional(),
+  avatar: z.file().optional(),
+  coverart: z.file().optional(),
+  bio: z.string().optional(),
+});
+
+export type EditUserSchemaType = z.infer<typeof EditUserSchema>;
 
 export type FormState =
   {

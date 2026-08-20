@@ -6,8 +6,8 @@ import React, { useRef, useState } from "react";
 import { debounce } from "@/app/lib/decorators";
 import Image from "next/image";
 
-const AddImage = () => {
-  const [image, setImage] = useState("");
+const AddImage = ({ name, previousImage }: { name?: string, previousImage?: string | null }) => {
+  const [image, setImage] = useState(previousImage);
   const staticURL = !process.env.NEXT_PUBLIC_BLOB_STORE_ID ? "" : process.env.NEXT_PUBLIC_STATIC_URL;
   
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,12 +19,12 @@ const AddImage = () => {
   };
 
   return (
-    <div>
-      {image !== "" && 
+    <div className="w-full">
+      {image &&
         <Image
           className=""
-          src={image || ""}
-          alt={image || ""}
+          src={image}
+          alt={image}
           width={100}
           height={100}
         />}
@@ -33,7 +33,7 @@ const AddImage = () => {
         <input
           className="w-3/5"
           type="file"
-          name="title_image"
+          name={name ? name : "title_image"}
           id="upload-title-image"
           accept="image/jpeg,image/gif,image/png"
           onChange={handleImageChange}

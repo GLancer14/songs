@@ -15,6 +15,7 @@ import clsx from "clsx";
 import editSong from "@/app/actions/EditSong/editSong";
 import { redirect } from "next/navigation";
 import { fieldsNames, TableNames } from "../lib/fieldsNames";
+import AddImage from "../ui/AddImage/AddImage";
 
 const EditSong = ({
   user,
@@ -257,18 +258,9 @@ const EditSong = ({
         </section>
         <section className="flex flex-col mb-8 w-1/2 gap-2">
           <h2 className="text-4xl w-full mb-4">media</h2>
-          <div className="flex justify-between">
-            <span className="">Song Art:</span>
-            <input
-              className="w-3/5"
-              type="file"
-              name="title_image"
-              id="upload-title-image"
-              accept="image/jpeg,image/gif,image/png"
-              tabIndex={-1}
-            />
-            {/* <div className="" tabIndex={0}>Add</div> */}
-            {/* <span className=""></span> */}
+          <div className="flex justify-between  w-full">
+            {/* <span className="">Song Art:</span> */}
+            <AddImage />
           </div>
           <img className="" />
           <div className="flex justify-between">

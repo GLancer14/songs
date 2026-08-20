@@ -24,7 +24,7 @@ const Page = async () => {
         <div className="flex flex-row flex-wrap gap-[2%] gap-y-2 py-4 px-4 justify-between">
           {people.map(people => {
             return (
-              <div className="flex w-[32%] flex-row bg-white">
+              <div className="flex w-[32%] flex-row bg-white" key={people.id}>
                 <a className="flex" href={`/people/${people.id}`}>
                   <Image
                     className="contain"

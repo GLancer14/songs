@@ -50,12 +50,13 @@ const Header = ({ user, imageColor }: { user: users | null | undefined, imageCol
                 flex-col
                 text-black
                 top-6
-                left-0
+                -left-4
                 absolute
                 bg-white
                 w-min-content
                 text-nowrap
-                p-4`,
+                p-4
+                pt-0`,
                 {
                   [s.listVisibility]: listVisibility
                 })

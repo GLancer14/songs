@@ -6,8 +6,9 @@ import Image from "next/image";
 import clsx from "clsx";
 import About from "../ui/About/About";
 import Modal from "../ui/Modal/Modal";
+import EditProfileForm from "../EditProfileForm/EditProfileForm";
 
-interface ProfileData {
+export interface ProfileData {
     email: string;
     name?: string;
     avatar?: string | null;
@@ -25,7 +26,11 @@ export const Profile = ({ profileData }: { profileData: ProfileData }) => {
       <header
         className={`flex items-center relative h-82.5 w-full justify-center bg-no-repeat bg-cover bg-center`}
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%), url(${staticURL}/backgrounds/users/${profileData.avatar})`,
+          backgroundImage: `
+            linear-gradient(rgba(0, 0, 0, 0.1) 0%,
+            rgba(0, 0, 0, 0.5) 100%),
+            url(${staticURL}/backgrounds/users/${profileData.avatar})
+          `,
         }}
       >
         <div className="relative colum flex flex-row max-w-344 w-344 py-4 px-10.5">
@@ -110,9 +115,11 @@ export const Profile = ({ profileData }: { profileData: ProfileData }) => {
         </div>
       </div>
       <Modal
+        className="flex items-center justify-center"
         isOpen={editProfileisShown}
         onClose={() => setEditProfileisShown(false)}
       >
+        <EditProfileForm profileData={profileData} />
       </Modal>
     </div>
   );

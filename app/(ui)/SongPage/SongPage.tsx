@@ -10,6 +10,7 @@ import formatDate from "../utils/formatDate";
 import ShowButton from "../ui/ShowButton/ShowButton";
 import About from "../ui/About/About";
 import Link from "next/link";
+import Artist from "../ui/Artist/Artist";
 
 export interface SongPageProps {
   songData: songs;
@@ -163,7 +164,14 @@ const SongPage: React.FC<SongPageProps> = ({
             />}
             <div className="relative top-4 flex flex-col flex-1 pb-12 text-white">
               <div className="text-3xl mb-2">{songData.name}</div>
-              <Link href={`/groupes/${songsGroup?.groupes.id}`} className="text-4 underline">{songsGroup?.groupes.name}</Link>
+              {songsGroup && 
+                <Artist
+                  id={songsGroup.groupes.id}
+                  name={songsGroup.groupes.name}
+                  type="groupes"
+                  href={songsGroup.groupes.image}
+                />
+              }
               {(peopleProducers.length > 0 || groupesProducers.length > 0) &&
                 <div className="mt-6">
                   <div className="text-[rgba(255,255,255,0.6)] text-[14px]">Producer</div>
