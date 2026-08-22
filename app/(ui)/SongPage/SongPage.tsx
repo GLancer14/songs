@@ -152,7 +152,9 @@ const SongPage: React.FC<SongPageProps> = ({
               src={
                 songData.image
                 ? `${staticURL}/backgrounds/songs/${songData.image}`
-                : `${staticURL}/noimage2.svg`
+                : album?.albums.image 
+                  ? `${staticURL}/backgrounds/songs/${album?.albums.image}`
+                  : `${staticURL}/noimage2.svg`
               }
               alt={"обложка"}
               width={340}
