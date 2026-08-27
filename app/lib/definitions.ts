@@ -104,6 +104,12 @@ export const SearchAlbumsSchema = z.object({
 
 export type SearchSongsSchemaType = z.infer<typeof SearchSongsSchema>;
 
+export const SearchAlbumSchema = z.object({
+  songId: z.number(),
+});
+
+export type SearchAlbumSchemaType = z.infer<typeof SearchAlbumSchema>;
+
 export const EditUserSchema = z.object({
   name: z.string().optional(),
   email: z.string().optional(),

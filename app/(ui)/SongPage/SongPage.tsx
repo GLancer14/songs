@@ -150,10 +150,10 @@ const SongPage: React.FC<SongPageProps> = ({
             <Image
               className="relative top-4 self-start mr-11 shadow-[rgba(0,0,0,0.18)_0px_0px_12px_0px]"
               src={
-                songData.image
+                !songData.image.includes("blob") || songData.image === null
                 ? `${staticURL}/backgrounds/songs/${songData.image}`
                 : album?.albums.image 
-                  ? `${staticURL}/backgrounds/songs/${album?.albums.image}`
+                  ? `${staticURL}/backgrounds/albums/${album?.albums.image}`
                   : `${staticURL}/noimage2.svg`
               }
               alt={"обложка"}
@@ -308,7 +308,7 @@ const SongPage: React.FC<SongPageProps> = ({
                 </div>
                 </div>
               }
-              {albumSongs && (() => {
+              {albumSongs.length > 0 && (() => {
                 const sortedAlbums = albumSongs.sort((a, b) => {
                   if (a.track && b.track) {
                     return a.track - b.track
@@ -425,7 +425,7 @@ const SongPage: React.FC<SongPageProps> = ({
           </div>
           </div>
         }
-        {albumSongs && (() => {
+        {albumSongs.length > 0 && (() => {
           const sortedAlbums = albumSongs.sort((a, b) => {
             if (a.track && b.track) {
               return a.track - b.track
