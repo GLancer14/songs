@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import s from "./About.module.scss";
-import { FC, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 
 interface AboutProps {
   showAbout: boolean;
@@ -12,7 +12,16 @@ interface AboutProps {
 }
 
 const About: FC<AboutProps> = ({ showAbout, aboutText, type, className }) => {
+  const textRef = useRef<HTMLDivElement | null>(null);
   const [showText, setShowText] = useState(false);
+  const [showExpand, setShowExpand] = useState(true);
+
+  useEffect(() => {
+    const textRefRect = textRef.current?.getBoundingClientRect();
+    if (textRefRect && textRefRect.height >= 120) {
+      setShowExpand(false);
+    }
+  }, [aboutText])
 
   return (
     <div
@@ -22,12 +31,15 @@ const About: FC<AboutProps> = ({ showAbout, aboutText, type, className }) => {
     >
       <div className={clsx(s.aboutInner, className)}>
         <div className="font-bold mb-2 text-[12px]">{type !== "Bio" && `${type} Bio`}</div>
-        <div className={clsx("aboutText h-30 overflow-hidden w-full", {
-          [s.isShowing]: showText,
-        })}>
+        <div
+          className={clsx("aboutText max-h-30 overflow-hidden w-full", {
+            [s.isShowing]: showText,
+          })}
+          ref={textRef}
+        >
           {aboutText || "About is missing"}
         </div>
-        {!showText && (
+        {!showText && !showExpand && (
           <button
             className="
               relative

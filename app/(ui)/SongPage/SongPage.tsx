@@ -268,108 +268,110 @@ const SongPage: React.FC<SongPageProps> = ({
               <ShowButton show={showAlbumInfo} setShow={setShowAlbumInfo} />
             </div>
             <div
-              className={clsx(s.songInfo, "relative grid text-[14px] mt-4 pl-8 pb-4", {
-                ["grid-rows-[1fr] opacity-100"]: showAlbumInfo,
-                ["grid-rows-[0fr] opacity-0"]: !showAlbumInfo,
+              className={clsx(s.songInfo, s.aboutContainer, "relative grid text-[14px] mt-4 pl-8 pb-4", {
+                [s.isOpen]: showAlbumInfo,
               })}
             >
-              <div className="flex flex-row gap-14 mb-4 flex-nowrap text-[14px]">
-                <span>Released on</span>
-                <span>{formatDate(songData.release_date)}</span>
-              </div>
-              {album && <div className="w-100 mx-auto text-black">
-                <div
-                  key={album.albums.id}
-                  className={clsx("flex flex-row flex-wrap max-w-180 gap-4 items-center mb-4")}
-                >
-                  {album.albums.image && <Image
-                    className="shadow-[rgba(0,0,0,0.18)0px0px0.75rem0px]"
-                    src={album.albums.image
-                      ? `${staticURL}/backgrounds/albums/${album.albums.image}`
-                      : `${staticURL}/noimage2.svg`
+              <div className={s.aboutInner}>
+                <div className={clsx("flex flex-row gap-14 mb-4 flex-nowrap text-[14px]")}>
+                  <span>Released on</span>
+                  <span>{formatDate(songData.release_date)}</span>
+                </div>
+                {album && <div className="w-100 mx-auto text-black">
+                  <div
+                    key={album.albums.id}
+                    className={clsx("flex flex-row flex-wrap max-w-180 gap-4 items-center mb-4")}
+                  >
+                    {album.albums.image && <Image
+                      className="shadow-[rgba(0,0,0,0.18)0px0px0.75rem0px]"
+                      src={album.albums.image
+                        ? `${staticURL}/backgrounds/albums/${album.albums.image}`
+                        : `${staticURL}/noimage2.svg`
+                      }
+                      alt={"обложка песни"}
+                      width={67}
+                      height={67}
+                    />}
+                    <div>
+                      <Link
+                        className="text-[18px]"
+                        href={`/albums/${album.albums.id}`}
+                      >
+                        {album?.albums.name}
+                      </Link>
+                      <div
+                        className="text-[14px] underline"
+                      >
+                        {album.albums.author}
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                }
+                {albumSongs.length > 0 && (() => {
+                  const sortedAlbums = albumSongs.sort((a, b) => {
+                    if (a.track && b.track) {
+                      return a.track - b.track
+                    } else {
+                      return 0;
                     }
-                    alt={"обложка песни"}
-                    width={67}
-                    height={67}
-                  />}
-                  <div>
-                    <Link
-                      className="text-[18px]"
-                      href={`/albums/${album.albums.id}`}
-                    >
-                      {album?.albums.name}
-                    </Link>
-                    <div
-                      className="text-[14px] underline"
-                    >
-                      {album.albums.author}
-                    </div>
-                  </div>
-                </div>
-                </div>
-              }
-              {albumSongs.length > 0 && (() => {
-                const sortedAlbums = albumSongs.sort((a, b) => {
-                  if (a.track && b.track) {
-                    return a.track - b.track
-                  } else {
-                    return 0;
-                  }
-                });
-              
-                const half = Math.ceil(sortedAlbums.length / 2);
-                const firstColumn = sortedAlbums.slice(0, half);
-                const secondColumn = sortedAlbums.slice(half);
-              
-                return (
-                  <div className="w-100 mx-auto text-black text-[14px]">
-                    <div className={clsx("grid grid-cols-2 mt-4 max-w-180")}>
-                      <div className="flex flex-col gap-y-2">
-                        {firstColumn.map((albumSong) => (
-                          <div
-                            className={clsx("relative flex flex-row overflow-hidden w-fit pl-1 pr-4 py-1", {
-                              [s.miniAlbumSong]: songData.song_id === albumSong.songs.song_id,
-                            })}
-                            key={albumSong.songs.song_id}
-                          >
-                            <span className="min-w-5">{albumSong.track}.</span>
-                            {songData.song_id !== albumSong.songs.song_id
-                              ? <Link
-                                href={`/songs/${albumSong.songs.song_id}`}
-                                className="truncate underline "
-                              >
-                                {albumSong.songs.name}
-                              </Link>
-                              : <span className="truncate ">{albumSong.songs.name}</span>
-                            }
-                          </div>
-                        ))}
-                      </div>
-                      
-                      <div className="flex flex-col gap-y-2">
-                        {secondColumn.map((albumSong) => (
-                          <div className={clsx("relative flex flex-row overflow-hidden w-fit pl-1 pr-4 py-1", {
-                              [s.miniAlbumSong]: songData.song_id === albumSong.songs.song_id,
-                            })}
-                            key={albumSong.songs.song_id}
-                          >
-                            <span className="min-w-5">{albumSong.track}.</span>
-                            {songData.song_id !== albumSong.songs.song_id
-                              ? <Link
-                                href={`/songs/${albumSong.songs.song_id}`}
-                                className="truncate underline "
-                              >
-                                {albumSong.songs.name}
-                              </Link>
-                              : <span className="truncate ">{albumSong.songs.name}</span>
-                            }
-                          </div>
-                        ))}
+                  });
+                
+                  const half = Math.ceil(sortedAlbums.length / 2);
+                  const firstColumn = sortedAlbums.slice(0, half);
+                  const secondColumn = sortedAlbums.slice(half);
+                
+                  return (
+                    <div className="w-100 mx-auto text-black text-[14px]">
+                      <div className={clsx("grid grid-cols-2 mt-4 max-w-180")}>
+                        <div className="flex flex-col gap-y-2">
+                          {firstColumn.map((albumSong) => (
+                            <div
+                              className={clsx("relative flex flex-row overflow-hidden w-fit pl-1 pr-4 py-1", {
+                                [s.miniAlbumSong]: songData.song_id === albumSong.songs.song_id,
+                              })}
+                              key={albumSong.songs.song_id}
+                            >
+                              <span className="min-w-5">{albumSong.track}.</span>
+                              {songData.song_id !== albumSong.songs.song_id
+                                ? <Link
+                                  href={`/songs/${albumSong.songs.song_id}`}
+                                  className="truncate underline "
+                                >
+                                  {albumSong.songs.name}
+                                </Link>
+                                : <span className="truncate ">{albumSong.songs.name}</span>
+                              }
+                            </div>
+                          ))}
+                        </div>
+                        
+                        <div className="flex flex-col gap-y-2">
+                          {secondColumn.map((albumSong) => (
+                            <div className={clsx("relative flex flex-row overflow-hidden w-fit pl-1 pr-4 py-1", {
+                                [s.miniAlbumSong]: songData.song_id === albumSong.songs.song_id,
+                              })}
+                              key={albumSong.songs.song_id}
+                            >
+                              <span className="min-w-5">{albumSong.track}.</span>
+                              {songData.song_id !== albumSong.songs.song_id
+                                ? <Link
+                                  href={`/songs/${albumSong.songs.song_id}`}
+                                  className="truncate underline "
+                                >
+                                  {albumSong.songs.name}
+                                </Link>
+                                : <span className="truncate ">{albumSong.songs.name}</span>
+                              }
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )
-              })()}
+                  )
+                })()}
+              </div>
+              
             </div>
           </div>
         </div>

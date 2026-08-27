@@ -32,3 +32,43 @@
     grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.aboutContainer {
+  display: grid;
+  grid-template-rows: 0fr;
+  width: 100%;
+  transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  position: relative;
+}
+
+.aboutContainer.isOpen {
+  grid-template-rows: 1fr;
+}
+
+:where(.aboutInner) {
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease 0.1s;
+}
+
+.aboutContainer.isOpen .aboutInner {
+  
+  opacity: 1;
+}
+
+@supports not (grid-template-rows: 0fr) {
+  .aboutContainer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  
+  .aboutContainer.isOpen {
+    max-height: 1000px; // Достаточно большое значение
+  }
+  
+  .aboutContainer.isOpen .aboutInner {
+    opacity: 1;
+  }
+}

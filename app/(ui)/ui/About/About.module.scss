@@ -55,6 +55,7 @@
 
 .isShowing {
   height: auto;
+  max-height: min-content;
 }
 
 @supports not (grid-template-rows: 0fr) {

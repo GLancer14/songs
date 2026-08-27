@@ -153,7 +153,7 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
   }, []);
 
   return (
-    <div className="flex flex-col flex-1 items-center">
+    <div className="flex flex-col flex-1 items-center mb-16">
       <header
         className={`flex items-center relative h-82.5 w-full justify-center bg-no-repeat bg-cover bg-center`}
         style={{
