@@ -47,7 +47,7 @@ model mood {
 model albums {
   id           Int            @id @default(autoincrement())
   name         String
-  author       String?
+  author       String
   release_date DateTime?
   album_types  album_types?   @relation(fields: [album_type], references: [album_type_id], onDelete: Cascade)
   album_type   Int?

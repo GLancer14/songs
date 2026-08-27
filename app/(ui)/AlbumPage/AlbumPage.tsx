@@ -9,6 +9,7 @@ import formatDate from "../utils/formatDate";
 import ShowButton from "../ui/ShowButton/ShowButton";
 import Credits from "./Credits/Credits";
 import About from "../ui/About/About";
+import Artist from "../ui/Artist/Artist";
 
 export interface SongPageProps {
   albumType: {
@@ -19,7 +20,7 @@ export interface SongPageProps {
     image: string | null;
     id: number;
     name: string;
-    author: string | null;
+    author: string;
     release_date: Date | null;
     album_type: number | null;
     description: string | null;
@@ -69,6 +70,7 @@ export interface SongPageProps {
     id: number;
     song_id: number;
   })[][];
+  authorId: number;
   imageColor: string | undefined;
   imageValue: number[] | undefined;
 }
@@ -80,6 +82,7 @@ const AlbumPage: React.FC<SongPageProps> = ({
   imageColor,
   imageValue,
   songsPeople,
+  authorId,
 }) => {
   const [showAbout, setShowAbout] = useState(true);
   const [showAlbumInfo, setShowAlbumInfo] = useState(false);
@@ -116,12 +119,22 @@ const AlbumPage: React.FC<SongPageProps> = ({
               }}
             />
           )}
-          <div className="relative top-4 flex flex-col flex-1 text-white">
+          <div className="relative top-4 flex flex-col flex-1 pb-12 text-white">
             <div className="text-yellow-200">Album</div>
             <div className="text-5xl mb-2">{albumData.name}</div>
-            <div className="text-4 underline">{albumData.author}</div>
-            <div className="text-xs mt-6">Producer</div>
-            <div className="text-xs mt-6 justify-self-end-safe">
+            {albumData && 
+              <Artist
+                id={authorId}
+                name={albumData.author}
+                type="groupes"
+                href={albumData.image}
+              />
+            }
+            <div className="flex items-center gap-2 text-xs mt-auto">
+              <svg width={10} height={10} xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+                <path d="M15.923 1.385h-2.77V0H11.77v1.385H6.231V0H4.846v1.385h-2.77c-.76 0-1.384.623-1.384 1.384v13.846c0 .762.623 1.385 1.385 1.385h13.846c.762 0 1.385-.623 1.385-1.385V2.77c0-.761-.623-1.384-1.385-1.384Zm0 15.23H2.077V6.923h13.846v9.692Zm0-11.077H2.077V2.77h2.77v1.385H6.23V2.769h5.538v1.385h1.385V2.769h2.77v2.77Z">
+                </path>
+              </svg>
               {formatDate(albumData.release_date)}
             </div>
           </div>
@@ -146,56 +159,58 @@ const AlbumPage: React.FC<SongPageProps> = ({
         ></div>
       </header>
 
-      <div className="flex flex-row flex-wrap max-w-300 w-300">
-        {albumData && (
-          <div className="my-12 ml-8 pr-8 max-w-180 w-180">
-            <h3 className="text-[14px] mb-2 uppercase">
-              {albumData.name} songs
-            </h3>
-            <div className="mb-2">
-              {tracklist
-                .sort((a, b) => {
-                  if (typeof a.track === "number" && typeof b.track === "number") {
-                    return a.track - b.track;
-                  }
-                  return -1;
-                })
-                .map((track, ind, array) => {
-                  return (
-                    <div
-                      key={track.songs.song_id}
-                      className={clsx("flex flex-row -ml-8 text-[18px]")}
-                    >
-                      <span className="w-[16] flex text-center py-3.5">
-                        {track.track}
-                      </span>
-                      <a
+      <div className="flex flex-row max-w-300 w-300">
+      {/* <div className="flex flex-row flex-wrap max-w-300 w-300"> */}
+        <div>
+          {albumData && (
+            <div className="my-12 ml-8 pr-8 max-w-180 w-180">
+              <h3 className="text-[14px] mb-2 uppercase">
+                {albumData.name} songs
+              </h3>
+              <div className="mb-2">
+                {tracklist
+                  .sort((a, b) => {
+                    if (typeof a.track === "number" && typeof b.track === "number") {
+                      return a.track - b.track;
+                    }
+                    return -1;
+                  })
+                  .map((track, ind, array) => {
+                    return (
+                      <div
                         key={track.songs.song_id}
-                        className={clsx("block ml-4 flex-1 py-3.5", {
-                          ["border-b-2 border-gray-300"]:
-                            ind !== array.length - 1,
-                        })}
-                        href={`/songs/${track.songs.song_id}`}
+                        className={clsx("flex flex-row -ml-8 text-[18px]")}
                       >
-                        {track.songs.name}
-                      </a>
-                    </div>
-                  );
-                })}
+                        <span className="w-[16] flex text-center py-3.5">
+                          {track.track}
+                        </span>
+                        <a
+                          key={track.songs.song_id}
+                          className={clsx("block ml-4 flex-1 py-3.5", {
+                            ["border-b-2 border-gray-300"]:
+                              ind !== array.length - 1,
+                          })}
+                          href={`/songs/${track.songs.song_id}`}
+                        >
+                          {track.songs.name}
+                        </a>
+                      </div>
+                    );
+                  })}
+              </div>
             </div>
+
+          )}
+          <div className="order-3 max-w-180 w-180">
+            <h2 className="text-[90px] text-center">Credits</h2>
+            <Credits
+              albumData={albumData}
+              songs={tracklist}
+              songsPeople={songsPeople}
+            />
           </div>
-        )}
-
-        <div className="order-3 max-w-180 w-180">
-          <h2 className="text-[90px] text-center">Credits</h2>
-          <Credits
-            albumData={albumData}
-            songs={tracklist}
-            songsPeople={songsPeople}
-          />
         </div>
-
-        <div className="w-100 my-12 pt-6 border-l-2 border-gray-300">
+        <div className="h-min w-100 my-12 pt-6 border-l-2 border-gray-300">
           <div className="flex flex-column flex-wrap items-baseline justify-between border-b-2 border-gray-300">
             <div className="flex flex-row justify-between text-[16px] pl-8 pb-4 w-full">
               About

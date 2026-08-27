@@ -54,7 +54,7 @@ export default async function searchSongs(
   }
   const searchStringData = validatedFields.data;
 
-  const songs = await prisma.songs.findMany({
+  const songs = (await prisma.songs.findMany({
     where: {
       artists: searchStringData?.artists,
       title: {
@@ -62,7 +62,7 @@ export default async function searchSongs(
         mode: "insensitive",
       },
     },
-  });
+  })).reverse();
 
   return JSON.parse(JSON.stringify(songs));
 }

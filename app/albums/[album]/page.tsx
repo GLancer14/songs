@@ -56,6 +56,12 @@ export default async function Page({
     })
   })));
 
+  const artist = await prisma.groupes.findFirst({
+    where: {
+      name: albumData?.author, 
+    },
+  })
+
   let imageColor: string | undefined;
   let imageValue: number[] | undefined;
   if (albumData?.image) {
@@ -89,6 +95,7 @@ export default async function Page({
       <Header user={userData} imageColor={imageColor} />
       <div className="flex flex-col flex-1 items-center">
         <AlbumPage
+          authorId={artist?.id || 0}
           albumType={albumType}
           albumData={albumData}
           tracklist={tracklist}
