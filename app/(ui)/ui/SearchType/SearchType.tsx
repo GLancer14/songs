@@ -21,7 +21,7 @@ const SearchType: FC<SearchTypeProps> = ({ tableData, maxLength }) => {
     <div className="relative">
       <span className="mr-4">as</span>
       <input
-        className="bg-gray-900 w-min text-white"
+        className="bg-white w-min text-gray-900"
         type="text"
         maxLength={maxLength}
         name={tableData.name + `_${tableData.fields}-input-as`}

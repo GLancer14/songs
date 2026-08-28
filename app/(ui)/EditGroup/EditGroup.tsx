@@ -6,6 +6,7 @@ import { album_types, Prisma, users } from "@/src/generated/prisma/client";
 import Footer from "../Footer/Footer";
 import { useActionState, useState } from "react";
 import editGroup from "@/app/actions/EditGroup/editGroup";
+import AddImage from "../ui/AddImage/AddImage";
 
 const EditGroup = ({ user }: { user: users | null | undefined }) => {
   const [state, action, pending] = useActionState(editGroup, undefined)
@@ -16,7 +17,7 @@ const EditGroup = ({ user }: { user: users | null | undefined }) => {
     <>
       <Header user={user} />
       <form
-        className="flex flex-col flex-1 justify-start p-8 w-300 min-w-[768px] mx-auto bg-white"
+        className="flex flex-col flex-1 justify-start p-8 w-300 min-w-3xl mx-auto bg-white"
         action={action}
         method="POST"
         encType="multipart/form-data"
@@ -83,18 +84,7 @@ const EditGroup = ({ user }: { user: users | null | undefined }) => {
           </article>
         </section>
         <section className="mb-4">
-          <img className="" />
-          <div className="flex justify-between mb-8">
-            <span className="">Image:</span>
-            <input
-              className="w-3/5"
-              type="file"
-              name="title_image"
-              id="upload-title-image"
-              accept="image/jpeg,image/gif,image/png"
-              tabIndex={-1}
-            />
-          </div>
+          <AddImage />
         </section>
         <button className="" value="Save" id="save_songs_lyrics">Add Group</button>
       </form>

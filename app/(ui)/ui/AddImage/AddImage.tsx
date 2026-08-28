@@ -21,17 +21,47 @@ const AddImage = ({ name, previousImage }: { name?: string, previousImage?: stri
   return (
     <div className="w-full">
       {image &&
-        <Image
-          className=""
-          src={image}
-          alt={image}
-          width={100}
-          height={100}
-        />}
-      <div className="flex justify-between mb-8">
-        <span className="">Image:</span>
+        <div className="relative inline-block">
+          <Image
+            className="object-contain"
+            src={image}
+            alt={image}
+            width={150}
+            height={150}
+          />
+          <button
+            className="
+              absolute
+              -right-3
+              -top-3
+              flex
+              items-center
+              justify-center
+              w-6
+              h-6
+              bg-white
+              rounded-[50%]
+              border-[#677582]
+              border
+              cursor-pointer
+            "
+            type="button"
+            onClick={() => {
+              setImage(null);
+            }}
+          >
+            <img
+              className="w-2 h-2"
+              src={`${staticURL}/close.svg`}
+              alt="close"
+            />
+          </button>
+        </div>
+      }
+      <label className="flex w-min justify-between mb-8 cursor-pointer">
+        <span className="text-center w-30 border border-gray-500">Choose Image</span>
         <input
-          className="w-3/5"
+          className="w-3/5 hidden"
           type="file"
           name={name ? name : "title_image"}
           id="upload-title-image"
@@ -39,7 +69,7 @@ const AddImage = ({ name, previousImage }: { name?: string, previousImage?: stri
           onChange={handleImageChange}
           tabIndex={-1}
         />
-      </div>
+      </label>
     </div>
   )
 }

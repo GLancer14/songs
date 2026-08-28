@@ -10,7 +10,7 @@ import SearchField from "../ui/SearchField/SearchField";
 import Footer from "../Footer/Footer";
 import ExternalLink from "./ExternalLink/ExternalLink";
 import Lyrics from "./Lyrics/Lyrics";
-import { useActionState, useState } from "react";
+import { useActionState, useRef, useState } from "react";
 import clsx from "clsx";
 import editSong from "@/app/actions/EditSong/editSong";
 import { redirect } from "next/navigation";
@@ -46,6 +46,7 @@ const EditSong = ({
   }>;
   lyricsLanguages: string[];
 }) => {
+  const formRef = useRef<HTMLFormElement | null>(null)
   const [state, action, pending] = useActionState(editSong, undefined)
   const [lyricsOn, setLyricsOn] = useState<{
     english: boolean,
@@ -70,6 +71,7 @@ const EditSong = ({
         action={action}
         method="POST"
         encType="multipart/form-data"
+        ref={formRef}
       >
         <section className="flex flex-col justify-start mb-8">
           <h2 className="text-4xl capitalize mb-4">general data</h2>
@@ -216,7 +218,7 @@ const EditSong = ({
             })}
             <label className="flex w-full justify-center gap-2">
               <span className="text-black">Mood:</span>
-              <select className="" name="mood" size={1}>
+              <select className="border border-black" name="mood" size={1}>
                 <option className="text-white" value="none" defaultChecked>none</option>
                 {moods.map((mood, ind) => {
                   return <Mood key={ind} mood={mood} />
@@ -258,7 +260,7 @@ const EditSong = ({
         </section>
         <section className="flex flex-col mb-8 w-1/2 gap-2">
           <h2 className="text-4xl w-full mb-4">media</h2>
-          <div className="flex justify-between  w-full">
+          <div className="flex justify-between w-full">
             {/* <span className="">Song Art:</span> */}
             <AddImage />
           </div>
@@ -277,8 +279,8 @@ const EditSong = ({
             {/* <span className=""></span> */}
           </div>
         </section>
-        {/* <ExternalLink /> */}
-        <button className="" value="Save" id="save_songs_lyrics" onSubmit={(e) => {
+        <ExternalLink form={formRef.current} />
+        <button className="border border-black py-2" value="Save" id="save_songs_lyrics" onSubmit={(e) => {
           e.preventDefault();
           redirect(`/`)
         }}>Add Song</button>

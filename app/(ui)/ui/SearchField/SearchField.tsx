@@ -101,7 +101,7 @@ const SearchField = ({
           return (
             <div key={ind} className="flex flex-row flex-nowrap gap-4 justify-between">
               <input
-                className="bg-gray-900 w-min text-white"
+                className="w-min bg-white text-black"
                 type="text"
                 readOnly={true}
                 value={selectedField}
