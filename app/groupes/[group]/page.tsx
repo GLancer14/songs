@@ -26,7 +26,7 @@ export default async function Page({
 
   const albums = await prisma.albums.findMany({
     where: {
-      author: groupData && groupData.name,
+      author: groupData ? groupData.name : "",
     },
     take: 6,
   });

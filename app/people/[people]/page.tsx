@@ -44,7 +44,7 @@ export default async function Page({
 
   const albums = await prisma.albums.findMany({
     where: {
-      author: peopleData && peopleData.name,
+      author: peopleData ? peopleData.name : "",
     },
     take: 6,
   });
