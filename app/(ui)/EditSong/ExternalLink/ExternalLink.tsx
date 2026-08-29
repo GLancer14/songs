@@ -8,6 +8,7 @@ interface ExternalLinkProps {
 const ExternalLink: FC<ExternalLinkProps> = ({ form }) => {
   const [links, setLinks] = useState(0);
 
+
   return (
     <section className={clsx(
       "w-[53.5%] flex flex-row flex-wrap items-center justify-start gap-x-4 mb-2 border p-2",
@@ -50,14 +51,16 @@ const ExternalLink: FC<ExternalLinkProps> = ({ form }) => {
               <input
                 className="bg-white"
                 type="text"
-                name={`${ind}-url-name`}
+                name="url_name"
+                required
               />
               <input
                 className="bg-white"
                 type="text"
-                name={`${ind}-url`}
+                name="url"
+                required
               />
-              <select className="border border-black" name={`${ind}-url-type`}>
+              <select className="border border-black" name="url_type">
                 <option value="youtube">Youtube</option>
                 <option value="other">Other</option>
               </select>

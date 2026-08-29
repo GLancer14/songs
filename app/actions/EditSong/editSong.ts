@@ -40,7 +40,12 @@ export default async function editSong(
     track: formData.get("track"),
     title_image: formData.get("title_image"),
     orig_audio: formData.get("orig_audio"),
+    url: formData.getAll("url"),
+    url_name: formData.getAll("url_name"),
+    url_type: formData.getAll("url_type"),
   });
+
+  console.log(validatedFields)
 
   if (!validatedFields.success) {
     return {
@@ -199,6 +204,19 @@ export default async function editSong(
 
   for (const arrayData of arrays) {
     await sendSongsArray(arrayData);
+  }
+
+  if (songData.url && songData.url.length > 0) {
+    songData.url.forEach(async (value, ind) => {
+      await prisma.links.create({
+        data: {
+          song_id: songCreateResult.song_id,
+          url: value,
+          url_name: songData.url_name![ind],
+          url_type: songData.url_type![ind],
+        }
+      })
+    })
   }
 
   if (songData.title_image) {

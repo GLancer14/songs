@@ -107,3 +107,8 @@ export type songs_lyrics = Prisma.songs_lyricsModel
  * 
  */
 export type users = Prisma.usersModel
+/**
+ * Model links
+ * 
+ */
+export type links = Prisma.linksModel

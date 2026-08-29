@@ -68,7 +68,8 @@ export const ModelName = {
   songs_genres: 'songs_genres',
   languages: 'languages',
   songs_lyrics: 'songs_lyrics',
-  users: 'users'
+  users: 'users',
+  links: 'links'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -267,6 +268,17 @@ export const UsersScalarFieldEnum = {
 } as const
 
 export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
+
+
+export const LinksScalarFieldEnum = {
+  song_id: 'song_id',
+  id: 'id',
+  url: 'url',
+  url_name: 'url_name',
+  url_type: 'url_type'
+} as const
+
+export type LinksScalarFieldEnum = (typeof LinksScalarFieldEnum)[keyof typeof LinksScalarFieldEnum]
 
 
 export const SortOrder = {

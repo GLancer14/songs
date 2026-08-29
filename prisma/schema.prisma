@@ -36,6 +36,7 @@ model songs {
   songsGenres   songs_genres[]
   songsPeople   songs_people[]
   songsLyrics   songs_lyrics[]
+  links         links[]
 }
 
 model mood {
@@ -191,4 +192,13 @@ model users {
   coverart     String?
   bio          String?
   songs        songs[]
+}
+
+model links {
+  songs    songs  @relation(fields: [song_id], references: [song_id], onDelete: Cascade)
+  song_id  Int
+  id       Int    @id @default(autoincrement())
+  url      String
+  url_name String
+  url_type String
 }

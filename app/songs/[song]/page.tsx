@@ -101,6 +101,12 @@ export default async function Page({
     },
   });
 
+  const songLinks = await prisma.links.findMany({
+    where: {
+      song_id: songData?.song_id,
+    },
+  })
+
   let imageColor: string | undefined;
   let imageValue: number[] | undefined;
 
@@ -143,6 +149,7 @@ export default async function Page({
           albumSongs={albumSongs}
           group={group}
           people={people}
+          songLinks={songLinks}
         />
       </div>
       <Footer />

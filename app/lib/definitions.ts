@@ -45,6 +45,9 @@ export const AddSongSchema = z.object({
   track: z.string().optional(),
   title_image: z.file().optional(),
   orig_audio: z.file().optional(),
+  url: z.array(z.string()).optional(),
+  url_name: z.array(z.string()).optional(),
+  url_type: z.array(z.string()).optional(),
 })
 
 export type AddSongSchemaType = z.infer<typeof AddSongSchema>;

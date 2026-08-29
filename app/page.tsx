@@ -9,7 +9,12 @@ import SongCard from "./(ui)/SongCard/SongCard";
 
 export default async function Home() {
   const user = await userIam();
-  const songs: Array<songs> = await prisma.songs.findMany();
+  const songs: Array<songs> = await prisma.songs.findMany({
+    take: 8,
+    orderBy: {
+      song_id: "desc"
+    }
+  });
 
   return (
     // <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans w-[1200px] mx-auto">

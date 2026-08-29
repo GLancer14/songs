@@ -414,7 +414,8 @@ export const ModelName = {
   songs_genres: 'songs_genres',
   languages: 'languages',
   songs_lyrics: 'songs_lyrics',
-  users: 'users'
+  users: 'users',
+  links: 'links'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -430,7 +431,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "songs" | "mood" | "albums" | "album_types" | "songs_albums" | "countries" | "groupes" | "songs_groupes" | "people" | "type" | "songs_people" | "people_type" | "groupes_type" | "genres" | "songs_genres" | "languages" | "songs_lyrics" | "users"
+    modelProps: "songs" | "mood" | "albums" | "album_types" | "songs_albums" | "countries" | "groupes" | "songs_groupes" | "people" | "type" | "songs_people" | "people_type" | "groupes_type" | "genres" | "songs_genres" | "languages" | "songs_lyrics" | "users" | "links"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1766,6 +1767,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    links: {
+      payload: Prisma.$linksPayload<ExtArgs>
+      fields: Prisma.linksFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.linksFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$linksPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.linksFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$linksPayload>
+        }
+        findFirst: {
+          args: Prisma.linksFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$linksPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.linksFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$linksPayload>
+        }
+        findMany: {
+          args: Prisma.linksFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$linksPayload>[]
+        }
+        create: {
+          args: Prisma.linksCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$linksPayload>
+        }
+        createMany: {
+          args: Prisma.linksCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.linksCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$linksPayload>[]
+        }
+        delete: {
+          args: Prisma.linksDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$linksPayload>
+        }
+        update: {
+          args: Prisma.linksUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$linksPayload>
+        }
+        deleteMany: {
+          args: Prisma.linksDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.linksUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.linksUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$linksPayload>[]
+        }
+        upsert: {
+          args: Prisma.linksUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$linksPayload>
+        }
+        aggregate: {
+          args: Prisma.LinksAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLinks>
+        }
+        groupBy: {
+          args: Prisma.linksGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LinksGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.linksCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LinksCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1985,6 +2060,17 @@ export const UsersScalarFieldEnum = {
 } as const
 
 export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
+
+
+export const LinksScalarFieldEnum = {
+  song_id: 'song_id',
+  id: 'id',
+  url: 'url',
+  url_name: 'url_name',
+  url_type: 'url_type'
+} as const
+
+export type LinksScalarFieldEnum = (typeof LinksScalarFieldEnum)[keyof typeof LinksScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -2255,6 +2341,7 @@ export type GlobalOmitConfig = {
   languages?: Prisma.languagesOmit
   songs_lyrics?: Prisma.songs_lyricsOmit
   users?: Prisma.usersOmit
+  links?: Prisma.linksOmit
 }
 
 /* Types for Logging */

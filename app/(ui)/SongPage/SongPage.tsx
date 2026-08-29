@@ -11,6 +11,7 @@ import ShowButton from "../ui/ShowButton/ShowButton";
 import About from "../ui/About/About";
 import Link from "next/link";
 import Artist from "../ui/Artist/Artist";
+import YouTube from "react-youtube";
 
 export interface SongPageProps {
   songData: songs;
@@ -85,7 +86,14 @@ export interface SongPageProps {
         };
       }[];
     };
-  }[]
+  }[];
+  songLinks: {
+    song_id: number;
+    id: number;
+    url: string;
+    url_name: string;
+    url_type: string;
+  }[];
 }
 
 const SongPage: React.FC<SongPageProps> = ({
@@ -97,6 +105,7 @@ const SongPage: React.FC<SongPageProps> = ({
   albumSongs,
   group,
   people,
+  songLinks,
 }) => {
   const [showAbout, setShowAbout] = useState(true);
   const [showAlbumInfo, setShowAlbumInfo] = useState(true);
@@ -141,6 +150,14 @@ const SongPage: React.FC<SongPageProps> = ({
 
     imageColorMinusValue = `rgb(${imageColorMinus[0]},${imageColorMinus[1]},${imageColorMinus[2]})`;
   }
+
+  const opts = {
+    height: '402',
+    width: '716',
+    playerVars: {
+      autoplay: 0,
+    },
+  };
 
   return (
     <div className="flex flex-col">
@@ -250,7 +267,7 @@ const SongPage: React.FC<SongPageProps> = ({
           </div>
         </div>
         <div className="h-fit w-100 my-12 pt-6 border-l-2 border-gray-300">
-          <div className="flex flex-column flex-wrap items-baseline justify-between border-b-2 border-gray-300">
+          <div className="flex flex-column flex-wrap items-baseline justify-between pb-4 border-b-2 border-gray-300">
             <div className="flex flex-row justify-between text-[16px] pl-8 pb-4 w-full">
               About
               <ShowButton show={showAbout} setShow={setShowAbout} />
@@ -262,13 +279,13 @@ const SongPage: React.FC<SongPageProps> = ({
             />
           </div>
 
-          <div className="mt-8">
-            <div className="flex flex-row items-baseline justify-between">
+          <div className="mt-8 mb-4">
+            <div className="flex flex-row items-baseline justify-between mb-4">
               <div className="text-[16px] pl-8">Song Info</div>
               <ShowButton show={showAlbumInfo} setShow={setShowAlbumInfo} />
             </div>
             <div
-              className={clsx(s.songInfo, s.aboutContainer, "relative grid text-[14px] mt-4 pl-8 pb-4", {
+              className={clsx(s.songInfo, s.aboutContainer, "relative grid text-[14px] pl-8", {
                 [s.isOpen]: showAlbumInfo,
               })}
             >
@@ -375,7 +392,7 @@ const SongPage: React.FC<SongPageProps> = ({
             </div>
           </div>
         </div>
-        {songData.file &&
+        {songData.file && !songData.file.includes("blob") &&
           <audio
             className="fixed max-w-300 w-300 h-16 bottom-4 z-150 radius-0"
             src={`${staticURL}/songs/${songData.file}`}
@@ -425,8 +442,7 @@ const SongPage: React.FC<SongPageProps> = ({
               </div>
             </div>
           </div>
-          </div>
-        }
+          </div>}
         {albumSongs.length > 0 && (() => {
           const sortedAlbums = albumSongs.sort((a, b) => {
             if (a.track && b.track) {
@@ -530,6 +546,34 @@ const SongPage: React.FC<SongPageProps> = ({
           </div>
           <hr className="max-w-180 my-16" />
         </div>
+        {songLinks.filter(url => url.url_type === "youtube").length > 0 && 
+          <div className="max-w-300 w-full mx-auto mb-16 text-white">
+            <YouTube
+              videoId={(songLinks.find(value => value.url_type === "youtube"))?.url.slice(32)}
+              opts={opts}
+            />
+            <hr className="max-w-180 my-16" />
+          </div>}
+        
+        {songLinks.filter(url => url.url_type === "other").length > 0 &&
+          <div className="max-w-300 w-full mx-auto text-white">
+            <h2 className="capitalize text-[90px] max-w-180 text-center">Links</h2>
+            {songLinks.length > 0 && 
+              songLinks.map(url => {
+                if (url.url_type === "youtube") return null;
+                return (
+                  <div className="my-10">
+                    <Link
+                      className="truncate underline cursor-pointer"
+                      key={url.id}
+                      href={url.url}
+                    >
+                      {url.url_name}
+                    </Link>
+                  </div>
+                )
+              })}
+          </div>}
       </div>
     </div>
   );

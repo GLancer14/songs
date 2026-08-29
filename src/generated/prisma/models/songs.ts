@@ -323,6 +323,7 @@ export type songsWhereInput = {
   songsGenres?: Prisma.Songs_genresListRelationFilter
   songsPeople?: Prisma.Songs_peopleListRelationFilter
   songsLyrics?: Prisma.Songs_lyricsListRelationFilter
+  links?: Prisma.LinksListRelationFilter
 }
 
 export type songsOrderByWithRelationInput = {
@@ -348,6 +349,7 @@ export type songsOrderByWithRelationInput = {
   songsGenres?: Prisma.songs_genresOrderByRelationAggregateInput
   songsPeople?: Prisma.songs_peopleOrderByRelationAggregateInput
   songsLyrics?: Prisma.songs_lyricsOrderByRelationAggregateInput
+  links?: Prisma.linksOrderByRelationAggregateInput
 }
 
 export type songsWhereUniqueInput = Prisma.AtLeast<{
@@ -376,6 +378,7 @@ export type songsWhereUniqueInput = Prisma.AtLeast<{
   songsGenres?: Prisma.Songs_genresListRelationFilter
   songsPeople?: Prisma.Songs_peopleListRelationFilter
   songsLyrics?: Prisma.Songs_lyricsListRelationFilter
+  links?: Prisma.LinksListRelationFilter
 }, "song_id">
 
 export type songsOrderByWithAggregationInput = {
@@ -442,6 +445,7 @@ export type songsCreateInput = {
   songsGenres?: Prisma.songs_genresCreateNestedManyWithoutSongsInput
   songsPeople?: Prisma.songs_peopleCreateNestedManyWithoutSongsInput
   songsLyrics?: Prisma.songs_lyricsCreateNestedManyWithoutSongsInput
+  links?: Prisma.linksCreateNestedManyWithoutSongsInput
 }
 
 export type songsUncheckedCreateInput = {
@@ -465,6 +469,7 @@ export type songsUncheckedCreateInput = {
   songsGenres?: Prisma.songs_genresUncheckedCreateNestedManyWithoutSongsInput
   songsPeople?: Prisma.songs_peopleUncheckedCreateNestedManyWithoutSongsInput
   songsLyrics?: Prisma.songs_lyricsUncheckedCreateNestedManyWithoutSongsInput
+  links?: Prisma.linksUncheckedCreateNestedManyWithoutSongsInput
 }
 
 export type songsUpdateInput = {
@@ -487,6 +492,7 @@ export type songsUpdateInput = {
   songsGenres?: Prisma.songs_genresUpdateManyWithoutSongsNestedInput
   songsPeople?: Prisma.songs_peopleUpdateManyWithoutSongsNestedInput
   songsLyrics?: Prisma.songs_lyricsUpdateManyWithoutSongsNestedInput
+  links?: Prisma.linksUpdateManyWithoutSongsNestedInput
 }
 
 export type songsUncheckedUpdateInput = {
@@ -510,6 +516,7 @@ export type songsUncheckedUpdateInput = {
   songsGenres?: Prisma.songs_genresUncheckedUpdateManyWithoutSongsNestedInput
   songsPeople?: Prisma.songs_peopleUncheckedUpdateManyWithoutSongsNestedInput
   songsLyrics?: Prisma.songs_lyricsUncheckedUpdateManyWithoutSongsNestedInput
+  links?: Prisma.linksUncheckedUpdateManyWithoutSongsNestedInput
 }
 
 export type songsCreateManyInput = {
@@ -844,6 +851,20 @@ export type songsUncheckedUpdateManyWithoutUsersNestedInput = {
   deleteMany?: Prisma.songsScalarWhereInput | Prisma.songsScalarWhereInput[]
 }
 
+export type songsCreateNestedOneWithoutLinksInput = {
+  create?: Prisma.XOR<Prisma.songsCreateWithoutLinksInput, Prisma.songsUncheckedCreateWithoutLinksInput>
+  connectOrCreate?: Prisma.songsCreateOrConnectWithoutLinksInput
+  connect?: Prisma.songsWhereUniqueInput
+}
+
+export type songsUpdateOneRequiredWithoutLinksNestedInput = {
+  create?: Prisma.XOR<Prisma.songsCreateWithoutLinksInput, Prisma.songsUncheckedCreateWithoutLinksInput>
+  connectOrCreate?: Prisma.songsCreateOrConnectWithoutLinksInput
+  upsert?: Prisma.songsUpsertWithoutLinksInput
+  connect?: Prisma.songsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.songsUpdateToOneWithWhereWithoutLinksInput, Prisma.songsUpdateWithoutLinksInput>, Prisma.songsUncheckedUpdateWithoutLinksInput>
+}
+
 export type songsCreateWithoutMoodInput = {
   title: string
   artists: string
@@ -863,6 +884,7 @@ export type songsCreateWithoutMoodInput = {
   songsGenres?: Prisma.songs_genresCreateNestedManyWithoutSongsInput
   songsPeople?: Prisma.songs_peopleCreateNestedManyWithoutSongsInput
   songsLyrics?: Prisma.songs_lyricsCreateNestedManyWithoutSongsInput
+  links?: Prisma.linksCreateNestedManyWithoutSongsInput
 }
 
 export type songsUncheckedCreateWithoutMoodInput = {
@@ -885,6 +907,7 @@ export type songsUncheckedCreateWithoutMoodInput = {
   songsGenres?: Prisma.songs_genresUncheckedCreateNestedManyWithoutSongsInput
   songsPeople?: Prisma.songs_peopleUncheckedCreateNestedManyWithoutSongsInput
   songsLyrics?: Prisma.songs_lyricsUncheckedCreateNestedManyWithoutSongsInput
+  links?: Prisma.linksUncheckedCreateNestedManyWithoutSongsInput
 }
 
 export type songsCreateOrConnectWithoutMoodInput = {
@@ -953,6 +976,7 @@ export type songsCreateWithoutSongsAlbumsInput = {
   songsGenres?: Prisma.songs_genresCreateNestedManyWithoutSongsInput
   songsPeople?: Prisma.songs_peopleCreateNestedManyWithoutSongsInput
   songsLyrics?: Prisma.songs_lyricsCreateNestedManyWithoutSongsInput
+  links?: Prisma.linksCreateNestedManyWithoutSongsInput
 }
 
 export type songsUncheckedCreateWithoutSongsAlbumsInput = {
@@ -975,6 +999,7 @@ export type songsUncheckedCreateWithoutSongsAlbumsInput = {
   songsGenres?: Prisma.songs_genresUncheckedCreateNestedManyWithoutSongsInput
   songsPeople?: Prisma.songs_peopleUncheckedCreateNestedManyWithoutSongsInput
   songsLyrics?: Prisma.songs_lyricsUncheckedCreateNestedManyWithoutSongsInput
+  links?: Prisma.linksUncheckedCreateNestedManyWithoutSongsInput
 }
 
 export type songsCreateOrConnectWithoutSongsAlbumsInput = {
@@ -1012,6 +1037,7 @@ export type songsUpdateWithoutSongsAlbumsInput = {
   songsGenres?: Prisma.songs_genresUpdateManyWithoutSongsNestedInput
   songsPeople?: Prisma.songs_peopleUpdateManyWithoutSongsNestedInput
   songsLyrics?: Prisma.songs_lyricsUpdateManyWithoutSongsNestedInput
+  links?: Prisma.linksUpdateManyWithoutSongsNestedInput
 }
 
 export type songsUncheckedUpdateWithoutSongsAlbumsInput = {
@@ -1034,6 +1060,7 @@ export type songsUncheckedUpdateWithoutSongsAlbumsInput = {
   songsGenres?: Prisma.songs_genresUncheckedUpdateManyWithoutSongsNestedInput
   songsPeople?: Prisma.songs_peopleUncheckedUpdateManyWithoutSongsNestedInput
   songsLyrics?: Prisma.songs_lyricsUncheckedUpdateManyWithoutSongsNestedInput
+  links?: Prisma.linksUncheckedUpdateManyWithoutSongsNestedInput
 }
 
 export type songsCreateWithoutSongsGroupesInput = {
@@ -1055,6 +1082,7 @@ export type songsCreateWithoutSongsGroupesInput = {
   songsGenres?: Prisma.songs_genresCreateNestedManyWithoutSongsInput
   songsPeople?: Prisma.songs_peopleCreateNestedManyWithoutSongsInput
   songsLyrics?: Prisma.songs_lyricsCreateNestedManyWithoutSongsInput
+  links?: Prisma.linksCreateNestedManyWithoutSongsInput
 }
 
 export type songsUncheckedCreateWithoutSongsGroupesInput = {
@@ -1077,6 +1105,7 @@ export type songsUncheckedCreateWithoutSongsGroupesInput = {
   songsGenres?: Prisma.songs_genresUncheckedCreateNestedManyWithoutSongsInput
   songsPeople?: Prisma.songs_peopleUncheckedCreateNestedManyWithoutSongsInput
   songsLyrics?: Prisma.songs_lyricsUncheckedCreateNestedManyWithoutSongsInput
+  links?: Prisma.linksUncheckedCreateNestedManyWithoutSongsInput
 }
 
 export type songsCreateOrConnectWithoutSongsGroupesInput = {
@@ -1114,6 +1143,7 @@ export type songsUpdateWithoutSongsGroupesInput = {
   songsGenres?: Prisma.songs_genresUpdateManyWithoutSongsNestedInput
   songsPeople?: Prisma.songs_peopleUpdateManyWithoutSongsNestedInput
   songsLyrics?: Prisma.songs_lyricsUpdateManyWithoutSongsNestedInput
+  links?: Prisma.linksUpdateManyWithoutSongsNestedInput
 }
 
 export type songsUncheckedUpdateWithoutSongsGroupesInput = {
@@ -1136,6 +1166,7 @@ export type songsUncheckedUpdateWithoutSongsGroupesInput = {
   songsGenres?: Prisma.songs_genresUncheckedUpdateManyWithoutSongsNestedInput
   songsPeople?: Prisma.songs_peopleUncheckedUpdateManyWithoutSongsNestedInput
   songsLyrics?: Prisma.songs_lyricsUncheckedUpdateManyWithoutSongsNestedInput
+  links?: Prisma.linksUncheckedUpdateManyWithoutSongsNestedInput
 }
 
 export type songsCreateWithoutSongsPeopleInput = {
@@ -1157,6 +1188,7 @@ export type songsCreateWithoutSongsPeopleInput = {
   songsGroupes?: Prisma.songs_groupesCreateNestedManyWithoutSongsInput
   songsGenres?: Prisma.songs_genresCreateNestedManyWithoutSongsInput
   songsLyrics?: Prisma.songs_lyricsCreateNestedManyWithoutSongsInput
+  links?: Prisma.linksCreateNestedManyWithoutSongsInput
 }
 
 export type songsUncheckedCreateWithoutSongsPeopleInput = {
@@ -1179,6 +1211,7 @@ export type songsUncheckedCreateWithoutSongsPeopleInput = {
   songsGroupes?: Prisma.songs_groupesUncheckedCreateNestedManyWithoutSongsInput
   songsGenres?: Prisma.songs_genresUncheckedCreateNestedManyWithoutSongsInput
   songsLyrics?: Prisma.songs_lyricsUncheckedCreateNestedManyWithoutSongsInput
+  links?: Prisma.linksUncheckedCreateNestedManyWithoutSongsInput
 }
 
 export type songsCreateOrConnectWithoutSongsPeopleInput = {
@@ -1216,6 +1249,7 @@ export type songsUpdateWithoutSongsPeopleInput = {
   songsGroupes?: Prisma.songs_groupesUpdateManyWithoutSongsNestedInput
   songsGenres?: Prisma.songs_genresUpdateManyWithoutSongsNestedInput
   songsLyrics?: Prisma.songs_lyricsUpdateManyWithoutSongsNestedInput
+  links?: Prisma.linksUpdateManyWithoutSongsNestedInput
 }
 
 export type songsUncheckedUpdateWithoutSongsPeopleInput = {
@@ -1238,6 +1272,7 @@ export type songsUncheckedUpdateWithoutSongsPeopleInput = {
   songsGroupes?: Prisma.songs_groupesUncheckedUpdateManyWithoutSongsNestedInput
   songsGenres?: Prisma.songs_genresUncheckedUpdateManyWithoutSongsNestedInput
   songsLyrics?: Prisma.songs_lyricsUncheckedUpdateManyWithoutSongsNestedInput
+  links?: Prisma.linksUncheckedUpdateManyWithoutSongsNestedInput
 }
 
 export type songsCreateWithoutSongsGenresInput = {
@@ -1259,6 +1294,7 @@ export type songsCreateWithoutSongsGenresInput = {
   songsGroupes?: Prisma.songs_groupesCreateNestedManyWithoutSongsInput
   songsPeople?: Prisma.songs_peopleCreateNestedManyWithoutSongsInput
   songsLyrics?: Prisma.songs_lyricsCreateNestedManyWithoutSongsInput
+  links?: Prisma.linksCreateNestedManyWithoutSongsInput
 }
 
 export type songsUncheckedCreateWithoutSongsGenresInput = {
@@ -1281,6 +1317,7 @@ export type songsUncheckedCreateWithoutSongsGenresInput = {
   songsGroupes?: Prisma.songs_groupesUncheckedCreateNestedManyWithoutSongsInput
   songsPeople?: Prisma.songs_peopleUncheckedCreateNestedManyWithoutSongsInput
   songsLyrics?: Prisma.songs_lyricsUncheckedCreateNestedManyWithoutSongsInput
+  links?: Prisma.linksUncheckedCreateNestedManyWithoutSongsInput
 }
 
 export type songsCreateOrConnectWithoutSongsGenresInput = {
@@ -1318,6 +1355,7 @@ export type songsUpdateWithoutSongsGenresInput = {
   songsGroupes?: Prisma.songs_groupesUpdateManyWithoutSongsNestedInput
   songsPeople?: Prisma.songs_peopleUpdateManyWithoutSongsNestedInput
   songsLyrics?: Prisma.songs_lyricsUpdateManyWithoutSongsNestedInput
+  links?: Prisma.linksUpdateManyWithoutSongsNestedInput
 }
 
 export type songsUncheckedUpdateWithoutSongsGenresInput = {
@@ -1340,6 +1378,7 @@ export type songsUncheckedUpdateWithoutSongsGenresInput = {
   songsGroupes?: Prisma.songs_groupesUncheckedUpdateManyWithoutSongsNestedInput
   songsPeople?: Prisma.songs_peopleUncheckedUpdateManyWithoutSongsNestedInput
   songsLyrics?: Prisma.songs_lyricsUncheckedUpdateManyWithoutSongsNestedInput
+  links?: Prisma.linksUncheckedUpdateManyWithoutSongsNestedInput
 }
 
 export type songsCreateWithoutSongsLyricsInput = {
@@ -1361,6 +1400,7 @@ export type songsCreateWithoutSongsLyricsInput = {
   songsGroupes?: Prisma.songs_groupesCreateNestedManyWithoutSongsInput
   songsGenres?: Prisma.songs_genresCreateNestedManyWithoutSongsInput
   songsPeople?: Prisma.songs_peopleCreateNestedManyWithoutSongsInput
+  links?: Prisma.linksCreateNestedManyWithoutSongsInput
 }
 
 export type songsUncheckedCreateWithoutSongsLyricsInput = {
@@ -1383,6 +1423,7 @@ export type songsUncheckedCreateWithoutSongsLyricsInput = {
   songsGroupes?: Prisma.songs_groupesUncheckedCreateNestedManyWithoutSongsInput
   songsGenres?: Prisma.songs_genresUncheckedCreateNestedManyWithoutSongsInput
   songsPeople?: Prisma.songs_peopleUncheckedCreateNestedManyWithoutSongsInput
+  links?: Prisma.linksUncheckedCreateNestedManyWithoutSongsInput
 }
 
 export type songsCreateOrConnectWithoutSongsLyricsInput = {
@@ -1420,6 +1461,7 @@ export type songsUpdateWithoutSongsLyricsInput = {
   songsGroupes?: Prisma.songs_groupesUpdateManyWithoutSongsNestedInput
   songsGenres?: Prisma.songs_genresUpdateManyWithoutSongsNestedInput
   songsPeople?: Prisma.songs_peopleUpdateManyWithoutSongsNestedInput
+  links?: Prisma.linksUpdateManyWithoutSongsNestedInput
 }
 
 export type songsUncheckedUpdateWithoutSongsLyricsInput = {
@@ -1442,6 +1484,7 @@ export type songsUncheckedUpdateWithoutSongsLyricsInput = {
   songsGroupes?: Prisma.songs_groupesUncheckedUpdateManyWithoutSongsNestedInput
   songsGenres?: Prisma.songs_genresUncheckedUpdateManyWithoutSongsNestedInput
   songsPeople?: Prisma.songs_peopleUncheckedUpdateManyWithoutSongsNestedInput
+  links?: Prisma.linksUncheckedUpdateManyWithoutSongsNestedInput
 }
 
 export type songsCreateWithoutUsersInput = {
@@ -1463,6 +1506,7 @@ export type songsCreateWithoutUsersInput = {
   songsGenres?: Prisma.songs_genresCreateNestedManyWithoutSongsInput
   songsPeople?: Prisma.songs_peopleCreateNestedManyWithoutSongsInput
   songsLyrics?: Prisma.songs_lyricsCreateNestedManyWithoutSongsInput
+  links?: Prisma.linksCreateNestedManyWithoutSongsInput
 }
 
 export type songsUncheckedCreateWithoutUsersInput = {
@@ -1485,6 +1529,7 @@ export type songsUncheckedCreateWithoutUsersInput = {
   songsGenres?: Prisma.songs_genresUncheckedCreateNestedManyWithoutSongsInput
   songsPeople?: Prisma.songs_peopleUncheckedCreateNestedManyWithoutSongsInput
   songsLyrics?: Prisma.songs_lyricsUncheckedCreateNestedManyWithoutSongsInput
+  links?: Prisma.linksUncheckedCreateNestedManyWithoutSongsInput
 }
 
 export type songsCreateOrConnectWithoutUsersInput = {
@@ -1511,6 +1556,112 @@ export type songsUpdateWithWhereUniqueWithoutUsersInput = {
 export type songsUpdateManyWithWhereWithoutUsersInput = {
   where: Prisma.songsScalarWhereInput
   data: Prisma.XOR<Prisma.songsUpdateManyMutationInput, Prisma.songsUncheckedUpdateManyWithoutUsersInput>
+}
+
+export type songsCreateWithoutLinksInput = {
+  title: string
+  artists: string
+  name: string
+  addition_date?: Date | string | null
+  release_date: Date | string
+  file?: string | null
+  rank?: string | null
+  bpm?: number | null
+  bitrate_audio?: bigint | number | null
+  track_gain?: number | null
+  description?: string | null
+  image?: string | null
+  users: Prisma.usersCreateNestedOneWithoutSongsInput
+  mood: Prisma.moodCreateNestedOneWithoutSongsInput
+  songsAlbums?: Prisma.songs_albumsCreateNestedManyWithoutSongsInput
+  songsGroupes?: Prisma.songs_groupesCreateNestedManyWithoutSongsInput
+  songsGenres?: Prisma.songs_genresCreateNestedManyWithoutSongsInput
+  songsPeople?: Prisma.songs_peopleCreateNestedManyWithoutSongsInput
+  songsLyrics?: Prisma.songs_lyricsCreateNestedManyWithoutSongsInput
+}
+
+export type songsUncheckedCreateWithoutLinksInput = {
+  song_id?: number
+  user_id: number
+  title: string
+  artists: string
+  name: string
+  addition_date?: Date | string | null
+  release_date: Date | string
+  file?: string | null
+  mood_id: number
+  rank?: string | null
+  bpm?: number | null
+  bitrate_audio?: bigint | number | null
+  track_gain?: number | null
+  description?: string | null
+  image?: string | null
+  songsAlbums?: Prisma.songs_albumsUncheckedCreateNestedManyWithoutSongsInput
+  songsGroupes?: Prisma.songs_groupesUncheckedCreateNestedManyWithoutSongsInput
+  songsGenres?: Prisma.songs_genresUncheckedCreateNestedManyWithoutSongsInput
+  songsPeople?: Prisma.songs_peopleUncheckedCreateNestedManyWithoutSongsInput
+  songsLyrics?: Prisma.songs_lyricsUncheckedCreateNestedManyWithoutSongsInput
+}
+
+export type songsCreateOrConnectWithoutLinksInput = {
+  where: Prisma.songsWhereUniqueInput
+  create: Prisma.XOR<Prisma.songsCreateWithoutLinksInput, Prisma.songsUncheckedCreateWithoutLinksInput>
+}
+
+export type songsUpsertWithoutLinksInput = {
+  update: Prisma.XOR<Prisma.songsUpdateWithoutLinksInput, Prisma.songsUncheckedUpdateWithoutLinksInput>
+  create: Prisma.XOR<Prisma.songsCreateWithoutLinksInput, Prisma.songsUncheckedCreateWithoutLinksInput>
+  where?: Prisma.songsWhereInput
+}
+
+export type songsUpdateToOneWithWhereWithoutLinksInput = {
+  where?: Prisma.songsWhereInput
+  data: Prisma.XOR<Prisma.songsUpdateWithoutLinksInput, Prisma.songsUncheckedUpdateWithoutLinksInput>
+}
+
+export type songsUpdateWithoutLinksInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  artists?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  addition_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  release_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rank?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bpm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  bitrate_audio?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  track_gain?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  users?: Prisma.usersUpdateOneRequiredWithoutSongsNestedInput
+  mood?: Prisma.moodUpdateOneRequiredWithoutSongsNestedInput
+  songsAlbums?: Prisma.songs_albumsUpdateManyWithoutSongsNestedInput
+  songsGroupes?: Prisma.songs_groupesUpdateManyWithoutSongsNestedInput
+  songsGenres?: Prisma.songs_genresUpdateManyWithoutSongsNestedInput
+  songsPeople?: Prisma.songs_peopleUpdateManyWithoutSongsNestedInput
+  songsLyrics?: Prisma.songs_lyricsUpdateManyWithoutSongsNestedInput
+}
+
+export type songsUncheckedUpdateWithoutLinksInput = {
+  song_id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  artists?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  addition_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  release_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mood_id?: Prisma.IntFieldUpdateOperationsInput | number
+  rank?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bpm?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  bitrate_audio?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  track_gain?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  songsAlbums?: Prisma.songs_albumsUncheckedUpdateManyWithoutSongsNestedInput
+  songsGroupes?: Prisma.songs_groupesUncheckedUpdateManyWithoutSongsNestedInput
+  songsGenres?: Prisma.songs_genresUncheckedUpdateManyWithoutSongsNestedInput
+  songsPeople?: Prisma.songs_peopleUncheckedUpdateManyWithoutSongsNestedInput
+  songsLyrics?: Prisma.songs_lyricsUncheckedUpdateManyWithoutSongsNestedInput
 }
 
 export type songsCreateManyMoodInput = {
@@ -1549,6 +1700,7 @@ export type songsUpdateWithoutMoodInput = {
   songsGenres?: Prisma.songs_genresUpdateManyWithoutSongsNestedInput
   songsPeople?: Prisma.songs_peopleUpdateManyWithoutSongsNestedInput
   songsLyrics?: Prisma.songs_lyricsUpdateManyWithoutSongsNestedInput
+  links?: Prisma.linksUpdateManyWithoutSongsNestedInput
 }
 
 export type songsUncheckedUpdateWithoutMoodInput = {
@@ -1571,6 +1723,7 @@ export type songsUncheckedUpdateWithoutMoodInput = {
   songsGenres?: Prisma.songs_genresUncheckedUpdateManyWithoutSongsNestedInput
   songsPeople?: Prisma.songs_peopleUncheckedUpdateManyWithoutSongsNestedInput
   songsLyrics?: Prisma.songs_lyricsUncheckedUpdateManyWithoutSongsNestedInput
+  links?: Prisma.linksUncheckedUpdateManyWithoutSongsNestedInput
 }
 
 export type songsUncheckedUpdateManyWithoutMoodInput = {
@@ -1626,6 +1779,7 @@ export type songsUpdateWithoutUsersInput = {
   songsGenres?: Prisma.songs_genresUpdateManyWithoutSongsNestedInput
   songsPeople?: Prisma.songs_peopleUpdateManyWithoutSongsNestedInput
   songsLyrics?: Prisma.songs_lyricsUpdateManyWithoutSongsNestedInput
+  links?: Prisma.linksUpdateManyWithoutSongsNestedInput
 }
 
 export type songsUncheckedUpdateWithoutUsersInput = {
@@ -1648,6 +1802,7 @@ export type songsUncheckedUpdateWithoutUsersInput = {
   songsGenres?: Prisma.songs_genresUncheckedUpdateManyWithoutSongsNestedInput
   songsPeople?: Prisma.songs_peopleUncheckedUpdateManyWithoutSongsNestedInput
   songsLyrics?: Prisma.songs_lyricsUncheckedUpdateManyWithoutSongsNestedInput
+  links?: Prisma.linksUncheckedUpdateManyWithoutSongsNestedInput
 }
 
 export type songsUncheckedUpdateManyWithoutUsersInput = {
@@ -1678,6 +1833,7 @@ export type SongsCountOutputType = {
   songsGenres: number
   songsPeople: number
   songsLyrics: number
+  links: number
 }
 
 export type SongsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1686,6 +1842,7 @@ export type SongsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.
   songsGenres?: boolean | SongsCountOutputTypeCountSongsGenresArgs
   songsPeople?: boolean | SongsCountOutputTypeCountSongsPeopleArgs
   songsLyrics?: boolean | SongsCountOutputTypeCountSongsLyricsArgs
+  links?: boolean | SongsCountOutputTypeCountLinksArgs
 }
 
 /**
@@ -1733,6 +1890,13 @@ export type SongsCountOutputTypeCountSongsLyricsArgs<ExtArgs extends runtime.Typ
   where?: Prisma.songs_lyricsWhereInput
 }
 
+/**
+ * SongsCountOutputType without action
+ */
+export type SongsCountOutputTypeCountLinksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.linksWhereInput
+}
+
 
 export type songsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   song_id?: boolean
@@ -1757,6 +1921,7 @@ export type songsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   songsGenres?: boolean | Prisma.songs$songsGenresArgs<ExtArgs>
   songsPeople?: boolean | Prisma.songs$songsPeopleArgs<ExtArgs>
   songsLyrics?: boolean | Prisma.songs$songsLyricsArgs<ExtArgs>
+  links?: boolean | Prisma.songs$linksArgs<ExtArgs>
   _count?: boolean | Prisma.SongsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["songs"]>
 
@@ -1827,6 +1992,7 @@ export type songsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   songsGenres?: boolean | Prisma.songs$songsGenresArgs<ExtArgs>
   songsPeople?: boolean | Prisma.songs$songsPeopleArgs<ExtArgs>
   songsLyrics?: boolean | Prisma.songs$songsLyricsArgs<ExtArgs>
+  links?: boolean | Prisma.songs$linksArgs<ExtArgs>
   _count?: boolean | Prisma.SongsCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type songsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1848,6 +2014,7 @@ export type $songsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     songsGenres: Prisma.$songs_genresPayload<ExtArgs>[]
     songsPeople: Prisma.$songs_peoplePayload<ExtArgs>[]
     songsLyrics: Prisma.$songs_lyricsPayload<ExtArgs>[]
+    links: Prisma.$linksPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     song_id: number
@@ -2266,6 +2433,7 @@ export interface Prisma__songsClient<T, Null = never, ExtArgs extends runtime.Ty
   songsGenres<T extends Prisma.songs$songsGenresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.songs$songsGenresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$songs_genresPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   songsPeople<T extends Prisma.songs$songsPeopleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.songs$songsPeopleArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$songs_peoplePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   songsLyrics<T extends Prisma.songs$songsLyricsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.songs$songsLyricsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$songs_lyricsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  links<T extends Prisma.songs$linksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.songs$linksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$linksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2828,6 +2996,30 @@ export type songs$songsLyricsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.Songs_lyricsScalarFieldEnum | Prisma.Songs_lyricsScalarFieldEnum[]
+}
+
+/**
+ * songs.links
+ */
+export type songs$linksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the links
+   */
+  select?: Prisma.linksSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the links
+   */
+  omit?: Prisma.linksOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.linksInclude<ExtArgs> | null
+  where?: Prisma.linksWhereInput
+  orderBy?: Prisma.linksOrderByWithRelationInput | Prisma.linksOrderByWithRelationInput[]
+  cursor?: Prisma.linksWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LinksScalarFieldEnum | Prisma.LinksScalarFieldEnum[]
 }
 
 /**
