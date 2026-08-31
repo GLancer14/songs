@@ -4,7 +4,7 @@ import Header from "../Header/Header"
 import { users } from "@/src/generated/prisma/client";
 import Footer from "../Footer/Footer";
 import { useActionState, useState } from "react";
-import editPeople from "@/app/actions/EditPeople/editPeople";
+import editPeople from "@/app/actions/editPeople/editPeople";
 import AddImage from "../ui/AddImage/AddImage";
 import { useRouter } from "next/navigation";
 import { ProfileData } from "../Profile/Profile";
