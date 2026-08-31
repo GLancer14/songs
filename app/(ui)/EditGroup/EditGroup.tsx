@@ -5,13 +5,33 @@ import Header from "../Header/Header"
 import { album_types, Prisma, users } from "@/src/generated/prisma/client";
 import Footer from "../Footer/Footer";
 import { useActionState, useState } from "react";
-import editGroup from "@/app/actions/EditGroup/editGroup";
+import addGroup from "@/app/actions/addGroup/addGroup";
 import AddImage from "../ui/AddImage/AddImage";
+import editGroup from "@/app/actions/editGroup/editGroup";
 
-const EditGroup = ({ user }: { user: users | null | undefined }) => {
-  const [state, action, pending] = useActionState(editGroup, undefined)
-  const [name, setName] = useState("");
-  const [country, setCountry] = useState("");
+const EditGroup = ({
+  user,
+  edit,
+  groupData,
+  groupCountry,
+}: {
+  user: users | null | undefined;
+  edit: boolean;
+  groupData?: {
+    name: string;
+    description: string | null;
+    year_of_foundation: number | null;
+    image: string | null;
+    id: number;
+    country_id: number | null;
+  } | null;
+  groupCountry?: string | null;
+}) => {
+  const [state, action, pending] = useActionState(edit ? editGroup : addGroup, undefined)
+  const [name, setName] = useState(edit ? groupData?.name : "");
+  const [country, setCountry] = useState(groupCountry || "");
+  const [year, setYear] = useState(groupData?.year_of_foundation || 2000);
+  const [desc, setDesc] = useState(groupData?.description || "");
 
   return (
     <>
@@ -22,7 +42,7 @@ const EditGroup = ({ user }: { user: users | null | undefined }) => {
         method="POST"
         encType="multipart/form-data"
       >
-        <h2 className="text-4xl capitalize mb-4">Add Group</h2>
+        <h2 className="text-4xl capitalize mb-4">{edit ? `Edit ${groupData?.name}` : "Add"} Group</h2>
         <section className="flex flex-col justify-start mb-8">
           <article className="w-1/2">
             <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
@@ -65,6 +85,8 @@ const EditGroup = ({ user }: { user: users | null | undefined }) => {
                 maxLength={1024}
                 name="description"
                 id="description"
+                value={desc}
+                onInput={(e) => setDesc(e.currentTarget.value)}
               ></textarea>
             </label>
           </article>
@@ -79,14 +101,26 @@ const EditGroup = ({ user }: { user: users | null | undefined }) => {
                 max="2100"
                 min="1900"
                 step="1"
+                value={year}
+                onInput={(e) => setYear(+e.currentTarget.value)}
               />
             </label>
           </article>
+          <article className="w-0 h-0 opacity-0">
+            {edit && 
+              <input
+                type="text"
+                className="h-0 w-0"
+                value={groupData?.id}
+                name="group_id"
+              />
+            }
+          </article>
         </section>
         <section className="mb-4">
-          <AddImage />
+          <AddImage previousImage={`/backgrounds/groupes/${groupData?.image}`} />
         </section>
-        <button className="" value="Save" id="save_songs_lyrics">Add Group</button>
+        <button className="" value="Save" id="save_songs_lyrics">{edit ? "Add" : "Edit"} Group</button>
       </form>
       <Footer />
     </>

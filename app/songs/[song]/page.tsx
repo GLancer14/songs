@@ -150,6 +150,7 @@ export default async function Page({
           group={group}
           people={people}
           songLinks={songLinks}
+          userRole={userData.role}
         />
       </div>
       <Footer />

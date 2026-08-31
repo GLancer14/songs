@@ -73,6 +73,17 @@ export const AddGroupSchema = z.object({
 
 export type AddGroupSchemaType = z.infer<typeof AddGroupSchema>;
 
+export const EditGroupSchema = z.object({
+  group_name: z.string().nonempty(),
+  group_country: z.string().nonempty(),
+  description: z.string().optional(),
+  year_of_foundation: z.number().optional(),
+  title_image: z.file().optional(),
+  group_id: z.string().optional(),
+})
+
+export type EditGroupSchemaType = z.infer<typeof EditGroupSchema>;
+
 export const AddPeopleSchema = z.object({
   people_name: z.string().nonempty(),
   people_firstname: z.string().optional(),

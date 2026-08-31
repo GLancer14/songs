@@ -12,7 +12,7 @@ import ExternalLink from "./ExternalLink/ExternalLink";
 import Lyrics from "./Lyrics/Lyrics";
 import { useActionState, useRef, useState } from "react";
 import clsx from "clsx";
-import editSong from "@/app/actions/EditSong/editSong";
+import addSong from "@/app/actions/addSong/addSong";
 import { redirect } from "next/navigation";
 import { fieldsNames, TableNames } from "../lib/fieldsNames";
 import AddImage from "../ui/AddImage/AddImage";
@@ -25,6 +25,7 @@ const EditSong = ({
   dataGroupes,
   requiredFields,
   lyricsLanguages,
+  edit = false,
 }: {
   user: users | null | undefined;
   languages: string[];
@@ -45,9 +46,10 @@ const EditSong = ({
     fields: string;
   }>;
   lyricsLanguages: string[];
+  edit: boolean;
 }) => {
   const formRef = useRef<HTMLFormElement | null>(null)
-  const [state, action, pending] = useActionState(editSong, undefined)
+  const [state, action, pending] = useActionState(addSong, undefined)
   const [lyricsOn, setLyricsOn] = useState<{
     english: boolean,
     russian: boolean,

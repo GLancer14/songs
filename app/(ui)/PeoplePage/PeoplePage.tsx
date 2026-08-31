@@ -11,6 +11,7 @@ import searchSongs from "@/app/actions/searchSongs/searchSongs";
 import searchAlbums from "@/app/actions/searchAlbums/searchAlbums";
 import MiniAlbumCard from "../AlbumCard/MiniAlbumCard/MiniAlbumCard";
 import About from "../ui/About/About";
+import { redirect } from "next/navigation";
 
 export interface PeoplePageProps {
   albums: {
@@ -60,6 +61,7 @@ export interface PeoplePageProps {
     country: string;
   } | null;
   type: "people" | "group";
+  userRole: string;
 }
 
 const PeoplePage: React.FC<PeoplePageProps> = ({
@@ -68,6 +70,7 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
   songs,
   country,
   type,
+  userRole,
 }) => {
   const [songsModalVisibility, setSongsModalVisibility] = useState(false);
   const [albumsModalVisibility, setAlbumsModalVisibility] = useState(false);
@@ -190,6 +193,40 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
           `)}
         ></div>
       </header>
+
+      {userRole === "admin" &&
+        <div className="relative top-0 w-full">
+          <div className="flex flex-col justify-start w-300 max-w-300 mx-auto">
+            <div className="flex flex-col max-w-93 w-93 self-end py-4">
+              <button
+                className="
+                  h-7
+                  self-end
+                  border
+                  border-black
+                  rounded-[14px]
+                  py-1
+                  px-3
+                  text-[13.5px]
+                  cursor-pointer
+                "
+                type="button"
+                onClick={() => {
+                  if (peopleData && type === "group") {
+                    redirect(`/edit-group/${peopleData.id}`);
+                  } else if (peopleData && type === "people") {
+                    redirect(`/edit-people/${peopleData.id}`);
+                  }
+                }}
+              >
+                Edit {type === "group" ? "Group" : "Artist"}
+              </button>
+            </div>
+          </div>
+          <hr className="w-full text-[rgb(204,204,204)]"/>
+        </div>
+        }
+
       <div className="relative top-16 flex flex-row gap-17 w-300 max-w-300 mb-8">
         <div className="w-130 max-w-130">
           <h3 className="text-center text-[40px]">About</h3>

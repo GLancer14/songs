@@ -7,8 +7,8 @@ import { debounce } from "@/app/lib/decorators";
 import Image from "next/image";
 
 const AddImage = ({ name, previousImage }: { name?: string, previousImage?: string | null }) => {
-  const [image, setImage] = useState(previousImage);
   const staticURL = !process.env.NEXT_PUBLIC_BLOB_STORE_ID ? "" : process.env.NEXT_PUBLIC_STATIC_URL;
+  const [image, setImage] = useState(`${staticURL}${previousImage}` || null);
   
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

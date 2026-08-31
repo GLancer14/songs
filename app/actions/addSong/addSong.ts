@@ -15,7 +15,7 @@ export type ArrayValues =
 
 type ValidModelKeys = Extract<keyof typeof prisma, ArrayValues>;
 
-export default async function editSong(
+export default async function addSong(
   state: AddSongSchemaType, formData: FormData
 ) {
   const user = await userIam();
@@ -43,6 +43,8 @@ export default async function editSong(
     url_name: formData.getAll("url_name"),
     url_type: formData.getAll("url_type"),
   });
+
+  console.log(validatedFields)
 
   if (!validatedFields.success) {
     return {

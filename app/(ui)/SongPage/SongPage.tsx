@@ -12,6 +12,7 @@ import About from "../ui/About/About";
 import Link from "next/link";
 import Artist from "../ui/Artist/Artist";
 import YouTube from "react-youtube";
+import { redirect } from "next/navigation";
 
 export interface SongPageProps {
   songData: songs;
@@ -94,6 +95,7 @@ export interface SongPageProps {
     url_name: string;
     url_type: string;
   }[];
+  userRole: string;
 }
 
 const SongPage: React.FC<SongPageProps> = ({
@@ -106,6 +108,7 @@ const SongPage: React.FC<SongPageProps> = ({
   group,
   people,
   songLinks,
+  userRole,
 }) => {
   const [showAbout, setShowAbout] = useState(true);
   const [showAlbumInfo, setShowAlbumInfo] = useState(true);
@@ -253,9 +256,34 @@ const SongPage: React.FC<SongPageProps> = ({
         ></div>
       </header>
       
+      {userRole === "admin" &&
+        <div className="relative top-6 flex flex-col w-full">
+          <div className="max-w-300 w-300 self-center py-4">
+            <button
+              className="
+                h-7
+                self-center
+                border
+                border-black
+                rounded-[14px]
+                py-1
+                px-3
+                text-[13.5px]
+                cursor-pointer
+              "
+              type="button"
+              onClick={() => {
+                redirect(`/edit-song/${songData.song_id}`)
+              }}
+            >
+              Edit lyrics
+            </button>
+          </div>
+          <hr className="w-full text-[rgb(204,204,204)]"/>
+        </div>}
 
       <div className="relative flex flex-row flex-wrap max-w-300 w-300 self-center">
-        <div className="w-180 mx-auto">
+        <div className="w-180 mr-auto">
           <div>
             {lyrics && lyrics.map((lyric, ind, array) => {
               return (

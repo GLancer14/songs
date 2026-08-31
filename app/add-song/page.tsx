@@ -23,6 +23,7 @@ const Page = async () => {
         dataGroupes={dataGroupes}
         requiredFields={requiredFields}
         lyricsLanguages={lyricsLanguages}
+        edit={user?.role === "admin"}
       />
     </Suspense>
   )

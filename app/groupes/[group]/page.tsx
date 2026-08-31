@@ -80,6 +80,7 @@ export default async function Page({
           albums={albums}
           country={country}
           type="group"
+          userRole={userData.role}
         />
       <Footer />
     </>

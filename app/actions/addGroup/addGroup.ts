@@ -1,23 +1,23 @@
 "use server"
 
+import { Prisma, songs } from "@/src/generated/prisma/client";
 import { prisma } from "../../lib/prisma";
-import { EditGroupSchema, EditGroupSchemaType } from "@/app/lib/definitions";
+import { AddGroupSchema, AddGroupSchemaType } from "@/app/lib/definitions";
 import userIam from "../userIam";
 import { writeFile } from "fs";
 import path from "path";
 import { put } from "@vercel/blob";
 
-export default async function editGroup(
-  state: EditGroupSchemaType, formData: FormData
+export default async function addGroup(
+  state: AddGroupSchemaType, formData: FormData
 ) {
   const user = await userIam();
-  const validatedFields = EditGroupSchema.safeParse({
+  const validatedFields = AddGroupSchema.safeParse({
     group_name: formData.get("group_name"),
     group_country: formData.get("group_country"),
     description: formData.get("description"),
     year_of_foundation: Number(formData.get("year_of_foundation")),
     title_image: formData.get("title_image"),
-    group_id: formData.get("group_id"),
   });
 
   if (!validatedFields.success) {
@@ -45,12 +45,9 @@ export default async function editGroup(
     select: {
       country_id: true,
     }
-  });
+  })
 
-  const albumUpdateResult = await prisma.groupes.update({
-    where: {
-      id: Number(groupData.group_id),
-    },
+  const albumCreateResult = await prisma.groupes.create({
     data: {
       name: groupData.group_name,
       country_id: groupCountry?.country_id ?? null,
@@ -81,5 +78,5 @@ export default async function editGroup(
     }
   }
 
-  return JSON.parse(JSON.stringify(albumUpdateResult));
+  return JSON.parse(JSON.stringify(albumCreateResult));
 }
