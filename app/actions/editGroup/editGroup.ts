@@ -32,8 +32,11 @@ export default async function editGroup(
     }
   }
   const groupData = validatedFields.data;
+  console.log(groupData.title_image)
 
-  const imageName = `${Date.now()}-${groupData.title_image?.name.replace(/[^a-zA-Z0-9.]/g, '-')}`;
+  const imageName = groupData.title_image && !groupData.title_image.name.includes("blob")
+    ? `${Date.now()}-${groupData.title_image?.name.replace(/[^a-zA-Z0-9.]/g, '-')}`
+    : "";
 
   const groupCountry = await prisma.countries.findFirst({
     where: {
