@@ -16,7 +16,7 @@ const EditGroup = ({
   groupCountry,
 }: {
   user: users | null | undefined;
-  edit: boolean;
+  edit?: boolean;
   groupData?: {
     name: string;
     description: string | null;
