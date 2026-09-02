@@ -79,7 +79,7 @@ export const EditGroupSchema = z.object({
   description: z.string().optional(),
   year_of_foundation: z.number().optional(),
   title_image: z.file().optional(),
-  group_id: z.string().optional(),
+  group_id: z.string(),
 })
 
 export type EditGroupSchemaType = z.infer<typeof EditGroupSchema>;

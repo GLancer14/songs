@@ -3,9 +3,10 @@
 import { prisma } from "../../lib/prisma";
 import { EditGroupSchema, EditGroupSchemaType } from "@/app/lib/definitions";
 import userIam from "../userIam";
-import { writeFile } from "fs";
+import { rm, writeFile } from "fs";
 import path from "path";
-import { put } from "@vercel/blob";
+import { del, put } from "@vercel/blob";
+import { redirect } from "next/navigation";
 
 export default async function editGroup(
   state: EditGroupSchemaType, formData: FormData
@@ -32,6 +33,11 @@ export default async function editGroup(
     }
   }
   const groupData = validatedFields.data;
+  const oldGroupData = await prisma.groupes.findFirst({
+    where: {
+      id: +groupData.group_id,
+    }
+  });
 
   const imageName = `${Date.now()}-${groupData.title_image?.name.replace(/[^a-zA-Z0-9.]/g, '-')}`;
 
@@ -44,8 +50,20 @@ export default async function editGroup(
     },
     select: {
       country_id: true,
-    }
+    },
   });
+
+  let newGroupCountry: {
+    country_id: number;
+    country: string;
+  } | undefined;
+  if (oldGroupData?.country_id !== groupCountry?.country_id) {
+    newGroupCountry = await prisma.countries.create({
+      data: {
+        country: groupData.group_country,
+      },
+    });
+  }
 
   const groupDataImage: {
     name: string;
@@ -55,7 +73,7 @@ export default async function editGroup(
     image?: string;
   } = {
     name: groupData.group_name,
-    country_id: groupCountry?.country_id ?? null,
+    country_id: newGroupCountry?.country_id ?? null,
     description: groupData.description,
     year_of_foundation: Number(groupData.year_of_foundation),
   };
@@ -78,12 +96,23 @@ export default async function editGroup(
       return groupData.title_image = undefined;
     }
 
+    if (oldGroupData?.image && oldGroupData.image !== groupData.title_image.name) {
+      if (!process.env.NEXT_PUBLIC_BLOB_STORE_ID) {
+        rm(path.join(process.cwd(), 'public/backgrounds/groupes', oldGroupData.image), (e) => {
+          console.log(e)
+        });
+      } else {
+        const savePath = `backgrounds/groupes/${oldGroupData.image}`;
+        await del(savePath);
+      }
+    }
+
     const file = groupData.title_image;
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
     if (!process.env.NEXT_PUBLIC_BLOB_STORE_ID) {
-      await writeFile(path.join(process.cwd(), 'public/backgrounds/groupes', imageName), buffer, (e) => {
+      writeFile(path.join(process.cwd(), 'public/backgrounds/groupes', imageName), buffer, (e) => {
         console.log(e)
       });
     } else {
