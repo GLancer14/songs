@@ -24,7 +24,7 @@ const EditProfileForm = ({ profileData }: { profileData: ProfileData }) => {
       encType="multipart/form-data"
       onSubmit={() => router.push(`/people`)}
     >
-      <h2 className="text-4xl capitalize mb-4 w-300">Add People</h2>
+      <h2 className="text-4xl capitalize mb-4 w-300">Edit Profile</h2>
       <section className="flex flex-col flex-1 justify-start mb-8">
         <article className="flex flex-col flex-wrap gap-8 justify-start items-start mb-8 w-1/2">
           <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
@@ -61,11 +61,11 @@ const EditProfileForm = ({ profileData }: { profileData: ProfileData }) => {
         <section className="flex gap-4 justify-between mb-4">
           <article className="w-1/2">
             <h3>Add avatar</h3>
-            <AddImage name="avatar" previousImage={profileData.avatar} />
+            <AddImage name="avatar" previousImage={profileData.avatar && undefined} />
           </article>
           <article className="w-1/2">
             <h3>Add Cover Art</h3>
-            <AddImage name="coverart" previousImage={profileData.coverart} />
+            <AddImage name="coverart" previousImage={profileData.coverart && undefined} />
           </article>
         </section>
         <article className="w-full mb-4">

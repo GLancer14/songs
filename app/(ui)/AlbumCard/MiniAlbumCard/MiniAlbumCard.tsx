@@ -20,7 +20,7 @@ const MiniAlbumCard: React.FC<MiniAlbumCardProps> = ({ album, className }) => {
     <a
       key={album.id}
       className={clsx("flex flex-row flex-wrap w-[calc(100%/2-16px)]", className)}
-      href={`/albums/${album.id}`}
+      href={`api/albums/${album.id}`}
     >
       <Image
         src={album.image || album.image ? `${staticURL}/backgrounds/albums/${album.image}` : `${staticURL}/noimage2.svg`}

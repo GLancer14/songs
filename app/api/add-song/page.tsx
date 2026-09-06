@@ -1,0 +1,32 @@
+"use server"
+
+import { Suspense } from "react"
+import EditSong from "@/app/(ui)/EditSong/EditSong"
+import userIam from "@/app/actions/userIam"
+import { prisma } from "@/app/lib/prisma"
+import Loading from "./loading"
+import { creators, dataGroupes, requiredFields } from "@/app/lib/searchFields"
+
+const Page = async () => {
+  const lyricsLanguages = ["original", "english", "russian"];
+  const user = await userIam()
+  const languages = (await prisma.languages.findMany()).map(language => language.lang);
+  const moods = await prisma.mood.findMany();
+
+  return (
+    <Suspense fallback={<Loading />}>
+      <EditSong
+        user={user}
+        languages={languages}
+        moods={moods}
+        creators={creators}
+        dataGroupes={dataGroupes}
+        requiredFields={requiredFields}
+        lyricsLanguages={lyricsLanguages}
+        edit={user?.role === "admin"}
+      />
+    </Suspense>
+  )
+}
+
+export default Page;

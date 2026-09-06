@@ -190,7 +190,7 @@ const AlbumPage: React.FC<SongPageProps> = ({
                             ["border-b-2 border-gray-300"]:
                               ind !== array.length - 1,
                           })}
-                          href={`/songs/${track.songs.song_id}`}
+                          href={`/api/songs/${track.songs.song_id}`}
                         >
                           {track.songs.name}
                         </a>

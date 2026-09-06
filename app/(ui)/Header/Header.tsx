@@ -33,9 +33,9 @@ const Header = ({ user, imageColor }: { user: users | null | undefined, imageCol
           </Link>
         </h1>
         <ul className={clsx(s.header__auth, "items-center ml-4")}>
-          <Link className="flex items-center" href="/albums">Albums</Link>
-          <Link className="flex items-center" href="/people">People</Link>
-          <Link className="flex items-center" href="/groupes">Groupes</Link>
+          <Link className="flex items-center" href="/api/albums">Albums</Link>
+          <Link className="flex items-center" href="/api/people">People</Link>
+          <Link className="flex items-center" href="/api/groupes">Groupes</Link>
           <li className={clsx("flex items-center relative")}>
             <div
               // className="hover:text-black"
@@ -69,16 +69,16 @@ const Header = ({ user, imageColor }: { user: users | null | undefined, imageCol
               onMouseLeave={() => {setListVisibility(false)}}
             >
               <li>
-                <Link href="/add-song">Add Song</Link>
+                <Link href="/api/add-song">Add Song</Link>
               </li>
               <li>
-                <Link href="/add-album">Add Albums</Link>
+                <Link href="/api/add-album">Add Albums</Link>
               </li>
               <li>
-                <Link href="/add-group">Add Group</Link>
+                <Link href="/api/add-group">Add Group</Link>
               </li>
               <li>
-                <Link href="/add-people">Add People</Link>
+                <Link href="/api/add-people">Add People</Link>
               </li>
             </ul>
           </li>
@@ -88,7 +88,7 @@ const Header = ({ user, imageColor }: { user: users | null | undefined, imageCol
         {user && <li className="flex items-center">
           <Link
             className="h-min flex flex-nowrap g-2 justify-center align-middle"
-            href="/profile"
+            href="/api/profile"
           >
             {user && user.avatar &&
               <Image

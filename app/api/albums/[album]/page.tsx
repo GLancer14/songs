@@ -1,0 +1,112 @@
+"use server";
+
+import userIam from "@/app/actions/userIam"
+import Header from "@/app/(ui)/Header/Header";
+import Footer from "@/app/(ui)/Footer/Footer";
+import { prisma } from "@/app/lib/prisma";
+import { getAverageColor } from "fast-average-color-node";
+import AlbumPage from "@/app/(ui)/AlbumPage/AlbumPage";
+import { FastAverageColorResult } from "fast-average-color";
+
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ album: number }>
+}) {
+  const { album } = await params;
+  const userData = await userIam();
+  const albumData = await prisma.albums.findFirst({
+    where: {
+      id: +album,
+    },
+  });
+
+  const albumType = await prisma.album_types.findFirst({
+    where: {
+      album_type_id: +album,
+    },
+  });
+
+  const tracklist = await prisma.songs_albums.findMany({
+    where: {
+      id: +album,
+    },
+    select: {
+      songs: true,
+      track: true,
+    }
+  });
+
+  const songsPeople = await (Promise.all(tracklist.map(async (song) => {
+    return prisma.songs_people.findMany({
+      where: {
+        song_id: song.songs.song_id,
+      },
+      include: {
+        people: {
+          include: {
+            peopleType: {
+              include: {
+                type: true,
+              }
+            }
+          }
+        },
+      }
+    })
+  })));
+
+  const artist = await prisma.groupes.findFirst({
+    where: {
+      name: albumData?.author, 
+    },
+  })
+
+  let imageColor: string | undefined;
+  let imageValue: number[] | undefined;
+  if (albumData?.image) {
+    let color: FastAverageColorResult;
+    if (!process.env.NEXT_PUBLIC_BLOB_STORE_ID) {
+      color = (await getAverageColor(`./public/backgrounds/albums/${albumData.image}`));
+    } else {
+      color = (await getAverageColor(`${process.env.NEXT_PUBLIC_STATIC_URL}/backgrounds/albums/${albumData.image}`));
+    }
+
+    imageColor = color.rgb;
+    imageValue = color.value;
+  }
+
+  let imageColorMinus;
+  let imageColorMinusValue;
+  
+  if (imageValue) {
+    imageColorMinus = imageValue.map(value => {
+      return Math.round(value * 0.7);
+    });
+
+    imageColorMinusValue = `rgb(${imageColorMinus[0]},${imageColorMinus[1]},${imageColorMinus[2]})`;
+  }
+
+  if (!userData) return null;
+  if (!albumData) return null;
+ 
+  return (
+    <>
+      <Header user={userData} imageColor={imageColor} />
+      <div className="flex flex-col flex-1 items-center">
+        <AlbumPage
+          authorId={artist?.id || 0}
+          albumType={albumType}
+          albumData={albumData}
+          tracklist={tracklist}
+          imageColor={imageColor}
+          imageValue={imageValue}
+          songsPeople={songsPeople}
+        />
+      </div>
+      <Footer />
+      
+    </>
+    
+  )
+}

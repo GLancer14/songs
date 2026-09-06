@@ -50,6 +50,7 @@ export default async function editGroup(
     },
     select: {
       country_id: true,
+      country: true,
     },
   });
 
@@ -57,12 +58,22 @@ export default async function editGroup(
     country_id: number;
     country: string;
   } | undefined;
+
   if (oldGroupData?.country_id !== groupCountry?.country_id) {
-    newGroupCountry = await prisma.countries.create({
-      data: {
-        country: groupData.group_country,
-      },
-    });
+    if (groupCountry?.country === null) {
+      newGroupCountry = await prisma.countries.create({
+        data: {
+          country: groupData.group_country,
+        },
+      });
+    } else {
+      if (groupCountry) {
+        newGroupCountry = {
+          country_id: groupCountry.country_id,
+          country: groupCountry.country,
+        };
+      }
+    }
   }
 
   const groupDataImage: {
