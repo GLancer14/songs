@@ -213,9 +213,9 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
                 type="button"
                 onClick={() => {
                   if (peopleData && type === "group") {
-                    redirect(`/edit-group/${peopleData.id}`);
+                    redirect(`/api/edit-group/${peopleData.id}`);
                   } else if (peopleData && type === "people") {
-                    redirect(`/edit-people/${peopleData.id}`);
+                    redirect(`/api/edit-people/${peopleData.id}`);
                   }
                 }}
               >

@@ -6,7 +6,6 @@ import userIam from "../userIam";
 import { rm, writeFile } from "fs";
 import path from "path";
 import { del, put } from "@vercel/blob";
-import { redirect } from "next/navigation";
 
 export default async function editGroup(
   state: EditGroupSchemaType, formData: FormData
@@ -93,7 +92,7 @@ export default async function editGroup(
     groupDataImage.image = imageName;
   }
 
-  const albumUpdateResult = await prisma.groupes.update({
+  const groupUpdateResult = await prisma.groupes.update({
     where: {
       id: Number(groupData.group_id),
     },
@@ -134,5 +133,5 @@ export default async function editGroup(
     }
   }
 
-  return JSON.parse(JSON.stringify(albumUpdateResult));
+  return JSON.parse(JSON.stringify(groupUpdateResult));
 }

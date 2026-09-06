@@ -36,7 +36,7 @@ const SongCard = ({ songData }: { songData: Prisma.songsModel }) => {
   }, [songData]);
   
   return (
-    <Link href={`/songs/${songData.song_id}`} className={s.songBanner}>
+    <Link href={`/api/songs/${songData.song_id}`} className={s.songBanner}>
       {songData.image && songsAlbum && <Image
         className={s.songBanner_image}
         src={

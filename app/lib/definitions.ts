@@ -97,6 +97,20 @@ export const AddPeopleSchema = z.object({
 
 export type AddPeopleSchemaType = z.infer<typeof AddPeopleSchema>;
 
+export const EditPeopleSchema = z.object({
+  people_name: z.string().nonempty(),
+  people_firstname: z.string().optional(),
+  people_surname: z.string().optional(),
+  people_nickname: z.string().optional(),
+  people_type: z.string().optional(),
+  people_country: z.string().optional(),
+  description: z.string().optional(),
+  title_image: z.file().optional(),
+  people_id: z.string(),
+})
+
+export type EditPeopleSchemaType = z.infer<typeof EditPeopleSchema>;
+
 export const SearchSongsSchema = z.object({
   searchString: z.string().optional(),
   artists: z.string().optional(),
