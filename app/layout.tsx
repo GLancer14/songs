@@ -34,6 +34,9 @@ export default function RootLayout({
       lang="en"
       className={`${medievalSharp.variable} ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <meta name="viewport" content="width=device-width initial-scale=1.0" />
+      </head>
       <body className="relative min-h-full flex flex-col">
         <ThemeProvider>
           {children}

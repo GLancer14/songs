@@ -20,7 +20,7 @@ export default async function Home() {
     // <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans w-[1200px] mx-auto">
     <>
       <Header user={user} />
-      <main className="flex flex-1 flex-col items-center py-8 px-16 sm:items-start w-300 mx-auto">
+      <main className="flex flex-1 flex-col items-center py-8 px-16 sm:items-start w-300 lg:max-w-300 lg:w-auto mx-auto">
         <h2
           className="flex justify-center mt-5 mb-5 self-center text-3xl"
         >
