@@ -19,6 +19,15 @@ const Page = async ({
     },
   });
 
+  const peopleTypes = await prisma.people_type.findMany({
+    where: {
+      id: +people,
+    },
+    include: {
+      type: true,
+    },
+  });
+
   let country;
   if (peopleData) {
     country = await prisma.countries.findFirst({
@@ -34,6 +43,7 @@ const Page = async ({
         user={user}
         edit={true}
         peopleData={peopleData}
+        peopleTypes={peopleTypes}
         peopleCountry={country?.country}
       />
     </Suspense>

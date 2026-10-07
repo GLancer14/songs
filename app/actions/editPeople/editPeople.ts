@@ -16,7 +16,7 @@ export default async function editPeople(
     people_firstname: formData.get("people_firstname"),
     people_surname: formData.get("people_surname"),
     people_nickname: formData.get("people_nickname"),
-    people_type: formData.get("people_type"),
+    people_type: formData.getAll("type"),
     people_country: formData.get("people_country"),
     description: formData.get("description"),
     title_image: formData.get("title_image"),
@@ -54,7 +54,7 @@ export default async function editPeople(
       country_id: true,
       country: true,
     }
-  })
+  });
 
   let newPeopleCountry: {
     country_id: number;
@@ -78,12 +78,44 @@ export default async function editPeople(
     }
   }
 
+  await prisma.people_type.deleteMany({
+    where: {
+      id: +peopleData.people_id,
+    },
+  });
+
+  peopleData.people_type?.forEach(async (value) => {
+    const foundType = await prisma.type.findFirst({
+      where: {
+        name: value,
+      },
+    });
+
+    if (foundType) {
+      return foundType;
+    }
+
+    await prisma.type.create({
+      data: {
+        name: value,
+      },
+    });
+
+    await prisma.people_type.create({
+      data: {
+        id: +peopleData.people_id,
+        type_id: +value,
+      },
+    })
+  })
+
+  
+
   const peopleDataImage: {
     name: string;
     firstname: string;
     surname: string;
     nickname: string;
-    // type: string;
     country_id: number | null;
     description: string | undefined;
     image?: string;
@@ -92,12 +124,9 @@ export default async function editPeople(
     firstname: peopleData.people_firstname || "",
     surname: peopleData.people_surname || "",
     nickname: peopleData.people_nickname || "",
-    // type: peopleData.people_type || "",
     country_id: newPeopleCountry?.country_id ?? null,
     description: peopleData.description,
   };
-
-  console.log(peopleDataImage)
 
   if (peopleData.title_image && !peopleData.title_image.name.includes("blob")) {
     peopleDataImage.image = imageName;

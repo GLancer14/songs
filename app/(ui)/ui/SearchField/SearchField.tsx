@@ -37,6 +37,9 @@ const SearchField = ({
         className,
         "flex gap-4 cursor-pointer justify-between relative"
       )}
+      onBlur={() => {
+        setSearchVisible(false);
+      }}
     >
       <span className="text-xl">{fieldName}</span>
       <input
@@ -69,9 +72,9 @@ const SearchField = ({
         ref={listRef}
         className="absolute mt-20 text-white bg-gray-800 w-full z-50"
         id={`${tableData.fields}_options`}
-        onBlur={() => {
-          setSearchVisible(false);
-        }}
+        // onBlur={() => {
+        //   setSearchVisible(false);
+        // }}
       >
         {searchVisible && searchResults && searchResults.length > 0 && 
           searchResults.map((searchOption, ind) => {
@@ -80,7 +83,7 @@ const SearchField = ({
                 key={ind}
                 className="border-2 border-gray-600 p-1"
                 onClick={() => {
-                  setSearchVisible(true);
+                  // setSearchVisible(true);
                   setSelectedFields([
                     ...selectedFields,
                     searchOption[tableData.fields],

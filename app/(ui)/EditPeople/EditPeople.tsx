@@ -27,7 +27,16 @@ const EditPeople = ({
     description: string | null;
     image: string | null;
     country_id: number | null;
-} | null;
+  } | null;
+  peopleTypes: ({
+    type: {
+      name: string;
+      type_id: number;
+    };
+  } & {
+    id: number;
+    type_id: number;
+  })[];
   peopleCountry?: string | null;
 }) => {
   const router = useRouter()
@@ -44,14 +53,14 @@ const EditPeople = ({
     <>
       <Header user={user} />
       <form
-        className="flex flex-col justify-start p-8 max-w-300 mx-auto bg-white"
+        className="flex flex-col flex-1 justify-start p-8 w-full max-w-300 mx-auto bg-white"
         action={action}
         method="POST"
         encType="multipart/form-data"
-        // onSubmit={() => router.push(`/api/people`)}
+        onSubmit={() => router.push(`/api/people`)}
       >
-        <h2 className="text-4xl capitalize mb-4 w-300">{edit ? `Edit ${peopleData?.name}` : "Add"}</h2>
-        <section className="flex flex-col flex-1 justify-start mb-8">
+        <section className="flex flex-col justify-start mb-8 max-w-300">
+          <h2 className="text-4xl capitalize mb-4">{edit ? `Edit ${peopleData?.name}` : "Add People"}</h2>
           <article className="flex flex-col flex-wrap gap-8 justify-start items-start mb-8 w-1/2">
             <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
               <span className="text-xl">Name</span>
@@ -113,7 +122,6 @@ const EditPeople = ({
               />
             </label>
             <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
-              {/* <span className="text-xl">Type</span> */}
               <SearchField
                 fieldName={"Type"}
                 tableData={{

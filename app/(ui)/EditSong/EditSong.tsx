@@ -100,13 +100,6 @@ const EditSong = ({
                     })}}
                   />
                 </label>
-                // <SearchField
-                //   key={ind}
-                //   tableData={requiredField}
-                //   required={true}
-                //   title={requiredField.title}
-                //   className="flex flex-col justify-start w-1/2 gap-2 mb-8"
-                // />
               )
             })}
           </article>
