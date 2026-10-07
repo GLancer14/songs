@@ -8,6 +8,7 @@ import editPeople from "@/app/actions/editPeople/editPeople";
 import AddImage from "@/app/(ui)/ui/AddImage/AddImage";
 import { useRouter } from "next/navigation";
 import addPeople from "@/app/actions/addPeople/addPeople";
+import SearchField from "../ui/SearchField/SearchField";
 
 const EditPeople = ({
   user,
@@ -47,7 +48,7 @@ const EditPeople = ({
         action={action}
         method="POST"
         encType="multipart/form-data"
-        onSubmit={() => router.push(`/api/people`)}
+        // onSubmit={() => router.push(`/api/people`)}
       >
         <h2 className="text-4xl capitalize mb-4 w-300">{edit ? `Edit ${peopleData?.name}` : "Add"}</h2>
         <section className="flex flex-col flex-1 justify-start mb-8">
@@ -112,18 +113,16 @@ const EditPeople = ({
               />
             </label>
             <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
-              <span className="text-xl">Type</span>
-              <input
-                className="p-1 rounded-sm w-2/3"
-                type="text"
-                title={"тип"}
-                maxLength={128}
-                name={"people_type"}
-                required={true}
-                value={type}
-                onInput={(e) => {
-                  setType(e.currentTarget.value);
+              {/* <span className="text-xl">Type</span> */}
+              <SearchField
+                fieldName={"Type"}
+                tableData={{
+                  name: "type",
+                  fields: "name",
+                  title: "",
                 }}
+                required={true}
+                className="flex flex-col justify-start gap-2 mb-2 w-full"
               />
             </label>
             <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
@@ -169,7 +168,7 @@ const EditPeople = ({
           </article>
         </section>
         <section className="mb-4">
-          <AddImage previousImage={`/backgrounds/people/${peopleData?.image}`} />
+          <AddImage previousImage={peopleData?.image ? `/backgrounds/people/${peopleData?.image}` : null} />
         </section>
         <button className="" value="Save" id="save_songs_lyrics">{!edit ? "Add" : "Edit"} People</button>
       </form>

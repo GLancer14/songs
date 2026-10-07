@@ -1,6 +1,5 @@
 "use server"
 
-import { Prisma, songs } from "@/src/generated/prisma/client";
 import { prisma } from "../../lib/prisma";
 import { AddPeopleSchema, AddPeopleSchemaType } from "@/app/lib/definitions";
 import userIam from "../userIam";
@@ -17,12 +16,13 @@ export default async function addPeople(
     people_firstname: formData.get("people_firstname"),
     people_surname: formData.get("people_surname"),
     people_nickname: formData.get("people_nickname"),
-    people_type: formData.get("people_type"),
+    people_type: formData.getAll("type"),
     people_country: formData.get("people_country"),
     description: formData.get("description"),
     title_image: formData.get("title_image"),
   });
 
+  console.log(typeof formData.get("type"))
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
@@ -38,7 +38,7 @@ export default async function addPeople(
 
   const imageName = `${Date.now()}-${peopleData.title_image?.name.replace(/[^a-zA-Z0-9.]/g, '-')}`;
 
-  const singerCountry = await prisma.countries.findFirst({
+  let singerCountry = await prisma.countries.findFirst({
     where: {
       country: {
         contains: peopleData.people_country,
@@ -48,20 +48,56 @@ export default async function addPeople(
     select: {
       country_id: true,
     }
-  })
+  });
 
-  const albumCreateResult = await prisma.people.create({
+  if (!singerCountry && peopleData.people_country) {
+    singerCountry = await prisma.countries.create({
+      data: {
+        country: peopleData.people_country,
+      },
+    });
+  }
+
+  const peopleCreateResult = await prisma.people.create({
     data: {
       name: peopleData.people_name,
       firstname: peopleData.people_firstname,
       surname: peopleData.people_surname,
       nickname: peopleData.people_nickname,
       description: peopleData.description,
-      // type: peopleData.people_type,
       country_id: singerCountry?.country_id ?? null,
       image: imageName,
     }
   });
+
+  const types = peopleData.people_type.map(async (value) => {
+    const foundType = await prisma.type.findFirst({
+      where: {
+        name: value,
+      },
+    });
+
+    if (foundType) {
+      return foundType;
+    }
+
+    return await prisma.type.create({
+      data: {
+        name: value,
+      },
+    });
+  });
+
+  types.forEach(async (value) => {
+    await prisma.people_type.create({
+      data: {
+        type_id: (await value).type_id,
+        id: peopleCreateResult.id,
+      },
+    });
+  });
+
+  console.log(peopleCreateResult)
 
   if (peopleData.title_image) {
     if (peopleData.title_image.size === 0) {
@@ -84,5 +120,5 @@ export default async function addPeople(
     }
   }
 
-  return JSON.parse(JSON.stringify(albumCreateResult));
+  return JSON.parse(JSON.stringify(peopleCreateResult));
 }

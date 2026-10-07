@@ -118,7 +118,7 @@ const EditGroup = ({
           </article>
         </section>
         <section className="mb-4">
-          <AddImage previousImage={`/backgrounds/groupes/${groupData?.image}`} />
+          <AddImage previousImage={groupData?.image ? `/backgrounds/groupes/${groupData?.image}` : null} />
         </section>
         <button className="" value="Save" id="save_songs_lyrics">{!edit ? "Add" : "Edit"} Group</button>
       </form>

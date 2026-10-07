@@ -205,7 +205,7 @@ const SongPage: React.FC<SongPageProps> = ({
                     })}
                     {groupesProducers.length > 0 && groupesProducers.map(group => {
                       return (
-                        <Link href={`/groupes/${group.groupes.id}`} key={group.groupes.id}>{group.groupes.name}</Link>
+                        <Link href={`/api/groupes/${group.groupes.id}`} key={group.groupes.id}>{group.groupes.name}</Link>
                       );
                     })}
                   </div>
@@ -273,7 +273,7 @@ const SongPage: React.FC<SongPageProps> = ({
               "
               type="button"
               onClick={() => {
-                redirect(`/edit-song/${songData.song_id}`)
+                redirect(`/api/edit-song/${songData.song_id}`)
               }}
             >
               Edit lyrics

@@ -47,7 +47,6 @@ const SearchField = ({
         name={tableData.name + `_${tableData.fields}-input`}
         list={`${tableData}_options`}
         placeholder="Search"
-        required={required}
         value={searchValue}
         onFocus={() => {
           setSearchVisible(true);
@@ -106,6 +105,7 @@ const SearchField = ({
                 readOnly={true}
                 value={selectedField}
                 name={tableData.name}
+                required={required}
               />
               {(fieldName.toLowerCase() === "люди" || fieldName.toLowerCase() === "группа") &&
                 <SearchType tableData={tableData} maxLength={maxLength} />

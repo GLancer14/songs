@@ -41,5 +41,5 @@ export async function signin(state: FormStateSignIn, formData: FormData) {
   }
 
   await createSession(String(data?.user_id));
-  redirect('/profile');
+  redirect('/api/profile');
 }

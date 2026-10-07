@@ -30,7 +30,7 @@ const MiniSongCard: React.FC<MiniSongCardProps> = ({ song, peopleData, className
     <Link
       key={song.song_id}
       className={clsx("flex flex-row flex-wrap w-[calc(100%/2-16px)]", className)}
-      href={`/songs/${song.song_id}`}
+      href={`/api/songs/${song.song_id}`}
     >
       <Image
         src={song.image || song.image
