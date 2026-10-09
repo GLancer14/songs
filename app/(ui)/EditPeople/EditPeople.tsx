@@ -14,6 +14,7 @@ const EditPeople = ({
   user,
   edit,
   peopleData,
+  peopleTypes,
   peopleCountry,
 }: {
   user: users | null | undefined;
@@ -28,7 +29,7 @@ const EditPeople = ({
     image: string | null;
     country_id: number | null;
   } | null;
-  peopleTypes: ({
+  peopleTypes?: ({
     type: {
       name: string;
       type_id: number;
@@ -123,6 +124,12 @@ const EditPeople = ({
             </label>
             <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
               <SearchField
+                edit={edit}
+                firstShowData={peopleTypes?.map(value => {
+                  return {
+                    name: value.type.name,
+                  }
+                })}
                 fieldName={"Type"}
                 tableData={{
                   name: "type",

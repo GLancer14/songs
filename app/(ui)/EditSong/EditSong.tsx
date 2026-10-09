@@ -1,9 +1,7 @@
 "use client"
 
-import userIam from "@/app/actions/userIam";
 import Header from "../Header/Header"
 import { mood, Prisma, users } from "@/src/generated/prisma/client";
-// import "./EditSong";
 import Languages from "./Languages/Languages";
 import Mood from "./Mood/Mood";
 import SearchField from "../ui/SearchField/SearchField";
@@ -183,6 +181,7 @@ const EditSong = ({
             {creators.map((creator, ind) => {
               return (
                 <SearchField
+                  required={true}
                   key={ind}
                   fieldName={fieldsNames[creator.name]}
                   tableData={creator}

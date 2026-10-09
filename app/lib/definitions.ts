@@ -102,7 +102,7 @@ export const EditPeopleSchema = z.object({
   people_firstname: z.string().optional(),
   people_surname: z.string().optional(),
   people_nickname: z.string().optional(),
-  people_type: z.array(z.string()).optional(),
+  people_type: z.array(z.string()),
   people_country: z.string().optional(),
   description: z.string().optional(),
   title_image: z.file().optional(),

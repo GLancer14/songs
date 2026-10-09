@@ -97,8 +97,6 @@ export default async function addPeople(
     });
   });
 
-  console.log(peopleCreateResult)
-
   if (peopleData.title_image) {
     if (peopleData.title_image.size === 0) {
       return peopleData.title_image = undefined;

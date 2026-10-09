@@ -28,13 +28,13 @@ const Page = async ({
     },
   });
 
-  let country;
-  if (peopleData) {
-    country = await prisma.countries.findFirst({
+  let country: string | null | undefined;
+  if (peopleData?.country_id) {
+    country = (await prisma.countries.findFirst({
       where: {
         country_id: peopleData.country_id || 1,
       }
-    })
+    }))?.country;
   }
 
   return (
@@ -44,7 +44,7 @@ const Page = async ({
         edit={true}
         peopleData={peopleData}
         peopleTypes={peopleTypes}
-        peopleCountry={country?.country}
+        peopleCountry={country}
       />
     </Suspense>
   )

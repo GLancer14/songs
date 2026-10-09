@@ -43,6 +43,8 @@ export default async function editPeople(
 
   const imageName = `${Date.now()}-${peopleData.title_image?.name.replace(/[^a-zA-Z0-9.]/g, '-')}`;
 
+
+
   const peopleCountry = await prisma.countries.findFirst({
     where: {
       country: {
@@ -61,22 +63,29 @@ export default async function editPeople(
     country: string;
   } | undefined;
 
-  if (oldPeopleData?.country_id !== peopleCountry?.country_id) {
-    if (peopleCountry?.country === null) {
+
+
+  if (Number(oldPeopleData?.country_id) !== Number(peopleCountry?.country_id)) {
+    if (peopleCountry?.country == null) {
       newPeopleCountry = await prisma.countries.create({
         data: {
           country: peopleData.people_country || "USA",
         },
       });
     } else {
-      if (peopleCountry) {
-        newPeopleCountry = {
-          country_id: peopleCountry.country_id,
-          country: peopleCountry.country,
-        };
-      }
+      newPeopleCountry = {
+        country_id: peopleCountry.country_id,
+        country: peopleCountry.country,
+      };
+    }
+  } else if (peopleCountry) {
+    newPeopleCountry = {
+      country_id: peopleCountry.country_id,
+      country: peopleCountry.country,
     }
   }
+
+
 
   await prisma.people_type.deleteMany({
     where: {
@@ -84,7 +93,7 @@ export default async function editPeople(
     },
   });
 
-  peopleData.people_type?.forEach(async (value) => {
+  const newTypes = await Promise.all(peopleData.people_type.map(async (value) => {
     const foundType = await prisma.type.findFirst({
       where: {
         name: value,
@@ -95,21 +104,21 @@ export default async function editPeople(
       return foundType;
     }
 
-    await prisma.type.create({
+    return await prisma.type.create({
       data: {
         name: value,
       },
     });
+  }));
 
+  for await (let newType of newTypes) {
     await prisma.people_type.create({
       data: {
         id: +peopleData.people_id,
-        type_id: +value,
+        type_id: newType.type_id,
       },
-    })
-  })
-
-  
+    });
+  }
 
   const peopleDataImage: {
     name: string;
@@ -132,7 +141,7 @@ export default async function editPeople(
     peopleDataImage.image = imageName;
   }
 
-  const groupUpdateResult = await prisma.people.update({
+  const peopleUpdateResult = await prisma.people.update({
     where: {
       id: Number(peopleData.people_id),
     },
@@ -173,5 +182,5 @@ export default async function editPeople(
     }
   }
 
-  return JSON.parse(JSON.stringify(groupUpdateResult));
+  return JSON.parse(JSON.stringify(peopleUpdateResult));
 }

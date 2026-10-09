@@ -2,12 +2,14 @@ import clsx from "clsx";
 import s from "./SearchField.module.scss";
 import findSearchFieldValue from "@/app/actions/SearchField/searchFields";
 import { Prisma } from "@/src/generated/prisma/client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { debounce } from "@/app/lib/decorators";
 import SearchType from "../SearchType/SearchType";
 
 const SearchField = ({
   tableData,
+  edit,
+  firstShowData,
   fieldName,
   required,
   title,
@@ -19,6 +21,11 @@ const SearchField = ({
     fields: string;
     title: string;
   };
+  edit?: boolean;
+  firstShowData?: {
+    name: string;
+    type?: string;
+  }[];
   fieldName: string;
   required?: boolean;
   title?: string;
@@ -29,7 +36,15 @@ const SearchField = ({
   const [selectedFields, setSelectedFields] = useState<string[]>([]);
   const [searchValue, setSearchValue] = useState("");
   const [searchVisible, setSearchVisible] = useState(false);
-  const listRef = useRef(null)
+  const listRef = useRef(null);
+
+  useEffect(() => {
+    if (edit && firstShowData) {
+      setSelectedFields(firstShowData?.map(value => {
+        return value.name;
+      }));
+    }
+  }, []);
 
   return (
     <label

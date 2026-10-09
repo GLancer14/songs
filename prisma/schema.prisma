@@ -76,7 +76,7 @@ model songs_albums {
 
 model countries {
   country_id Int       @id @default(autoincrement())
-  country    String
+  country    String    @unique
   groupes    groupes[]
   people     people[]
 }

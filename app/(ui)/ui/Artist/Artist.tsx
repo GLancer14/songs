@@ -48,7 +48,7 @@ const Artist: FC<ArtistProps> = ({ id, type, name, href }) => {
       onMouseEnter={() => setTooltipIsShown(true)}
       onMouseLeave={() => setTooltipIsShown(false)}
     >
-      <Link href={`/${type}/${href}`} className={clsx("text-4", {
+      <Link href={`/api/${type}/${searchResult?.id}`} className={clsx("text-4", {
         ["underline"]: !tooltipIsShown,
         ["no-underline"]: tooltipIsShown,
       })}>
@@ -69,7 +69,7 @@ const Artist: FC<ArtistProps> = ({ id, type, name, href }) => {
         ["hidden"]: !tooltipIsShown,
       })}>
         <div>
-          <Link href={`/${type}/${href}`} className="flex flex-nowrap items-center gap-2">
+          <Link href={`/api/${type}/${searchResult?.id}`} className="flex flex-nowrap items-center gap-2">
             <Image
               className="border rounded-[50%] border-transparent"
               src={searchResult?.image
