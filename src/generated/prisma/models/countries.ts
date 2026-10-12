@@ -205,13 +205,13 @@ export type countriesOrderByWithRelationInput = {
 
 export type countriesWhereUniqueInput = Prisma.AtLeast<{
   country_id?: number
+  country?: string
   AND?: Prisma.countriesWhereInput | Prisma.countriesWhereInput[]
   OR?: Prisma.countriesWhereInput[]
   NOT?: Prisma.countriesWhereInput | Prisma.countriesWhereInput[]
-  country?: Prisma.StringFilter<"countries"> | string
   groupes?: Prisma.GroupesListRelationFilter
   people?: Prisma.PeopleListRelationFilter
-}, "country_id">
+}, "country_id" | "country">
 
 export type countriesOrderByWithAggregationInput = {
   country_id?: Prisma.SortOrder
