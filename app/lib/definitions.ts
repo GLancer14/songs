@@ -138,6 +138,12 @@ export const SearchAlbumSchema = z.object({
 
 export type SearchAlbumSchemaType = z.infer<typeof SearchAlbumSchema>;
 
+export const SearchAlbumTypeSchema = z.object({
+  albumTypeId: z.number(),
+});
+
+export type SearchAlbumTypeSchemaType = z.infer<typeof SearchAlbumSchema>;
+
 export const EditUserSchema = z.object({
   name: z.string().optional(),
   email: z.string().optional(),

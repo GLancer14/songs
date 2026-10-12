@@ -10,6 +10,7 @@ import ShowButton from "../ui/ShowButton/ShowButton";
 import Credits from "./Credits/Credits";
 import About from "../ui/About/About";
 import Artist from "../ui/Artist/Artist";
+import { redirect } from "next/navigation";
 
 export interface SongPageProps {
   albumType: {
@@ -73,6 +74,7 @@ export interface SongPageProps {
   authorId: number;
   imageColor: string | undefined;
   imageValue: number[] | undefined;
+  userRole: string;
 }
 
 const AlbumPage: React.FC<SongPageProps> = ({
@@ -83,6 +85,7 @@ const AlbumPage: React.FC<SongPageProps> = ({
   imageValue,
   songsPeople,
   authorId,
+  userRole,
 }) => {
   const [showAbout, setShowAbout] = useState(true);
   const [showAlbumInfo, setShowAlbumInfo] = useState(false);
@@ -158,6 +161,35 @@ const AlbumPage: React.FC<SongPageProps> = ({
           }}
         ></div>
       </header>
+
+      {userRole === "admin" &&
+        <div className="relative top-0 w-full">
+          <div className="flex flex-col justify-start w-300 max-w-300 mx-auto">
+            <div className="flex flex-col max-w-93 w-93 self-end py-4">
+              <button
+                className="
+                  h-7
+                  self-end
+                  border
+                  border-black
+                  rounded-[14px]
+                  py-1
+                  px-3
+                  text-[13.5px]
+                  cursor-pointer
+                "
+                type="button"
+                onClick={() => {
+                  redirect(`/api/edit-album/${albumData.id}`);
+                }}
+              >
+                Edit Album
+              </button>
+            </div>
+          </div>
+          <hr className="w-full text-[rgb(204,204,204)]"/>
+        </div>
+      }
 
       <div className="flex flex-row max-w-300 w-300">
       {/* <div className="flex flex-row flex-wrap max-w-300 w-300"> */}

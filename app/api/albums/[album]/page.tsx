@@ -102,6 +102,7 @@ export default async function Page({
           imageColor={imageColor}
           imageValue={imageValue}
           songsPeople={songsPeople}
+          userRole={userData.role}
         />
       </div>
       <Footer />
