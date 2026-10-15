@@ -11,6 +11,8 @@
 export type * from './models/songs'
 export type * from './models/mood'
 export type * from './models/albums'
+export type * from './models/albums_people'
+export type * from './models/albums_groupes'
 export type * from './models/album_types'
 export type * from './models/songs_albums'
 export type * from './models/countries'

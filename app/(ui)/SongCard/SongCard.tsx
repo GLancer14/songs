@@ -12,7 +12,7 @@ const SongCard = ({ songData }: { songData: Prisma.songsModel }) => {
   const [songsAlbum, setSongsAlbum] = useState<{
     albums: {
         name: string;
-        id: number;
+        album_id: number;
         release_date: Date | null;
         description: string | null;
         image: string | null;

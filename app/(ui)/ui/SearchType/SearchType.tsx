@@ -9,9 +9,10 @@ interface SearchTypeProps {
     title: string;
   };
   maxLength?: number;
+  required?: boolean;
 }
 
-const SearchType: FC<SearchTypeProps> = ({ tableData, maxLength }) => {
+const SearchType: FC<SearchTypeProps> = ({ tableData, maxLength, required }) => {
   const [selectedTypeFields, setSelectedTypeFields] = useState<string[]>([]);
   const [searchTypeValue, setSearchTypeValue] = useState("");
   const [searchTypeVisible, setSearchTypeVisible] = useState(false);
@@ -24,6 +25,7 @@ const SearchType: FC<SearchTypeProps> = ({ tableData, maxLength }) => {
         className="bg-white w-min text-gray-900"
         type="text"
         maxLength={maxLength}
+        required={required}
         name={tableData.name + `_${tableData.fields}-input-as`}
         list={`${tableData}_options`}
         placeholder="Search"

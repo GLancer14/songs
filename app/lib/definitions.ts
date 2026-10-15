@@ -57,11 +57,26 @@ export const AddAlbumSchema = z.object({
   album_author: z.string().nonempty(),
   album_description: z.string().optional(),
   album_type: z.string().nonoptional(),
+  people: z.array(z.string()).optional(),
+  groupes: z.array(z.string()).optional(),
   release_date: z.string().nonoptional(),
   title_image: z.file().optional(),
 })
 
 export type AddAlbumSchemaType = z.infer<typeof AddAlbumSchema>;
+
+export const EditAlbumSchema = z.object({
+  album_name: z.string().nonempty(),
+  album_author: z.string().nonempty(),
+  album_description: z.string().optional(),
+  album_type: z.string().nonoptional(),
+  people: z.array(z.string()).optional(),
+  groupes: z.array(z.string()).optional(),
+  release_date: z.string().nonoptional(),
+  title_image: z.file().optional(),
+})
+
+export type EditAlbumSchemaType = z.infer<typeof AddAlbumSchema>;
 
 export const AddGroupSchema = z.object({
   group_name: z.string().nonempty(),

@@ -54,6 +54,8 @@ export const ModelName = {
   songs: 'songs',
   mood: 'mood',
   albums: 'albums',
+  albums_people: 'albums_people',
+  albums_groupes: 'albums_groupes',
   album_types: 'album_types',
   songs_albums: 'songs_albums',
   countries: 'countries',
@@ -118,7 +120,7 @@ export type MoodScalarFieldEnum = (typeof MoodScalarFieldEnum)[keyof typeof Mood
 
 
 export const AlbumsScalarFieldEnum = {
-  id: 'id',
+  album_id: 'album_id',
   name: 'name',
   author: 'author',
   release_date: 'release_date',
@@ -128,6 +130,24 @@ export const AlbumsScalarFieldEnum = {
 } as const
 
 export type AlbumsScalarFieldEnum = (typeof AlbumsScalarFieldEnum)[keyof typeof AlbumsScalarFieldEnum]
+
+
+export const Albums_peopleScalarFieldEnum = {
+  album_id: 'album_id',
+  id: 'id',
+  type_id: 'type_id'
+} as const
+
+export type Albums_peopleScalarFieldEnum = (typeof Albums_peopleScalarFieldEnum)[keyof typeof Albums_peopleScalarFieldEnum]
+
+
+export const Albums_groupesScalarFieldEnum = {
+  album_id: 'album_id',
+  id: 'id',
+  type_id: 'type_id'
+} as const
+
+export type Albums_groupesScalarFieldEnum = (typeof Albums_groupesScalarFieldEnum)[keyof typeof Albums_groupesScalarFieldEnum]
 
 
 export const Album_typesScalarFieldEnum = {
@@ -140,7 +160,7 @@ export type Album_typesScalarFieldEnum = (typeof Album_typesScalarFieldEnum)[key
 
 export const Songs_albumsScalarFieldEnum = {
   song_id: 'song_id',
-  id: 'id',
+  album_id: 'album_id',
   track: 'track',
   disk: 'disk'
 } as const
@@ -170,7 +190,8 @@ export type GroupesScalarFieldEnum = (typeof GroupesScalarFieldEnum)[keyof typeo
 
 export const Songs_groupesScalarFieldEnum = {
   song_id: 'song_id',
-  id: 'id'
+  id: 'id',
+  type_id: 'type_id'
 } as const
 
 export type Songs_groupesScalarFieldEnum = (typeof Songs_groupesScalarFieldEnum)[keyof typeof Songs_groupesScalarFieldEnum]
@@ -200,7 +221,8 @@ export type TypeScalarFieldEnum = (typeof TypeScalarFieldEnum)[keyof typeof Type
 
 export const Songs_peopleScalarFieldEnum = {
   song_id: 'song_id',
-  id: 'id'
+  id: 'id',
+  type_id: 'type_id'
 } as const
 
 export type Songs_peopleScalarFieldEnum = (typeof Songs_peopleScalarFieldEnum)[keyof typeof Songs_peopleScalarFieldEnum]

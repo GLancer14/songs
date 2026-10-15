@@ -24,9 +24,9 @@ const Page = async () => {
             return (
               <div
                 className="flex w-[49%] flex-row bg-white"
-                key={album.id}
+                key={album.album_id}
               >
-                <Link className="flex" href={`/api/albums/${album.id}`}>
+                <Link className="flex" href={`/api/albums/${album.album_id}`}>
                   <Image
                     className=""
                     src={album.image

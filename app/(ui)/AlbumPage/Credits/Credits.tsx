@@ -7,7 +7,7 @@ import formatDate from "../../utils/formatDate";
 interface CreditsProps {
   albumData: {
     image: string | null;
-    id: number;
+    album_id: number;
     name: string;
     author: string | null;
     release_date: Date | null;

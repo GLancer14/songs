@@ -17,7 +17,7 @@ export interface PeoplePageProps {
   albums: {
     image: string | null;
     name: string;
-    id: number;
+    album_id: number;
     description: string | null;
     author: string | null;
     release_date: Date | null;
@@ -303,9 +303,9 @@ const PeoplePage: React.FC<PeoplePageProps> = ({
               {albums.map(album => {
                 return (
                   <a
-                    key={album.id}
+                    key={album.album_id}
                     className="flex flex-column flex-wrap w-[calc(100%/3-11px)]"
-                    href={`/albums/${album.id}`}
+                    href={`/api/albums/${album.album_id}`}
                   >
                     <Image
                       className="w-full"

@@ -31,7 +31,7 @@ export interface SongPageProps {
       release_date: Date | null;
       description: string | null;
       image: string | null;
-      id: number;
+      album_id: number;
       author: string | null;
       album_type: number | null;
     };
@@ -200,7 +200,7 @@ const SongPage: React.FC<SongPageProps> = ({
                   <div className="text-4 underline">
                     {peopleProducers.length > 0 && peopleProducers.map(producer => {
                       return (
-                        <Link href={`/people/${producer.people.id}`} key={producer.people.id}>{producer.people.nickname}</Link>
+                        <Link href={`/api/people/${producer.people.id}`} key={producer.people.id}>{producer.people.nickname}</Link>
                       );
                     })}
                     {groupesProducers.length > 0 && groupesProducers.map(group => {
@@ -324,7 +324,7 @@ const SongPage: React.FC<SongPageProps> = ({
                 </div>
                 {album && <div className="w-100 mx-auto text-black">
                   <div
-                    key={album.albums.id}
+                    key={album.albums.album_id}
                     className={clsx("flex flex-row flex-wrap max-w-180 gap-4 items-center mb-4")}
                   >
                     {album.albums.image && <Image
@@ -340,7 +340,7 @@ const SongPage: React.FC<SongPageProps> = ({
                     <div>
                       <Link
                         className="text-[18px]"
-                        href={`/albums/${album.albums.id}`}
+                        href={`/api/albums/${album.albums.album_id}`}
                       >
                         {album?.albums.name}
                       </Link>
@@ -380,7 +380,7 @@ const SongPage: React.FC<SongPageProps> = ({
                               <span className="min-w-5">{albumSong.track}.</span>
                               {songData.song_id !== albumSong.songs.song_id
                                 ? <Link
-                                  href={`/songs/${albumSong.songs.song_id}`}
+                                  href={`/api/songs/${albumSong.songs.song_id}`}
                                   className="truncate underline "
                                 >
                                   {albumSong.songs.name}
@@ -401,7 +401,7 @@ const SongPage: React.FC<SongPageProps> = ({
                               <span className="min-w-5">{albumSong.track}.</span>
                               {songData.song_id !== albumSong.songs.song_id
                                 ? <Link
-                                  href={`/songs/${albumSong.songs.song_id}`}
+                                  href={`/api/songs/${albumSong.songs.song_id}`}
                                   className="truncate underline "
                                 >
                                   {albumSong.songs.name}
@@ -442,7 +442,7 @@ const SongPage: React.FC<SongPageProps> = ({
         </div>
         {album && <div className="max-w-300 w-full mx-auto text-white">
           <div
-            key={album.albums.id}
+            key={album.albums.album_id}
             className={clsx("flex flex-row flex-wrap max-w-180 gap-14 items-center mb-11 ml-14")}
             id="album"
           >
@@ -459,7 +459,7 @@ const SongPage: React.FC<SongPageProps> = ({
             <div>
               <Link
                 className="text-[18px]"
-                href={`/albums/${album.albums.id}`}
+                href={`/api/albums/${album.albums.album_id}`}
               >
                 {album?.albums.name}
               </Link>
@@ -498,7 +498,7 @@ const SongPage: React.FC<SongPageProps> = ({
                       <span className="mr-2 min-w-5">{albumSong.track}.</span>
                       {songData.song_id !== albumSong.songs.song_id
                         ? <Link
-                          href={`/songs/${albumSong.songs.song_id}`}
+                          href={`/api/songs/${albumSong.songs.song_id}`}
                           className="truncate underline"
                         >
                           {albumSong.songs.name}
@@ -519,7 +519,7 @@ const SongPage: React.FC<SongPageProps> = ({
                       <span className="mr-2 min-w-5">{albumSong.track}.</span>
                       {songData.song_id !== albumSong.songs.song_id
                         ? <Link
-                          href={`/songs/${albumSong.songs.song_id}`}
+                          href={`/api/songs/${albumSong.songs.song_id}`}
                           className="truncate underline"
                         >
                           {albumSong.songs.name}
@@ -546,12 +546,12 @@ const SongPage: React.FC<SongPageProps> = ({
               <div className="text-4 underline">
                 {peopleProducers.length > 0 && peopleProducers.map(producer => {
                   return (
-                    <Link href={`/people/${producer.people.id}`} key={producer.people.id}>{producer.people.nickname}</Link>
+                    <Link href={`/api/people/${producer.people.id}`} key={producer.people.id}>{producer.people.nickname}</Link>
                   );
                 })}
                 {groupesProducers.length > 0 && groupesProducers.map(group => {
                   return (
-                    <Link href={`/groupes/${group.groupes.id}`} key={group.groupes.id}>{group.groupes.name}</Link>
+                    <Link href={`/api/groupes/${group.groupes.id}`} key={group.groupes.id}>{group.groupes.name}</Link>
                   );
                 })}
               </div>
@@ -561,12 +561,12 @@ const SongPage: React.FC<SongPageProps> = ({
               <div className="text-4 underline">
                 {peopleWriters.length > 0 && peopleWriters.map(producer => {
                   return (
-                    <Link href={`/people/${producer.people.id}`} key={producer.people.id}>{producer.people.nickname}</Link>
+                    <Link href={`/api/people/${producer.people.id}`} key={producer.people.id}>{producer.people.nickname}</Link>
                   );
                 })}
                 {groupesWriters.length > 0 && groupesWriters.map(group => {
                   return (
-                    <Link href={`/groupes/${group.groupes.id}`} key={group.groupes.id}>{group.groupes.name}</Link>
+                    <Link href={`/api/groupes/${group.groupes.id}`} key={group.groupes.id}>{group.groupes.name}</Link>
                   );
                 })}
               </div>

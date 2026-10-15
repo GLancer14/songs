@@ -72,7 +72,7 @@ const Header = ({ user, imageColor }: { user: users | null | undefined, imageCol
                 <Link href="/api/add-song">Add Song</Link>
               </li>
               <li>
-                <Link href="/api/add-album">Add Albums</Link>
+                <Link href="/api/add-album">Add Album</Link>
               </li>
               <li>
                 <Link href="/api/add-group">Add Group</Link>

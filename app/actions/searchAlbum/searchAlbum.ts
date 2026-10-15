@@ -14,7 +14,7 @@ export default async function searchAlbum(
     {
       albums: {
         name: string;
-        id: number;
+        album_id: number;
         release_date: Date | null;
         description: string | null;
         image: string | null;
@@ -54,7 +54,7 @@ export default async function searchAlbum(
   const albums: {
       albums: {
         name: string;
-        id: number;
+        album_id: number;
         release_date: Date | null;
         description: string | null;
         image: string | null;

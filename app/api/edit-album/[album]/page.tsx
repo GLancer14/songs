@@ -16,7 +16,7 @@ const Page = async ({
 
   const albumData = await prisma.albums.findFirst({
     where: {
-      id: +(await params).album,
+      album_id: +(await params).album,
     }
   });
 

@@ -1,11 +1,8 @@
 "use server"
 
-import { Prisma, songs } from "@/src/generated/prisma/client";
 import { prisma } from "../../lib/prisma";
-import { SearchAlbumSchema, SearchAlbumsSchema, SearchAlbumTypeSchema, SearchSongsSchema, SearchSongsSchemaType } from "@/app/lib/definitions";
+import { SearchAlbumTypeSchema } from "@/app/lib/definitions";
 import userIam from "../userIam";
-import { writeFile } from "fs";
-import path from "path";
 
 const searchAlbumType = async (
   albumTypeId: number,

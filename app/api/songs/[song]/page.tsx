@@ -46,7 +46,7 @@ export default async function Page({
   if (album) {
     albumSongs = await prisma.songs_albums.findMany({
       where: {
-        id: album?.albums.id,
+        album_id: album?.albums.album_id,
       },
       include: {
         songs: true,

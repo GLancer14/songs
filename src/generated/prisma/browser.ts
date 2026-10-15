@@ -33,6 +33,16 @@ export type mood = Prisma.moodModel
  */
 export type albums = Prisma.albumsModel
 /**
+ * Model albums_people
+ * 
+ */
+export type albums_people = Prisma.albums_peopleModel
+/**
+ * Model albums_groupes
+ * 
+ */
+export type albums_groupes = Prisma.albums_groupesModel
+/**
  * Model album_types
  * 
  */

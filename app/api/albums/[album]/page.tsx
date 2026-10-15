@@ -17,7 +17,7 @@ export default async function Page({
   const userData = await userIam();
   const albumData = await prisma.albums.findFirst({
     where: {
-      id: +album,
+      album_id: +album,
     },
   });
 
@@ -29,7 +29,7 @@ export default async function Page({
 
   const tracklist = await prisma.songs_albums.findMany({
     where: {
-      id: +album,
+      album_id: +album,
     },
     select: {
       songs: true,
@@ -67,9 +67,17 @@ export default async function Page({
   if (albumData?.image) {
     let color: FastAverageColorResult;
     if (!process.env.NEXT_PUBLIC_BLOB_STORE_ID) {
-      color = (await getAverageColor(`./public/backgrounds/albums/${albumData.image}`));
+      if (!albumData.image.includes("blob") || !albumData.image === null) {
+        color = (await getAverageColor(`./public/backgrounds/albums/${albumData.image}`));
+      } else {
+        color = (await getAverageColor(`./public/noimage2.svg`));
+      }
     } else {
-      color = (await getAverageColor(`${process.env.NEXT_PUBLIC_STATIC_URL}/backgrounds/albums/${albumData.image}`));
+      if (!albumData.image.includes("blob") || !albumData.image === null) {
+        color = (await getAverageColor(`${process.env.NEXT_PUBLIC_STATIC_URL}/backgrounds/albums/${albumData.image}`));
+      } else {
+        color = (await getAverageColor(`${process.env.NEXT_PUBLIC_STATIC_URL}/noimage2.svg`));
+      }
     }
 
     imageColor = color.rgb;

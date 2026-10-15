@@ -19,7 +19,7 @@ export interface SongPageProps {
   } | null;
   albumData: {
     image: string | null;
-    id: number;
+    album_id: number;
     name: string;
     author: string;
     release_date: Date | null;
@@ -110,7 +110,7 @@ const AlbumPage: React.FC<SongPageProps> = ({
             <Image
               className="relative top-4 self-start mr-11 shadow-[rgba(0,0,0,0.18)_0px_0px_12px_0px]"
               src={
-                albumData.image
+                albumData.image && !albumData.image.includes("blob")
                   ? `${staticURL}/backgrounds/albums/${albumData.image}`
                   : `${staticURL}/noimage2`
               }
@@ -180,7 +180,7 @@ const AlbumPage: React.FC<SongPageProps> = ({
                 "
                 type="button"
                 onClick={() => {
-                  redirect(`/api/edit-album/${albumData.id}`);
+                  redirect(`/api/edit-album/${albumData.album_id}`);
                 }}
               >
                 Edit Album

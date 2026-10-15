@@ -46,15 +46,39 @@ model mood {
 }
 
 model albums {
-  id           Int            @id @default(autoincrement())
-  name         String
-  author       String
-  release_date DateTime?
-  album_types  album_types?   @relation(fields: [album_type], references: [album_type_id], onDelete: Cascade)
-  album_type   Int?
-  description  String?
-  image        String?
-  songsAlbums  songs_albums[]
+  album_id      Int              @id @default(autoincrement())
+  name          String
+  author        String
+  release_date  DateTime?
+  album_types   album_types?     @relation(fields: [album_type], references: [album_type_id], onDelete: Cascade)
+  album_type    Int?
+  description   String?
+  image         String?
+  songsAlbums   songs_albums[]
+  albumsPeople  albums_people[]
+  albumsGroupes albums_groupes[]
+}
+
+model albums_people {
+  people   people @relation(fields: [id], references: [id])
+  albums   albums @relation(fields: [album_id], references: [album_id], onDelete: Cascade)
+  type     type   @relation(fields: [type_id], references: [type_id])
+  album_id Int
+  id       Int
+  type_id  Int
+
+  @@id([album_id, id])
+}
+
+model albums_groupes {
+  groupes  groupes @relation(fields: [id], references: [id])
+  albums   albums  @relation(fields: [album_id], references: [album_id], onDelete: Cascade)
+  type     type    @relation(fields: [type_id], references: [type_id])
+  album_id Int
+  id       Int
+  type_id  Int
+
+  @@id([album_id, id])
 }
 
 model album_types {
@@ -64,14 +88,14 @@ model album_types {
 }
 
 model songs_albums {
-  songs   songs  @relation(fields: [song_id], references: [song_id], onDelete: Cascade)
-  albums  albums @relation(fields: [id], references: [id])
-  song_id Int
-  id      Int
-  track   Int?
-  disk    Int?
+  songs    songs  @relation(fields: [song_id], references: [song_id], onDelete: Cascade)
+  albums   albums @relation(fields: [album_id], references: [album_id])
+  song_id  Int
+  album_id Int
+  track    Int?
+  disk     Int?
 
-  @@id([song_id, id])
+  @@id([song_id, album_id])
 }
 
 model countries {
@@ -82,52 +106,62 @@ model countries {
 }
 
 model groupes {
-  id                 Int             @id @default(autoincrement())
+  id                 Int              @id @default(autoincrement())
   name               String
   year_of_foundation Int?
-  countries          countries?      @relation(fields: [country_id], references: [country_id])
+  countries          countries?       @relation(fields: [country_id], references: [country_id])
   country_id         Int?
   description        String?
   image              String?
   songsGroupes       songs_groupes[]
   groupesType        groupes_type[]
+  albumsGroupes      albums_groupes[]
 }
 
 model songs_groupes {
   songs   songs   @relation(fields: [song_id], references: [song_id], onDelete: Cascade)
   groupes groupes @relation(fields: [id], references: [id])
+  type    type    @relation(fields: [type_id], references: [type_id])
   song_id Int
   id      Int
+  type_id Int
 
   @@id([song_id, id])
 }
 
 model people {
-  id          Int            @id @default(autoincrement())
-  name        String
-  firstname   String?
-  surname     String?
-  nickname    String?
-  description String?
-  image       String?
-  countries   countries?     @relation(fields: [country_id], references: [country_id])
-  country_id  Int?
-  songsPeople songs_people[]
-  peopleType  people_type[]
+  id           Int             @id @default(autoincrement())
+  name         String
+  firstname    String?
+  surname      String?
+  nickname     String?
+  description  String?
+  image        String?
+  countries    countries?      @relation(fields: [country_id], references: [country_id])
+  country_id   Int?
+  songsPeople  songs_people[]
+  peopleType   people_type[]
+  albumsPeople albums_people[]
 }
 
 model type {
-  type_id     Int            @id @default(autoincrement())
-  name        String
-  peopleType  people_type[]
-  groupesType groupes_type[]
+  type_id       Int              @id @default(autoincrement())
+  name          String
+  peopleType    people_type[]
+  groupesType   groupes_type[]
+  albumsPeople  albums_people[]
+  albumsGroupes albums_groupes[]
+  songsPeople   songs_people[]
+  songsGroupes  songs_groupes[]
 }
 
 model songs_people {
   songs   songs  @relation(fields: [song_id], references: [song_id], onDelete: Cascade)
   people  people @relation(fields: [id], references: [id])
+  type    type   @relation(fields: [type_id], references: [type_id])
   song_id Int
   id      Int
+  type_id Int
 
   @@id([song_id, id])
 }

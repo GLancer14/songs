@@ -6,8 +6,10 @@ import SearchField from "../ui/SearchField/SearchField";
 import Footer from "../Footer/Footer";
 import { FC, useActionState, useEffect, useState } from "react";
 import editAlbum from "@/app/actions/EditAlbum/editAlbum";
+import addAlbum from "@/app/actions/addAlbum/addAlbum";
 import AddImage from "../ui/AddImage/AddImage";
 import searchAlbumType from "@/app/actions/searchAblumType/searchAlbumType";
+import formatDateForForm from "../utils/formatDateForForm";
 
 interface EditAlbumProps {
   user: users | null | undefined;
@@ -20,36 +22,36 @@ interface EditAlbumProps {
     author: string;
     description: string | null;
     image: string | null;
-    id: number;
+    album_id: number;
   } | null;
 }
 
 const EditAlbum: FC<EditAlbumProps> = ({ user, albumTypes, edit, albumData }) => {
-  const [state, action, pending] = useActionState(editAlbum, undefined)
+  const [state, action, pending] = useActionState(addAlbum, undefined)
   const [name, setName] = useState(albumData?.name || "");
   const [author, setAuthor] = useState(albumData?.author || "");
   const [desc, setDesc] = useState(albumData?.description || "");
-  const [albumType, setAlbumType] = useState<string>("");
-  const [date, setDate] = useState<number | Date>(albumData?.release_date || 0);
+  const [albumTypeId, setAlbumTypeId] = useState<number | undefined>();
+  const [date, setDate] = useState<Date>(albumData?.release_date || new Date());
 
   useEffect(() => {
     const albumTypeFunc = async () => {
-      const type = await searchAlbumType(albumData?.album_type || 1);
-
-      if (type?.status === "ok") {
-        console.log(type.album_type)
-        setAlbumType(type.album_type);
+      if (albumData?.album_type) {
+        const type = await searchAlbumType(albumData?.album_type || 4);
+        if (type && type.status === "ok") {
+          setAlbumTypeId(type.album_type_id);
+        }
       }
     }
 
     albumTypeFunc();
-  }, [])
+  }, [albumData?.album_type])
 
   return (
     <>
       <Header user={user} />
       <form
-        className="flex flex-col flex-1 justify-start p-8 w-300 min-w-[768px] mx-auto bg-white"
+        className="flex flex-col flex-1 justify-start p-8 w-300 min-w-3xl mx-auto bg-white"
         action={action}
         method="POST"
         encType="multipart/form-data"
@@ -109,9 +111,9 @@ const EditAlbum: FC<EditAlbumProps> = ({ user, albumTypes, edit, albumData }) =>
             <select
               name="album_type"
               id="album_type"
-              value={albumType}
+              value={albumTypeId}
               onChange={(e) => {
-                setAlbumType(e.currentTarget.value)
+                setAlbumTypeId(+e.currentTarget.value)
               }}
             >
               <option className="text-black" value="none" defaultChecked>none</option>
@@ -129,7 +131,7 @@ const EditAlbum: FC<EditAlbumProps> = ({ user, albumTypes, edit, albumData }) =>
             </select>
           </label>
         </section>
-        {/* <section className="flex flex-row gap-4 w-full mb-4">
+        <section className="flex flex-row gap-4 w-full mb-4">
           <SearchField
             edit={edit}
             firstShowData={
@@ -144,7 +146,7 @@ const EditAlbum: FC<EditAlbumProps> = ({ user, albumTypes, edit, albumData }) =>
               fields: "name",
               title: "Авторы альбома"
             }}
-            fieldName="Группы"
+            fieldName="Группа"
             className="flex flex-col justify-start gap-2 mb-2 w-[calc(50%-16px)]"
           />
         </section>
@@ -155,6 +157,7 @@ const EditAlbum: FC<EditAlbumProps> = ({ user, albumTypes, edit, albumData }) =>
               [
                 {
                   name: "",
+                  type: "joe",
                 }
               ]
             }
@@ -166,7 +169,7 @@ const EditAlbum: FC<EditAlbumProps> = ({ user, albumTypes, edit, albumData }) =>
             fieldName="Люди"
             className="flex flex-col justify-start gap-2 mb-2 w-[calc(50%-16px)]"
           />
-        </section> */}
+        </section>
         <section className="mb-4">
           <label className="flex gap-2 mb-4">
             <span className="">Release date:</span>
@@ -175,9 +178,9 @@ const EditAlbum: FC<EditAlbumProps> = ({ user, albumTypes, edit, albumData }) =>
               type="date"
               name="release_date"
               id="release_date"
-              value={date.toString()}
+              value={formatDateForForm(date)}
               onInput={(e) => {
-                // setDate(e.currentTarget.value)
+                setDate(new Date(e.currentTarget.value))
               }}
             />
           </label>

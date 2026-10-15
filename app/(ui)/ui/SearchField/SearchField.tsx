@@ -126,7 +126,7 @@ const SearchField = ({
                 required={required}
               />
               {(fieldName.toLowerCase() === "люди" || fieldName.toLowerCase() === "группа") &&
-                <SearchType tableData={tableData} maxLength={maxLength} />
+                <SearchType tableData={tableData} maxLength={maxLength} required={true} />
               }
               <span onClick={() => {
                 setSelectedFields(selectedFields.filter(droppedSelectedField => {
