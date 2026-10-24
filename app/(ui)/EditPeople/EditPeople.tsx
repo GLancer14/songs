@@ -14,7 +14,7 @@ const EditPeople = ({
   user,
   edit,
   peopleData,
-  peopleTypes,
+  // peopleTypes,
   peopleCountry,
 }: {
   user: users | null | undefined;
@@ -29,15 +29,15 @@ const EditPeople = ({
     image: string | null;
     country_id: number | null;
   } | null;
-  peopleTypes?: ({
-    type: {
-      name: string;
-      type_id: number;
-    };
-  } & {
-    id: number;
-    type_id: number;
-  })[];
+  // peopleTypes?: ({
+  //   type: {
+  //     name: string;
+  //     type_id: number;
+  //   };
+  // } & {
+  //   id: number;
+  //   type_id: number;
+  // })[];
   peopleCountry?: string | null;
 }) => {
   const router = useRouter()
@@ -122,7 +122,7 @@ const EditPeople = ({
                 }}
               />
             </label>
-            <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
+            {/* <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
               <SearchField
                 edit={edit}
                 firstShowData={peopleTypes?.map(value => {
@@ -139,7 +139,7 @@ const EditPeople = ({
                 required={true}
                 className="flex flex-col justify-start gap-2 mb-2 w-full"
               />
-            </label>
+            </label> */}
             <label className="flex gap-4 cursor-pointer justify-between relative w-full mb-8">
               <span className="text-xl">Country</span>
               <input

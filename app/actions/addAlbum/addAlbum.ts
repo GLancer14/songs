@@ -23,9 +23,9 @@ export default async function addAlbum(
     album_author: formData.get("album_author"),
     album_description: formData.get("album_description"),
     album_type: formData.get("album_type"),
-    album_groupes: formData.getAll("groupes"),
+    groupes: formData.getAll("groupes"),
     groupes_types: formData.getAll("groupes_name-input-as"),
-    album_people: formData.getAll("people"),
+    people: formData.getAll("people"),
     people_types: formData.getAll("people_name-input-as"),
     release_date: formData.get("release_date"),
     title_image: formData.get("title_image"),
@@ -43,6 +43,7 @@ export default async function addAlbum(
     }
   }
   const albumData = validatedFields.data;
+  // console.log(albumData)
 
   const imageName = `${Date.now()}-${albumData.title_image?.name.replace(/[^a-zA-Z0-9.]/g, '-')}`;
 
@@ -62,18 +63,48 @@ export default async function addAlbum(
     "groupes",
   ];
 
+  if (albumData.groupes_types && albumData.people_types) {
+    const existingTypesArray = albumData.groupes_types.concat(albumData.people_types);
+    for await (const type of existingTypesArray) {
+
+      const existingType = await prisma.type.findFirst({
+        where: {
+          name: type,
+        }
+      });
+
+      if (!existingType) {
+        await prisma.type.create({
+          data: {
+            name: type,
+          }
+        })
+      }
+    }
+  }
+  
   async function sendAlbumsArray(tableName: ArrayValues) {
     if (albumData[tableName] && albumData[tableName].length > 0) {
       const model = prisma[tableName as ValidModelKeys] as any;
+      const authorArray = albumData[tableName];
       
-      for (const author of albumData[tableName]) {
+      for (let i = 0; i < authorArray.length; i++) {
         const existingAuthor = await model.findFirst({
           where: {
-            name: author,
+            name: authorArray[i],
           },
           select: {
             id: true,
           },
+        });
+
+        const authorType = await prisma.type.findFirst({
+          where: {
+            name: {
+              contains: albumData[`${tableName}_types`][i],
+              mode: "insensitive",
+            },
+          }
         });
 
         let sendDataAlbums: any;
@@ -82,16 +113,17 @@ export default async function addAlbum(
           sendDataAlbums = {
             album_id: albumCreateResult.album_id,
             id: existingAuthor.id,
+            type_id: authorType?.type_id,
           }
 
-          const songsTable = prisma[`songs_${tableName}` as keyof typeof prisma] as any;
-          await songsTable.create({
+          const albumsTable = prisma[`albums_${tableName}` as keyof typeof prisma] as any;
+          await albumsTable.create({
             data: sendDataAlbums,
           });
         } else {
           const newMusicAuthor = await model.create({
             data: {
-              name: author,
+              name: authorArray[i],
             },
             select: {
               id: true,
@@ -101,10 +133,11 @@ export default async function addAlbum(
           sendDataAlbums = {
             album_id: albumCreateResult.album_id,
             id: newMusicAuthor.id,
+            type_id: authorType?.type_id,
           }
 
-          const songsTable = prisma[`songs_${tableName}` as keyof typeof prisma] as any;
-          await songsTable.create({
+          const albumsTable = prisma[`albums_${tableName}` as keyof typeof prisma] as any;
+          await albumsTable.create({
             data: sendDataAlbums,
           });
         }

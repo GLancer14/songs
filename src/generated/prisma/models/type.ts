@@ -192,8 +192,6 @@ export type typeWhereInput = {
   NOT?: Prisma.typeWhereInput | Prisma.typeWhereInput[]
   type_id?: Prisma.IntFilter<"type"> | number
   name?: Prisma.StringFilter<"type"> | string
-  peopleType?: Prisma.People_typeListRelationFilter
-  groupesType?: Prisma.Groupes_typeListRelationFilter
   albumsPeople?: Prisma.Albums_peopleListRelationFilter
   albumsGroupes?: Prisma.Albums_groupesListRelationFilter
   songsPeople?: Prisma.Songs_peopleListRelationFilter
@@ -203,8 +201,6 @@ export type typeWhereInput = {
 export type typeOrderByWithRelationInput = {
   type_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  peopleType?: Prisma.people_typeOrderByRelationAggregateInput
-  groupesType?: Prisma.groupes_typeOrderByRelationAggregateInput
   albumsPeople?: Prisma.albums_peopleOrderByRelationAggregateInput
   albumsGroupes?: Prisma.albums_groupesOrderByRelationAggregateInput
   songsPeople?: Prisma.songs_peopleOrderByRelationAggregateInput
@@ -217,8 +213,6 @@ export type typeWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.typeWhereInput[]
   NOT?: Prisma.typeWhereInput | Prisma.typeWhereInput[]
   name?: Prisma.StringFilter<"type"> | string
-  peopleType?: Prisma.People_typeListRelationFilter
-  groupesType?: Prisma.Groupes_typeListRelationFilter
   albumsPeople?: Prisma.Albums_peopleListRelationFilter
   albumsGroupes?: Prisma.Albums_groupesListRelationFilter
   songsPeople?: Prisma.Songs_peopleListRelationFilter
@@ -245,8 +239,6 @@ export type typeScalarWhereWithAggregatesInput = {
 
 export type typeCreateInput = {
   name: string
-  peopleType?: Prisma.people_typeCreateNestedManyWithoutTypeInput
-  groupesType?: Prisma.groupes_typeCreateNestedManyWithoutTypeInput
   albumsPeople?: Prisma.albums_peopleCreateNestedManyWithoutTypeInput
   albumsGroupes?: Prisma.albums_groupesCreateNestedManyWithoutTypeInput
   songsPeople?: Prisma.songs_peopleCreateNestedManyWithoutTypeInput
@@ -256,8 +248,6 @@ export type typeCreateInput = {
 export type typeUncheckedCreateInput = {
   type_id?: number
   name: string
-  peopleType?: Prisma.people_typeUncheckedCreateNestedManyWithoutTypeInput
-  groupesType?: Prisma.groupes_typeUncheckedCreateNestedManyWithoutTypeInput
   albumsPeople?: Prisma.albums_peopleUncheckedCreateNestedManyWithoutTypeInput
   albumsGroupes?: Prisma.albums_groupesUncheckedCreateNestedManyWithoutTypeInput
   songsPeople?: Prisma.songs_peopleUncheckedCreateNestedManyWithoutTypeInput
@@ -266,8 +256,6 @@ export type typeUncheckedCreateInput = {
 
 export type typeUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  peopleType?: Prisma.people_typeUpdateManyWithoutTypeNestedInput
-  groupesType?: Prisma.groupes_typeUpdateManyWithoutTypeNestedInput
   albumsPeople?: Prisma.albums_peopleUpdateManyWithoutTypeNestedInput
   albumsGroupes?: Prisma.albums_groupesUpdateManyWithoutTypeNestedInput
   songsPeople?: Prisma.songs_peopleUpdateManyWithoutTypeNestedInput
@@ -277,8 +265,6 @@ export type typeUpdateInput = {
 export type typeUncheckedUpdateInput = {
   type_id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  peopleType?: Prisma.people_typeUncheckedUpdateManyWithoutTypeNestedInput
-  groupesType?: Prisma.groupes_typeUncheckedUpdateManyWithoutTypeNestedInput
   albumsPeople?: Prisma.albums_peopleUncheckedUpdateManyWithoutTypeNestedInput
   albumsGroupes?: Prisma.albums_groupesUncheckedUpdateManyWithoutTypeNestedInput
   songsPeople?: Prisma.songs_peopleUncheckedUpdateManyWithoutTypeNestedInput
@@ -383,38 +369,8 @@ export type typeUpdateOneRequiredWithoutSongsPeopleNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.typeUpdateToOneWithWhereWithoutSongsPeopleInput, Prisma.typeUpdateWithoutSongsPeopleInput>, Prisma.typeUncheckedUpdateWithoutSongsPeopleInput>
 }
 
-export type typeCreateNestedOneWithoutPeopleTypeInput = {
-  create?: Prisma.XOR<Prisma.typeCreateWithoutPeopleTypeInput, Prisma.typeUncheckedCreateWithoutPeopleTypeInput>
-  connectOrCreate?: Prisma.typeCreateOrConnectWithoutPeopleTypeInput
-  connect?: Prisma.typeWhereUniqueInput
-}
-
-export type typeUpdateOneRequiredWithoutPeopleTypeNestedInput = {
-  create?: Prisma.XOR<Prisma.typeCreateWithoutPeopleTypeInput, Prisma.typeUncheckedCreateWithoutPeopleTypeInput>
-  connectOrCreate?: Prisma.typeCreateOrConnectWithoutPeopleTypeInput
-  upsert?: Prisma.typeUpsertWithoutPeopleTypeInput
-  connect?: Prisma.typeWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.typeUpdateToOneWithWhereWithoutPeopleTypeInput, Prisma.typeUpdateWithoutPeopleTypeInput>, Prisma.typeUncheckedUpdateWithoutPeopleTypeInput>
-}
-
-export type typeCreateNestedOneWithoutGroupesTypeInput = {
-  create?: Prisma.XOR<Prisma.typeCreateWithoutGroupesTypeInput, Prisma.typeUncheckedCreateWithoutGroupesTypeInput>
-  connectOrCreate?: Prisma.typeCreateOrConnectWithoutGroupesTypeInput
-  connect?: Prisma.typeWhereUniqueInput
-}
-
-export type typeUpdateOneRequiredWithoutGroupesTypeNestedInput = {
-  create?: Prisma.XOR<Prisma.typeCreateWithoutGroupesTypeInput, Prisma.typeUncheckedCreateWithoutGroupesTypeInput>
-  connectOrCreate?: Prisma.typeCreateOrConnectWithoutGroupesTypeInput
-  upsert?: Prisma.typeUpsertWithoutGroupesTypeInput
-  connect?: Prisma.typeWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.typeUpdateToOneWithWhereWithoutGroupesTypeInput, Prisma.typeUpdateWithoutGroupesTypeInput>, Prisma.typeUncheckedUpdateWithoutGroupesTypeInput>
-}
-
 export type typeCreateWithoutAlbumsPeopleInput = {
   name: string
-  peopleType?: Prisma.people_typeCreateNestedManyWithoutTypeInput
-  groupesType?: Prisma.groupes_typeCreateNestedManyWithoutTypeInput
   albumsGroupes?: Prisma.albums_groupesCreateNestedManyWithoutTypeInput
   songsPeople?: Prisma.songs_peopleCreateNestedManyWithoutTypeInput
   songsGroupes?: Prisma.songs_groupesCreateNestedManyWithoutTypeInput
@@ -423,8 +379,6 @@ export type typeCreateWithoutAlbumsPeopleInput = {
 export type typeUncheckedCreateWithoutAlbumsPeopleInput = {
   type_id?: number
   name: string
-  peopleType?: Prisma.people_typeUncheckedCreateNestedManyWithoutTypeInput
-  groupesType?: Prisma.groupes_typeUncheckedCreateNestedManyWithoutTypeInput
   albumsGroupes?: Prisma.albums_groupesUncheckedCreateNestedManyWithoutTypeInput
   songsPeople?: Prisma.songs_peopleUncheckedCreateNestedManyWithoutTypeInput
   songsGroupes?: Prisma.songs_groupesUncheckedCreateNestedManyWithoutTypeInput
@@ -448,8 +402,6 @@ export type typeUpdateToOneWithWhereWithoutAlbumsPeopleInput = {
 
 export type typeUpdateWithoutAlbumsPeopleInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  peopleType?: Prisma.people_typeUpdateManyWithoutTypeNestedInput
-  groupesType?: Prisma.groupes_typeUpdateManyWithoutTypeNestedInput
   albumsGroupes?: Prisma.albums_groupesUpdateManyWithoutTypeNestedInput
   songsPeople?: Prisma.songs_peopleUpdateManyWithoutTypeNestedInput
   songsGroupes?: Prisma.songs_groupesUpdateManyWithoutTypeNestedInput
@@ -458,8 +410,6 @@ export type typeUpdateWithoutAlbumsPeopleInput = {
 export type typeUncheckedUpdateWithoutAlbumsPeopleInput = {
   type_id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  peopleType?: Prisma.people_typeUncheckedUpdateManyWithoutTypeNestedInput
-  groupesType?: Prisma.groupes_typeUncheckedUpdateManyWithoutTypeNestedInput
   albumsGroupes?: Prisma.albums_groupesUncheckedUpdateManyWithoutTypeNestedInput
   songsPeople?: Prisma.songs_peopleUncheckedUpdateManyWithoutTypeNestedInput
   songsGroupes?: Prisma.songs_groupesUncheckedUpdateManyWithoutTypeNestedInput
@@ -467,8 +417,6 @@ export type typeUncheckedUpdateWithoutAlbumsPeopleInput = {
 
 export type typeCreateWithoutAlbumsGroupesInput = {
   name: string
-  peopleType?: Prisma.people_typeCreateNestedManyWithoutTypeInput
-  groupesType?: Prisma.groupes_typeCreateNestedManyWithoutTypeInput
   albumsPeople?: Prisma.albums_peopleCreateNestedManyWithoutTypeInput
   songsPeople?: Prisma.songs_peopleCreateNestedManyWithoutTypeInput
   songsGroupes?: Prisma.songs_groupesCreateNestedManyWithoutTypeInput
@@ -477,8 +425,6 @@ export type typeCreateWithoutAlbumsGroupesInput = {
 export type typeUncheckedCreateWithoutAlbumsGroupesInput = {
   type_id?: number
   name: string
-  peopleType?: Prisma.people_typeUncheckedCreateNestedManyWithoutTypeInput
-  groupesType?: Prisma.groupes_typeUncheckedCreateNestedManyWithoutTypeInput
   albumsPeople?: Prisma.albums_peopleUncheckedCreateNestedManyWithoutTypeInput
   songsPeople?: Prisma.songs_peopleUncheckedCreateNestedManyWithoutTypeInput
   songsGroupes?: Prisma.songs_groupesUncheckedCreateNestedManyWithoutTypeInput
@@ -502,8 +448,6 @@ export type typeUpdateToOneWithWhereWithoutAlbumsGroupesInput = {
 
 export type typeUpdateWithoutAlbumsGroupesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  peopleType?: Prisma.people_typeUpdateManyWithoutTypeNestedInput
-  groupesType?: Prisma.groupes_typeUpdateManyWithoutTypeNestedInput
   albumsPeople?: Prisma.albums_peopleUpdateManyWithoutTypeNestedInput
   songsPeople?: Prisma.songs_peopleUpdateManyWithoutTypeNestedInput
   songsGroupes?: Prisma.songs_groupesUpdateManyWithoutTypeNestedInput
@@ -512,8 +456,6 @@ export type typeUpdateWithoutAlbumsGroupesInput = {
 export type typeUncheckedUpdateWithoutAlbumsGroupesInput = {
   type_id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  peopleType?: Prisma.people_typeUncheckedUpdateManyWithoutTypeNestedInput
-  groupesType?: Prisma.groupes_typeUncheckedUpdateManyWithoutTypeNestedInput
   albumsPeople?: Prisma.albums_peopleUncheckedUpdateManyWithoutTypeNestedInput
   songsPeople?: Prisma.songs_peopleUncheckedUpdateManyWithoutTypeNestedInput
   songsGroupes?: Prisma.songs_groupesUncheckedUpdateManyWithoutTypeNestedInput
@@ -521,8 +463,6 @@ export type typeUncheckedUpdateWithoutAlbumsGroupesInput = {
 
 export type typeCreateWithoutSongsGroupesInput = {
   name: string
-  peopleType?: Prisma.people_typeCreateNestedManyWithoutTypeInput
-  groupesType?: Prisma.groupes_typeCreateNestedManyWithoutTypeInput
   albumsPeople?: Prisma.albums_peopleCreateNestedManyWithoutTypeInput
   albumsGroupes?: Prisma.albums_groupesCreateNestedManyWithoutTypeInput
   songsPeople?: Prisma.songs_peopleCreateNestedManyWithoutTypeInput
@@ -531,8 +471,6 @@ export type typeCreateWithoutSongsGroupesInput = {
 export type typeUncheckedCreateWithoutSongsGroupesInput = {
   type_id?: number
   name: string
-  peopleType?: Prisma.people_typeUncheckedCreateNestedManyWithoutTypeInput
-  groupesType?: Prisma.groupes_typeUncheckedCreateNestedManyWithoutTypeInput
   albumsPeople?: Prisma.albums_peopleUncheckedCreateNestedManyWithoutTypeInput
   albumsGroupes?: Prisma.albums_groupesUncheckedCreateNestedManyWithoutTypeInput
   songsPeople?: Prisma.songs_peopleUncheckedCreateNestedManyWithoutTypeInput
@@ -556,8 +494,6 @@ export type typeUpdateToOneWithWhereWithoutSongsGroupesInput = {
 
 export type typeUpdateWithoutSongsGroupesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  peopleType?: Prisma.people_typeUpdateManyWithoutTypeNestedInput
-  groupesType?: Prisma.groupes_typeUpdateManyWithoutTypeNestedInput
   albumsPeople?: Prisma.albums_peopleUpdateManyWithoutTypeNestedInput
   albumsGroupes?: Prisma.albums_groupesUpdateManyWithoutTypeNestedInput
   songsPeople?: Prisma.songs_peopleUpdateManyWithoutTypeNestedInput
@@ -566,8 +502,6 @@ export type typeUpdateWithoutSongsGroupesInput = {
 export type typeUncheckedUpdateWithoutSongsGroupesInput = {
   type_id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  peopleType?: Prisma.people_typeUncheckedUpdateManyWithoutTypeNestedInput
-  groupesType?: Prisma.groupes_typeUncheckedUpdateManyWithoutTypeNestedInput
   albumsPeople?: Prisma.albums_peopleUncheckedUpdateManyWithoutTypeNestedInput
   albumsGroupes?: Prisma.albums_groupesUncheckedUpdateManyWithoutTypeNestedInput
   songsPeople?: Prisma.songs_peopleUncheckedUpdateManyWithoutTypeNestedInput
@@ -575,8 +509,6 @@ export type typeUncheckedUpdateWithoutSongsGroupesInput = {
 
 export type typeCreateWithoutSongsPeopleInput = {
   name: string
-  peopleType?: Prisma.people_typeCreateNestedManyWithoutTypeInput
-  groupesType?: Prisma.groupes_typeCreateNestedManyWithoutTypeInput
   albumsPeople?: Prisma.albums_peopleCreateNestedManyWithoutTypeInput
   albumsGroupes?: Prisma.albums_groupesCreateNestedManyWithoutTypeInput
   songsGroupes?: Prisma.songs_groupesCreateNestedManyWithoutTypeInput
@@ -585,8 +517,6 @@ export type typeCreateWithoutSongsPeopleInput = {
 export type typeUncheckedCreateWithoutSongsPeopleInput = {
   type_id?: number
   name: string
-  peopleType?: Prisma.people_typeUncheckedCreateNestedManyWithoutTypeInput
-  groupesType?: Prisma.groupes_typeUncheckedCreateNestedManyWithoutTypeInput
   albumsPeople?: Prisma.albums_peopleUncheckedCreateNestedManyWithoutTypeInput
   albumsGroupes?: Prisma.albums_groupesUncheckedCreateNestedManyWithoutTypeInput
   songsGroupes?: Prisma.songs_groupesUncheckedCreateNestedManyWithoutTypeInput
@@ -610,8 +540,6 @@ export type typeUpdateToOneWithWhereWithoutSongsPeopleInput = {
 
 export type typeUpdateWithoutSongsPeopleInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  peopleType?: Prisma.people_typeUpdateManyWithoutTypeNestedInput
-  groupesType?: Prisma.groupes_typeUpdateManyWithoutTypeNestedInput
   albumsPeople?: Prisma.albums_peopleUpdateManyWithoutTypeNestedInput
   albumsGroupes?: Prisma.albums_groupesUpdateManyWithoutTypeNestedInput
   songsGroupes?: Prisma.songs_groupesUpdateManyWithoutTypeNestedInput
@@ -620,118 +548,8 @@ export type typeUpdateWithoutSongsPeopleInput = {
 export type typeUncheckedUpdateWithoutSongsPeopleInput = {
   type_id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  peopleType?: Prisma.people_typeUncheckedUpdateManyWithoutTypeNestedInput
-  groupesType?: Prisma.groupes_typeUncheckedUpdateManyWithoutTypeNestedInput
   albumsPeople?: Prisma.albums_peopleUncheckedUpdateManyWithoutTypeNestedInput
   albumsGroupes?: Prisma.albums_groupesUncheckedUpdateManyWithoutTypeNestedInput
-  songsGroupes?: Prisma.songs_groupesUncheckedUpdateManyWithoutTypeNestedInput
-}
-
-export type typeCreateWithoutPeopleTypeInput = {
-  name: string
-  groupesType?: Prisma.groupes_typeCreateNestedManyWithoutTypeInput
-  albumsPeople?: Prisma.albums_peopleCreateNestedManyWithoutTypeInput
-  albumsGroupes?: Prisma.albums_groupesCreateNestedManyWithoutTypeInput
-  songsPeople?: Prisma.songs_peopleCreateNestedManyWithoutTypeInput
-  songsGroupes?: Prisma.songs_groupesCreateNestedManyWithoutTypeInput
-}
-
-export type typeUncheckedCreateWithoutPeopleTypeInput = {
-  type_id?: number
-  name: string
-  groupesType?: Prisma.groupes_typeUncheckedCreateNestedManyWithoutTypeInput
-  albumsPeople?: Prisma.albums_peopleUncheckedCreateNestedManyWithoutTypeInput
-  albumsGroupes?: Prisma.albums_groupesUncheckedCreateNestedManyWithoutTypeInput
-  songsPeople?: Prisma.songs_peopleUncheckedCreateNestedManyWithoutTypeInput
-  songsGroupes?: Prisma.songs_groupesUncheckedCreateNestedManyWithoutTypeInput
-}
-
-export type typeCreateOrConnectWithoutPeopleTypeInput = {
-  where: Prisma.typeWhereUniqueInput
-  create: Prisma.XOR<Prisma.typeCreateWithoutPeopleTypeInput, Prisma.typeUncheckedCreateWithoutPeopleTypeInput>
-}
-
-export type typeUpsertWithoutPeopleTypeInput = {
-  update: Prisma.XOR<Prisma.typeUpdateWithoutPeopleTypeInput, Prisma.typeUncheckedUpdateWithoutPeopleTypeInput>
-  create: Prisma.XOR<Prisma.typeCreateWithoutPeopleTypeInput, Prisma.typeUncheckedCreateWithoutPeopleTypeInput>
-  where?: Prisma.typeWhereInput
-}
-
-export type typeUpdateToOneWithWhereWithoutPeopleTypeInput = {
-  where?: Prisma.typeWhereInput
-  data: Prisma.XOR<Prisma.typeUpdateWithoutPeopleTypeInput, Prisma.typeUncheckedUpdateWithoutPeopleTypeInput>
-}
-
-export type typeUpdateWithoutPeopleTypeInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  groupesType?: Prisma.groupes_typeUpdateManyWithoutTypeNestedInput
-  albumsPeople?: Prisma.albums_peopleUpdateManyWithoutTypeNestedInput
-  albumsGroupes?: Prisma.albums_groupesUpdateManyWithoutTypeNestedInput
-  songsPeople?: Prisma.songs_peopleUpdateManyWithoutTypeNestedInput
-  songsGroupes?: Prisma.songs_groupesUpdateManyWithoutTypeNestedInput
-}
-
-export type typeUncheckedUpdateWithoutPeopleTypeInput = {
-  type_id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  groupesType?: Prisma.groupes_typeUncheckedUpdateManyWithoutTypeNestedInput
-  albumsPeople?: Prisma.albums_peopleUncheckedUpdateManyWithoutTypeNestedInput
-  albumsGroupes?: Prisma.albums_groupesUncheckedUpdateManyWithoutTypeNestedInput
-  songsPeople?: Prisma.songs_peopleUncheckedUpdateManyWithoutTypeNestedInput
-  songsGroupes?: Prisma.songs_groupesUncheckedUpdateManyWithoutTypeNestedInput
-}
-
-export type typeCreateWithoutGroupesTypeInput = {
-  name: string
-  peopleType?: Prisma.people_typeCreateNestedManyWithoutTypeInput
-  albumsPeople?: Prisma.albums_peopleCreateNestedManyWithoutTypeInput
-  albumsGroupes?: Prisma.albums_groupesCreateNestedManyWithoutTypeInput
-  songsPeople?: Prisma.songs_peopleCreateNestedManyWithoutTypeInput
-  songsGroupes?: Prisma.songs_groupesCreateNestedManyWithoutTypeInput
-}
-
-export type typeUncheckedCreateWithoutGroupesTypeInput = {
-  type_id?: number
-  name: string
-  peopleType?: Prisma.people_typeUncheckedCreateNestedManyWithoutTypeInput
-  albumsPeople?: Prisma.albums_peopleUncheckedCreateNestedManyWithoutTypeInput
-  albumsGroupes?: Prisma.albums_groupesUncheckedCreateNestedManyWithoutTypeInput
-  songsPeople?: Prisma.songs_peopleUncheckedCreateNestedManyWithoutTypeInput
-  songsGroupes?: Prisma.songs_groupesUncheckedCreateNestedManyWithoutTypeInput
-}
-
-export type typeCreateOrConnectWithoutGroupesTypeInput = {
-  where: Prisma.typeWhereUniqueInput
-  create: Prisma.XOR<Prisma.typeCreateWithoutGroupesTypeInput, Prisma.typeUncheckedCreateWithoutGroupesTypeInput>
-}
-
-export type typeUpsertWithoutGroupesTypeInput = {
-  update: Prisma.XOR<Prisma.typeUpdateWithoutGroupesTypeInput, Prisma.typeUncheckedUpdateWithoutGroupesTypeInput>
-  create: Prisma.XOR<Prisma.typeCreateWithoutGroupesTypeInput, Prisma.typeUncheckedCreateWithoutGroupesTypeInput>
-  where?: Prisma.typeWhereInput
-}
-
-export type typeUpdateToOneWithWhereWithoutGroupesTypeInput = {
-  where?: Prisma.typeWhereInput
-  data: Prisma.XOR<Prisma.typeUpdateWithoutGroupesTypeInput, Prisma.typeUncheckedUpdateWithoutGroupesTypeInput>
-}
-
-export type typeUpdateWithoutGroupesTypeInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  peopleType?: Prisma.people_typeUpdateManyWithoutTypeNestedInput
-  albumsPeople?: Prisma.albums_peopleUpdateManyWithoutTypeNestedInput
-  albumsGroupes?: Prisma.albums_groupesUpdateManyWithoutTypeNestedInput
-  songsPeople?: Prisma.songs_peopleUpdateManyWithoutTypeNestedInput
-  songsGroupes?: Prisma.songs_groupesUpdateManyWithoutTypeNestedInput
-}
-
-export type typeUncheckedUpdateWithoutGroupesTypeInput = {
-  type_id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  peopleType?: Prisma.people_typeUncheckedUpdateManyWithoutTypeNestedInput
-  albumsPeople?: Prisma.albums_peopleUncheckedUpdateManyWithoutTypeNestedInput
-  albumsGroupes?: Prisma.albums_groupesUncheckedUpdateManyWithoutTypeNestedInput
-  songsPeople?: Prisma.songs_peopleUncheckedUpdateManyWithoutTypeNestedInput
   songsGroupes?: Prisma.songs_groupesUncheckedUpdateManyWithoutTypeNestedInput
 }
 
@@ -741,8 +559,6 @@ export type typeUncheckedUpdateWithoutGroupesTypeInput = {
  */
 
 export type TypeCountOutputType = {
-  peopleType: number
-  groupesType: number
   albumsPeople: number
   albumsGroupes: number
   songsPeople: number
@@ -750,8 +566,6 @@ export type TypeCountOutputType = {
 }
 
 export type TypeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  peopleType?: boolean | TypeCountOutputTypeCountPeopleTypeArgs
-  groupesType?: boolean | TypeCountOutputTypeCountGroupesTypeArgs
   albumsPeople?: boolean | TypeCountOutputTypeCountAlbumsPeopleArgs
   albumsGroupes?: boolean | TypeCountOutputTypeCountAlbumsGroupesArgs
   songsPeople?: boolean | TypeCountOutputTypeCountSongsPeopleArgs
@@ -766,20 +580,6 @@ export type TypeCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
    * Select specific fields to fetch from the TypeCountOutputType
    */
   select?: Prisma.TypeCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * TypeCountOutputType without action
- */
-export type TypeCountOutputTypeCountPeopleTypeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.people_typeWhereInput
-}
-
-/**
- * TypeCountOutputType without action
- */
-export type TypeCountOutputTypeCountGroupesTypeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.groupes_typeWhereInput
 }
 
 /**
@@ -814,8 +614,6 @@ export type TypeCountOutputTypeCountSongsGroupesArgs<ExtArgs extends runtime.Typ
 export type typeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   type_id?: boolean
   name?: boolean
-  peopleType?: boolean | Prisma.type$peopleTypeArgs<ExtArgs>
-  groupesType?: boolean | Prisma.type$groupesTypeArgs<ExtArgs>
   albumsPeople?: boolean | Prisma.type$albumsPeopleArgs<ExtArgs>
   albumsGroupes?: boolean | Prisma.type$albumsGroupesArgs<ExtArgs>
   songsPeople?: boolean | Prisma.type$songsPeopleArgs<ExtArgs>
@@ -840,8 +638,6 @@ export type typeSelectScalar = {
 
 export type typeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"type_id" | "name", ExtArgs["result"]["type"]>
 export type typeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  peopleType?: boolean | Prisma.type$peopleTypeArgs<ExtArgs>
-  groupesType?: boolean | Prisma.type$groupesTypeArgs<ExtArgs>
   albumsPeople?: boolean | Prisma.type$albumsPeopleArgs<ExtArgs>
   albumsGroupes?: boolean | Prisma.type$albumsGroupesArgs<ExtArgs>
   songsPeople?: boolean | Prisma.type$songsPeopleArgs<ExtArgs>
@@ -854,8 +650,6 @@ export type typeIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $typePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "type"
   objects: {
-    peopleType: Prisma.$people_typePayload<ExtArgs>[]
-    groupesType: Prisma.$groupes_typePayload<ExtArgs>[]
     albumsPeople: Prisma.$albums_peoplePayload<ExtArgs>[]
     albumsGroupes: Prisma.$albums_groupesPayload<ExtArgs>[]
     songsPeople: Prisma.$songs_peoplePayload<ExtArgs>[]
@@ -1258,8 +1052,6 @@ readonly fields: typeFieldRefs;
  */
 export interface Prisma__typeClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  peopleType<T extends Prisma.type$peopleTypeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.type$peopleTypeArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$people_typePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  groupesType<T extends Prisma.type$groupesTypeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.type$groupesTypeArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$groupes_typePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   albumsPeople<T extends Prisma.type$albumsPeopleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.type$albumsPeopleArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$albums_peoplePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   albumsGroupes<T extends Prisma.type$albumsGroupesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.type$albumsGroupesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$albums_groupesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   songsPeople<T extends Prisma.type$songsPeopleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.type$songsPeopleArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$songs_peoplePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1685,54 +1477,6 @@ export type typeDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Limit how many types to delete.
    */
   limit?: number
-}
-
-/**
- * type.peopleType
- */
-export type type$peopleTypeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the people_type
-   */
-  select?: Prisma.people_typeSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the people_type
-   */
-  omit?: Prisma.people_typeOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.people_typeInclude<ExtArgs> | null
-  where?: Prisma.people_typeWhereInput
-  orderBy?: Prisma.people_typeOrderByWithRelationInput | Prisma.people_typeOrderByWithRelationInput[]
-  cursor?: Prisma.people_typeWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.People_typeScalarFieldEnum | Prisma.People_typeScalarFieldEnum[]
-}
-
-/**
- * type.groupesType
- */
-export type type$groupesTypeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the groupes_type
-   */
-  select?: Prisma.groupes_typeSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the groupes_type
-   */
-  omit?: Prisma.groupes_typeOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.groupes_typeInclude<ExtArgs> | null
-  where?: Prisma.groupes_typeWhereInput
-  orderBy?: Prisma.groupes_typeOrderByWithRelationInput | Prisma.groupes_typeOrderByWithRelationInput[]
-  cursor?: Prisma.groupes_typeWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.Groupes_typeScalarFieldEnum | Prisma.Groupes_typeScalarFieldEnum[]
 }
 
 /**

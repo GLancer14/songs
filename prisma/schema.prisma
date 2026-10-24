@@ -67,7 +67,7 @@ model albums_people {
   id       Int
   type_id  Int
 
-  @@id([album_id, id])
+  @@id([album_id, id, type_id])
 }
 
 model albums_groupes {
@@ -78,7 +78,7 @@ model albums_groupes {
   id       Int
   type_id  Int
 
-  @@id([album_id, id])
+  @@id([album_id, id, type_id])
 }
 
 model album_types {
@@ -114,7 +114,6 @@ model groupes {
   description        String?
   image              String?
   songsGroupes       songs_groupes[]
-  groupesType        groupes_type[]
   albumsGroupes      albums_groupes[]
 }
 
@@ -126,7 +125,7 @@ model songs_groupes {
   id      Int
   type_id Int
 
-  @@id([song_id, id])
+  @@id([song_id, id, type_id])
 }
 
 model people {
@@ -140,15 +139,12 @@ model people {
   countries    countries?      @relation(fields: [country_id], references: [country_id])
   country_id   Int?
   songsPeople  songs_people[]
-  peopleType   people_type[]
   albumsPeople albums_people[]
 }
 
 model type {
   type_id       Int              @id @default(autoincrement())
   name          String
-  peopleType    people_type[]
-  groupesType   groupes_type[]
   albumsPeople  albums_people[]
   albumsGroupes albums_groupes[]
   songsPeople   songs_people[]
@@ -163,25 +159,7 @@ model songs_people {
   id      Int
   type_id Int
 
-  @@id([song_id, id])
-}
-
-model people_type {
-  type    type   @relation(fields: [type_id], references: [type_id], onDelete: Cascade)
-  people  people @relation(fields: [id], references: [id])
-  type_id Int
-  id      Int
-
-  @@id([type_id, id])
-}
-
-model groupes_type {
-  type    type    @relation(fields: [type_id], references: [type_id], onDelete: Cascade)
-  groupes groupes @relation(fields: [id], references: [id])
-  type_id Int
-  id      Int
-
-  @@id([type_id, id])
+  @@id([song_id, id, type_id])
 }
 
 model genres {

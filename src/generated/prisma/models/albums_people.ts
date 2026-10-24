@@ -223,7 +223,7 @@ export type albums_peopleOrderByWithRelationInput = {
 }
 
 export type albums_peopleWhereUniqueInput = Prisma.AtLeast<{
-  album_id_id?: Prisma.albums_peopleAlbum_idIdCompoundUniqueInput
+  album_id_id_type_id?: Prisma.albums_peopleAlbum_idIdType_idCompoundUniqueInput
   AND?: Prisma.albums_peopleWhereInput | Prisma.albums_peopleWhereInput[]
   OR?: Prisma.albums_peopleWhereInput[]
   NOT?: Prisma.albums_peopleWhereInput | Prisma.albums_peopleWhereInput[]
@@ -233,7 +233,7 @@ export type albums_peopleWhereUniqueInput = Prisma.AtLeast<{
   people?: Prisma.XOR<Prisma.PeopleScalarRelationFilter, Prisma.peopleWhereInput>
   albums?: Prisma.XOR<Prisma.AlbumsScalarRelationFilter, Prisma.albumsWhereInput>
   type?: Prisma.XOR<Prisma.TypeScalarRelationFilter, Prisma.typeWhereInput>
-}, "album_id_id">
+}, "album_id_id_type_id">
 
 export type albums_peopleOrderByWithAggregationInput = {
   album_id?: Prisma.SortOrder
@@ -305,9 +305,10 @@ export type albums_peopleOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type albums_peopleAlbum_idIdCompoundUniqueInput = {
+export type albums_peopleAlbum_idIdType_idCompoundUniqueInput = {
   album_id: number
   id: number
+  type_id: number
 }
 
 export type albums_peopleCountOrderByAggregateInput = {

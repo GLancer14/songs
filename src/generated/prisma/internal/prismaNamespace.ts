@@ -410,8 +410,6 @@ export const ModelName = {
   people: 'people',
   type: 'type',
   songs_people: 'songs_people',
-  people_type: 'people_type',
-  groupes_type: 'groupes_type',
   genres: 'genres',
   songs_genres: 'songs_genres',
   languages: 'languages',
@@ -433,7 +431,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "songs" | "mood" | "albums" | "albums_people" | "albums_groupes" | "album_types" | "songs_albums" | "countries" | "groupes" | "songs_groupes" | "people" | "type" | "songs_people" | "people_type" | "groupes_type" | "genres" | "songs_genres" | "languages" | "songs_lyrics" | "users" | "links"
+    modelProps: "songs" | "mood" | "albums" | "albums_people" | "albums_groupes" | "album_types" | "songs_albums" | "countries" | "groupes" | "songs_groupes" | "people" | "type" | "songs_people" | "genres" | "songs_genres" | "languages" | "songs_lyrics" | "users" | "links"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1399,154 +1397,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    people_type: {
-      payload: Prisma.$people_typePayload<ExtArgs>
-      fields: Prisma.people_typeFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.people_typeFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$people_typePayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.people_typeFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$people_typePayload>
-        }
-        findFirst: {
-          args: Prisma.people_typeFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$people_typePayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.people_typeFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$people_typePayload>
-        }
-        findMany: {
-          args: Prisma.people_typeFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$people_typePayload>[]
-        }
-        create: {
-          args: Prisma.people_typeCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$people_typePayload>
-        }
-        createMany: {
-          args: Prisma.people_typeCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.people_typeCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$people_typePayload>[]
-        }
-        delete: {
-          args: Prisma.people_typeDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$people_typePayload>
-        }
-        update: {
-          args: Prisma.people_typeUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$people_typePayload>
-        }
-        deleteMany: {
-          args: Prisma.people_typeDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.people_typeUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.people_typeUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$people_typePayload>[]
-        }
-        upsert: {
-          args: Prisma.people_typeUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$people_typePayload>
-        }
-        aggregate: {
-          args: Prisma.People_typeAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregatePeople_type>
-        }
-        groupBy: {
-          args: Prisma.people_typeGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.People_typeGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.people_typeCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.People_typeCountAggregateOutputType> | number
-        }
-      }
-    }
-    groupes_type: {
-      payload: Prisma.$groupes_typePayload<ExtArgs>
-      fields: Prisma.groupes_typeFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.groupes_typeFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$groupes_typePayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.groupes_typeFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$groupes_typePayload>
-        }
-        findFirst: {
-          args: Prisma.groupes_typeFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$groupes_typePayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.groupes_typeFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$groupes_typePayload>
-        }
-        findMany: {
-          args: Prisma.groupes_typeFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$groupes_typePayload>[]
-        }
-        create: {
-          args: Prisma.groupes_typeCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$groupes_typePayload>
-        }
-        createMany: {
-          args: Prisma.groupes_typeCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.groupes_typeCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$groupes_typePayload>[]
-        }
-        delete: {
-          args: Prisma.groupes_typeDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$groupes_typePayload>
-        }
-        update: {
-          args: Prisma.groupes_typeUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$groupes_typePayload>
-        }
-        deleteMany: {
-          args: Prisma.groupes_typeDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.groupes_typeUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.groupes_typeUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$groupes_typePayload>[]
-        }
-        upsert: {
-          args: Prisma.groupes_typeUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$groupes_typePayload>
-        }
-        aggregate: {
-          args: Prisma.Groupes_typeAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateGroupes_type>
-        }
-        groupBy: {
-          args: Prisma.groupes_typeGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Groupes_typeGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.groupes_typeCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Groupes_typeCountAggregateOutputType> | number
-        }
-      }
-    }
     genres: {
       payload: Prisma.$genresPayload<ExtArgs>
       fields: Prisma.genresFieldRefs
@@ -2168,22 +2018,6 @@ export const Songs_peopleScalarFieldEnum = {
 export type Songs_peopleScalarFieldEnum = (typeof Songs_peopleScalarFieldEnum)[keyof typeof Songs_peopleScalarFieldEnum]
 
 
-export const People_typeScalarFieldEnum = {
-  type_id: 'type_id',
-  id: 'id'
-} as const
-
-export type People_typeScalarFieldEnum = (typeof People_typeScalarFieldEnum)[keyof typeof People_typeScalarFieldEnum]
-
-
-export const Groupes_typeScalarFieldEnum = {
-  type_id: 'type_id',
-  id: 'id'
-} as const
-
-export type Groupes_typeScalarFieldEnum = (typeof Groupes_typeScalarFieldEnum)[keyof typeof Groupes_typeScalarFieldEnum]
-
-
 export const GenresScalarFieldEnum = {
   id: 'id',
   name: 'name'
@@ -2506,8 +2340,6 @@ export type GlobalOmitConfig = {
   people?: Prisma.peopleOmit
   type?: Prisma.typeOmit
   songs_people?: Prisma.songs_peopleOmit
-  people_type?: Prisma.people_typeOmit
-  groupes_type?: Prisma.groupes_typeOmit
   genres?: Prisma.genresOmit
   songs_genres?: Prisma.songs_genresOmit
   languages?: Prisma.languagesOmit

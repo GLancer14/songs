@@ -36,28 +36,23 @@ interface CreditsProps {
   }[];
   songsPeople: ({
     people: {
-        peopleType: ({
-            type: {
-                name: string;
-                type_id: number;
-            };
-        } & {
-            id: number;
-            type_id: number;
-        })[];
-    } & {
-        name: string;
         id: number;
+        name: string;
         description: string | null;
         image: string | null;
+        country_id: number | null;
         firstname: string | null;
         surname: string | null;
         nickname: string | null;
-        country_id: number | null;
+    };
+    type: {
+        name: string;
+        type_id: number;
     };
 } & {
     id: number;
     song_id: number;
+    type_id: number;
 })[][];
 }
 

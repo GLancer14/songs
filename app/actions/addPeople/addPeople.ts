@@ -16,7 +16,7 @@ export default async function addPeople(
     people_firstname: formData.get("people_firstname"),
     people_surname: formData.get("people_surname"),
     people_nickname: formData.get("people_nickname"),
-    people_type: formData.getAll("type"),
+    // people_type: formData.getAll("type"),
     people_country: formData.get("people_country"),
     description: formData.get("description"),
     title_image: formData.get("title_image"),
@@ -70,32 +70,32 @@ export default async function addPeople(
     }
   });
 
-  const types = peopleData.people_type.map(async (value) => {
-    const foundType = await prisma.type.findFirst({
-      where: {
-        name: value,
-      },
-    });
+  // const types = peopleData.people_type.map(async (value) => {
+  //   const foundType = await prisma.type.findFirst({
+  //     where: {
+  //       name: value,
+  //     },
+  //   });
 
-    if (foundType) {
-      return foundType;
-    }
+  //   if (foundType) {
+  //     return foundType;
+  //   }
 
-    return await prisma.type.create({
-      data: {
-        name: value,
-      },
-    });
-  });
+  //   return await prisma.type.create({
+  //     data: {
+  //       name: value,
+  //     },
+  //   });
+  // });
 
-  types.forEach(async (value) => {
-    await prisma.people_type.create({
-      data: {
-        type_id: (await value).type_id,
-        id: peopleCreateResult.id,
-      },
-    });
-  });
+  // types.forEach(async (value) => {
+  //   await prisma.people_type.create({
+  //     data: {
+  //       type_id: (await value).type_id,
+  //       id: peopleCreateResult.id,
+  //     },
+  //   });
+  // });
 
   if (peopleData.title_image) {
     if (peopleData.title_image.size === 0) {

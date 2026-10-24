@@ -26,8 +26,6 @@ const Page = async ({
         country_id: groupData.country_id || 1,
       }
     })
-
-    console.log(country)
   }
 
 

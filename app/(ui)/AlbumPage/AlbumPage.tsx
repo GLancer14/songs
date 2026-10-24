@@ -48,29 +48,24 @@ export interface SongPageProps {
   }[];
   songsPeople: ({
     people: {
-      peopleType: ({
-        type: {
-          name: string;
-          type_id: number;
-        };
-      } & {
         id: number;
-        type_id: number;
-      })[];
-    } & {
-      name: string;
-      id: number;
-      description: string | null;
-      image: string | null;
-      firstname: string | null;
-      surname: string | null;
-      nickname: string | null;
-      country_id: number | null;
+        name: string;
+        description: string | null;
+        image: string | null;
+        country_id: number | null;
+        firstname: string | null;
+        surname: string | null;
+        nickname: string | null;
     };
-  } & {
+    type: {
+        name: string;
+        type_id: number;
+    };
+} & {
     id: number;
     song_id: number;
-  })[][];
+    type_id: number;
+})[][];
   authorId: number;
   imageColor: string | undefined;
   imageValue: number[] | undefined;

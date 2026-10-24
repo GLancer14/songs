@@ -83,16 +83,6 @@ export type type = Prisma.typeModel
  */
 export type songs_people = Prisma.songs_peopleModel
 /**
- * Model people_type
- * 
- */
-export type people_type = Prisma.people_typeModel
-/**
- * Model groupes_type
- * 
- */
-export type groupes_type = Prisma.groupes_typeModel
-/**
  * Model genres
  * 
  */

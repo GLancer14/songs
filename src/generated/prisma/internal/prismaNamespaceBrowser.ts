@@ -64,8 +64,6 @@ export const ModelName = {
   people: 'people',
   type: 'type',
   songs_people: 'songs_people',
-  people_type: 'people_type',
-  groupes_type: 'groupes_type',
   genres: 'genres',
   songs_genres: 'songs_genres',
   languages: 'languages',
@@ -226,22 +224,6 @@ export const Songs_peopleScalarFieldEnum = {
 } as const
 
 export type Songs_peopleScalarFieldEnum = (typeof Songs_peopleScalarFieldEnum)[keyof typeof Songs_peopleScalarFieldEnum]
-
-
-export const People_typeScalarFieldEnum = {
-  type_id: 'type_id',
-  id: 'id'
-} as const
-
-export type People_typeScalarFieldEnum = (typeof People_typeScalarFieldEnum)[keyof typeof People_typeScalarFieldEnum]
-
-
-export const Groupes_typeScalarFieldEnum = {
-  type_id: 'type_id',
-  id: 'id'
-} as const
-
-export type Groupes_typeScalarFieldEnum = (typeof Groupes_typeScalarFieldEnum)[keyof typeof Groupes_typeScalarFieldEnum]
 
 
 export const GenresScalarFieldEnum = {

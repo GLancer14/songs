@@ -43,15 +43,8 @@ export default async function Page({
         song_id: song.songs.song_id,
       },
       include: {
-        people: {
-          include: {
-            peopleType: {
-              include: {
-                type: true,
-              }
-            }
-          }
-        },
+        type: true,
+        people: true,
       }
     })
   })));

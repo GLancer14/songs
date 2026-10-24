@@ -87,38 +87,38 @@ export default async function editPeople(
 
 
 
-  await prisma.people_type.deleteMany({
-    where: {
-      id: +peopleData.people_id,
-    },
-  });
+  // await prisma.people_type.deleteMany({
+  //   where: {
+  //     id: +peopleData.people_id,
+  //   },
+  // });
 
-  const newTypes = await Promise.all(peopleData.people_type.map(async (value) => {
-    const foundType = await prisma.type.findFirst({
-      where: {
-        name: value,
-      },
-    });
+  // const newTypes = await Promise.all(peopleData.people_type.map(async (value) => {
+  //   const foundType = await prisma.type.findFirst({
+  //     where: {
+  //       name: value,
+  //     },
+  //   });
 
-    if (foundType) {
-      return foundType;
-    }
+  //   if (foundType) {
+  //     return foundType;
+  //   }
 
-    return await prisma.type.create({
-      data: {
-        name: value,
-      },
-    });
-  }));
+  //   return await prisma.type.create({
+  //     data: {
+  //       name: value,
+  //     },
+  //   });
+  // }));
 
-  for await (let newType of newTypes) {
-    await prisma.people_type.create({
-      data: {
-        id: +peopleData.people_id,
-        type_id: newType.type_id,
-      },
-    });
-  }
+  // for await (let newType of newTypes) {
+  //   await prisma.people_type.create({
+  //     data: {
+  //       id: +peopleData.people_id,
+  //       type_id: newType.type_id,
+  //     },
+  //   });
+  // }
 
   const peopleDataImage: {
     name: string;
