@@ -24,15 +24,62 @@ interface EditAlbumProps {
     image: string | null;
     album_id: number;
   } | null;
+  albumGroupes?: ({
+    groupes: {
+      name: string;
+      description: string | null;
+      image: string | null;
+      id: number;
+      country_id: number | null;
+      year_of_foundation: number | null;
+    };
+    type: {
+      name: string;
+      type_id: number;
+    };
+  } & {
+    album_id: number;
+    id: number;
+    type_id: number;
+  })[];
+  albumPeople?: ({
+    type: {
+      name: string;
+      type_id: number;
+    };
+    people: {
+      name: string;
+      id: number;
+      firstname: string | null;
+      surname: string | null;
+      nickname: string | null;
+      description: string | null;
+      image: string | null;
+      country_id: number | null;
+    };
+  } & {
+    album_id: number;
+    id: number;
+    type_id: number;
+  })[];
 }
 
-const EditAlbum: FC<EditAlbumProps> = ({ user, albumTypes, edit, albumData }) => {
-  const [state, action, pending] = useActionState(addAlbum, undefined)
+const EditAlbum: FC<EditAlbumProps> = ({
+  user,
+  albumTypes,
+  edit,
+  albumData,
+  albumGroupes,
+  albumPeople,
+}) => {
+  const [state, action, pending] = useActionState(edit ? editAlbum : addAlbum, undefined)
   const [name, setName] = useState(albumData?.name || "");
   const [author, setAuthor] = useState(albumData?.author || "");
   const [desc, setDesc] = useState(albumData?.description || "");
   const [albumTypeId, setAlbumTypeId] = useState<number | undefined>();
   const [date, setDate] = useState<Date>(albumData?.release_date || new Date());
+  const [albumGroupesValue, setAlbumGroupesValue] = useState(albumGroupes || []);
+  const [albumPeopleValue, setAlbumPeopleValue] = useState(albumPeople || []);
 
   useEffect(() => {
     const albumTypeFunc = async () => {
@@ -45,7 +92,12 @@ const EditAlbum: FC<EditAlbumProps> = ({ user, albumTypes, edit, albumData }) =>
     }
 
     albumTypeFunc();
-  }, [albumData?.album_type])
+  }, [albumData?.album_type]);
+
+  useEffect(() => {
+    setAlbumGroupesValue(albumGroupes || []);
+    setAlbumPeopleValue(albumPeople || []);
+  }, [albumGroupes, albumPeople])
 
   return (
     <>
@@ -109,8 +161,8 @@ const EditAlbum: FC<EditAlbumProps> = ({ user, albumTypes, edit, albumData }) =>
           <label className="flex gap-2">
             <span className="">Album Type:</span>
             <select
-              name="album_type"
-              id="album_type"
+              name="album_type_id"
+              id="album_type_id"
               value={albumTypeId}
               onChange={(e) => {
                 setAlbumTypeId(+e.currentTarget.value)
@@ -135,11 +187,12 @@ const EditAlbum: FC<EditAlbumProps> = ({ user, albumTypes, edit, albumData }) =>
           <SearchField
             edit={edit}
             firstShowData={
-              [
-                {
-                  name: "",
+              albumGroupesValue.map(value => {
+                return {
+                  name: value.groupes.name,
+                  type: value.type.name,
                 }
-              ]
+              })
             }
             tableData={{
               name: "groupes",
@@ -154,12 +207,12 @@ const EditAlbum: FC<EditAlbumProps> = ({ user, albumTypes, edit, albumData }) =>
           <SearchField
             edit={edit}
             firstShowData={
-              [
-                {
-                  name: "",
-                  type: "joe",
+              albumPeopleValue.map(value => {
+                return {
+                  name: value.people.name,
+                  type: value.type.name,
                 }
-              ]
+              })
             }
             tableData={{
               name: "people",
@@ -184,9 +237,22 @@ const EditAlbum: FC<EditAlbumProps> = ({ user, albumTypes, edit, albumData }) =>
               }}
             />
           </label>
-          <AddImage />
+          <article className="mb-4">
+            <AddImage previousImage={albumData?.image ? `/backgrounds/albums/${albumData?.image}` : null} />
+          </article>
         </section>
-        <button className="" value="Save" id="save_songs_lyrics">Add Album</button>
+        <section className="w-0 h-0 opacity-0">
+          {edit && 
+            <input
+              type="text"
+              className="h-0 w-0"
+              value={albumData?.album_id}
+              name="album_id"
+              readOnly
+            />
+          }
+        </section>
+        <button className="" value="Save" id="save_songs_lyrics">{!edit ? "Add" : "Edit"} Album</button>
       </form>
       <Footer />
     </>

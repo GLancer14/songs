@@ -1,8 +1,7 @@
 "use server"
 
-import { Prisma, songs } from "@/src/generated/prisma/client";
 import { prisma } from "../../lib/prisma";
-import { AddAlbumSchema, AddAlbumSchemaType, AddSongSchema, AddSongSchemaType } from "@/app/lib/definitions";
+import { AddAlbumSchema, AddAlbumSchemaType } from "@/app/lib/definitions";
 import userIam from "../userIam";
 import { writeFile } from "fs";
 import path from "path";
@@ -43,7 +42,6 @@ export default async function addAlbum(
     }
   }
   const albumData = validatedFields.data;
-  // console.log(albumData)
 
   const imageName = `${Date.now()}-${albumData.title_image?.name.replace(/[^a-zA-Z0-9.]/g, '-')}`;
 
@@ -83,7 +81,7 @@ export default async function addAlbum(
     }
   }
   
-  async function sendAlbumsArray(tableName: ArrayValues) {
+  const sendAlbumsArray = async (tableName: ArrayValues) => {
     if (albumData[tableName] && albumData[tableName].length > 0) {
       const model = prisma[tableName as ValidModelKeys] as any;
       const authorArray = albumData[tableName];

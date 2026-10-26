@@ -12,11 +12,32 @@ const Page = async ({
   params: Promise<{ album: number }>;
 }) => {
   const user = await userIam();
+  const { album } = await params;
   const albumTypes = await prisma.album_types.findMany();
 
   const albumData = await prisma.albums.findFirst({
     where: {
-      album_id: +(await params).album,
+      album_id: +album,
+    }
+  });
+
+  const albumGroupes = await prisma.albums_groupes.findMany({
+    where: {
+      album_id: +album,
+    },
+    include: {
+      groupes: true,
+      type: true,
+    }
+  });
+
+  const albumPeople = await prisma.albums_people.findMany({
+    where: {
+      album_id: +album,
+    },
+    include: {
+      people: true,
+      type: true,
     }
   });
 
@@ -27,6 +48,8 @@ const Page = async ({
         user={user}
         albumTypes={albumTypes}
         albumData={albumData}
+        albumGroupes={albumGroupes}
+        albumPeople={albumPeople}
       />
     </Suspense>
   )

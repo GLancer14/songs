@@ -10,11 +10,12 @@ interface SearchTypeProps {
   };
   maxLength?: number;
   required?: boolean;
+  firstViewData?: string;
 }
 
-const SearchType: FC<SearchTypeProps> = ({ tableData, maxLength, required }) => {
+const SearchType: FC<SearchTypeProps> = ({ tableData, maxLength, required, firstViewData }) => {
   const [selectedTypeFields, setSelectedTypeFields] = useState<string[]>([]);
-  const [searchTypeValue, setSearchTypeValue] = useState("");
+  const [searchTypeValue, setSearchTypeValue] = useState<string>(firstViewData || "");
   const [searchTypeVisible, setSearchTypeVisible] = useState(false);
   const [searchTypeResults, setSearchTypeResults] = useState<Array<any> | null>(null);
 
@@ -29,7 +30,7 @@ const SearchType: FC<SearchTypeProps> = ({ tableData, maxLength, required }) => 
         name={tableData.name + `_${tableData.fields}-input-as`}
         list={`${tableData}_options`}
         placeholder="Search"
-        value={searchTypeValue}
+        value={searchTypeValue || ""}
         onBlur={() => {
           setSearchTypeVisible(false);
         }}

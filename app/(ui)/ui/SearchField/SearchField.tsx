@@ -33,7 +33,10 @@ const SearchField = ({
   className?: string;
 }) => {
   const [searchResults, setSearchResults] = useState<Array<any> | null>(null);
-  const [selectedFields, setSelectedFields] = useState<string[]>([]);
+  const [selectedFields, setSelectedFields] = useState<{
+    name: string;
+    type?: string;
+  }[]>([]);
   const [searchValue, setSearchValue] = useState("");
   const [searchVisible, setSearchVisible] = useState(false);
   const listRef = useRef(null);
@@ -41,7 +44,10 @@ const SearchField = ({
   useEffect(() => {
     if (edit && firstShowData) {
       setSelectedFields(firstShowData?.map(value => {
-        return value.name;
+        return {
+          name: value.name,
+          type: value.type,
+        };
       }));
     }
   }, []);
@@ -121,12 +127,17 @@ const SearchField = ({
                 className="w-min bg-white text-black"
                 type="text"
                 readOnly={true}
-                value={selectedField}
+                value={typeof(selectedField) === "string" ? selectedField : selectedField.name}
                 name={tableData.name}
                 required={required}
               />
               {(fieldName.toLowerCase() === "люди" || fieldName.toLowerCase() === "группа") &&
-                <SearchType tableData={tableData} maxLength={maxLength} required={true} />
+                <SearchType
+                  tableData={tableData}
+                  maxLength={maxLength}
+                  required={true}
+                  firstViewData={selectedField.type}
+                />
               }
               <span onClick={() => {
                 setSelectedFields(selectedFields.filter(droppedSelectedField => {
@@ -144,7 +155,9 @@ const SearchField = ({
           if (searchValue !== "") {
             setSelectedFields([
               ...selectedFields,
-              searchValue,
+              {
+                name: searchValue
+              },
             ]);
           }
         }}
