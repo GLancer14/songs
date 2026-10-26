@@ -1,5 +1,6 @@
 import clsx from "clsx"
 import s from "./Lyrics.module.scss"
+import { useState } from "react"
 
 const Lyrics = ({
   lyricsName,
@@ -7,13 +8,16 @@ const Lyrics = ({
   required,
   available,
   width,
+  firstShowData,
 }: {
-  lyricsName: string,
-  className?: string,
-  required?: boolean,
-  available?: boolean,
-  width?: string,
+  lyricsName: string;
+  className?: string;
+  required?: boolean;
+  available?: boolean;
+  width?: string;
+  firstShowData?: string;
 }) => {
+  const [lyrics, setLyrics] = useState(firstShowData || "");
 
   return (
     <label
@@ -34,6 +38,8 @@ const Lyrics = ({
         rows={20}
         maxLength={4096}
         required={required}
+        onChange={e => setLyrics(e.currentTarget.value)}
+        value={lyrics}
       ></textarea>
     </label>
   )

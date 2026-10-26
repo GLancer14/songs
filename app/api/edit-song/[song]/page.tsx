@@ -31,6 +31,7 @@ const Page = async ({
     select: {
       languages: true,
       lyrics_text: true,
+      original: true,
     }
   });
   
@@ -44,7 +45,31 @@ const Page = async ({
   });
   
   
-  let albumSongs: any[];
+  let albumSongs: ({
+    songs: {
+      user_id: number;
+      name: string;
+      mood_id: number;
+      song_id: number;
+      title: string;
+      artists: string;
+      addition_date: Date | null;
+      release_date: Date;
+      file: string | null;
+      rank: string | null;
+      bpm: number | null;
+      bitrate_audio: bigint | null;
+      track_gain: number | null;
+      description: string | null;
+      image: string | null;
+    };
+  } & {
+    song_id: number;
+    album_id: number;
+    track: number | null;
+    disk: number | null;
+  })[];
+
   if (album) {
     albumSongs = await prisma.songs_albums.findMany({
       where: {
@@ -62,20 +87,9 @@ const Page = async ({
     where: {
       song_id: +song
     },
-    select: {
-      groupes: {
-        select: {
-          id: true,
-          name: true,
-          description: true,
-          image: true,
-          groupesType: {
-            select: {
-              type: true,
-            },
-          },
-        },
-      },
+    include: {
+      groupes: true,
+      type: true,
     },
   });
   
@@ -83,20 +97,9 @@ const Page = async ({
     where: {
       song_id: +song
     },
-    select: {
-      people: {
-        select: {
-          id: true,
-          nickname: true,
-          description: true,
-          image: true,
-          peopleType: {
-            select: {
-              type: true,
-            },
-          },
-        },
-      },
+    include: {
+      people: true,
+      type: true,
     },
   });
   
@@ -117,6 +120,12 @@ const Page = async ({
         requiredFields={requiredFields}
         lyricsLanguages={lyricsLanguages}
         edit={user?.role === "admin"}
+        songData={songData}
+        lyrics={lyrics}
+        album={album}
+        group={group}
+        people={people}
+        songLinks={songLinks}
       />
     </Suspense>
   )

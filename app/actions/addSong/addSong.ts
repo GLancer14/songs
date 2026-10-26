@@ -98,6 +98,7 @@ export default async function addSong(
       song_id: songCreateResult.song_id,
       language_id: origLangId?.language_id || 1,
       lyrics_text: songData.original,
+      original: true,
     }
   });
 
@@ -112,6 +113,7 @@ export default async function addSong(
             song_id: songCreateResult.song_id,
             language_id: 1,
             lyrics_text: songData.english ?? "",
+            original: false,
           }
         })
       } else if (value === "russian") {
@@ -120,6 +122,7 @@ export default async function addSong(
             song_id: songCreateResult.song_id,
             language_id: 11,
             lyrics_text: songData.russian ?? "",
+            original: false,
           }
         })
       }

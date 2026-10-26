@@ -66,7 +66,7 @@ export interface SongPageProps {
       name: string;
       description: string | null;
       image: string | null;
-      groupesType: {
+      songsGroupes: {
         type: {
           name: string;
           type_id: number;
@@ -80,7 +80,7 @@ export interface SongPageProps {
       description: string | null;
       image: string | null;
       nickname: string | null;
-      peopleType: {
+      songsPeople: {
         type: {
           name: string;
           type_id: number;
@@ -115,25 +115,25 @@ const SongPage: React.FC<SongPageProps> = ({
   const staticURL = !process.env.NEXT_PUBLIC_BLOB_STORE_ID ? "" : process.env.NEXT_PUBLIC_STATIC_URL;
 
   const peopleProducers = people.filter(people => {
-    return people.people.peopleType.find(peopleType => {
+    return people.people.songsPeople.find(peopleType => {
       return peopleType.type.name.toLowerCase() === "producer";
     });
   });
 
   const groupesProducers = group.filter(group => {
-    return group.groupes.groupesType.find(groupType => {
+    return group.groupes.songsGroupes.find(groupType => {
       return groupType.type.name.toLowerCase() === "producer";
     });
   });
 
   const peopleWriters = people.filter(people => {
-    return people.people.peopleType.find(peopleType => {
+    return people.people.songsPeople.find(peopleType => {
       return peopleType.type.name.toLowerCase() === "writer";
     });
   });
 
   const groupesWriters = group.filter(group => {
-    return group.groupes.groupesType.find(groupType => {
+    return group.groupes.songsGroupes.find(groupType => {
       return groupType.type.name.toLowerCase() === "writer";
     });
   });

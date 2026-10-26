@@ -189,6 +189,7 @@ model songs_lyrics {
   song_id     Int
   language_id Int
   lyrics_text String
+  original    Boolean   @default(false)
 
   @@id([song_id, language_id])
 }

@@ -67,7 +67,7 @@ export default async function Page({
           name: true,
           description: true,
           image: true,
-          groupesType: {
+          songsGroupes: {
             select: {
               type: true,
             },
@@ -88,7 +88,7 @@ export default async function Page({
           nickname: true,
           description: true,
           image: true,
-          peopleType: {
+          songsPeople: {
             select: {
               type: true,
             },

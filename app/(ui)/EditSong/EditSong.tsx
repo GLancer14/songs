@@ -8,23 +8,15 @@ import SearchField from "../ui/SearchField/SearchField";
 import Footer from "../Footer/Footer";
 import ExternalLink from "./ExternalLink/ExternalLink";
 import Lyrics from "./Lyrics/Lyrics";
-import { useActionState, useRef, useState } from "react";
+import { FC, useActionState, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import addSong from "@/app/actions/addSong/addSong";
 import { redirect } from "next/navigation";
 import { fieldsNames, TableNames } from "../lib/fieldsNames";
 import AddImage from "../ui/AddImage/AddImage";
+import editSong from "@/app/actions/editSong/editSong";
 
-const EditSong = ({
-  user,
-  languages,
-  moods,
-  creators,
-  dataGroupes,
-  requiredFields,
-  lyricsLanguages,
-  edit = false,
-}: {
+interface EditSongProps {
   user: users | null | undefined;
   languages: string[];
   moods: mood[];
@@ -45,9 +37,103 @@ const EditSong = ({
   }>;
   lyricsLanguages: string[];
   edit: boolean;
+  songData?: {
+    name: string;
+    user_id: number;
+    mood_id: number;
+    description: string | null;
+    file: string | null;
+    release_date: Date;
+    bpm: number | null;
+    title: string;
+    artists: string;
+    addition_date: Date | null;
+    rank: string | null;
+    bitrate_audio: bigint | null;
+    track_gain: number | null;
+    image: string | null;
+    song_id: number;
+  } | null;
+  lyrics?: {
+    languages: {
+      language_id: number;
+      lang: string;
+    };
+    lyrics_text: string;
+    original: boolean;
+  }[];
+  album?: {
+    albums: {
+      name: string;
+      description: string | null;
+      release_date: Date | null;
+      image: string | null;
+      album_id: number;
+      author: string;
+      album_type: number | null;
+    };
+  } | null;
+  group?: {
+    groupes: {
+      name: string;
+      description: string | null;
+      image: string | null;
+      id: number;
+      country_id: number | null;
+      year_of_foundation: number | null;
+    };
+    type: {
+      name: string;
+      type_id: number;
+    };
+  }[]
+  people?: ({
+    type: {
+      name: string;
+      type_id: number;
+    };
+    people: {
+      name: string;
+      description: string | null;
+      image: string | null;
+      id: number;
+      country_id: number | null;
+      firstname: string | null;
+      surname: string | null;
+      nickname: string | null;
+    };
+  } & {
+    song_id: number;
+    id: number;
+    type_id: number;
+  })[];
+  songLinks?: {
+    song_id: number;
+    id: number;
+    url: string;
+    url_name: string;
+    url_type: string;
+  }[];
+}
+
+const EditSong: FC<EditSongProps> = ({
+  user,
+  languages,
+  moods,
+  creators,
+  dataGroupes,
+  requiredFields,
+  lyricsLanguages,
+  edit = false,
+  songData,
+  lyrics,
+  album,
+  group,
+  people,
+  songLinks,
 }) => {
   const formRef = useRef<HTMLFormElement | null>(null)
-  const [state, action, pending] = useActionState(addSong, undefined)
+  const [state, action, pending] = useActionState(edit ? editSong : addSong, undefined)
   const [lyricsOn, setLyricsOn] = useState<{
     english: boolean,
     russian: boolean,
@@ -58,10 +144,17 @@ const EditSong = ({
   const [generalData, setGeneralData] = useState<{
     [n: string]: string
   }>({
-    title: "",
-    name: "",
-    artists: "",
+    title: songData?.title || "",
+    name: songData?.name || "",
+    artists: songData?.artists || "",
   });
+  const [description, setDescription] = useState(songData?.description || "");
+  const [peopleData, setPeopleData] = useState([]);
+  const [groupesData, setGroupesData] = useState([]);
+
+  useEffect(() => {
+
+  }, [])
 
   return (
     <>
@@ -74,7 +167,7 @@ const EditSong = ({
         ref={formRef}
       >
         <section className="flex flex-col justify-start mb-8">
-          <h2 className="text-4xl capitalize mb-4">general data</h2>
+          <h2 className="text-4xl capitalize mb-4">add song</h2>
           <article className="flex flex-col flex-wrap gap-8 justify-start items-start mb-8 w-1/2">
             {requiredFields.map((requiredField, ind) => {
               return (
@@ -110,6 +203,8 @@ const EditSong = ({
                 maxLength={1024}
                 name="description"
                 id="description"
+                value={description}
+                onChange={e => setDescription(e.currentTarget.value)}
               ></textarea>
             </label>
           </article>
@@ -168,6 +263,10 @@ const EditSong = ({
                       ? "40%"
                       : "50%"
                   }
+                  firstShowData={lyricsLanguage === "original"
+                    ? lyrics?.find(lyric => lyric.original)?.lyrics_text
+                    : lyrics?.find(lyric => lyric.languages.lang === lyricsLanguage)?.lyrics_text
+                  }
                 />
               );
             })}
@@ -181,11 +280,26 @@ const EditSong = ({
             {creators.map((creator, ind) => {
               return (
                 <SearchField
+                  className="flex flex-col justify-start gap-2 mb-2 w-[calc(50%-16px)]"
                   required={true}
                   key={ind}
                   fieldName={fieldsNames[creator.name]}
                   tableData={creator}
-                  className="flex flex-col justify-start gap-2 mb-2 w-[calc(50%-16px)]"
+                  firstShowData={
+                    creator.name === "people"
+                      ? people?.map(value => {
+                          return {
+                            name: value.people.name,
+                            type: value.type.name,
+                          }
+                        })
+                      : group?.map(value => {
+                          return {
+                            name: value.groupes.name,
+                            type: value.type.name,
+                          }
+                        })
+                  }
                 />
               );
             })}
@@ -272,6 +386,17 @@ const EditSong = ({
             {/* <div className="" tabIndex={0}>Add</div> */}
             {/* <span className=""></span> */}
           </div>
+        </section>
+        <section className="w-0 h-0 opacity-0">
+          {edit && 
+            <input
+              type="text"
+              className="h-0 w-0"
+              value={songData?.song_id}
+              name="song_id"
+              readOnly
+            />
+          }
         </section>
         <ExternalLink form={formRef.current} />
         <button className="border border-black py-2" value="Save" id="save_songs_lyrics" onSubmit={(e) => {

@@ -1,7 +1,7 @@
 "use server"
 
 import { prisma } from "../../lib/prisma";
-import { AddSongSchema, AddSongSchemaType } from "@/app/lib/definitions";
+import { AddSongSchema, AddSongSchemaType, EditSongSchema, EditSongSchemaType } from "@/app/lib/definitions";
 import userIam from "../userIam";
 import { writeFile } from "fs";
 import path from "path";
@@ -16,10 +16,10 @@ export type ArrayValues =
 type ValidModelKeys = Extract<keyof typeof prisma, ArrayValues>;
 
 export default async function editSong(
-  state: AddSongSchemaType, formData: FormData
+  state: EditSongSchemaType, formData: FormData
 ) {
   const user = await userIam();
-  const validatedFields = AddSongSchema.safeParse({
+  const validatedFields = EditSongSchema.safeParse({
     songs_title: formData.get("songs_title"),
     songs_name: formData.get("songs_name"),
     songs_artists: formData.get("songs_artists"),
@@ -29,7 +29,9 @@ export default async function editSong(
     english: formData.get("english"),
     russian: formData.get("russian"),
     people: formData.getAll("people"),
+    people_types: formData.getAll("people_name-input-as"),
     groupes: formData.getAll("groupes"),
+    groupes_types: formData.getAll("groupes_name-input-as"),
     orig_lang: formData.get("orig_lang"),
     genres: formData.getAll("genres"),
     albums: formData.getAll("albums"),
@@ -42,6 +44,7 @@ export default async function editSong(
     url: formData.getAll("url"),
     url_name: formData.getAll("url_name"),
     url_type: formData.getAll("url_type"),
+    song_id: formData.get("song_id"),
   });
 
   if (!validatedFields.success) {
@@ -56,6 +59,11 @@ export default async function editSong(
     }
   }
   const songData = validatedFields.data;
+  const oldSongData = await prisma.albums.findFirst({
+    where: {
+      album_id: +songData.song_id,
+    }
+  });
 
   const imageName = `${Date.now()}-${songData.title_image?.name.replace(/[^a-zA-Z0-9.]/g, '-')}`;
   const audioName = `${Date.now()}-${songData.orig_audio?.name.replace(/[^a-zA-Z0-9.]/g, '-')}`;
@@ -84,6 +92,122 @@ export default async function editSong(
     }
   });
 
+  await prisma.songs_groupes.deleteMany({
+    where: {
+      song_id: +songData.song_id,
+    },
+  });
+
+  await prisma.songs_people.deleteMany({
+    where: {
+      song_id: +songData.song_id,
+    },
+  });
+
+  const newSongGroupes = await Promise.all(songData.groupes.map(async (value) => {
+    const foundGroup = await prisma.groupes.findFirst({
+      where: {
+        name: {
+          contains: value,
+          mode: "insensitive",
+        },
+      },
+    });
+
+    if (foundGroup) {
+      return foundGroup;
+    }
+
+    return await prisma.groupes.create({
+      data: {
+        name: value,
+      },
+    });
+  }));
+
+  const newSongGroupType = await Promise.all(songData.groupes_types.map(async (value) => {
+    const foundGroupType = await prisma.type.findFirst({
+      where: {
+        name: {
+          contains: value,
+          mode: "insensitive",
+        },
+      },
+    });
+
+    if (foundGroupType) {
+      return foundGroupType;
+    }
+
+    return await prisma.type.create({
+      data: {
+        name: value,
+      },
+    });
+  }));
+
+  for (let i = 0; i < newSongGroupes.length; i++) {
+    await prisma.songs_groupes.create({
+      data: {
+        song_id: +songData.song_id,
+        id: newSongGroupes[i].id,
+        type_id: newSongGroupType[i].type_id,
+      },
+    });
+  }
+
+  const newSongPeople = await Promise.all(songData.people.map(async (value) => {
+    const foundGroup = await prisma.people.findFirst({
+      where: {
+        name: {
+          contains: value,
+          mode: "insensitive",
+        },
+      },
+    });
+
+    if (foundGroup) {
+      return foundGroup;
+    }
+
+    return await prisma.people.create({
+      data: {
+        name: value,
+      },
+    });
+  }));
+
+  const newSongPeopleType = await Promise.all(songData.people_types.map(async (value) => {
+    const foundPeopleType = await prisma.type.findFirst({
+      where: {
+        name: {
+          contains: value,
+          mode: "insensitive",
+        },
+      },
+    });
+
+    if (foundPeopleType) {
+      return foundPeopleType;
+    }
+
+    return await prisma.type.create({
+      data: {
+        name: value,
+      },
+    });
+  }));
+
+  for (let i = 0; i < newSongPeople.length; i++) {
+    await prisma.songs_people.create({
+      data: {
+        song_id: +songData.song_id,
+        id: newSongPeople[i].id,
+        type_id: newSongPeopleType[i].type_id,
+      },
+    });
+  }
+
   const origLangId = await prisma.languages.findFirst({
     where: {
       lang: songData.orig_lang
@@ -98,6 +222,7 @@ export default async function editSong(
       song_id: songCreateResult.song_id,
       language_id: origLangId?.language_id || 1,
       lyrics_text: songData.original,
+      original: true,
     }
   });
 
@@ -112,6 +237,7 @@ export default async function editSong(
             song_id: songCreateResult.song_id,
             language_id: 1,
             lyrics_text: songData.english ?? "",
+            original: false,
           }
         })
       } else if (value === "russian") {
@@ -120,6 +246,7 @@ export default async function editSong(
             song_id: songCreateResult.song_id,
             language_id: 11,
             lyrics_text: songData.russian ?? "",
+            original: false,
           }
         })
       }

@@ -253,7 +253,8 @@ export type LanguagesScalarFieldEnum = (typeof LanguagesScalarFieldEnum)[keyof t
 export const Songs_lyricsScalarFieldEnum = {
   song_id: 'song_id',
   language_id: 'language_id',
-  lyrics_text: 'lyrics_text'
+  lyrics_text: 'lyrics_text',
+  original: 'original'
 } as const
 
 export type Songs_lyricsScalarFieldEnum = (typeof Songs_lyricsScalarFieldEnum)[keyof typeof Songs_lyricsScalarFieldEnum]

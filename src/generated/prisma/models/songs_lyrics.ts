@@ -40,18 +40,21 @@ export type Songs_lyricsMinAggregateOutputType = {
   song_id: number | null
   language_id: number | null
   lyrics_text: string | null
+  original: boolean | null
 }
 
 export type Songs_lyricsMaxAggregateOutputType = {
   song_id: number | null
   language_id: number | null
   lyrics_text: string | null
+  original: boolean | null
 }
 
 export type Songs_lyricsCountAggregateOutputType = {
   song_id: number
   language_id: number
   lyrics_text: number
+  original: number
   _all: number
 }
 
@@ -70,18 +73,21 @@ export type Songs_lyricsMinAggregateInputType = {
   song_id?: true
   language_id?: true
   lyrics_text?: true
+  original?: true
 }
 
 export type Songs_lyricsMaxAggregateInputType = {
   song_id?: true
   language_id?: true
   lyrics_text?: true
+  original?: true
 }
 
 export type Songs_lyricsCountAggregateInputType = {
   song_id?: true
   language_id?: true
   lyrics_text?: true
+  original?: true
   _all?: true
 }
 
@@ -175,6 +181,7 @@ export type Songs_lyricsGroupByOutputType = {
   song_id: number
   language_id: number
   lyrics_text: string
+  original: boolean
   _count: Songs_lyricsCountAggregateOutputType | null
   _avg: Songs_lyricsAvgAggregateOutputType | null
   _sum: Songs_lyricsSumAggregateOutputType | null
@@ -204,6 +211,7 @@ export type songs_lyricsWhereInput = {
   song_id?: Prisma.IntFilter<"songs_lyrics"> | number
   language_id?: Prisma.IntFilter<"songs_lyrics"> | number
   lyrics_text?: Prisma.StringFilter<"songs_lyrics"> | string
+  original?: Prisma.BoolFilter<"songs_lyrics"> | boolean
   songs?: Prisma.XOR<Prisma.SongsScalarRelationFilter, Prisma.songsWhereInput>
   languages?: Prisma.XOR<Prisma.LanguagesScalarRelationFilter, Prisma.languagesWhereInput>
 }
@@ -212,6 +220,7 @@ export type songs_lyricsOrderByWithRelationInput = {
   song_id?: Prisma.SortOrder
   language_id?: Prisma.SortOrder
   lyrics_text?: Prisma.SortOrder
+  original?: Prisma.SortOrder
   songs?: Prisma.songsOrderByWithRelationInput
   languages?: Prisma.languagesOrderByWithRelationInput
 }
@@ -224,6 +233,7 @@ export type songs_lyricsWhereUniqueInput = Prisma.AtLeast<{
   song_id?: Prisma.IntFilter<"songs_lyrics"> | number
   language_id?: Prisma.IntFilter<"songs_lyrics"> | number
   lyrics_text?: Prisma.StringFilter<"songs_lyrics"> | string
+  original?: Prisma.BoolFilter<"songs_lyrics"> | boolean
   songs?: Prisma.XOR<Prisma.SongsScalarRelationFilter, Prisma.songsWhereInput>
   languages?: Prisma.XOR<Prisma.LanguagesScalarRelationFilter, Prisma.languagesWhereInput>
 }, "song_id_language_id">
@@ -232,6 +242,7 @@ export type songs_lyricsOrderByWithAggregationInput = {
   song_id?: Prisma.SortOrder
   language_id?: Prisma.SortOrder
   lyrics_text?: Prisma.SortOrder
+  original?: Prisma.SortOrder
   _count?: Prisma.songs_lyricsCountOrderByAggregateInput
   _avg?: Prisma.songs_lyricsAvgOrderByAggregateInput
   _max?: Prisma.songs_lyricsMaxOrderByAggregateInput
@@ -246,10 +257,12 @@ export type songs_lyricsScalarWhereWithAggregatesInput = {
   song_id?: Prisma.IntWithAggregatesFilter<"songs_lyrics"> | number
   language_id?: Prisma.IntWithAggregatesFilter<"songs_lyrics"> | number
   lyrics_text?: Prisma.StringWithAggregatesFilter<"songs_lyrics"> | string
+  original?: Prisma.BoolWithAggregatesFilter<"songs_lyrics"> | boolean
 }
 
 export type songs_lyricsCreateInput = {
   lyrics_text: string
+  original: boolean
   songs: Prisma.songsCreateNestedOneWithoutSongsLyricsInput
   languages: Prisma.languagesCreateNestedOneWithoutSongsLyricsInput
 }
@@ -258,10 +271,12 @@ export type songs_lyricsUncheckedCreateInput = {
   song_id: number
   language_id: number
   lyrics_text: string
+  original: boolean
 }
 
 export type songs_lyricsUpdateInput = {
   lyrics_text?: Prisma.StringFieldUpdateOperationsInput | string
+  original?: Prisma.BoolFieldUpdateOperationsInput | boolean
   songs?: Prisma.songsUpdateOneRequiredWithoutSongsLyricsNestedInput
   languages?: Prisma.languagesUpdateOneRequiredWithoutSongsLyricsNestedInput
 }
@@ -270,22 +285,26 @@ export type songs_lyricsUncheckedUpdateInput = {
   song_id?: Prisma.IntFieldUpdateOperationsInput | number
   language_id?: Prisma.IntFieldUpdateOperationsInput | number
   lyrics_text?: Prisma.StringFieldUpdateOperationsInput | string
+  original?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type songs_lyricsCreateManyInput = {
   song_id: number
   language_id: number
   lyrics_text: string
+  original: boolean
 }
 
 export type songs_lyricsUpdateManyMutationInput = {
   lyrics_text?: Prisma.StringFieldUpdateOperationsInput | string
+  original?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type songs_lyricsUncheckedUpdateManyInput = {
   song_id?: Prisma.IntFieldUpdateOperationsInput | number
   language_id?: Prisma.IntFieldUpdateOperationsInput | number
   lyrics_text?: Prisma.StringFieldUpdateOperationsInput | string
+  original?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type Songs_lyricsListRelationFilter = {
@@ -307,6 +326,7 @@ export type songs_lyricsCountOrderByAggregateInput = {
   song_id?: Prisma.SortOrder
   language_id?: Prisma.SortOrder
   lyrics_text?: Prisma.SortOrder
+  original?: Prisma.SortOrder
 }
 
 export type songs_lyricsAvgOrderByAggregateInput = {
@@ -318,12 +338,14 @@ export type songs_lyricsMaxOrderByAggregateInput = {
   song_id?: Prisma.SortOrder
   language_id?: Prisma.SortOrder
   lyrics_text?: Prisma.SortOrder
+  original?: Prisma.SortOrder
 }
 
 export type songs_lyricsMinOrderByAggregateInput = {
   song_id?: Prisma.SortOrder
   language_id?: Prisma.SortOrder
   lyrics_text?: Prisma.SortOrder
+  original?: Prisma.SortOrder
 }
 
 export type songs_lyricsSumOrderByAggregateInput = {
@@ -415,14 +437,20 @@ export type songs_lyricsUncheckedUpdateManyWithoutLanguagesNestedInput = {
   deleteMany?: Prisma.songs_lyricsScalarWhereInput | Prisma.songs_lyricsScalarWhereInput[]
 }
 
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
 export type songs_lyricsCreateWithoutSongsInput = {
   lyrics_text: string
+  original: boolean
   languages: Prisma.languagesCreateNestedOneWithoutSongsLyricsInput
 }
 
 export type songs_lyricsUncheckedCreateWithoutSongsInput = {
   language_id: number
   lyrics_text: string
+  original: boolean
 }
 
 export type songs_lyricsCreateOrConnectWithoutSongsInput = {
@@ -458,16 +486,19 @@ export type songs_lyricsScalarWhereInput = {
   song_id?: Prisma.IntFilter<"songs_lyrics"> | number
   language_id?: Prisma.IntFilter<"songs_lyrics"> | number
   lyrics_text?: Prisma.StringFilter<"songs_lyrics"> | string
+  original?: Prisma.BoolFilter<"songs_lyrics"> | boolean
 }
 
 export type songs_lyricsCreateWithoutLanguagesInput = {
   lyrics_text: string
+  original: boolean
   songs: Prisma.songsCreateNestedOneWithoutSongsLyricsInput
 }
 
 export type songs_lyricsUncheckedCreateWithoutLanguagesInput = {
   song_id: number
   lyrics_text: string
+  original: boolean
 }
 
 export type songs_lyricsCreateOrConnectWithoutLanguagesInput = {
@@ -499,41 +530,49 @@ export type songs_lyricsUpdateManyWithWhereWithoutLanguagesInput = {
 export type songs_lyricsCreateManySongsInput = {
   language_id: number
   lyrics_text: string
+  original: boolean
 }
 
 export type songs_lyricsUpdateWithoutSongsInput = {
   lyrics_text?: Prisma.StringFieldUpdateOperationsInput | string
+  original?: Prisma.BoolFieldUpdateOperationsInput | boolean
   languages?: Prisma.languagesUpdateOneRequiredWithoutSongsLyricsNestedInput
 }
 
 export type songs_lyricsUncheckedUpdateWithoutSongsInput = {
   language_id?: Prisma.IntFieldUpdateOperationsInput | number
   lyrics_text?: Prisma.StringFieldUpdateOperationsInput | string
+  original?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type songs_lyricsUncheckedUpdateManyWithoutSongsInput = {
   language_id?: Prisma.IntFieldUpdateOperationsInput | number
   lyrics_text?: Prisma.StringFieldUpdateOperationsInput | string
+  original?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type songs_lyricsCreateManyLanguagesInput = {
   song_id: number
   lyrics_text: string
+  original: boolean
 }
 
 export type songs_lyricsUpdateWithoutLanguagesInput = {
   lyrics_text?: Prisma.StringFieldUpdateOperationsInput | string
+  original?: Prisma.BoolFieldUpdateOperationsInput | boolean
   songs?: Prisma.songsUpdateOneRequiredWithoutSongsLyricsNestedInput
 }
 
 export type songs_lyricsUncheckedUpdateWithoutLanguagesInput = {
   song_id?: Prisma.IntFieldUpdateOperationsInput | number
   lyrics_text?: Prisma.StringFieldUpdateOperationsInput | string
+  original?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type songs_lyricsUncheckedUpdateManyWithoutLanguagesInput = {
   song_id?: Prisma.IntFieldUpdateOperationsInput | number
   lyrics_text?: Prisma.StringFieldUpdateOperationsInput | string
+  original?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -542,6 +581,7 @@ export type songs_lyricsSelect<ExtArgs extends runtime.Types.Extensions.Internal
   song_id?: boolean
   language_id?: boolean
   lyrics_text?: boolean
+  original?: boolean
   songs?: boolean | Prisma.songsDefaultArgs<ExtArgs>
   languages?: boolean | Prisma.languagesDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["songs_lyrics"]>
@@ -550,6 +590,7 @@ export type songs_lyricsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   song_id?: boolean
   language_id?: boolean
   lyrics_text?: boolean
+  original?: boolean
   songs?: boolean | Prisma.songsDefaultArgs<ExtArgs>
   languages?: boolean | Prisma.languagesDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["songs_lyrics"]>
@@ -558,6 +599,7 @@ export type songs_lyricsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   song_id?: boolean
   language_id?: boolean
   lyrics_text?: boolean
+  original?: boolean
   songs?: boolean | Prisma.songsDefaultArgs<ExtArgs>
   languages?: boolean | Prisma.languagesDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["songs_lyrics"]>
@@ -566,9 +608,10 @@ export type songs_lyricsSelectScalar = {
   song_id?: boolean
   language_id?: boolean
   lyrics_text?: boolean
+  original?: boolean
 }
 
-export type songs_lyricsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"song_id" | "language_id" | "lyrics_text", ExtArgs["result"]["songs_lyrics"]>
+export type songs_lyricsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"song_id" | "language_id" | "lyrics_text" | "original", ExtArgs["result"]["songs_lyrics"]>
 export type songs_lyricsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   songs?: boolean | Prisma.songsDefaultArgs<ExtArgs>
   languages?: boolean | Prisma.languagesDefaultArgs<ExtArgs>
@@ -592,6 +635,7 @@ export type $songs_lyricsPayload<ExtArgs extends runtime.Types.Extensions.Intern
     song_id: number
     language_id: number
     lyrics_text: string
+    original: boolean
   }, ExtArgs["result"]["songs_lyrics"]>
   composites: {}
 }
@@ -1020,6 +1064,7 @@ export interface songs_lyricsFieldRefs {
   readonly song_id: Prisma.FieldRef<"songs_lyrics", 'Int'>
   readonly language_id: Prisma.FieldRef<"songs_lyrics", 'Int'>
   readonly lyrics_text: Prisma.FieldRef<"songs_lyrics", 'String'>
+  readonly original: Prisma.FieldRef<"songs_lyrics", 'Boolean'>
 }
     
 
