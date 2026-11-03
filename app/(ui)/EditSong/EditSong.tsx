@@ -15,6 +15,7 @@ import { redirect } from "next/navigation";
 import { fieldsNames, TableNames } from "../lib/fieldsNames";
 import AddImage from "../ui/AddImage/AddImage";
 import editSong from "@/app/actions/editSong/editSong";
+import formatDateForForm from "../utils/formatDateForForm";
 
 interface EditSongProps {
   user: users | null | undefined;
@@ -147,6 +148,7 @@ const EditSong: FC<EditSongProps> = ({
   songLinks,
   genres,
 }) => {
+  const staticURL = !process.env.NEXT_PUBLIC_BLOB_STORE_ID ? "" : process.env.NEXT_PUBLIC_STATIC_URL;
   const formRef = useRef<HTMLFormElement | null>(null)
   const [state, action, pending] = useActionState(edit ? editSong : addSong, undefined)
   const [lyricsOn, setLyricsOn] = useState<{
@@ -164,12 +166,8 @@ const EditSong: FC<EditSongProps> = ({
     artists: songData?.artists || "",
   });
   const [description, setDescription] = useState(songData?.description || "");
-  const [peopleData, setPeopleData] = useState(people || []);
-  const [groupesData, setGroupesData] = useState(group || []);
-
-  useEffect(() => {
-
-  }, [])
+  const [releaseDate, setReleaseDate] = useState(songData?.release_date || new Date());
+  const [bpm, setBpm] = useState(songData?.bpm || 200);
 
   return (
     <>
@@ -303,13 +301,13 @@ const EditSong: FC<EditSongProps> = ({
                   tableData={creator}
                   firstShowData={
                     creator.name === "people"
-                      ? peopleData?.map(value => {
+                      ? people?.map(value => {
                           return {
                             name: value.people.name,
                             type: value.type.name,
                           }
                         })
-                      : groupesData?.map(value => {
+                      : group?.map(value => {
                           return {
                             name: value.groupes.name,
                             type: value.type.name,
@@ -389,6 +387,10 @@ const EditSong: FC<EditSongProps> = ({
                 type="date"
                 name="release_date"
                 id="release_date"
+                value={formatDateForForm(releaseDate)}
+                onInput={e => {
+                  setReleaseDate(new Date(e.currentTarget.value))
+                }}
               />
             </label>
             <label className="flex gap-2">
@@ -401,6 +403,10 @@ const EditSong: FC<EditSongProps> = ({
                 max="1015"
                 min="20"
                 step="0.01"
+                value={bpm}
+                onInput={e => {
+                  setBpm(+e.currentTarget.value);
+                }}
               />
             </label>
           </article>
@@ -409,9 +415,14 @@ const EditSong: FC<EditSongProps> = ({
           <h2 className="text-4xl w-full mb-4">media</h2>
           <div className="flex justify-between w-full">
             {/* <span className="">Song Art:</span> */}
-            <AddImage />
+            <AddImage previousImage={
+                !songData?.image?.includes("blob") || songData.image === null
+                ? `${staticURL}/backgrounds/songs/${songData?.image}`
+                : albums?.find(album => album.albums.image)
+                  ? `${staticURL}/backgrounds/albums/${albums?.find(album => album.albums.image)?.albums.image}`
+                  : `${staticURL}/noimage2.svg`
+              } />
           </div>
-          <img className="" />
           <div className="flex justify-between">
             <span className="">Audio:</span>
             <input
