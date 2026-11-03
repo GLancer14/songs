@@ -35,15 +35,23 @@ const Page = async ({
     }
   });
   
-  const album = await prisma.songs_albums.findFirst({
+  const albums = await prisma.songs_albums.findMany({
     where: {
       song_id: songData?.song_id,
     },
-    select: {
+    include: {
       albums: true,
     }
   });
-  
+
+  const genres = await prisma.songs_genres.findMany({
+    where: {
+      song_id: +song
+    },
+    include: {
+      genres: true,
+    }
+  })
   
   let albumSongs: ({
     songs: {
@@ -70,10 +78,18 @@ const Page = async ({
     disk: number | null;
   })[];
 
-  if (album) {
+  if (albums.length > 0) {
+    const earlierAlbum = albums.map(album => {
+      return {
+        ...album.albums,
+        release_date: album.albums.release_date ? album.albums.release_date.getTime() : 0,
+      }
+    });
+    const minDate = Math.min(...earlierAlbum.map(album => album.release_date));
+
     albumSongs = await prisma.songs_albums.findMany({
       where: {
-        album_id: album?.albums.album_id,
+        album_id: earlierAlbum.find(album => album.release_date === minDate)?.album_id,
       },
       include: {
         songs: true,
@@ -122,10 +138,11 @@ const Page = async ({
         edit={user?.role === "admin"}
         songData={songData}
         lyrics={lyrics}
-        album={album}
+        albums={albums}
         group={group}
         people={people}
         songLinks={songLinks}
+        genres={genres}
       />
     </Suspense>
   )

@@ -62,17 +62,22 @@ interface EditSongProps {
     lyrics_text: string;
     original: boolean;
   }[];
-  album?: {
+  albums?: ({
     albums: {
-      name: string;
-      description: string | null;
-      release_date: Date | null;
-      image: string | null;
       album_id: number;
+      name: string;
+      release_date: Date | null;
+      description: string | null;
+      image: string | null;
       author: string;
       album_type: number | null;
     };
-  } | null;
+  } & {
+    song_id: number;
+    album_id: number;
+    track: number | null;
+    disk: number | null;
+  })[];
   group?: {
     groupes: {
       name: string;
@@ -114,6 +119,15 @@ interface EditSongProps {
     url_name: string;
     url_type: string;
   }[];
+  genres?: ({
+    genres: {
+      name: string;
+      id: number;
+    };
+  } & {
+    song_id: number;
+    id: number;
+  })[];
 }
 
 const EditSong: FC<EditSongProps> = ({
@@ -127,10 +141,11 @@ const EditSong: FC<EditSongProps> = ({
   edit = false,
   songData,
   lyrics,
-  album,
+  albums,
   group,
   people,
   songLinks,
+  genres,
 }) => {
   const formRef = useRef<HTMLFormElement | null>(null)
   const [state, action, pending] = useActionState(edit ? editSong : addSong, undefined)
@@ -149,8 +164,8 @@ const EditSong: FC<EditSongProps> = ({
     artists: songData?.artists || "",
   });
   const [description, setDescription] = useState(songData?.description || "");
-  const [peopleData, setPeopleData] = useState([]);
-  const [groupesData, setGroupesData] = useState([]);
+  const [peopleData, setPeopleData] = useState(people || []);
+  const [groupesData, setGroupesData] = useState(group || []);
 
   useEffect(() => {
 
@@ -283,17 +298,18 @@ const EditSong: FC<EditSongProps> = ({
                   className="flex flex-col justify-start gap-2 mb-2 w-[calc(50%-16px)]"
                   required={true}
                   key={ind}
+                  edit={edit}
                   fieldName={fieldsNames[creator.name]}
                   tableData={creator}
                   firstShowData={
                     creator.name === "people"
-                      ? people?.map(value => {
+                      ? peopleData?.map(value => {
                           return {
                             name: value.people.name,
                             type: value.type.name,
                           }
                         })
-                      : group?.map(value => {
+                      : groupesData?.map(value => {
                           return {
                             name: value.groupes.name,
                             type: value.type.name,
@@ -310,7 +326,15 @@ const EditSong: FC<EditSongProps> = ({
               <h4 className="w-full">Original language(s):</h4>
               {languages.map((language, ind) => {
                 if (language !== "english") {
-                  return <Languages key={ind} language={language} />
+                  return (
+                    <Languages
+                      key={ind}
+                      language={language}
+                      firstShowData={lyrics?.find(lyric => {
+                        return lyric.original;
+                      })?.languages.lang}
+                    />
+                  );
                 }
               })}
             </div>
@@ -321,14 +345,39 @@ const EditSong: FC<EditSongProps> = ({
                   fieldName={fieldsNames[dataGroup.name]}
                   tableData={dataGroup}
                   className="flex flex-col justify-start gap-2 mb-2 w-[calc(50%-16px)]"
+                  firstShowData={
+                    genres && genres.length > 0 && fieldsNames[dataGroup.name] === "жанры"
+                      ? genres.map(genre => {
+                          return {
+                            name: genre.genres.name,
+                          };
+                        })
+                      : albums && albums?.length > 0
+                        ? albums.map(album => {
+                            return {
+                              name: album.albums.name,
+                              track: album.track,
+                            }
+                          })
+                        : undefined
+                  }
                 />
               )
             })}
-            <label className="flex w-full justify-center gap-2">
+            <label className="flex justify-center gap-2">
               <span className="text-black">Mood:</span>
-              <select className="border border-black" name="mood" size={1}>
-                <option className="text-white" value="none" defaultChecked>none</option>
+              <select
+                className="border border-black"
+                name="mood"
+                defaultValue={
+                  edit ? moods.find(mood => mood.mood_id === songData?.mood_id)?.mood_id : undefined
+                }
+              >
                 {moods.map((mood, ind) => {
+                  if (songData && mood.mood_id === songData.mood_id) {
+                    return <Mood key={ind} mood={mood} defaultChecked={true} />
+                  }
+
                   return <Mood key={ind} mood={mood} />
                 })}
               </select>
@@ -352,16 +401,6 @@ const EditSong: FC<EditSongProps> = ({
                 max="1015"
                 min="20"
                 step="0.01"
-              />
-            </label>
-            <label className="flex gap-2">
-              <span className="">Track №:</span>
-              <input
-                className=""
-                type="number"
-                name="track"
-                id="track"
-                min="1"
               />
             </label>
           </article>

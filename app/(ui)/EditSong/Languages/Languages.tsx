@@ -1,4 +1,4 @@
-const Languages = ({ language }: { language: string }) => {
+const Languages = ({ language, firstShowData }: { language: string; firstShowData?: string; }) => {
   return (
     <label className="w-1/6 gap-4">
       <input
@@ -6,7 +6,7 @@ const Languages = ({ language }: { language: string }) => {
         type="radio"
         maxLength={64}
         name="orig_lang"
-        value={language}
+        value={!firstShowData ? language : firstShowData}
         defaultChecked={language === "english_orig"}
       />
       <span className="">{language}</span>

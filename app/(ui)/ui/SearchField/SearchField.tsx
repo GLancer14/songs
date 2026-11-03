@@ -25,6 +25,7 @@ const SearchField = ({
   firstShowData?: {
     name: string;
     type?: string;
+    track?: string;
   }[];
   fieldName: string;
   required?: boolean;
@@ -36,9 +37,13 @@ const SearchField = ({
   const [selectedFields, setSelectedFields] = useState<{
     name: string;
     type?: string;
-  }[]>([]);
+  }[]>(firstShowData || []);
   const [searchValue, setSearchValue] = useState("");
   const [searchVisible, setSearchVisible] = useState(false);
+  const [albums, setAlbums] = useState<{
+    name: string;
+    track?: string;
+  }[]>(firstShowData ? firstShowData : []);
   const listRef = useRef(null);
 
   useEffect(() => {
@@ -127,17 +132,49 @@ const SearchField = ({
                 className="w-min bg-white text-black"
                 type="text"
                 readOnly={true}
-                value={typeof(selectedField) === "string" ? selectedField : selectedField.name}
+                value={selectedField.name}
                 name={tableData.name}
                 required={required}
               />
-              {(fieldName.toLowerCase() === "люди" || fieldName.toLowerCase() === "группа") &&
+              {(fieldName.toLowerCase() === "люди" || fieldName.toLowerCase() === "группа") ?
                 <SearchType
                   tableData={tableData}
                   maxLength={maxLength}
                   required={true}
                   firstViewData={selectedField.type}
                 />
+                : fieldName.toLowerCase() === "альбомы"
+                  ? albums && albums?.length > 0 && <div>
+                      <span>Track №: </span>
+                      <input
+                        className="w-12"
+                        type="number"
+                        min={1}
+                        max={999}
+                        name="track"
+                        id="track"
+                        value={String(albums.find(value => {
+                          if (value.name === selectedField.name) {
+                            return true;
+                          }
+                        })?.track)}
+                        onInput={e => {
+                          const newValue = albums.map(value => {
+                            if (value.name === selectedField.name) {
+                              return {
+                                name: value.name,
+                                track: e.currentTarget.value,
+                              }
+                            }
+
+                            return value
+                          });
+
+                          setAlbums(newValue)
+                        }}
+                      />
+                    </div>
+                  : null
               }
               <span onClick={() => {
                 setSelectedFields(selectedFields.filter(droppedSelectedField => {
