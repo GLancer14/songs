@@ -6,7 +6,6 @@ import Languages from "./Languages/Languages";
 import Mood from "./Mood/Mood";
 import SearchField from "../ui/SearchField/SearchField";
 import Footer from "../Footer/Footer";
-import ExternalLink from "./ExternalLink/ExternalLink";
 import Lyrics from "./Lyrics/Lyrics";
 import { FC, useActionState, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
@@ -16,6 +15,7 @@ import { fieldsNames, TableNames } from "../lib/fieldsNames";
 import AddImage from "../ui/AddImage/AddImage";
 import editSong from "@/app/actions/editSong/editSong";
 import formatDateForForm from "../utils/formatDateForForm";
+import ExternalLinks from "./ExternalLinks/ExternalLinks";
 
 interface EditSongProps {
   user: users | null | undefined;
@@ -149,7 +149,7 @@ const EditSong: FC<EditSongProps> = ({
   genres,
 }) => {
   const staticURL = !process.env.NEXT_PUBLIC_BLOB_STORE_ID ? "" : process.env.NEXT_PUBLIC_STATIC_URL;
-  const formRef = useRef<HTMLFormElement | null>(null)
+  const formRef = useRef<HTMLFormElement | null>(null);
   const [state, action, pending] = useActionState(edit ? editSong : addSong, undefined)
   const [lyricsOn, setLyricsOn] = useState<{
     english: boolean,
@@ -168,6 +168,7 @@ const EditSong: FC<EditSongProps> = ({
   const [description, setDescription] = useState(songData?.description || "");
   const [releaseDate, setReleaseDate] = useState(songData?.release_date || new Date());
   const [bpm, setBpm] = useState(songData?.bpm || 200);
+  const [audio, setAudio] = useState(!songData?.file?.includes("blob") ? songData?.file : "");
 
   return (
     <>
@@ -414,27 +415,45 @@ const EditSong: FC<EditSongProps> = ({
         <section className="flex flex-col mb-8 w-1/2 gap-2">
           <h2 className="text-4xl w-full mb-4">media</h2>
           <div className="flex justify-between w-full">
-            {/* <span className="">Song Art:</span> */}
             <AddImage previousImage={
                 !songData?.image?.includes("blob") || songData.image === null
                 ? `${staticURL}/backgrounds/songs/${songData?.image}`
-                : albums?.find(album => album.albums.image)
-                  ? `${staticURL}/backgrounds/albums/${albums?.find(album => album.albums.image)?.albums.image}`
-                  : `${staticURL}/noimage2.svg`
+                : undefined
               } />
           </div>
-          <div className="flex justify-between">
+          <div className="relative flex gap-4 items-start w-full">
             <span className="">Audio:</span>
-            <input
-              className="w-3/5"
-              type="file"
-              name="orig_audio"
-              id="upload-orig-audio"
-              accept="audio/mp3,audio/flac,audio/aac"
-              tabIndex={-1}
-            />
-            {/* <div className="" tabIndex={0}>Add</div> */}
-            {/* <span className=""></span> */}
+            <label>
+              <input
+                className="absolute top-0 left-0 scale-0 w-0 h-0"
+                type="file"
+                name="orig_audio"
+                id="upload-orig-audio"
+                accept="audio/mp3,audio/flac,audio/aac"
+                tabIndex={-1}
+                onClick={e => {
+                  if (audio) {
+                    e.preventDefault();
+                    setAudio(null)
+                  }
+                }}
+                onChange={(e) => {
+                  setAudio(e.currentTarget.value.replace("C:\\fakepath\\", ""));
+                }}
+              />
+              <div className="text-center w-min-30 px-2 cursor-pointer border border-black">{!audio ? "Добавить файл" : "Удалить файл"}</div>
+            </label>
+            <div
+              className="
+                max-w-3/5
+                overflow-hidden
+                text-ellipsis
+                wrap-break-word
+                text-nowrap
+              "
+            >
+              {audio && `Audio name: ${audio}`}
+            </div>
           </div>
         </section>
         <section className="w-0 h-0 opacity-0">
@@ -448,7 +467,7 @@ const EditSong: FC<EditSongProps> = ({
             />
           }
         </section>
-        <ExternalLink form={formRef.current} />
+        <ExternalLinks firstDisplayData={songLinks} />
         <button className="border border-black py-2" value="Save" id="save_songs_lyrics" onSubmit={(e) => {
           e.preventDefault();
           redirect(`/`)

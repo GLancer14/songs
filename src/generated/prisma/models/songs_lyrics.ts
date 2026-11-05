@@ -262,7 +262,7 @@ export type songs_lyricsScalarWhereWithAggregatesInput = {
 
 export type songs_lyricsCreateInput = {
   lyrics_text: string
-  original: boolean
+  original?: boolean
   songs: Prisma.songsCreateNestedOneWithoutSongsLyricsInput
   languages: Prisma.languagesCreateNestedOneWithoutSongsLyricsInput
 }
@@ -271,7 +271,7 @@ export type songs_lyricsUncheckedCreateInput = {
   song_id: number
   language_id: number
   lyrics_text: string
-  original: boolean
+  original?: boolean
 }
 
 export type songs_lyricsUpdateInput = {
@@ -292,7 +292,7 @@ export type songs_lyricsCreateManyInput = {
   song_id: number
   language_id: number
   lyrics_text: string
-  original: boolean
+  original?: boolean
 }
 
 export type songs_lyricsUpdateManyMutationInput = {
@@ -443,14 +443,14 @@ export type BoolFieldUpdateOperationsInput = {
 
 export type songs_lyricsCreateWithoutSongsInput = {
   lyrics_text: string
-  original: boolean
+  original?: boolean
   languages: Prisma.languagesCreateNestedOneWithoutSongsLyricsInput
 }
 
 export type songs_lyricsUncheckedCreateWithoutSongsInput = {
   language_id: number
   lyrics_text: string
-  original: boolean
+  original?: boolean
 }
 
 export type songs_lyricsCreateOrConnectWithoutSongsInput = {
@@ -491,14 +491,14 @@ export type songs_lyricsScalarWhereInput = {
 
 export type songs_lyricsCreateWithoutLanguagesInput = {
   lyrics_text: string
-  original: boolean
+  original?: boolean
   songs: Prisma.songsCreateNestedOneWithoutSongsLyricsInput
 }
 
 export type songs_lyricsUncheckedCreateWithoutLanguagesInput = {
   song_id: number
   lyrics_text: string
-  original: boolean
+  original?: boolean
 }
 
 export type songs_lyricsCreateOrConnectWithoutLanguagesInput = {
@@ -530,7 +530,7 @@ export type songs_lyricsUpdateManyWithWhereWithoutLanguagesInput = {
 export type songs_lyricsCreateManySongsInput = {
   language_id: number
   lyrics_text: string
-  original: boolean
+  original?: boolean
 }
 
 export type songs_lyricsUpdateWithoutSongsInput = {
@@ -554,7 +554,7 @@ export type songs_lyricsUncheckedUpdateManyWithoutSongsInput = {
 export type songs_lyricsCreateManyLanguagesInput = {
   song_id: number
   lyrics_text: string
-  original: boolean
+  original?: boolean
 }
 
 export type songs_lyricsUpdateWithoutLanguagesInput = {
