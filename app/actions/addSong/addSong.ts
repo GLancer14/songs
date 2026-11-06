@@ -6,6 +6,7 @@ import userIam from "../userIam";
 import { writeFile } from "fs";
 import path from "path";
 import { put } from "@vercel/blob";
+import { id } from "zod/locales";
 
 export type ArrayValues = 
   "people" |
@@ -29,7 +30,9 @@ export default async function addSong(
     english: formData.get("english"),
     russian: formData.get("russian"),
     people: formData.getAll("people"),
+    people_types: formData.getAll("people_name-input-as"),
     groupes: formData.getAll("groupes"),
+    groupes_types: formData.getAll("groupes_name-input-as"),
     orig_lang: formData.get("orig_lang"),
     genres: formData.getAll("genres"),
     albums: formData.getAll("albums"),
@@ -139,16 +142,38 @@ export default async function addSong(
   async function sendSongsArray(tableName: ArrayValues) {
     if (songData[tableName] && songData[tableName].length > 0) {
       const model = prisma[tableName as ValidModelKeys] as any;
+      const authorArray = songData[tableName];
+      const searchingField = tableName === "albums" ? "album_id" : "id";
       
-      for (const author of songData[tableName]) {
+      for (let i = 0; i < authorArray.length; i++) {
         const existingAuthor = await model.findFirst({
           where: {
-            name: author,
+            name: authorArray[i],
           },
           select: {
-            id: true,
+            [searchingField]: true,
           }
         });
+
+        let authorType: any;
+        if (tableName === "people" || tableName === "groupes") {
+          authorType = await prisma.type.findFirst({
+            where: {
+              name: {
+                contains: songData[`${tableName}_types`][i],
+                mode: "insensitive",
+              },
+            },
+          });
+
+          if (!authorType) {
+            authorType = await prisma.type.create({
+              data: {
+                name: songData[`${tableName}_types`][i],
+              },
+            });
+          }
+        }
 
         let sendDataAlbums: any;
 
@@ -156,8 +181,14 @@ export default async function addSong(
           if (tableName === "albums") {
             sendDataAlbums = {
               song_id: songCreateResult.song_id,
-              id: existingAuthor.id,
+              album_id: existingAuthor.album_id,
               track: Number(songData.track),
+            }
+          } else if (tableName === "people" || tableName === "groupes") {
+            sendDataAlbums = {
+              song_id: songCreateResult.song_id,
+              id: existingAuthor.id,
+              type_id: authorType.type_id,
             }
           } else {
             sendDataAlbums = {
@@ -173,18 +204,25 @@ export default async function addSong(
         } else {
           const newMusicAuthor = await model.create({
             data: {
-              name: author,
+              name: authorArray[i],
+              author: tableName === "albums" ? "New Author" : undefined,
             },
             select: {
-              id: true,
+              [searchingField]: true,
             }
           });
 
           if (tableName === "albums") {
             sendDataAlbums = {
               song_id: songCreateResult.song_id,
-              id: newMusicAuthor.id,
+              album_id: newMusicAuthor.album_id,
               track: Number(songData.track),
+            }
+          } else if (tableName === "people" || tableName === "groupes") {
+            sendDataAlbums = {
+              song_id: songCreateResult.song_id,
+              id: newMusicAuthor.id,
+              type_id: authorType.type_id,
             }
           } else {
             sendDataAlbums = {

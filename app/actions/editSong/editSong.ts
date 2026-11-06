@@ -3,9 +3,9 @@
 import { prisma } from "../../lib/prisma";
 import { AddSongSchema, AddSongSchemaType, EditSongSchema, EditSongSchemaType } from "@/app/lib/definitions";
 import userIam from "../userIam";
-import { writeFile } from "fs";
+import { rm, writeFile } from "fs";
 import path from "path";
-import { put } from "@vercel/blob";
+import { del, put } from "@vercel/blob";
 
 export type ArrayValues = 
   "people" |
@@ -59,9 +59,9 @@ export default async function editSong(
     }
   }
   const songData = validatedFields.data;
-  const oldSongData = await prisma.albums.findFirst({
+  const oldSongData = await prisma.songs.findFirst({
     where: {
-      album_id: +songData.song_id,
+      song_id: +songData.song_id,
     }
   });
 
@@ -99,6 +99,18 @@ export default async function editSong(
   });
 
   await prisma.songs_people.deleteMany({
+    where: {
+      song_id: +songData.song_id,
+    },
+  });
+
+  await prisma.songs_albums.deleteMany({
+    where: {
+      song_id: +songData.song_id,
+    },
+  });
+
+  await prisma.songs_genres.deleteMany({
     where: {
       song_id: +songData.song_id,
     },
@@ -345,42 +357,65 @@ export default async function editSong(
 
   if (songData.title_image) {
     if (songData.title_image.size === 0) {
-      songData.title_image = undefined;
-    } else {
-      const file = songData.title_image;
-      const bytes = await file.arrayBuffer();
-      const buffer = Buffer.from(bytes);
+      return songData.title_image = undefined;
+    }
+
+    if (oldSongData?.image && oldSongData.image !== songData.title_image.name) {
       if (!process.env.NEXT_PUBLIC_BLOB_STORE_ID) {
-        await writeFile(path.join(process.cwd(), 'public/backgrounds/songs', imageName), buffer, (e) => {
+        rm(path.join(process.cwd(), 'public/backgrounds/songs', oldSongData.image), (e) => {
           console.log(e)
         });
       } else {
-        const savePath = `backgrounds/songs/${imageName}`;
-        await put(savePath, buffer, {
-          access: 'public',
-        });
+        const savePath = `backgrounds/songs/${oldSongData.image}`;
+        await del(savePath);
       }
+    }
+
+    const file = songData.title_image;
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+    
+    if (!process.env.NEXT_PUBLIC_BLOB_STORE_ID) {
+      await writeFile(path.join(process.cwd(), 'public/backgrounds/songs', imageName), buffer, (e) => {
+        console.log(e)
+      })
+    } else {
+      const savePath = `backgrounds/songs/${imageName}`;
+      await put(savePath, buffer, {
+        access: 'public',
+      });
     }
   }
 
   if (songData.orig_audio) {
     if (songData.orig_audio.size === 0) {
-      songData.orig_audio = undefined;
-    } else {
-      const file = songData.orig_audio;
-      const bytes = await file.arrayBuffer();
-      const buffer = Buffer.from(bytes);
+      return songData.orig_audio = undefined;
+    }
+
+    if (oldSongData?.file && oldSongData.file !== songData.orig_audio.name) {
       if (!process.env.NEXT_PUBLIC_BLOB_STORE_ID) {
-        await writeFile(path.join(process.cwd(), 'public/songs', audioName), buffer, (e) => {
+        rm(path.join(process.cwd(), 'public/songs', oldSongData.file), (e) => {
           console.log(e)
         });
       } else {
-        const savePath = `songs/${audioName}`;
-        await put(savePath, buffer, {
-          access: 'public',
-          multipart: true,
-        });
+        const savePath = `songs/${oldSongData.file}`;
+        await del(savePath);
       }
+    }
+
+    const file = songData.orig_audio;
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+    
+    if (!process.env.NEXT_PUBLIC_BLOB_STORE_ID) {
+      await writeFile(path.join(process.cwd(), 'public/songs', audioName), buffer, (e) => {
+        console.log(e)
+      })
+    } else {
+      const savePath = `songs/${audioName}`;
+      await put(savePath, buffer, {
+        access: 'public',
+      });
     }
   }
 

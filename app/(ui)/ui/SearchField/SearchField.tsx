@@ -144,7 +144,7 @@ const SearchField = ({
                   firstViewData={selectedField.type}
                 />
                 : fieldName.toLowerCase() === "альбомы"
-                  ? albums && albums?.length > 0 && <div>
+                  ? <div>
                       <span>Track №: </span>
                       <input
                         className="w-12"
@@ -164,19 +164,25 @@ const SearchField = ({
                               return {
                                 name: value.name,
                                 track: e.currentTarget.value,
-                              }
+                              };
                             }
 
-                            return value
+                            return value;
                           });
 
-                          setAlbums(newValue)
+                          setAlbums(newValue);
                         }}
                       />
                     </div>
                   : null
               }
               <span onClick={() => {
+                if (fieldName.toLowerCase() === "альбомы") {
+                  setAlbums(albums.filter(album => {
+                    return album.name !== selectedField.name;
+                  }))
+                }
+
                 setSelectedFields(selectedFields.filter(droppedSelectedField => {
                   return selectedField !== droppedSelectedField;
                 }))
@@ -189,6 +195,16 @@ const SearchField = ({
         className="border-black border"
         type="button"
         onClick={() => {
+          if (fieldName.toLowerCase() === "альбомы") {
+            if (albums.find(album => album.name === searchValue))
+              return;
+
+            setAlbums([...albums, {
+              name: searchValue,
+              track: "",
+            }]);
+          }
+
           if (searchValue !== "") {
             setSelectedFields([
               ...selectedFields,

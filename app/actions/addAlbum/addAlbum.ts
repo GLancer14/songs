@@ -96,7 +96,7 @@ export default async function addAlbum(
           },
         });
 
-        const authorType = await prisma.type.findFirst({
+        let authorType = await prisma.type.findFirst({
           where: {
             name: {
               contains: albumData[`${tableName}_types`][i],
@@ -105,13 +105,21 @@ export default async function addAlbum(
           }
         });
 
+        if (!authorType) {
+          authorType = await prisma.type.create({
+            data: {
+              name: albumData[`${tableName}_types`][i],
+            }
+          })
+        }
+
         let sendDataAlbums: any;
 
         if (existingAuthor) {
           sendDataAlbums = {
             album_id: albumCreateResult.album_id,
             id: existingAuthor.id,
-            type_id: authorType?.type_id,
+            type_id: authorType.type_id,
           }
 
           const albumsTable = prisma[`albums_${tableName}` as keyof typeof prisma] as any;
@@ -131,7 +139,7 @@ export default async function addAlbum(
           sendDataAlbums = {
             album_id: albumCreateResult.album_id,
             id: newMusicAuthor.id,
-            type_id: authorType?.type_id,
+            type_id: authorType.type_id,
           }
 
           const albumsTable = prisma[`albums_${tableName}` as keyof typeof prisma] as any;

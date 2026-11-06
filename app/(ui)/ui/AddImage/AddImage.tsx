@@ -17,6 +17,7 @@ const AddImage = ({ name, previousImage }: { name?: string, previousImage?: stri
       setImage(staticURL + url)
     }
   };
+  console.log(image)
 
   return (
     <div className="w-full">

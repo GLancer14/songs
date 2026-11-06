@@ -416,9 +416,11 @@ const EditSong: FC<EditSongProps> = ({
           <h2 className="text-4xl w-full mb-4">media</h2>
           <div className="flex justify-between w-full">
             <AddImage previousImage={
-                !songData?.image?.includes("blob") || songData.image === null
-                ? `${staticURL}/backgrounds/songs/${songData?.image}`
-                : undefined
+                !(songData?.image?.includes("blob")
+                  || songData?.image === null
+                  || songData?.image === undefined)
+                    ? `${staticURL}/backgrounds/songs/${songData?.image}`
+                    : undefined
               } />
           </div>
           <div className="relative flex gap-4 items-start w-full">
