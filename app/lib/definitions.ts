@@ -44,7 +44,7 @@ export const AddSongSchema = z.object({
   mood: z.string().nonempty(),
   release_date: z.string().nonoptional(),
   bpm: z.string().optional(),
-  track: z.string(),
+  track: z.array(z.string()),
   title_image: z.file().optional(),
   orig_audio: z.file().optional(),
   url: z.array(z.string()).optional(),
@@ -73,13 +73,13 @@ export const EditSongSchema = z.object({
   mood: z.string().nonempty(),
   release_date: z.string().nonoptional(),
   bpm: z.string().optional(),
-  track: z.string().optional(),
+  track: z.array(z.string()),
   title_image: z.file().optional(),
   orig_audio: z.file().optional(),
   url: z.array(z.string()).optional(),
   url_name: z.array(z.string()).optional(),
   url_type: z.array(z.string()).optional(),
-  song_id: z.number(),
+  song_id: z.string(),
 })
 
 export type EditSongSchemaType = z.infer<typeof EditSongSchema>;
@@ -88,7 +88,7 @@ export const AddAlbumSchema = z.object({
   album_name: z.string().nonempty(),
   album_author: z.string().nonempty(),
   album_description: z.string().optional(),
-  album_type: z.string().nonoptional(),
+  album_type_id: z.string().nonoptional(),
   groupes: z.array(z.string()),
   groupes_types: z.array(z.string()),
   people: z.array(z.string()),

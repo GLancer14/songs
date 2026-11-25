@@ -21,7 +21,7 @@ export default async function addAlbum(
     album_name: formData.get("album_name"),
     album_author: formData.get("album_author"),
     album_description: formData.get("album_description"),
-    album_type: formData.get("album_type"),
+    album_type_id: formData.get("album_type_id"),
     groupes: formData.getAll("groupes"),
     groupes_types: formData.getAll("groupes_name-input-as"),
     people: formData.getAll("people"),
@@ -50,7 +50,7 @@ export default async function addAlbum(
       name: albumData.album_name,
       author: albumData.album_author,
       description: albumData.album_description,
-      album_type: Number(albumData.album_type),
+      album_type: Number(albumData.album_type_id),
       release_date: new Date(Date.parse(albumData.release_date)),
       image: imageName,
     }

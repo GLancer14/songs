@@ -39,7 +39,7 @@ export default async function addSong(
     mood: formData.get("mood"),
     release_date: formData.get("release_date"),
     bpm: formData.get("bpm"),
-    track: formData.get("track"),
+    track: formData.getAll("track"),
     title_image: formData.get("title_image"),
     orig_audio: formData.get("orig_audio"),
     url: formData.getAll("url"),

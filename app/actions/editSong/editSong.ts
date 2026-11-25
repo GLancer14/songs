@@ -38,7 +38,7 @@ export default async function editSong(
     mood: formData.get("mood"),
     release_date: formData.get("release_date"),
     bpm: formData.get("bpm"),
-    track: formData.get("track"),
+    track: formData.getAll("track"),
     title_image: formData.get("title_image"),
     orig_audio: formData.get("orig_audio"),
     url: formData.getAll("url"),
@@ -46,6 +46,8 @@ export default async function editSong(
     url_type: formData.getAll("url_type"),
     song_id: formData.get("song_id"),
   });
+
+  console.log(validatedFields)
 
   if (!validatedFields.success) {
     return {
@@ -58,6 +60,7 @@ export default async function editSong(
       errors: ["You are logged out"],
     }
   }
+
   const songData = validatedFields.data;
   const oldSongData = await prisma.songs.findFirst({
     where: {
@@ -68,29 +71,7 @@ export default async function editSong(
   const imageName = `${Date.now()}-${songData.title_image?.name.replace(/[^a-zA-Z0-9.]/g, '-')}`;
   const audioName = `${Date.now()}-${songData.orig_audio?.name.replace(/[^a-zA-Z0-9.]/g, '-')}`;
 
-  const songCreateResult = await prisma.songs.create({
-    data: {
-      title: songData.songs_title,
-      artists: songData.songs_artists,
-      name: songData.songs_name,
-      addition_date: new Date(),
-      release_date: new Date(Date.parse(songData.release_date)),
-      bpm: Number(songData.bpm),
-      description: songData.description,
-      image: imageName,
-      file: audioName,
-      users: {
-        connect: {
-          user_id: user.user_id,
-        }
-      },
-      mood: {
-        connect: {
-          mood_id: Number(songData.mood) || 1,
-        }
-      }
-    }
-  });
+
 
   await prisma.songs_groupes.deleteMany({
     where: {
@@ -111,6 +92,18 @@ export default async function editSong(
   });
 
   await prisma.songs_genres.deleteMany({
+    where: {
+      song_id: +songData.song_id,
+    },
+  });
+
+  await prisma.songs_lyrics.deleteMany({
+    where: {
+      song_id: +songData.song_id,
+    },
+  });
+
+  await prisma.links.deleteMany({
     where: {
       song_id: +songData.song_id,
     },
@@ -169,7 +162,7 @@ export default async function editSong(
   }
 
   const newSongPeople = await Promise.all(songData.people.map(async (value) => {
-    const foundGroup = await prisma.people.findFirst({
+    const foundPeople = await prisma.people.findFirst({
       where: {
         name: {
           contains: value,
@@ -178,8 +171,8 @@ export default async function editSong(
       },
     });
 
-    if (foundGroup) {
-      return foundGroup;
+    if (foundPeople) {
+      return foundPeople;
     }
 
     return await prisma.people.create({
@@ -220,6 +213,72 @@ export default async function editSong(
     });
   }
 
+  const newSongAlbums = songData.albums && await Promise.all(songData.albums.map(async (value) => {
+    const foundAlbums = await prisma.albums.findFirst({
+      where: {
+        name: {
+          contains: value,
+          mode: "insensitive",
+        },
+      },
+    });
+
+    if (foundAlbums) {
+      return foundAlbums;
+    }
+
+    return await prisma.albums.create({
+      data: {
+        name: value,
+        author: "new author",
+      },
+    });
+  }));
+
+  if (newSongAlbums) {
+    for (let i = 0; i < newSongAlbums.length; i++) {
+      await prisma.songs_albums.create({
+        data: {
+          song_id: +songData.song_id,
+          album_id: newSongAlbums[i].album_id,
+          track: +songData.track[i],
+        },
+      });
+    }
+  }
+
+  const newSongGenres = songData.genres && await Promise.all(songData.genres.map(async (value) => {
+    const foundGenres = await prisma.genres.findFirst({
+      where: {
+        name: {
+          contains: value,
+          mode: "insensitive",
+        },
+      },
+    });
+
+    if (foundGenres) {
+      return foundGenres;
+    }
+
+    return await prisma.genres.create({
+      data: {
+        name: value,
+      },
+    });
+  }));
+
+  if (newSongGenres) {
+    for (let i = 0; i < newSongGenres.length; i++) {
+      await prisma.songs_genres.create({
+        data: {
+          song_id: +songData.song_id,
+          id: newSongGenres[i].id,
+        },
+      });
+    }
+  }
+
   const origLangId = await prisma.languages.findFirst({
     where: {
       lang: songData.orig_lang
@@ -231,12 +290,14 @@ export default async function editSong(
 
   await prisma.songs_lyrics.create({
     data: {
-      song_id: songCreateResult.song_id,
+      song_id: +songData.song_id,
       language_id: origLangId?.language_id || 1,
       lyrics_text: songData.original,
       original: true,
     }
   });
+
+  console.log(songData.lyrics_translation_langs)
 
   if (songData.lyrics_translation_langs &&
     songData.lyrics_translation_langs.length !== 0 &&
@@ -246,7 +307,7 @@ export default async function editSong(
       if (value === "english") {
         await prisma.songs_lyrics.create({
           data: {
-            song_id: songCreateResult.song_id,
+            song_id: +songData.song_id,
             language_id: 1,
             lyrics_text: songData.english ?? "",
             original: false,
@@ -255,7 +316,7 @@ export default async function editSong(
       } else if (value === "russian") {
         await prisma.songs_lyrics.create({
           data: {
-            song_id: songCreateResult.song_id,
+            song_id: +songData.song_id,
             language_id: 11,
             lyrics_text: songData.russian ?? "",
             original: false,
@@ -265,88 +326,51 @@ export default async function editSong(
     }
   }
 
-  const arrays: Array<ArrayValues> = [
-    "people",
-    "groupes",
-    "genres",
-    "albums",
-  ]
 
-  async function sendSongsArray(tableName: ArrayValues) {
-    if (songData[tableName] && songData[tableName].length > 0) {
-      const model = prisma[tableName as ValidModelKeys] as any;
-      
-      for (const author of songData[tableName]) {
-        const existingAuthor = await model.findFirst({
-          where: {
-            name: author,
-          },
-          select: {
-            id: true,
-          }
-        });
 
-        let sendDataAlbums: any;
+  const songDataImage: {
+    title: string;
+    artists: string;
+    name: string;
+    mood_id: number;
+    release_date: Date;
+    description?: string | undefined;
+    bpm?: number;
+    image?: string;
+    file?: string;
+  } = {
+    title: songData.songs_title,
+    artists: songData.songs_artists,
+    name: songData.songs_name,
+    mood_id: +songData.mood,
+    release_date: new Date(songData.release_date),
+    description: songData.description,
+    bpm: Number(songData.bpm),
+  };
 
-        if (existingAuthor) {
-          if (tableName === "albums") {
-            sendDataAlbums = {
-              song_id: songCreateResult.song_id,
-              id: existingAuthor.id,
-              track: Number(songData.track),
-            }
-          } else {
-            sendDataAlbums = {
-              song_id: songCreateResult.song_id,
-              id: existingAuthor.id,
-            }
-          }
-
-          const songsTable = prisma[`songs_${tableName}` as keyof typeof prisma] as any;
-          await songsTable.create({
-            data: sendDataAlbums,
-          });
-        } else {
-          const newMusicAuthor = await model.create({
-            data: {
-              name: author,
-            },
-            select: {
-              id: true,
-            }
-          });
-
-          if (tableName === "albums") {
-            sendDataAlbums = {
-              song_id: songCreateResult.song_id,
-              id: newMusicAuthor.id,
-              track: Number(songData.track),
-            }
-          } else {
-            sendDataAlbums = {
-              song_id: songCreateResult.song_id,
-              id: newMusicAuthor.id,
-            }
-          }
-
-          const songsTable = prisma[`songs_${tableName}` as keyof typeof prisma] as any;
-          await songsTable.create({
-            data: sendDataAlbums,
-          });
-        }
-      }
-    }
+  if (songData.title_image && !songData.title_image.name.includes("blob")) {
+    songDataImage.image = imageName;
   }
 
-  for (const arrayData of arrays) {
-    await sendSongsArray(arrayData);
+  if (songData.orig_audio && !songData.orig_audio.name.includes("blob")) {
+    songDataImage.file = imageName;
   }
+
+  const songUpdateResult = await prisma.songs.update({
+    where: {
+      song_id: Number(songData.song_id),
+    },
+    data: {
+      ...songDataImage,
+    },
+  });
+
 
   if (songData.url && songData.url.length > 0) {
     songData.url.forEach(async (value, ind) => {
       await prisma.links.create({
         data: {
-          song_id: songCreateResult.song_id,
+          song_id: +songData.song_id,
           url: value,
           url_name: songData.url_name![ind],
           url_type: songData.url_type![ind],
@@ -419,5 +443,5 @@ export default async function editSong(
     }
   }
 
-  return JSON.parse(JSON.stringify(songCreateResult));
+  return JSON.parse(JSON.stringify(songUpdateResult));
 }
